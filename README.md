@@ -7,7 +7,7 @@ It has 2 MIDI-IN and 2 MIDI-OUT, and is USB MIDI class-compliant.
 
 The USB-MIDI Class Driver is based on [mimuz-tuch](https://github.com/mimuz/mimuz-tuch) project (c) [D.F.Mac. @TripArts Music](https://github.com/tadfmac).
 
-STM32F0を使用した、USB-MIDIインターフェースです。INを2系統、OUTを2系統実装してあります。USB MIDI Classに対応するシステムに対し、ドライバレスでMIDI入出力ポートを追加できます。
+STM32F0を使用した、USB-MIDIインターフェースです。INを2系統、OUTを2系統実装しています。USB MIDI Classに対応するシステムに対し、ドライバレスでMIDI入出力ポートを追加できます。
 
 USB MIDI Classドライバは、[D.F.Mac. @TripArts Music](https://github.com/tadfmac)氏作成の[ドライバ](https://github.com/mimuz/mimuz-tuch/tree/master/STM32)を基に、一部改造を加えています。
 
