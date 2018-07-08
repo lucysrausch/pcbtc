@@ -3,7 +3,7 @@
 ## Overview
 
 This repository shows STM32F0 (ARM Cortex-M0) based USB-MIDI Interface.
-It has 2 MIDI-IN and 2 MIDI-OUT, and is USB MIDI class compatible.
+It has 2 MIDI-IN and 2 MIDI-OUT, and is USB MIDI class-compliant.
 
 The USB-MIDI Class Driver is based on [mimuz-tuch](https://github.com/mimuz/mimuz-tuch) project (c) [D.F.Mac. @TripArts Music](https://github.com/tadfmac).
 
@@ -15,7 +15,7 @@ USB MIDI Classドライバは、[D.F.Mac. @TripArts Music](https://github.com/ta
 
 ## Specifications
 
-* USB MIDI class compatible
+* USB MIDI class-compliant
 * MIDI port: 2IN/2OUT
 * MIDI buffer size: 512B/1port
 
