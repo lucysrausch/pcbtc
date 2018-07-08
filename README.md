@@ -51,12 +51,16 @@ Install [SW4STM32](http://www.openstm32.org/HomePage)(need registration), import
 
 ## Copyrights
 
-* MIDI Class Driver by [D.F.Mac. @TripArts Music](http://ta-music.strikingly.com/)
+* USB MIDI Class Driver by [D.F.Mac. @TripArts Music](http://ta-music.strikingly.com/)
 * STM32 CubeF0 by [STMicroelectronics](https://www.st.com/en/embedded-software/stm32cubef0.html)
+
+## Author
+
+(c) 2017 Keshikan ( [Website](http://www.keshikan.net/),  [Twitter](https://twitter.com/keshinomi_88pro) )
 
 ## License
 
-* MIDI Class Driver: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+* USB MIDI Class Driver: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * STM32 CubeF0: BSD-3-Clause based.
 * Other Codes, Hardware, Schematic: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
