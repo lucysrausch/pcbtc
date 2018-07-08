@@ -1,0 +1,4 @@
+/Debug/*
+/Debug/
+*.tsc
+*.tsp
