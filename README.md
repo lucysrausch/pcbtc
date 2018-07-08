@@ -7,7 +7,7 @@ It has 2 MIDI-IN and 2 MIDI-OUT, and is USB MIDI class-compliant.
 
 The USB-MIDI Class Driver is based on [mimuz-tuch](https://github.com/mimuz/mimuz-tuch) project (c) [D.F.Mac. @TripArts Music](https://github.com/tadfmac).
 
-STM32F0を使用した、USB-MIDIインターフェースです。INを2系統、OUTを2系統実装しています。USB MIDI Classに対応するシステムに対し、ドライバレスでMIDI入出力ポートを追加できます。
+STM32F0を使用した、USB-MIDIインターフェースです。INを2系統、OUTを2系統実装しています。USB MIDI Classに対応するシステム(Windows, iOS, Android, etc.)に対し、ドライバレスでMIDI入出力ポートを追加できます。
 
 USB MIDI Classドライバは、[D.F.Mac. @TripArts Music](https://github.com/tadfmac)氏作成の[ドライバ](https://github.com/mimuz/mimuz-tuch/tree/master/STM32)を基に、一部改造を加えています。
 
@@ -35,6 +35,16 @@ Install [SW4STM32](http://www.openstm32.org/HomePage)(need registration), import
 * [STM32CubeMX Project file](./software/SW4STM32_project/CureMIDI_IF.ioc)
 * [Source codes and project files (System WorkBench for STM32)](./software/SW4STM32_project/)
 * [Schematic](./hardware/schematic.pdf)
+
+## NOTICE
+
+### VID/PID
+
+Vendor ID(VID) and Product ID(PID) in <usbd_desc.c> should be unique pair for each USB devices.
+Default VID 0x1209 and PID 0x0001 is experimental IDs from [http://pid.codes](http://pid.codes) .When distributing or selling, you must get your own IDs, and change to your own IDs in order to avoid conflicting to other USB devices.
+
+USBのVendor ID(VID)とProduct ID(PID)は、<usbd_desc.c>内に記述します。
+デフォルトのVID(0x1209)/PID(0x0001)ペアは、[http://pid.codes](http://pid.codes)で定められている実験用IDです。そのため、本機器を配布したり販売したりする場合には、別途固有のIDペアを取得し、書き換えてご使用下さい。
 
 ## References
 
