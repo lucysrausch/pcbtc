@@ -56,7 +56,7 @@ Install [SW4STM32](http://www.openstm32.org/HomePage)(need registration), import
 
 ## Author
 
-(c) 2017 Keshikan ( [Website](http://www.keshikan.net/),  [Twitter](https://twitter.com/keshinomi_88pro) )
+(c) 2018 Keshikan ( [Website](http://www.keshikan.net/),  [Twitter](https://twitter.com/keshinomi_88pro) )
 
 ## License
 
