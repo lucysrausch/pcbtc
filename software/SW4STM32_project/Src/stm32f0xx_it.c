@@ -42,13 +42,13 @@
 /* External variables --------------------------------------------------------*/
 extern PCD_HandleTypeDef hpcd_USB_FS;
 extern TIM_HandleTypeDef htim17;
-extern DMA_HandleTypeDef hdma_usart1_rx;
+/*extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart2_rx;
 extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart2;
+extern UART_HandleTypeDef huart2;*/
 
 /******************************************************************************/
-/*            Cortex-M0 Processor Interruption and Exception Handlers         */ 
+/*            Cortex-M0 Processor Interruption and Exception Handlers         */
 /******************************************************************************/
 
 /**
@@ -130,33 +130,6 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32f0xx.s).                    */
 /******************************************************************************/
 
-/**
-* @brief This function handles DMA1 channel 2 and 3 interrupts.
-*/
-void DMA1_Channel2_3_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 0 */
-
-  /* USER CODE END DMA1_Channel2_3_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_usart1_rx);
-  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 1 */
-
-  /* USER CODE END DMA1_Channel2_3_IRQn 1 */
-}
-
-/**
-* @brief This function handles DMA1 channel 4 and 5 interrupts.
-*/
-void DMA1_Channel4_5_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Channel4_5_IRQn 0 */
-
-  /* USER CODE END DMA1_Channel4_5_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_usart2_rx);
-  /* USER CODE BEGIN DMA1_Channel4_5_IRQn 1 */
-
-  /* USER CODE END DMA1_Channel4_5_IRQn 1 */
-}
 
 /**
 * @brief This function handles TIM17 global interrupt.
@@ -172,33 +145,6 @@ void TIM17_IRQHandler(void)
   /* USER CODE END TIM17_IRQn 1 */
 }
 
-/**
-* @brief This function handles USART1 global interrupt / USART1 wake-up interrupt through EXTI line 25.
-*/
-void USART1_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART1_IRQn 0 */
-
-  /* USER CODE END USART1_IRQn 0 */
-  HAL_UART_IRQHandler(&huart1);
-  /* USER CODE BEGIN USART1_IRQn 1 */
-
-  /* USER CODE END USART1_IRQn 1 */
-}
-
-/**
-* @brief This function handles USART2 global interrupt.
-*/
-void USART2_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART2_IRQn 0 */
-
-  /* USER CODE END USART2_IRQn 0 */
-  HAL_UART_IRQHandler(&huart2);
-  /* USER CODE BEGIN USART2_IRQn 1 */
-
-  /* USER CODE END USART2_IRQn 1 */
-}
 
 /**
 * @brief This function handles USB global Interrupt / USB wake-up interrupt through EXTI line 18.

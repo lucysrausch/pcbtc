@@ -5,8 +5,8 @@
 
   (CC at)2016 by D.F.Mac. @TripArts Music
 
-*/ 
- 
+*/
+
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __USB_MIDI_H
 #define __USB_MIDI_H
@@ -22,7 +22,7 @@
 #define MIDI_OUT_EP                                  0x01  /* EP1 for data OUT */
 // #define MIDI_DATA_HS_MAX_PACKET_SIZE                 512  /* Endpoint IN & OUT Packet size */
 #define MIDI_DATA_FS_MAX_PACKET_SIZE                 64  /* Endpoint IN & OUT Packet size */
-#define MIDI_CMD_PACKET_SIZE                         8  /* Control Endpoint Packet size */ 
+#define MIDI_CMD_PACKET_SIZE                         8  /* Control Endpoint Packet size */
 
 #define USB_MIDI_CONFIG_DESC_SIZ                    133//default is 101
 #define MIDI_DATA_IN_PACKET_SIZE                    MIDI_DATA_FS_MAX_PACKET_SIZE
@@ -31,8 +31,8 @@
 
 #define MIDI_IN_FRAME_INTERVAL		1
 
-#define MIDI_OUT_JACK_NUM (2)
-#define MIDI_IN_JACK_NUM (2)
+#define MIDI_OUT_JACK_NUM (1)
+#define MIDI_IN_JACK_NUM (1)
 
 
 typedef struct _USBD_MIDI_ItfTypeDef{
@@ -49,7 +49,7 @@ extern uint8_t  USB_Tx_State;
 extern USBD_ClassTypeDef  USBD_MIDI;
 #define USBD_MIDI_CLASS    &USBD_MIDI
 
-uint8_t  USBD_MIDI_RegisterInterface  (USBD_HandleTypeDef   *pdev, 
+uint8_t  USBD_MIDI_RegisterInterface  (USBD_HandleTypeDef   *pdev,
                                       USBD_MIDI_ItfTypeDef *fops);
 
 #ifdef __cplusplus

@@ -22,7 +22,7 @@
 #define LED_OUT2_PIN GPIO_PIN_7
 
 #define LED_POW_GPIO GPIOB
-#define LED_POW_PIN GPIO_PIN_0
+#define LED_POW_PIN GPIO_PIN_3
 
 
 #endif /* DEVICE_CONF_H_ */
