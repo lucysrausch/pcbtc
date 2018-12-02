@@ -3,6 +3,7 @@
 Docs todo
 
 Midi stack based on:
+https://github.com/keshikan/CureMIDI 
 
 ## USB-MIDI Interface (2IN/2OUT) for STM32 "CureMIDI"
 
