@@ -1,0 +1,2139 @@
+ARM GAS  /tmp/ccBCIwdJ.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"usbd_midi_if.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MIDI_DataTx,"ax",%progbits
+  18              		.align	2
+  19              		.code	16
+  20              		.thumb_func
+  22              	MIDI_DataTx:
+  23              	.LFB43:
+  24              		.file 1 "Src/usbd_midi_if.c"
+   1:Src/usbd_midi_if.c **** /**
+   2:Src/usbd_midi_if.c ****   ******************************************************************************
+   3:Src/usbd_midi_if.c ****   * @file           : usbd_midi_if.c
+   4:Src/usbd_midi_if.c ****   * @brief          :
+   5:Src/usbd_midi_if.c ****   ******************************************************************************
+   6:Src/usbd_midi_if.c **** 
+   7:Src/usbd_midi_if.c ****     (CC at)2016 by D.F.Mac. @TripArts Music
+   8:Src/usbd_midi_if.c **** 
+   9:Src/usbd_midi_if.c ****   ******************************************************************************
+  10:Src/usbd_midi_if.c **** 
+  11:Src/usbd_midi_if.c ****     Modified by keshikan (www.keshikan.net) 2018
+  12:Src/usbd_midi_if.c ****     The license is (CC BY 4.0), and takes over from original usbd_midi_if.h/c.
+  13:Src/usbd_midi_if.c **** 
+  14:Src/usbd_midi_if.c ****     See also original source code page.
+  15:Src/usbd_midi_if.c ****     https://github.com/mimuz/mimuz-tuch/blob/master/STM32/
+  16:Src/usbd_midi_if.c **** 
+  17:Src/usbd_midi_if.c ****   ******************************************************************************
+  18:Src/usbd_midi_if.c ****  */
+  19:Src/usbd_midi_if.c **** 
+  20:Src/usbd_midi_if.c **** /* Includes ------------------------------------------------------------------*/
+  21:Src/usbd_midi_if.c **** #include "usbd_midi_if.h"
+  22:Src/usbd_midi_if.c **** #include "stm32f0xx_hal.h"
+  23:Src/usbd_midi_if.c **** 
+  24:Src/usbd_midi_if.c **** 
+  25:Src/usbd_midi_if.c **** // basic midi rx/tx functions
+  26:Src/usbd_midi_if.c **** static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length);
+  27:Src/usbd_midi_if.c **** static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length);
+  28:Src/usbd_midi_if.c **** 
+  29:Src/usbd_midi_if.c **** // for Cure Series
+  30:Src/usbd_midi_if.c **** #define MIDI_BUFFER_SIZ (512)//FIFO buffer byte size for midi message buffer
+  31:Src/usbd_midi_if.c **** 
+  32:Src/usbd_midi_if.c **** RingBufferU8 rbuf_usb_rx[MIDI_OUT_JACK_NUM]; //for input from USB
+  33:Src/usbd_midi_if.c **** RingBufferU8 rbuf_jack_rx[MIDI_IN_JACK_NUM];  //for input from MIDI-IN jack
+  34:Src/usbd_midi_if.c **** 
+ARM GAS  /tmp/ccBCIwdJ.s 			page 2
+
+
+  35:Src/usbd_midi_if.c **** //for receiving midi data from jack
+  36:Src/usbd_midi_if.c **** MidiAnalysisStatus analyzed_status[MIDI_IN_JACK_NUM];
+  37:Src/usbd_midi_if.c **** MIDIEvent midi_event[MIDI_IN_JACK_NUM];	//received midi data
+  38:Src/usbd_midi_if.c **** 
+  39:Src/usbd_midi_if.c **** uint8_t rx_midi_msg[MIDI_IN_JACK_NUM];
+  40:Src/usbd_midi_if.c **** 
+  41:Src/usbd_midi_if.c **** 
+  42:Src/usbd_midi_if.c **** FUNC_STATUS midiInit()
+  43:Src/usbd_midi_if.c **** {
+  44:Src/usbd_midi_if.c **** 	uint32_t i,j;
+  45:Src/usbd_midi_if.c **** 
+  46:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+  47:Src/usbd_midi_if.c **** 		if(BUFFER_SUCCESS != cureRingBufferU8Init(&rbuf_usb_rx[i], MIDI_BUFFER_SIZ))
+  48:Src/usbd_midi_if.c **** 		{
+  49:Src/usbd_midi_if.c **** 			return FUNC_ERROR;
+  50:Src/usbd_midi_if.c **** 		}
+  51:Src/usbd_midi_if.c **** 	}
+  52:Src/usbd_midi_if.c **** 
+  53:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_IN_JACK_NUM; i++){
+  54:Src/usbd_midi_if.c **** 		if(BUFFER_SUCCESS != cureRingBufferU8Init(&rbuf_jack_rx[i], MIDI_BUFFER_SIZ))
+  55:Src/usbd_midi_if.c **** 		{
+  56:Src/usbd_midi_if.c **** 			return FUNC_ERROR;
+  57:Src/usbd_midi_if.c **** 		}
+  58:Src/usbd_midi_if.c **** 	}
+  59:Src/usbd_midi_if.c **** 
+  60:Src/usbd_midi_if.c **** 	//Init RX
+  61:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_IN_JACK_NUM; i++){
+  62:Src/usbd_midi_if.c **** 
+  63:Src/usbd_midi_if.c **** 		rx_midi_msg[i] = 0x00;
+  64:Src/usbd_midi_if.c **** 		analyzed_status[i].data_idx = 0;
+  65:Src/usbd_midi_if.c **** 		midi_event[i].length = 0;
+  66:Src/usbd_midi_if.c **** 
+  67:Src/usbd_midi_if.c **** 		for(j=0; j<MIDI_SENDDATA_MAX; j++){
+  68:Src/usbd_midi_if.c **** 			midi_event[i].midi_byte[j] = 0x00;
+  69:Src/usbd_midi_if.c **** 		}
+  70:Src/usbd_midi_if.c **** 	}
+  71:Src/usbd_midi_if.c **** 
+  72:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+  73:Src/usbd_midi_if.c **** }
+  74:Src/usbd_midi_if.c **** 
+  75:Src/usbd_midi_if.c **** FUNC_STATUS midiGetFromUsbRx(uint8_t cable_num, uint8_t* dat)
+  76:Src/usbd_midi_if.c **** {
+  77:Src/usbd_midi_if.c **** 	if(BUFFER_SUCCESS != cureRingBufferU8Dequeue(&rbuf_usb_rx[cable_num], dat))
+  78:Src/usbd_midi_if.c **** 	{
+  79:Src/usbd_midi_if.c **** 		return FUNC_ERROR;
+  80:Src/usbd_midi_if.c **** 	}
+  81:Src/usbd_midi_if.c **** 
+  82:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+  83:Src/usbd_midi_if.c **** }
+  84:Src/usbd_midi_if.c **** 
+  85:Src/usbd_midi_if.c **** FUNC_STATUS midiGetFromJackRx(uint8_t cable_num)
+  86:Src/usbd_midi_if.c **** {
+  87:Src/usbd_midi_if.c **** 	if(BUFFER_SUCCESS != cureRingBufferU8Dequeue(&rbuf_jack_rx[cable_num], &rx_midi_msg[cable_num]))
+  88:Src/usbd_midi_if.c **** 	{
+  89:Src/usbd_midi_if.c **** 		return FUNC_ERROR;
+  90:Src/usbd_midi_if.c **** 	}
+  91:Src/usbd_midi_if.c **** 
+ARM GAS  /tmp/ccBCIwdJ.s 			page 3
+
+
+  92:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+  93:Src/usbd_midi_if.c **** }
+  94:Src/usbd_midi_if.c **** 
+  95:Src/usbd_midi_if.c **** FUNC_STATUS midiSetFromJackRx(uint8_t cable_num, uint8_t* dat)
+  96:Src/usbd_midi_if.c **** {
+  97:Src/usbd_midi_if.c **** 	if(BUFFER_SUCCESS != cureRingBufferU8Enqueue(&rbuf_jack_rx[cable_num], dat))
+  98:Src/usbd_midi_if.c **** 	{
+  99:Src/usbd_midi_if.c **** 		return FUNC_ERROR;
+ 100:Src/usbd_midi_if.c **** 	}
+ 101:Src/usbd_midi_if.c **** 
+ 102:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+ 103:Src/usbd_midi_if.c **** }
+ 104:Src/usbd_midi_if.c **** 
+ 105:Src/usbd_midi_if.c **** 
+ 106:Src/usbd_midi_if.c **** bool isUsbRxBufEmpty(uint8_t cable_num)
+ 107:Src/usbd_midi_if.c **** {
+ 108:Src/usbd_midi_if.c **** 	if( 0 != _cureRingBufferU8GetUsedSize(&rbuf_usb_rx[cable_num]) ){
+ 109:Src/usbd_midi_if.c **** 		return false;
+ 110:Src/usbd_midi_if.c **** 	}
+ 111:Src/usbd_midi_if.c **** 
+ 112:Src/usbd_midi_if.c **** 	return true;
+ 113:Src/usbd_midi_if.c **** }
+ 114:Src/usbd_midi_if.c **** 
+ 115:Src/usbd_midi_if.c **** bool isJackRxBufEmpty(uint8_t cable_num)
+ 116:Src/usbd_midi_if.c **** {
+ 117:Src/usbd_midi_if.c **** 	if( 0 != _cureRingBufferU8GetUsedSize(&rbuf_jack_rx[cable_num]) ){
+ 118:Src/usbd_midi_if.c **** 		return false;
+ 119:Src/usbd_midi_if.c **** 	}
+ 120:Src/usbd_midi_if.c **** 
+ 121:Src/usbd_midi_if.c **** 	return true;
+ 122:Src/usbd_midi_if.c **** }
+ 123:Src/usbd_midi_if.c **** 
+ 124:Src/usbd_midi_if.c **** bool isRxBufEmpty()
+ 125:Src/usbd_midi_if.c **** {
+ 126:Src/usbd_midi_if.c **** 	uint32_t i;
+ 127:Src/usbd_midi_if.c **** 
+ 128:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 129:Src/usbd_midi_if.c **** 		if(0 != _cureRingBufferU8GetUsedSize(&rbuf_usb_rx[i]))
+ 130:Src/usbd_midi_if.c **** 		{
+ 131:Src/usbd_midi_if.c **** 			return false;
+ 132:Src/usbd_midi_if.c **** 		}
+ 133:Src/usbd_midi_if.c **** 	}
+ 134:Src/usbd_midi_if.c **** 
+ 135:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_IN_JACK_NUM; i++){
+ 136:Src/usbd_midi_if.c **** 		if(0 != _cureRingBufferU8GetUsedSize(&rbuf_jack_rx[i]))
+ 137:Src/usbd_midi_if.c **** 		{
+ 138:Src/usbd_midi_if.c **** 			return false;
+ 139:Src/usbd_midi_if.c **** 		}
+ 140:Src/usbd_midi_if.c **** 	}
+ 141:Src/usbd_midi_if.c **** 	return true;
+ 142:Src/usbd_midi_if.c **** }
+ 143:Src/usbd_midi_if.c **** 
+ 144:Src/usbd_midi_if.c **** 
+ 145:Src/usbd_midi_if.c **** USBD_MIDI_ItfTypeDef USBD_Interface_fops_FS =
+ 146:Src/usbd_midi_if.c **** {
+ 147:Src/usbd_midi_if.c ****   MIDI_DataRx,
+ 148:Src/usbd_midi_if.c ****   MIDI_DataTx
+ARM GAS  /tmp/ccBCIwdJ.s 			page 4
+
+
+ 149:Src/usbd_midi_if.c **** };
+ 150:Src/usbd_midi_if.c **** 
+ 151:Src/usbd_midi_if.c **** 
+ 152:Src/usbd_midi_if.c **** static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
+ 153:Src/usbd_midi_if.c ****   uint16_t cnt;
+ 154:Src/usbd_midi_if.c ****   uint16_t msgs = length / 4;
+ 155:Src/usbd_midi_if.c ****   uint16_t chk = length % 4;
+ 156:Src/usbd_midi_if.c ****   uint8_t u8b;
+ 157:Src/usbd_midi_if.c ****   uint8_t midi_size;
+ 158:Src/usbd_midi_if.c **** 
+ 159:Src/usbd_midi_if.c ****   if(0 != chk)
+ 160:Src/usbd_midi_if.c ****   {
+ 161:Src/usbd_midi_if.c **** 	  return 0;
+ 162:Src/usbd_midi_if.c ****   }
+ 163:Src/usbd_midi_if.c **** 
+ 164:Src/usbd_midi_if.c ****   for(uint32_t cnt_msgs = 0; cnt_msgs < msgs; cnt_msgs++){
+ 165:Src/usbd_midi_if.c **** 
+ 166:Src/usbd_midi_if.c **** 	  uint8_t cable_num = (msg[0 + 4*cnt_msgs] & 0xF0) >> 4;
+ 167:Src/usbd_midi_if.c **** 	  uint8_t code_idx_num = msg[0 + 4*cnt_msgs] & 0x0F;
+ 168:Src/usbd_midi_if.c **** 
+ 169:Src/usbd_midi_if.c **** 	  switch (code_idx_num) {
+ 170:Src/usbd_midi_if.c **** 
+ 171:Src/usbd_midi_if.c **** 	  	  //not defined
+ 172:Src/usbd_midi_if.c **** 		  case 0x0:
+ 173:Src/usbd_midi_if.c **** 		  case 0x1:
+ 174:Src/usbd_midi_if.c **** 			  midi_size = 0;
+ 175:Src/usbd_midi_if.c **** 			  break;
+ 176:Src/usbd_midi_if.c **** 
+ 177:Src/usbd_midi_if.c **** 		  //1byte message
+ 178:Src/usbd_midi_if.c **** 		  case 0x5:
+ 179:Src/usbd_midi_if.c **** 		  case 0xF:
+ 180:Src/usbd_midi_if.c **** 			  midi_size = 1;
+ 181:Src/usbd_midi_if.c **** 			  break;
+ 182:Src/usbd_midi_if.c **** 
+ 183:Src/usbd_midi_if.c **** 		  //2byte message
+ 184:Src/usbd_midi_if.c **** 		  case 0x2:
+ 185:Src/usbd_midi_if.c **** 		  case 0x6:
+ 186:Src/usbd_midi_if.c **** 		  case 0xC:
+ 187:Src/usbd_midi_if.c **** 		  case 0xD:
+ 188:Src/usbd_midi_if.c **** 			  midi_size = 2;
+ 189:Src/usbd_midi_if.c **** 			  break;
+ 190:Src/usbd_midi_if.c **** 
+ 191:Src/usbd_midi_if.c **** 		  //3byte message
+ 192:Src/usbd_midi_if.c **** 		  case 0x3:
+ 193:Src/usbd_midi_if.c **** 		  case 0x4:
+ 194:Src/usbd_midi_if.c **** 		  case 0x7:
+ 195:Src/usbd_midi_if.c **** 		  case 0x8:
+ 196:Src/usbd_midi_if.c **** 		  case 0x9:
+ 197:Src/usbd_midi_if.c **** 		  case 0xA:
+ 198:Src/usbd_midi_if.c **** 		  case 0xB:
+ 199:Src/usbd_midi_if.c **** 		  case 0xE:
+ 200:Src/usbd_midi_if.c **** 			  midi_size = 3;
+ 201:Src/usbd_midi_if.c **** 			  break;
+ 202:Src/usbd_midi_if.c **** 
+ 203:Src/usbd_midi_if.c **** 		  default:
+ 204:Src/usbd_midi_if.c **** 			  midi_size = 0;
+ 205:Src/usbd_midi_if.c **** 			  break;
+ARM GAS  /tmp/ccBCIwdJ.s 			page 5
+
+
+ 206:Src/usbd_midi_if.c **** 	  }
+ 207:Src/usbd_midi_if.c **** 
+ 208:Src/usbd_midi_if.c **** 	  for(cnt = 0;cnt < midi_size;cnt ++){
+ 209:Src/usbd_midi_if.c **** 		  u8b = *(msg + 4*cnt_msgs + cnt + 1);
+ 210:Src/usbd_midi_if.c **** 		  cureRingBufferU8Enqueue(&rbuf_usb_rx[cable_num], &u8b);
+ 211:Src/usbd_midi_if.c **** 	  }
+ 212:Src/usbd_midi_if.c ****   }
+ 213:Src/usbd_midi_if.c **** 
+ 214:Src/usbd_midi_if.c ****   return 0;
+ 215:Src/usbd_midi_if.c **** }
+ 216:Src/usbd_midi_if.c **** 
+ 217:Src/usbd_midi_if.c **** void sendMidiMessage(uint8_t *msg, uint16_t size){
+ 218:Src/usbd_midi_if.c ****   if(size == 4){
+ 219:Src/usbd_midi_if.c **** //	APP_Rx_Buffer[0] = msg[0];
+ 220:Src/usbd_midi_if.c **** //	APP_Rx_Buffer[1] = msg[1];
+ 221:Src/usbd_midi_if.c **** //	APP_Rx_Buffer[2] = msg[2];
+ 222:Src/usbd_midi_if.c **** //	APP_Rx_Buffer[3] = msg[3];
+ 223:Src/usbd_midi_if.c **** //    USBD_MIDI_SendData(&hUsbDeviceFS, APP_Rx_Buffer, size);
+ 224:Src/usbd_midi_if.c ****     MIDI_DataTx(msg, size);
+ 225:Src/usbd_midi_if.c ****   }
+ 226:Src/usbd_midi_if.c **** }
+ 227:Src/usbd_midi_if.c **** 
+ 228:Src/usbd_midi_if.c **** static uint16_t MIDI_DataTx(uint8_t *msg, uint16_t length){
+  25              		.loc 1 228 0
+  26              		.cfi_startproc
+  27              	.LVL0:
+  28 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 20
+  31              		.cfi_offset 4, -20
+  32              		.cfi_offset 5, -16
+  33              		.cfi_offset 6, -12
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 4746     		mov	r7, r8
+  37 0004 80B4     		push	{r7}
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 24
+  40              		.cfi_offset 8, -24
+  41              	.LVL1:
+ 229:Src/usbd_midi_if.c ****   uint32_t i = 0;
+  42              		.loc 1 229 0
+  43 0006 0023     		mov	r3, #0
+ 230:Src/usbd_midi_if.c ****   while (i < length) {
+ 231:Src/usbd_midi_if.c ****     APP_Rx_Buffer[APP_Rx_ptr_in] = *(msg + i);
+  44              		.loc 1 231 0
+  45 0008 0B4C     		ldr	r4, .L6
+  46 000a 0C4F     		ldr	r7, .L6+4
+ 232:Src/usbd_midi_if.c ****     APP_Rx_ptr_in++;
+ 233:Src/usbd_midi_if.c ****     i++;
+ 234:Src/usbd_midi_if.c ****     if (APP_Rx_ptr_in == APP_RX_DATA_SIZE) {
+  47              		.loc 1 234 0
+  48 000c 8026     		mov	r6, #128
+  49 000e 7600     		lsl	r6, r6, #1
+ 235:Src/usbd_midi_if.c ****       APP_Rx_ptr_in = 0;
+  50              		.loc 1 235 0
+  51 0010 A046     		mov	r8, r4
+ARM GAS  /tmp/ccBCIwdJ.s 			page 6
+
+
+  52 0012 9C46     		mov	ip, r3
+ 230:Src/usbd_midi_if.c ****   while (i < length) {
+  53              		.loc 1 230 0
+  54 0014 0AE0     		b	.L5
+  55              	.LVL2:
+  56              	.L4:
+ 231:Src/usbd_midi_if.c ****     APP_Rx_Buffer[APP_Rx_ptr_in] = *(msg + i);
+  57              		.loc 1 231 0
+  58 0016 2268     		ldr	r2, [r4]
+  59 0018 C55C     		ldrb	r5, [r0, r3]
+  60 001a BD54     		strb	r5, [r7, r2]
+ 232:Src/usbd_midi_if.c ****     APP_Rx_ptr_in++;
+  61              		.loc 1 232 0
+  62 001c 0132     		add	r2, r2, #1
+  63 001e 2260     		str	r2, [r4]
+ 233:Src/usbd_midi_if.c ****     i++;
+  64              		.loc 1 233 0
+  65 0020 0133     		add	r3, r3, #1
+  66              	.LVL3:
+ 234:Src/usbd_midi_if.c ****     if (APP_Rx_ptr_in == APP_RX_DATA_SIZE) {
+  67              		.loc 1 234 0
+  68 0022 B242     		cmp	r2, r6
+  69 0024 02D1     		bne	.L5
+  70              		.loc 1 235 0
+  71 0026 6246     		mov	r2, ip
+  72 0028 4546     		mov	r5, r8
+  73 002a 2A60     		str	r2, [r5]
+  74              	.LVL4:
+  75              	.L5:
+ 230:Src/usbd_midi_if.c ****   while (i < length) {
+  76              		.loc 1 230 0 discriminator 1
+  77 002c 9942     		cmp	r1, r3
+  78 002e F2D8     		bhi	.L4
+ 236:Src/usbd_midi_if.c ****     }
+ 237:Src/usbd_midi_if.c ****   }
+ 238:Src/usbd_midi_if.c ****   return USBD_OK;
+ 239:Src/usbd_midi_if.c **** }
+  79              		.loc 1 239 0
+  80 0030 0020     		mov	r0, #0
+  81              	.LVL5:
+  82              		@ sp needed
+  83 0032 04BC     		pop	{r2}
+  84 0034 9046     		mov	r8, r2
+  85 0036 F0BD     		pop	{r4, r5, r6, r7, pc}
+  86              	.L7:
+  87              		.align	2
+  88              	.L6:
+  89 0038 00000000 		.word	APP_Rx_ptr_in
+  90 003c 00000000 		.word	APP_Rx_Buffer
+  91              		.cfi_endproc
+  92              	.LFE43:
+  94              		.section	.text.MIDI_DataRx,"ax",%progbits
+  95              		.align	2
+  96              		.code	16
+  97              		.thumb_func
+  99              	MIDI_DataRx:
+ 100              	.LFB41:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 7
+
+
+ 152:Src/usbd_midi_if.c **** static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
+ 101              		.loc 1 152 0
+ 102              		.cfi_startproc
+ 103              	.LVL6:
+ 104 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 105              	.LCFI2:
+ 106              		.cfi_def_cfa_offset 20
+ 107              		.cfi_offset 4, -20
+ 108              		.cfi_offset 5, -16
+ 109              		.cfi_offset 6, -12
+ 110              		.cfi_offset 7, -8
+ 111              		.cfi_offset 14, -4
+ 112 0002 5F46     		mov	r7, fp
+ 113 0004 5646     		mov	r6, r10
+ 114 0006 4D46     		mov	r5, r9
+ 115 0008 4446     		mov	r4, r8
+ 116 000a F0B4     		push	{r4, r5, r6, r7}
+ 117              	.LCFI3:
+ 118              		.cfi_def_cfa_offset 36
+ 119              		.cfi_offset 8, -36
+ 120              		.cfi_offset 9, -32
+ 121              		.cfi_offset 10, -28
+ 122              		.cfi_offset 11, -24
+ 123 000c 83B0     		sub	sp, sp, #12
+ 124              	.LCFI4:
+ 125              		.cfi_def_cfa_offset 48
+ 126 000e 8046     		mov	r8, r0
+ 154:Src/usbd_midi_if.c ****   uint16_t msgs = length / 4;
+ 127              		.loc 1 154 0
+ 128 0010 8A08     		lsr	r2, r1, #2
+ 129 0012 9346     		mov	fp, r2
+ 130              	.LVL7:
+ 159:Src/usbd_midi_if.c ****   if(0 != chk)
+ 131              		.loc 1 159 0
+ 132 0014 8B07     		lsl	r3, r1, #30
+ 133 0016 31D1     		bne	.L9
+ 134 0018 0021     		mov	r1, #0
+ 135              	.LVL8:
+ 136 001a 8A46     		mov	r10, r1
+ 137 001c 2CE0     		b	.L10
+ 138              	.LVL9:
+ 139              	.L18:
+ 140              	.LBB2:
+ 141              	.LBB3:
+ 166:Src/usbd_midi_if.c **** 	  uint8_t cable_num = (msg[0 + 4*cnt_msgs] & 0xF0) >> 4;
+ 142              		.loc 1 166 0
+ 143 001e 5246     		mov	r2, r10
+ 144 0020 9600     		lsl	r6, r2, #2
+ 145 0022 4346     		mov	r3, r8
+ 146 0024 9A5D     		ldrb	r2, [r3, r6]
+ 147 0026 1309     		lsr	r3, r2, #4
+ 148              	.LVL10:
+ 167:Src/usbd_midi_if.c **** 	  uint8_t code_idx_num = msg[0 + 4*cnt_msgs] & 0x0F;
+ 149              		.loc 1 167 0
+ 150 0028 0F21     		mov	r1, #15
+ 151 002a 0A40     		and	r2, r1
+ 152              	.LVL11:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 8
+
+
+ 169:Src/usbd_midi_if.c **** 	  switch (code_idx_num) {
+ 153              		.loc 1 169 0
+ 154 002c 0F2A     		cmp	r2, #15
+ 155 002e 03D8     		bhi	.L11
+ 156 0030 9200     		lsl	r2, r2, #2
+ 157              	.LVL12:
+ 158 0032 1649     		ldr	r1, .L20
+ 159              	.LVL13:
+ 160 0034 8A58     		ldr	r2, [r1, r2]
+ 161 0036 9746     		mov	pc, r2
+ 162              		.section	.rodata.MIDI_DataRx,"a",%progbits
+ 163              		.align	2
+ 164              	.L13:
+ 165 0000 38000000 		.word	.L11
+ 166 0004 38000000 		.word	.L11
+ 167 0008 3C000000 		.word	.L12
+ 168 000c 40000000 		.word	.L14
+ 169 0010 40000000 		.word	.L14
+ 170 0014 44000000 		.word	.L19
+ 171 0018 3C000000 		.word	.L12
+ 172 001c 40000000 		.word	.L14
+ 173 0020 40000000 		.word	.L14
+ 174 0024 40000000 		.word	.L14
+ 175 0028 40000000 		.word	.L14
+ 176 002c 40000000 		.word	.L14
+ 177 0030 3C000000 		.word	.L12
+ 178 0034 3C000000 		.word	.L12
+ 179 0038 40000000 		.word	.L14
+ 180 003c 44000000 		.word	.L19
+ 181              		.section	.text.MIDI_DataRx
+ 182              	.L11:
+ 174:Src/usbd_midi_if.c **** 			  midi_size = 0;
+ 183              		.loc 1 174 0
+ 184 0038 0027     		mov	r7, #0
+ 185 003a 04E0     		b	.L15
+ 186              	.L12:
+ 187              	.LVL14:
+ 188:Src/usbd_midi_if.c **** 			  midi_size = 2;
+ 188              		.loc 1 188 0
+ 189 003c 0227     		mov	r7, #2
+ 189:Src/usbd_midi_if.c **** 			  break;
+ 190              		.loc 1 189 0
+ 191 003e 02E0     		b	.L15
+ 192              	.LVL15:
+ 193              	.L14:
+ 200:Src/usbd_midi_if.c **** 			  midi_size = 3;
+ 194              		.loc 1 200 0
+ 195 0040 0327     		mov	r7, #3
+ 201:Src/usbd_midi_if.c **** 			  break;
+ 196              		.loc 1 201 0
+ 197 0042 00E0     		b	.L15
+ 198              	.LVL16:
+ 199              	.L19:
+ 180:Src/usbd_midi_if.c **** 			  midi_size = 1;
+ 200              		.loc 1 180 0
+ 201 0044 0127     		mov	r7, #1
+ 202              	.L15:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 9
+
+
+ 203              	.LVL17:
+ 208:Src/usbd_midi_if.c **** 	  for(cnt = 0;cnt < midi_size;cnt ++){
+ 204              		.loc 1 208 0
+ 205 0046 0024     		mov	r4, #0
+ 209:Src/usbd_midi_if.c **** 		  u8b = *(msg + 4*cnt_msgs + cnt + 1);
+ 206              		.loc 1 209 0
+ 207 0048 6D46     		mov	r5, sp
+ 208 004a 0735     		add	r5, r5, #7
+ 210:Src/usbd_midi_if.c **** 		  cureRingBufferU8Enqueue(&rbuf_usb_rx[cable_num], &u8b);
+ 209              		.loc 1 210 0
+ 210 004c 5A00     		lsl	r2, r3, #1
+ 211 004e D318     		add	r3, r2, r3
+ 212              	.LVL18:
+ 213 0050 9B00     		lsl	r3, r3, #2
+ 214 0052 0F4A     		ldr	r2, .L20+4
+ 215 0054 D218     		add	r2, r2, r3
+ 216 0056 9146     		mov	r9, r2
+ 208:Src/usbd_midi_if.c **** 	  for(cnt = 0;cnt < midi_size;cnt ++){
+ 217              		.loc 1 208 0
+ 218 0058 0AE0     		b	.L16
+ 219              	.LVL19:
+ 220              	.L17:
+ 209:Src/usbd_midi_if.c **** 		  u8b = *(msg + 4*cnt_msgs + cnt + 1);
+ 221              		.loc 1 209 0 discriminator 2
+ 222 005a 3319     		add	r3, r6, r4
+ 223 005c 0133     		add	r3, r3, #1
+ 224 005e 4146     		mov	r1, r8
+ 225 0060 CB5C     		ldrb	r3, [r1, r3]
+ 226 0062 2B70     		strb	r3, [r5]
+ 210:Src/usbd_midi_if.c **** 		  cureRingBufferU8Enqueue(&rbuf_usb_rx[cable_num], &u8b);
+ 227              		.loc 1 210 0 discriminator 2
+ 228 0064 4846     		mov	r0, r9
+ 229 0066 291C     		mov	r1, r5
+ 230 0068 FFF7FEFF 		bl	cureRingBufferU8Enqueue
+ 231              	.LVL20:
+ 208:Src/usbd_midi_if.c **** 	  for(cnt = 0;cnt < midi_size;cnt ++){
+ 232              		.loc 1 208 0 discriminator 2
+ 233 006c 0134     		add	r4, r4, #1
+ 234              	.LVL21:
+ 235 006e A4B2     		uxth	r4, r4
+ 236              	.LVL22:
+ 237              	.L16:
+ 208:Src/usbd_midi_if.c **** 	  for(cnt = 0;cnt < midi_size;cnt ++){
+ 238              		.loc 1 208 0 is_stmt 0 discriminator 1
+ 239 0070 A742     		cmp	r7, r4
+ 240 0072 F2D8     		bhi	.L17
+ 241              	.LBE3:
+ 164:Src/usbd_midi_if.c ****   for(uint32_t cnt_msgs = 0; cnt_msgs < msgs; cnt_msgs++){
+ 242              		.loc 1 164 0 is_stmt 1
+ 243 0074 0122     		mov	r2, #1
+ 244 0076 9244     		add	r10, r10, r2
+ 245              	.LVL23:
+ 246              	.L10:
+ 164:Src/usbd_midi_if.c ****   for(uint32_t cnt_msgs = 0; cnt_msgs < msgs; cnt_msgs++){
+ 247              		.loc 1 164 0 is_stmt 0 discriminator 1
+ 248 0078 D345     		cmp	fp, r10
+ 249 007a D0D8     		bhi	.L18
+ARM GAS  /tmp/ccBCIwdJ.s 			page 10
+
+
+ 250              	.LVL24:
+ 251              	.L9:
+ 252              	.LBE2:
+ 215:Src/usbd_midi_if.c **** }
+ 253              		.loc 1 215 0 is_stmt 1
+ 254 007c 0020     		mov	r0, #0
+ 255 007e 03B0     		add	sp, sp, #12
+ 256              		@ sp needed
+ 257              	.LVL25:
+ 258              	.LVL26:
+ 259 0080 3CBC     		pop	{r2, r3, r4, r5}
+ 260 0082 9046     		mov	r8, r2
+ 261 0084 9946     		mov	r9, r3
+ 262 0086 A246     		mov	r10, r4
+ 263 0088 AB46     		mov	fp, r5
+ 264 008a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 265              	.L21:
+ 266              		.align	2
+ 267              	.L20:
+ 268 008c 00000000 		.word	.L13
+ 269 0090 00000000 		.word	rbuf_usb_rx
+ 270              		.cfi_endproc
+ 271              	.LFE41:
+ 273              		.section	.text.midiInit,"ax",%progbits
+ 274              		.align	2
+ 275              		.global	midiInit
+ 276              		.code	16
+ 277              		.thumb_func
+ 279              	midiInit:
+ 280              	.LFB34:
+  43:Src/usbd_midi_if.c **** {
+ 281              		.loc 1 43 0
+ 282              		.cfi_startproc
+ 283 0000 38B5     		push	{r3, r4, r5, lr}
+ 284              	.LCFI5:
+ 285              		.cfi_def_cfa_offset 16
+ 286              		.cfi_offset 3, -16
+ 287              		.cfi_offset 4, -12
+ 288              		.cfi_offset 5, -8
+ 289              		.cfi_offset 14, -4
+ 290              	.LVL27:
+  46:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 291              		.loc 1 46 0
+ 292 0002 0024     		mov	r4, #0
+  47:Src/usbd_midi_if.c **** 		if(BUFFER_SUCCESS != cureRingBufferU8Init(&rbuf_usb_rx[i], MIDI_BUFFER_SIZ))
+ 293              		.loc 1 47 0
+ 294 0004 8021     		mov	r1, #128
+ 295 0006 8D00     		lsl	r5, r1, #2
+  46:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 296              		.loc 1 46 0
+ 297 0008 0AE0     		b	.L23
+ 298              	.LVL28:
+ 299              	.L25:
+  47:Src/usbd_midi_if.c **** 		if(BUFFER_SUCCESS != cureRingBufferU8Init(&rbuf_usb_rx[i], MIDI_BUFFER_SIZ))
+ 300              		.loc 1 47 0
+ 301 000a 6000     		lsl	r0, r4, #1
+ 302 000c 0019     		add	r0, r0, r4
+ARM GAS  /tmp/ccBCIwdJ.s 			page 11
+
+
+ 303 000e 8000     		lsl	r0, r0, #2
+ 304 0010 064B     		ldr	r3, .L27
+ 305 0012 C018     		add	r0, r0, r3
+ 306 0014 291C     		mov	r1, r5
+ 307 0016 FFF7FEFF 		bl	cureRingBufferU8Init
+ 308              	.LVL29:
+ 309 001a 0128     		cmp	r0, #1
+ 310 001c 04D1     		bne	.L26
+  46:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 311              		.loc 1 46 0
+ 312 001e 0134     		add	r4, r4, #1
+ 313              	.LVL30:
+ 314              	.L23:
+  46:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 315              		.loc 1 46 0 is_stmt 0 discriminator 1
+ 316 0020 002C     		cmp	r4, #0
+ 317 0022 F2D0     		beq	.L25
+  72:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+ 318              		.loc 1 72 0 is_stmt 1
+ 319 0024 0120     		mov	r0, #1
+ 320 0026 00E0     		b	.L24
+ 321              	.L26:
+  49:Src/usbd_midi_if.c **** 			return FUNC_ERROR;
+ 322              		.loc 1 49 0
+ 323 0028 0020     		mov	r0, #0
+ 324              	.L24:
+  73:Src/usbd_midi_if.c **** }
+ 325              		.loc 1 73 0
+ 326              		@ sp needed
+ 327              	.LVL31:
+ 328 002a 38BD     		pop	{r3, r4, r5, pc}
+ 329              	.L28:
+ 330              		.align	2
+ 331              	.L27:
+ 332 002c 00000000 		.word	rbuf_usb_rx
+ 333              		.cfi_endproc
+ 334              	.LFE34:
+ 336              		.section	.text.midiGetFromUsbRx,"ax",%progbits
+ 337              		.align	2
+ 338              		.global	midiGetFromUsbRx
+ 339              		.code	16
+ 340              		.thumb_func
+ 342              	midiGetFromUsbRx:
+ 343              	.LFB35:
+  76:Src/usbd_midi_if.c **** {
+ 344              		.loc 1 76 0
+ 345              		.cfi_startproc
+ 346              	.LVL32:
+ 347 0000 08B5     		push	{r3, lr}
+ 348              	.LCFI6:
+ 349              		.cfi_def_cfa_offset 8
+ 350              		.cfi_offset 3, -8
+ 351              		.cfi_offset 14, -4
+  77:Src/usbd_midi_if.c **** 	if(BUFFER_SUCCESS != cureRingBufferU8Dequeue(&rbuf_usb_rx[cable_num], dat))
+ 352              		.loc 1 77 0
+ 353 0002 4300     		lsl	r3, r0, #1
+ 354 0004 1818     		add	r0, r3, r0
+ARM GAS  /tmp/ccBCIwdJ.s 			page 12
+
+
+ 355              	.LVL33:
+ 356 0006 8000     		lsl	r0, r0, #2
+ 357 0008 044B     		ldr	r3, .L32
+ 358 000a C018     		add	r0, r0, r3
+ 359 000c FFF7FEFF 		bl	cureRingBufferU8Dequeue
+ 360              	.LVL34:
+ 361 0010 0128     		cmp	r0, #1
+ 362 0012 01D0     		beq	.L31
+  79:Src/usbd_midi_if.c **** 		return FUNC_ERROR;
+ 363              		.loc 1 79 0
+ 364 0014 0020     		mov	r0, #0
+ 365 0016 00E0     		b	.L30
+ 366              	.L31:
+  82:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+ 367              		.loc 1 82 0
+ 368 0018 0120     		mov	r0, #1
+ 369              	.L30:
+  83:Src/usbd_midi_if.c **** }
+ 370              		.loc 1 83 0
+ 371              		@ sp needed
+ 372 001a 08BD     		pop	{r3, pc}
+ 373              	.L33:
+ 374              		.align	2
+ 375              	.L32:
+ 376 001c 00000000 		.word	rbuf_usb_rx
+ 377              		.cfi_endproc
+ 378              	.LFE35:
+ 380              		.section	.text.midiGetFromJackRx,"ax",%progbits
+ 381              		.align	2
+ 382              		.global	midiGetFromJackRx
+ 383              		.code	16
+ 384              		.thumb_func
+ 386              	midiGetFromJackRx:
+ 387              	.LFB36:
+  86:Src/usbd_midi_if.c **** {
+ 388              		.loc 1 86 0
+ 389              		.cfi_startproc
+ 390              	.LVL35:
+ 391 0000 08B5     		push	{r3, lr}
+ 392              	.LCFI7:
+ 393              		.cfi_def_cfa_offset 8
+ 394              		.cfi_offset 3, -8
+ 395              		.cfi_offset 14, -4
+ 396 0002 031C     		mov	r3, r0
+  87:Src/usbd_midi_if.c **** 	if(BUFFER_SUCCESS != cureRingBufferU8Dequeue(&rbuf_jack_rx[cable_num], &rx_midi_msg[cable_num]))
+ 397              		.loc 1 87 0
+ 398 0004 4200     		lsl	r2, r0, #1
+ 399 0006 1218     		add	r2, r2, r0
+ 400 0008 9200     		lsl	r2, r2, #2
+ 401 000a 0648     		ldr	r0, .L37
+ 402              	.LVL36:
+ 403 000c 1018     		add	r0, r2, r0
+ 404 000e 0649     		ldr	r1, .L37+4
+ 405 0010 5918     		add	r1, r3, r1
+ 406 0012 FFF7FEFF 		bl	cureRingBufferU8Dequeue
+ 407              	.LVL37:
+ 408 0016 0128     		cmp	r0, #1
+ARM GAS  /tmp/ccBCIwdJ.s 			page 13
+
+
+ 409 0018 01D0     		beq	.L36
+  89:Src/usbd_midi_if.c **** 		return FUNC_ERROR;
+ 410              		.loc 1 89 0
+ 411 001a 0020     		mov	r0, #0
+ 412 001c 00E0     		b	.L35
+ 413              	.L36:
+  92:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+ 414              		.loc 1 92 0
+ 415 001e 0120     		mov	r0, #1
+ 416              	.L35:
+  93:Src/usbd_midi_if.c **** }
+ 417              		.loc 1 93 0
+ 418              		@ sp needed
+ 419 0020 08BD     		pop	{r3, pc}
+ 420              	.L38:
+ 421 0022 C046     		.align	2
+ 422              	.L37:
+ 423 0024 00000000 		.word	rbuf_jack_rx
+ 424 0028 00000000 		.word	rx_midi_msg
+ 425              		.cfi_endproc
+ 426              	.LFE36:
+ 428              		.section	.text.midiSetFromJackRx,"ax",%progbits
+ 429              		.align	2
+ 430              		.global	midiSetFromJackRx
+ 431              		.code	16
+ 432              		.thumb_func
+ 434              	midiSetFromJackRx:
+ 435              	.LFB37:
+  96:Src/usbd_midi_if.c **** {
+ 436              		.loc 1 96 0
+ 437              		.cfi_startproc
+ 438              	.LVL38:
+ 439 0000 08B5     		push	{r3, lr}
+ 440              	.LCFI8:
+ 441              		.cfi_def_cfa_offset 8
+ 442              		.cfi_offset 3, -8
+ 443              		.cfi_offset 14, -4
+  97:Src/usbd_midi_if.c **** 	if(BUFFER_SUCCESS != cureRingBufferU8Enqueue(&rbuf_jack_rx[cable_num], dat))
+ 444              		.loc 1 97 0
+ 445 0002 4300     		lsl	r3, r0, #1
+ 446 0004 1818     		add	r0, r3, r0
+ 447              	.LVL39:
+ 448 0006 8000     		lsl	r0, r0, #2
+ 449 0008 044B     		ldr	r3, .L42
+ 450 000a C018     		add	r0, r0, r3
+ 451 000c FFF7FEFF 		bl	cureRingBufferU8Enqueue
+ 452              	.LVL40:
+ 453 0010 0128     		cmp	r0, #1
+ 454 0012 01D0     		beq	.L41
+  99:Src/usbd_midi_if.c **** 		return FUNC_ERROR;
+ 455              		.loc 1 99 0
+ 456 0014 0020     		mov	r0, #0
+ 457 0016 00E0     		b	.L40
+ 458              	.L41:
+ 102:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
+ 459              		.loc 1 102 0
+ 460 0018 0120     		mov	r0, #1
+ARM GAS  /tmp/ccBCIwdJ.s 			page 14
+
+
+ 461              	.L40:
+ 103:Src/usbd_midi_if.c **** }
+ 462              		.loc 1 103 0
+ 463              		@ sp needed
+ 464 001a 08BD     		pop	{r3, pc}
+ 465              	.L43:
+ 466              		.align	2
+ 467              	.L42:
+ 468 001c 00000000 		.word	rbuf_jack_rx
+ 469              		.cfi_endproc
+ 470              	.LFE37:
+ 472              		.section	.text.isUsbRxBufEmpty,"ax",%progbits
+ 473              		.align	2
+ 474              		.global	isUsbRxBufEmpty
+ 475              		.code	16
+ 476              		.thumb_func
+ 478              	isUsbRxBufEmpty:
+ 479              	.LFB38:
+ 107:Src/usbd_midi_if.c **** {
+ 480              		.loc 1 107 0
+ 481              		.cfi_startproc
+ 482              	.LVL41:
+ 483 0000 08B5     		push	{r3, lr}
+ 484              	.LCFI9:
+ 485              		.cfi_def_cfa_offset 8
+ 486              		.cfi_offset 3, -8
+ 487              		.cfi_offset 14, -4
+ 108:Src/usbd_midi_if.c **** 	if( 0 != _cureRingBufferU8GetUsedSize(&rbuf_usb_rx[cable_num]) ){
+ 488              		.loc 1 108 0
+ 489 0002 4300     		lsl	r3, r0, #1
+ 490 0004 1818     		add	r0, r3, r0
+ 491              	.LVL42:
+ 492 0006 8000     		lsl	r0, r0, #2
+ 493 0008 044B     		ldr	r3, .L47
+ 494 000a C018     		add	r0, r0, r3
+ 495 000c FFF7FEFF 		bl	_cureRingBufferU8GetUsedSize
+ 496              	.LVL43:
+ 497 0010 0028     		cmp	r0, #0
+ 498 0012 01D0     		beq	.L46
+ 109:Src/usbd_midi_if.c **** 		return false;
+ 499              		.loc 1 109 0
+ 500 0014 0020     		mov	r0, #0
+ 501 0016 00E0     		b	.L45
+ 502              	.L46:
+ 112:Src/usbd_midi_if.c **** 	return true;
+ 503              		.loc 1 112 0
+ 504 0018 0120     		mov	r0, #1
+ 505              	.L45:
+ 113:Src/usbd_midi_if.c **** }
+ 506              		.loc 1 113 0
+ 507              		@ sp needed
+ 508 001a 08BD     		pop	{r3, pc}
+ 509              	.L48:
+ 510              		.align	2
+ 511              	.L47:
+ 512 001c 00000000 		.word	rbuf_usb_rx
+ 513              		.cfi_endproc
+ARM GAS  /tmp/ccBCIwdJ.s 			page 15
+
+
+ 514              	.LFE38:
+ 516              		.section	.text.isJackRxBufEmpty,"ax",%progbits
+ 517              		.align	2
+ 518              		.global	isJackRxBufEmpty
+ 519              		.code	16
+ 520              		.thumb_func
+ 522              	isJackRxBufEmpty:
+ 523              	.LFB39:
+ 116:Src/usbd_midi_if.c **** {
+ 524              		.loc 1 116 0
+ 525              		.cfi_startproc
+ 526              	.LVL44:
+ 527 0000 08B5     		push	{r3, lr}
+ 528              	.LCFI10:
+ 529              		.cfi_def_cfa_offset 8
+ 530              		.cfi_offset 3, -8
+ 531              		.cfi_offset 14, -4
+ 117:Src/usbd_midi_if.c **** 	if( 0 != _cureRingBufferU8GetUsedSize(&rbuf_jack_rx[cable_num]) ){
+ 532              		.loc 1 117 0
+ 533 0002 4300     		lsl	r3, r0, #1
+ 534 0004 1818     		add	r0, r3, r0
+ 535              	.LVL45:
+ 536 0006 8000     		lsl	r0, r0, #2
+ 537 0008 044B     		ldr	r3, .L52
+ 538 000a C018     		add	r0, r0, r3
+ 539 000c FFF7FEFF 		bl	_cureRingBufferU8GetUsedSize
+ 540              	.LVL46:
+ 541 0010 0028     		cmp	r0, #0
+ 542 0012 01D0     		beq	.L51
+ 118:Src/usbd_midi_if.c **** 		return false;
+ 543              		.loc 1 118 0
+ 544 0014 0020     		mov	r0, #0
+ 545 0016 00E0     		b	.L50
+ 546              	.L51:
+ 121:Src/usbd_midi_if.c **** 	return true;
+ 547              		.loc 1 121 0
+ 548 0018 0120     		mov	r0, #1
+ 549              	.L50:
+ 122:Src/usbd_midi_if.c **** }
+ 550              		.loc 1 122 0
+ 551              		@ sp needed
+ 552 001a 08BD     		pop	{r3, pc}
+ 553              	.L53:
+ 554              		.align	2
+ 555              	.L52:
+ 556 001c 00000000 		.word	rbuf_jack_rx
+ 557              		.cfi_endproc
+ 558              	.LFE39:
+ 560              		.section	.text.isRxBufEmpty,"ax",%progbits
+ 561              		.align	2
+ 562              		.global	isRxBufEmpty
+ 563              		.code	16
+ 564              		.thumb_func
+ 566              	isRxBufEmpty:
+ 567              	.LFB40:
+ 125:Src/usbd_midi_if.c **** {
+ 568              		.loc 1 125 0
+ARM GAS  /tmp/ccBCIwdJ.s 			page 16
+
+
+ 569              		.cfi_startproc
+ 570 0000 10B5     		push	{r4, lr}
+ 571              	.LCFI11:
+ 572              		.cfi_def_cfa_offset 8
+ 573              		.cfi_offset 4, -8
+ 574              		.cfi_offset 14, -4
+ 575              	.LVL47:
+ 128:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 576              		.loc 1 128 0
+ 577 0002 0024     		mov	r4, #0
+ 578 0004 09E0     		b	.L55
+ 579              	.LVL48:
+ 580              	.L57:
+ 129:Src/usbd_midi_if.c **** 		if(0 != _cureRingBufferU8GetUsedSize(&rbuf_usb_rx[i]))
+ 581              		.loc 1 129 0
+ 582 0006 6000     		lsl	r0, r4, #1
+ 583 0008 0019     		add	r0, r0, r4
+ 584 000a 8000     		lsl	r0, r0, #2
+ 585 000c 064B     		ldr	r3, .L59
+ 586 000e C018     		add	r0, r0, r3
+ 587 0010 FFF7FEFF 		bl	_cureRingBufferU8GetUsedSize
+ 588              	.LVL49:
+ 589 0014 0028     		cmp	r0, #0
+ 590 0016 04D1     		bne	.L58
+ 128:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 591              		.loc 1 128 0
+ 592 0018 0134     		add	r4, r4, #1
+ 593              	.LVL50:
+ 594              	.L55:
+ 128:Src/usbd_midi_if.c **** 	for(i=0; i<MIDI_OUT_JACK_NUM; i++){
+ 595              		.loc 1 128 0 is_stmt 0 discriminator 1
+ 596 001a 002C     		cmp	r4, #0
+ 597 001c F3D0     		beq	.L57
+ 141:Src/usbd_midi_if.c **** 	return true;
+ 598              		.loc 1 141 0 is_stmt 1
+ 599 001e 0120     		mov	r0, #1
+ 600 0020 00E0     		b	.L56
+ 601              	.L58:
+ 131:Src/usbd_midi_if.c **** 			return false;
+ 602              		.loc 1 131 0
+ 603 0022 0020     		mov	r0, #0
+ 604              	.L56:
+ 142:Src/usbd_midi_if.c **** }
+ 605              		.loc 1 142 0
+ 606              		@ sp needed
+ 607              	.LVL51:
+ 608 0024 10BD     		pop	{r4, pc}
+ 609              	.L60:
+ 610 0026 C046     		.align	2
+ 611              	.L59:
+ 612 0028 00000000 		.word	rbuf_usb_rx
+ 613              		.cfi_endproc
+ 614              	.LFE40:
+ 616              		.section	.text.sendMidiMessage,"ax",%progbits
+ 617              		.align	2
+ 618              		.global	sendMidiMessage
+ 619              		.code	16
+ARM GAS  /tmp/ccBCIwdJ.s 			page 17
+
+
+ 620              		.thumb_func
+ 622              	sendMidiMessage:
+ 623              	.LFB42:
+ 217:Src/usbd_midi_if.c **** void sendMidiMessage(uint8_t *msg, uint16_t size){
+ 624              		.loc 1 217 0
+ 625              		.cfi_startproc
+ 626              	.LVL52:
+ 627 0000 08B5     		push	{r3, lr}
+ 628              	.LCFI12:
+ 629              		.cfi_def_cfa_offset 8
+ 630              		.cfi_offset 3, -8
+ 631              		.cfi_offset 14, -4
+ 218:Src/usbd_midi_if.c ****   if(size == 4){
+ 632              		.loc 1 218 0
+ 633 0002 0429     		cmp	r1, #4
+ 634 0004 01D1     		bne	.L61
+ 224:Src/usbd_midi_if.c ****     MIDI_DataTx(msg, size);
+ 635              		.loc 1 224 0
+ 636 0006 FFF7FEFF 		bl	MIDI_DataTx
+ 637              	.LVL53:
+ 638              	.L61:
+ 226:Src/usbd_midi_if.c **** }
+ 639              		.loc 1 226 0
+ 640              		@ sp needed
+ 641 000a 08BD     		pop	{r3, pc}
+ 642              		.cfi_endproc
+ 643              	.LFE42:
+ 645              		.section	.text.midiEventIsGenerated,"ax",%progbits
+ 646              		.align	2
+ 647              		.global	midiEventIsGenerated
+ 648              		.code	16
+ 649              		.thumb_func
+ 651              	midiEventIsGenerated:
+ 652              	.LFB44:
+ 240:Src/usbd_midi_if.c **** 
+ 241:Src/usbd_midi_if.c **** bool midiEventIsGenerated(uint8_t cable_num)
+ 242:Src/usbd_midi_if.c **** {
+ 653              		.loc 1 242 0
+ 654              		.cfi_startproc
+ 655              	.LVL54:
+ 656 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 657              	.LCFI13:
+ 658              		.cfi_def_cfa_offset 20
+ 659              		.cfi_offset 4, -20
+ 660              		.cfi_offset 5, -16
+ 661              		.cfi_offset 6, -12
+ 662              		.cfi_offset 7, -8
+ 663              		.cfi_offset 14, -4
+ 243:Src/usbd_midi_if.c **** 	uint8_t upper_half_byte= (rx_midi_msg[cable_num]) & 0xF0;
+ 664              		.loc 1 243 0
+ 665 0002 8B4B     		ldr	r3, .L90
+ 666 0004 1A5C     		ldrb	r2, [r3, r0]
+ 667 0006 0F23     		mov	r3, #15
+ 668 0008 111C     		mov	r1, r2
+ 669 000a 9943     		bic	r1, r3
+ 670 000c 0B1C     		mov	r3, r1
+ 671              	.LVL55:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 18
+
+
+ 244:Src/usbd_midi_if.c **** 
+ 245:Src/usbd_midi_if.c **** 	if( upper_half_byte & 0x80 ){//0x80-0xFF:status byte
+ 672              		.loc 1 245 0
+ 673 000e 49B2     		sxtb	r1, r1
+ 674              	.LVL56:
+ 675 0010 0029     		cmp	r1, #0
+ 676 0012 00DB     		blt	.LCB657
+ 677 0014 8FE0     		b	.L64	@long jump
+ 678              	.LCB657:
+ 246:Src/usbd_midi_if.c **** 
+ 247:Src/usbd_midi_if.c **** 		switch(upper_half_byte){
+ 679              		.loc 1 247 0
+ 680 0016 B02B     		cmp	r3, #176
+ 681 0018 67D0     		beq	.L66
+ 682 001a 06D8     		bhi	.L67
+ 683 001c 902B     		cmp	r3, #144
+ 684 001e 64D0     		beq	.L66
+ 685 0020 A02B     		cmp	r3, #160
+ 686 0022 62D0     		beq	.L66
+ 687 0024 802B     		cmp	r3, #128
+ 688 0026 7ED1     		bne	.L65
+ 689 0028 5FE0     		b	.L66
+ 690              	.L67:
+ 691 002a D02B     		cmp	r3, #208
+ 692 002c 6CD0     		beq	.L68
+ 693 002e 02D8     		bhi	.L69
+ 694 0030 C02B     		cmp	r3, #192
+ 695 0032 69D0     		beq	.L68
+ 696 0034 77E0     		b	.L65
+ 697              	.L69:
+ 698 0036 E02B     		cmp	r3, #224
+ 699 0038 57D0     		beq	.L66
+ 700 003a F02B     		cmp	r3, #240
+ 701 003c 73D1     		bne	.L65
+ 248:Src/usbd_midi_if.c **** 
+ 249:Src/usbd_midi_if.c **** 			case 0xF0://0xF0-0xFF:system message
+ 250:Src/usbd_midi_if.c **** 				switch(rx_midi_msg[cable_num]){
+ 702              		.loc 1 250 0
+ 703 003e 131C     		mov	r3, r2
+ 704              	.LVL57:
+ 705 0040 1033     		add	r3, r3, #16
+ 706 0042 D9B2     		uxtb	r1, r3
+ 707 0044 0F29     		cmp	r1, #15
+ 708 0046 4AD8     		bhi	.L71
+ 709 0048 8B00     		lsl	r3, r1, #2
+ 710 004a 7A49     		ldr	r1, .L90+4
+ 711 004c CB58     		ldr	r3, [r1, r3]
+ 712 004e 9F46     		mov	pc, r3
+ 713              		.section	.rodata.midiEventIsGenerated,"a",%progbits
+ 714              		.align	2
+ 715              	.L73:
+ 716 0000 50000000 		.word	.L72
+ 717 0004 A8000000 		.word	.L74
+ 718 0008 8E000000 		.word	.L75
+ 719 000c A8000000 		.word	.L74
+ 720 0010 C2000000 		.word	.L76
+ 721 0014 C2000000 		.word	.L76
+ARM GAS  /tmp/ccBCIwdJ.s 			page 19
+
+
+ 722 0018 C2000000 		.word	.L76
+ 723 001c 6C000000 		.word	.L77
+ 724 0020 C2000000 		.word	.L76
+ 725 0024 C2000000 		.word	.L76
+ 726 0028 C2000000 		.word	.L76
+ 727 002c C2000000 		.word	.L76
+ 728 0030 C2000000 		.word	.L76
+ 729 0034 C2000000 		.word	.L76
+ 730 0038 C2000000 		.word	.L76
+ 731 003c C2000000 		.word	.L76
+ 732              		.section	.text.midiEventIsGenerated
+ 733              	.L72:
+ 251:Src/usbd_midi_if.c **** 
+ 252:Src/usbd_midi_if.c **** 					case 0xF0://SysEx Start
+ 253:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].data_idx = 0;
+ 734              		.loc 1 253 0
+ 735 0050 794B     		ldr	r3, .L90+8
+ 736 0052 8100     		lsl	r1, r0, #2
+ 737 0054 5C18     		add	r4, r3, r1
+ 254:Src/usbd_midi_if.c **** 						midi_event[cable_num].midi_byte[ analyzed_status[cable_num].data_idx++ ] = rx_midi_msg[cable_
+ 738              		.loc 1 254 0
+ 739 0056 0125     		mov	r5, #1
+ 740 0058 E570     		strb	r5, [r4, #3]
+ 741 005a 8601     		lsl	r6, r0, #6
+ 742 005c 3618     		add	r6, r6, r0
+ 743 005e 774F     		ldr	r7, .L90+12
+ 744 0060 BE19     		add	r6, r7, r6
+ 745 0062 7270     		strb	r2, [r6, #1]
+ 255:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].type = MSG_SYSEX;
+ 746              		.loc 1 255 0
+ 747 0064 6570     		strb	r5, [r4, #1]
+ 256:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].stat = WAIT_SYSTEM_DATA;
+ 748              		.loc 1 256 0
+ 749 0066 0322     		mov	r2, #3
+ 750              	.LVL58:
+ 751 0068 CA54     		strb	r2, [r1, r3]
+ 257:Src/usbd_midi_if.c **** 						break;
+ 752              		.loc 1 257 0
+ 753 006a 38E0     		b	.L71
+ 754              	.LVL59:
+ 755              	.L77:
+ 258:Src/usbd_midi_if.c **** 
+ 259:Src/usbd_midi_if.c **** 					case 0xF7://SysEx End
+ 260:Src/usbd_midi_if.c **** 						midi_event[cable_num].midi_byte[ analyzed_status[cable_num].data_idx++ ] = rx_midi_msg[cable_
+ 756              		.loc 1 260 0
+ 757 006c 724B     		ldr	r3, .L90+8
+ 758 006e 8100     		lsl	r1, r0, #2
+ 759 0070 5C18     		add	r4, r3, r1
+ 760 0072 E778     		ldrb	r7, [r4, #3]
+ 761 0074 7E1C     		add	r6, r7, #1
+ 762 0076 F6B2     		uxtb	r6, r6
+ 763 0078 E670     		strb	r6, [r4, #3]
+ 764 007a 704C     		ldr	r4, .L90+12
+ 765 007c 8501     		lsl	r5, r0, #6
+ 766 007e 2D18     		add	r5, r5, r0
+ 767 0080 EF19     		add	r7, r5, r7
+ 768 0082 E719     		add	r7, r4, r7
+ARM GAS  /tmp/ccBCIwdJ.s 			page 20
+
+
+ 769 0084 7A70     		strb	r2, [r7, #1]
+ 261:Src/usbd_midi_if.c **** 						midi_event[cable_num].length = analyzed_status[cable_num].data_idx;
+ 770              		.loc 1 261 0
+ 771 0086 2E55     		strb	r6, [r5, r4]
+ 262:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].stat = END_ANALYSIS;
+ 772              		.loc 1 262 0
+ 773 0088 0422     		mov	r2, #4
+ 774              	.LVL60:
+ 775 008a CA54     		strb	r2, [r1, r3]
+ 263:Src/usbd_midi_if.c **** 						break;
+ 776              		.loc 1 263 0
+ 777 008c 27E0     		b	.L71
+ 778              	.LVL61:
+ 779              	.L75:
+ 264:Src/usbd_midi_if.c **** 
+ 265:Src/usbd_midi_if.c **** 					case 0xF2://Song Position
+ 266:Src/usbd_midi_if.c **** 						midi_event[cable_num].midi_byte[0] = rx_midi_msg[cable_num];
+ 780              		.loc 1 266 0
+ 781 008e 8301     		lsl	r3, r0, #6
+ 782 0090 1B18     		add	r3, r3, r0
+ 783 0092 6A49     		ldr	r1, .L90+12
+ 784 0094 CB18     		add	r3, r1, r3
+ 785 0096 5A70     		strb	r2, [r3, #1]
+ 267:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].type = MSG_THREE_BYTE;
+ 786              		.loc 1 267 0
+ 787 0098 674B     		ldr	r3, .L90+8
+ 788 009a 8200     		lsl	r2, r0, #2
+ 789              	.LVL62:
+ 790 009c 9918     		add	r1, r3, r2
+ 791 009e 0424     		mov	r4, #4
+ 792 00a0 4C70     		strb	r4, [r1, #1]
+ 268:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].stat = WAIT_DATA1;
+ 793              		.loc 1 268 0
+ 794 00a2 0121     		mov	r1, #1
+ 795 00a4 D154     		strb	r1, [r2, r3]
+ 269:Src/usbd_midi_if.c **** 						break;
+ 796              		.loc 1 269 0
+ 797 00a6 1AE0     		b	.L71
+ 798              	.LVL63:
+ 799              	.L74:
+ 270:Src/usbd_midi_if.c **** 
+ 271:Src/usbd_midi_if.c **** 					case 0xF1://Time Code
+ 272:Src/usbd_midi_if.c **** 					case 0xF3://Song Select
+ 273:Src/usbd_midi_if.c **** 						midi_event[cable_num].midi_byte[0] = rx_midi_msg[cable_num];
+ 800              		.loc 1 273 0
+ 801 00a8 8301     		lsl	r3, r0, #6
+ 802 00aa 1B18     		add	r3, r3, r0
+ 803 00ac 6349     		ldr	r1, .L90+12
+ 804 00ae CB18     		add	r3, r1, r3
+ 805 00b0 5A70     		strb	r2, [r3, #1]
+ 274:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].type = MSG_TWO_BYTE;
+ 806              		.loc 1 274 0
+ 807 00b2 614B     		ldr	r3, .L90+8
+ 808 00b4 8200     		lsl	r2, r0, #2
+ 809              	.LVL64:
+ 810 00b6 9918     		add	r1, r3, r2
+ 811 00b8 0324     		mov	r4, #3
+ARM GAS  /tmp/ccBCIwdJ.s 			page 21
+
+
+ 812 00ba 4C70     		strb	r4, [r1, #1]
+ 275:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].stat = WAIT_DATA1;
+ 813              		.loc 1 275 0
+ 814 00bc 0121     		mov	r1, #1
+ 815 00be D154     		strb	r1, [r2, r3]
+ 276:Src/usbd_midi_if.c **** 						break;
+ 816              		.loc 1 276 0
+ 817 00c0 0DE0     		b	.L71
+ 818              	.LVL65:
+ 819              	.L76:
+ 277:Src/usbd_midi_if.c **** 
+ 278:Src/usbd_midi_if.c **** 					case 0xF4://Undefined
+ 279:Src/usbd_midi_if.c **** 					case 0xF5://Undefined
+ 280:Src/usbd_midi_if.c **** 					case 0xF6://Tune request
+ 281:Src/usbd_midi_if.c **** 					case 0xF8://Timing clock
+ 282:Src/usbd_midi_if.c **** 					case 0xF9://Undefined
+ 283:Src/usbd_midi_if.c **** 					case 0xFA://Start
+ 284:Src/usbd_midi_if.c **** 					case 0xFB://Continue
+ 285:Src/usbd_midi_if.c **** 					case 0xFC://Stop
+ 286:Src/usbd_midi_if.c **** 					case 0xFD://Undefined
+ 287:Src/usbd_midi_if.c **** 					case 0xFE://Active Sensing
+ 288:Src/usbd_midi_if.c **** 					case 0xFF://Reset
+ 289:Src/usbd_midi_if.c **** 						midi_event[cable_num].midi_byte[0] = rx_midi_msg[cable_num];
+ 820              		.loc 1 289 0
+ 821 00c2 5E4B     		ldr	r3, .L90+12
+ 822 00c4 8101     		lsl	r1, r0, #6
+ 823 00c6 0918     		add	r1, r1, r0
+ 824 00c8 5C18     		add	r4, r3, r1
+ 825 00ca 6270     		strb	r2, [r4, #1]
+ 290:Src/usbd_midi_if.c **** 						midi_event[cable_num].length = 1;
+ 826              		.loc 1 290 0
+ 827 00cc 0122     		mov	r2, #1
+ 828              	.LVL66:
+ 829 00ce CA54     		strb	r2, [r1, r3]
+ 291:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].type = MSG_ONE_BYTE;
+ 830              		.loc 1 291 0
+ 831 00d0 594B     		ldr	r3, .L90+8
+ 832 00d2 8200     		lsl	r2, r0, #2
+ 833 00d4 9918     		add	r1, r3, r2
+ 834 00d6 0224     		mov	r4, #2
+ 835 00d8 4C70     		strb	r4, [r1, #1]
+ 292:Src/usbd_midi_if.c **** 						analyzed_status[cable_num].stat = END_ANALYSIS;
+ 836              		.loc 1 292 0
+ 837 00da 0421     		mov	r1, #4
+ 838 00dc D154     		strb	r1, [r2, r3]
+ 839              	.L71:
+ 293:Src/usbd_midi_if.c **** 						break;
+ 294:Src/usbd_midi_if.c **** 				}
+ 295:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].is_system_common = true;
+ 840              		.loc 1 295 0
+ 841 00de 8300     		lsl	r3, r0, #2
+ 842 00e0 554A     		ldr	r2, .L90+8
+ 843 00e2 D318     		add	r3, r2, r3
+ 844 00e4 0122     		mov	r2, #1
+ 845 00e6 9A70     		strb	r2, [r3, #2]
+ 296:Src/usbd_midi_if.c **** 				break;
+ 846              		.loc 1 296 0
+ARM GAS  /tmp/ccBCIwdJ.s 			page 22
+
+
+ 847 00e8 98E0     		b	.L78
+ 848              	.LVL67:
+ 849              	.L66:
+ 297:Src/usbd_midi_if.c **** 
+ 298:Src/usbd_midi_if.c **** 			case 0x80://Note Off
+ 299:Src/usbd_midi_if.c **** 			case 0x90://Note On
+ 300:Src/usbd_midi_if.c **** 			case 0xA0://Polyphonic key-pressure
+ 301:Src/usbd_midi_if.c **** 			case 0xB0://ControlChange
+ 302:Src/usbd_midi_if.c **** 			case 0xE0://PitchBend
+ 303:Src/usbd_midi_if.c **** 				midi_event[cable_num].midi_byte[0] = rx_midi_msg[cable_num];
+ 850              		.loc 1 303 0
+ 851 00ea 8301     		lsl	r3, r0, #6
+ 852              	.LVL68:
+ 853 00ec 1B18     		add	r3, r3, r0
+ 854 00ee 5349     		ldr	r1, .L90+12
+ 855 00f0 CB18     		add	r3, r1, r3
+ 856 00f2 5A70     		strb	r2, [r3, #1]
+ 304:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].type = MSG_THREE_BYTE;
+ 857              		.loc 1 304 0
+ 858 00f4 504A     		ldr	r2, .L90+8
+ 859              	.LVL69:
+ 860 00f6 8100     		lsl	r1, r0, #2
+ 861 00f8 5318     		add	r3, r2, r1
+ 862 00fa 0424     		mov	r4, #4
+ 863 00fc 5C70     		strb	r4, [r3, #1]
+ 305:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].stat = WAIT_DATA1;
+ 864              		.loc 1 305 0
+ 865 00fe 0124     		mov	r4, #1
+ 866 0100 8C54     		strb	r4, [r1, r2]
+ 306:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].is_system_common = false;
+ 867              		.loc 1 306 0
+ 868 0102 0022     		mov	r2, #0
+ 869 0104 9A70     		strb	r2, [r3, #2]
+ 307:Src/usbd_midi_if.c **** 				break;
+ 870              		.loc 1 307 0
+ 871 0106 89E0     		b	.L78
+ 872              	.LVL70:
+ 873              	.L68:
+ 308:Src/usbd_midi_if.c **** 
+ 309:Src/usbd_midi_if.c **** 			case 0xC0://Program Change
+ 310:Src/usbd_midi_if.c **** 			case 0xD0://Channel pressure
+ 311:Src/usbd_midi_if.c **** 				midi_event[cable_num].midi_byte[0] = rx_midi_msg[cable_num];
+ 874              		.loc 1 311 0
+ 875 0108 8301     		lsl	r3, r0, #6
+ 876              	.LVL71:
+ 877 010a 1B18     		add	r3, r3, r0
+ 878 010c 4B49     		ldr	r1, .L90+12
+ 879 010e CB18     		add	r3, r1, r3
+ 880 0110 5A70     		strb	r2, [r3, #1]
+ 312:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].type = MSG_TWO_BYTE;
+ 881              		.loc 1 312 0
+ 882 0112 494A     		ldr	r2, .L90+8
+ 883              	.LVL72:
+ 884 0114 8100     		lsl	r1, r0, #2
+ 885 0116 5318     		add	r3, r2, r1
+ 886 0118 0324     		mov	r4, #3
+ 887 011a 5C70     		strb	r4, [r3, #1]
+ARM GAS  /tmp/ccBCIwdJ.s 			page 23
+
+
+ 313:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].stat = WAIT_DATA1;
+ 888              		.loc 1 313 0
+ 889 011c 0124     		mov	r4, #1
+ 890 011e 8C54     		strb	r4, [r1, r2]
+ 314:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].is_system_common = false;
+ 891              		.loc 1 314 0
+ 892 0120 0022     		mov	r2, #0
+ 893 0122 9A70     		strb	r2, [r3, #2]
+ 315:Src/usbd_midi_if.c **** 				break;
+ 894              		.loc 1 315 0
+ 895 0124 7AE0     		b	.L78
+ 896              	.LVL73:
+ 897              	.L65:
+ 316:Src/usbd_midi_if.c **** 
+ 317:Src/usbd_midi_if.c **** 			default:
+ 318:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].type = MSG_NOTHING;
+ 898              		.loc 1 318 0
+ 899 0126 4449     		ldr	r1, .L90+8
+ 900 0128 8400     		lsl	r4, r0, #2
+ 901 012a 0A19     		add	r2, r1, r4
+ 902 012c 0023     		mov	r3, #0
+ 903              	.LVL74:
+ 904 012e 5370     		strb	r3, [r2, #1]
+ 319:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].stat = START_ANALYSIS;
+ 905              		.loc 1 319 0
+ 906 0130 6354     		strb	r3, [r4, r1]
+ 320:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].is_system_common = false;
+ 907              		.loc 1 320 0
+ 908 0132 9370     		strb	r3, [r2, #2]
+ 321:Src/usbd_midi_if.c **** 				break;
+ 909              		.loc 1 321 0
+ 910 0134 72E0     		b	.L78
+ 911              	.LVL75:
+ 912              	.L64:
+ 322:Src/usbd_midi_if.c **** 		}
+ 323:Src/usbd_midi_if.c **** 
+ 324:Src/usbd_midi_if.c **** 	}else{//0x00-0x7F:data byte
+ 325:Src/usbd_midi_if.c **** 
+ 326:Src/usbd_midi_if.c **** 		switch(analyzed_status[cable_num].stat){
+ 913              		.loc 1 326 0
+ 914 0136 8300     		lsl	r3, r0, #2
+ 915              	.LVL76:
+ 916 0138 3F49     		ldr	r1, .L90+8
+ 917 013a 5B5C     		ldrb	r3, [r3, r1]
+ 918 013c 022B     		cmp	r3, #2
+ 919 013e 28D0     		beq	.L79
+ 920 0140 02D8     		bhi	.L80
+ 921 0142 012B     		cmp	r3, #1
+ 922 0144 05D0     		beq	.L81
+ 923 0146 69E0     		b	.L78
+ 924              	.L80:
+ 925 0148 032B     		cmp	r3, #3
+ 926 014a 39D0     		beq	.L82
+ 927 014c 042B     		cmp	r3, #4
+ 928 014e 4BD0     		beq	.L83
+ 929 0150 64E0     		b	.L78
+ 930              	.L81:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 24
+
+
+ 327:Src/usbd_midi_if.c **** 
+ 328:Src/usbd_midi_if.c **** 			case WAIT_DATA1:
+ 329:Src/usbd_midi_if.c **** 				midi_event[cable_num].midi_byte[1] = rx_midi_msg[cable_num];
+ 931              		.loc 1 329 0
+ 932 0152 8301     		lsl	r3, r0, #6
+ 933 0154 1B18     		add	r3, r3, r0
+ 934 0156 3949     		ldr	r1, .L90+12
+ 935 0158 CB18     		add	r3, r1, r3
+ 936 015a 9A70     		strb	r2, [r3, #2]
+ 330:Src/usbd_midi_if.c **** 
+ 331:Src/usbd_midi_if.c **** 				if(MSG_THREE_BYTE == analyzed_status[cable_num].type ){
+ 937              		.loc 1 331 0
+ 938 015c 8300     		lsl	r3, r0, #2
+ 939 015e 364A     		ldr	r2, .L90+8
+ 940              	.LVL77:
+ 941 0160 D318     		add	r3, r2, r3
+ 942 0162 5B78     		ldrb	r3, [r3, #1]
+ 943 0164 042B     		cmp	r3, #4
+ 944 0166 03D1     		bne	.L84
+ 332:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = WAIT_DATA2;
+ 945              		.loc 1 332 0
+ 946 0168 8300     		lsl	r3, r0, #2
+ 947 016a 0221     		mov	r1, #2
+ 948 016c 9954     		strb	r1, [r3, r2]
+ 949 016e 55E0     		b	.L78
+ 950              	.L84:
+ 333:Src/usbd_midi_if.c **** 				}else if( MSG_TWO_BYTE == analyzed_status[cable_num].type ){
+ 951              		.loc 1 333 0
+ 952 0170 032B     		cmp	r3, #3
+ 953 0172 09D1     		bne	.L85
+ 334:Src/usbd_midi_if.c **** 					midi_event[cable_num].length = 2;
+ 954              		.loc 1 334 0
+ 955 0174 8201     		lsl	r2, r0, #6
+ 956 0176 1218     		add	r2, r2, r0
+ 957 0178 0221     		mov	r1, #2
+ 958 017a 304B     		ldr	r3, .L90+12
+ 959 017c D154     		strb	r1, [r2, r3]
+ 335:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = END_ANALYSIS;
+ 960              		.loc 1 335 0
+ 961 017e 8300     		lsl	r3, r0, #2
+ 962 0180 0421     		mov	r1, #4
+ 963 0182 2D4A     		ldr	r2, .L90+8
+ 964 0184 9954     		strb	r1, [r3, r2]
+ 965 0186 49E0     		b	.L78
+ 966              	.L85:
+ 336:Src/usbd_midi_if.c **** 				}else{
+ 337:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = START_ANALYSIS;
+ 967              		.loc 1 337 0
+ 968 0188 8300     		lsl	r3, r0, #2
+ 969 018a 0021     		mov	r1, #0
+ 970 018c 2A4A     		ldr	r2, .L90+8
+ 971 018e 9954     		strb	r1, [r3, r2]
+ 972 0190 44E0     		b	.L78
+ 973              	.LVL78:
+ 974              	.L79:
+ 338:Src/usbd_midi_if.c **** 				}
+ 339:Src/usbd_midi_if.c **** 				break;
+ARM GAS  /tmp/ccBCIwdJ.s 			page 25
+
+
+ 340:Src/usbd_midi_if.c **** 
+ 341:Src/usbd_midi_if.c **** 			case WAIT_DATA2:
+ 342:Src/usbd_midi_if.c **** 				if(MSG_THREE_BYTE == analyzed_status[cable_num].type ){
+ 975              		.loc 1 342 0
+ 976 0192 8300     		lsl	r3, r0, #2
+ 977 0194 2849     		ldr	r1, .L90+8
+ 978 0196 CB18     		add	r3, r1, r3
+ 979 0198 5B78     		ldrb	r3, [r3, #1]
+ 980 019a 042B     		cmp	r3, #4
+ 981 019c 0BD1     		bne	.L86
+ 343:Src/usbd_midi_if.c **** 					midi_event[cable_num].midi_byte[2] = rx_midi_msg[cable_num];
+ 982              		.loc 1 343 0
+ 983 019e 274B     		ldr	r3, .L90+12
+ 984 01a0 8101     		lsl	r1, r0, #6
+ 985 01a2 0918     		add	r1, r1, r0
+ 986 01a4 5C18     		add	r4, r3, r1
+ 987 01a6 E270     		strb	r2, [r4, #3]
+ 344:Src/usbd_midi_if.c **** 					midi_event[cable_num].length = 3;
+ 988              		.loc 1 344 0
+ 989 01a8 0322     		mov	r2, #3
+ 990              	.LVL79:
+ 991 01aa CA54     		strb	r2, [r1, r3]
+ 345:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = END_ANALYSIS;
+ 992              		.loc 1 345 0
+ 993 01ac 8300     		lsl	r3, r0, #2
+ 994 01ae 0421     		mov	r1, #4
+ 995 01b0 214A     		ldr	r2, .L90+8
+ 996 01b2 9954     		strb	r1, [r3, r2]
+ 997 01b4 32E0     		b	.L78
+ 998              	.LVL80:
+ 999              	.L86:
+ 346:Src/usbd_midi_if.c **** 				}else{
+ 347:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = START_ANALYSIS;
+ 1000              		.loc 1 347 0
+ 1001 01b6 8300     		lsl	r3, r0, #2
+ 1002 01b8 0021     		mov	r1, #0
+ 1003 01ba 1F4A     		ldr	r2, .L90+8
+ 1004              	.LVL81:
+ 1005 01bc 9954     		strb	r1, [r3, r2]
+ 1006 01be 2DE0     		b	.L78
+ 1007              	.LVL82:
+ 1008              	.L82:
+ 348:Src/usbd_midi_if.c **** 				}
+ 349:Src/usbd_midi_if.c **** 				break;
+ 350:Src/usbd_midi_if.c **** 
+ 351:Src/usbd_midi_if.c **** 			case WAIT_SYSTEM_DATA:
+ 352:Src/usbd_midi_if.c **** 				midi_event[cable_num].midi_byte[ analyzed_status[cable_num].data_idx++ ] = rx_midi_msg[cable_nu
+ 1009              		.loc 1 352 0
+ 1010 01c0 8400     		lsl	r4, r0, #2
+ 1011 01c2 1D4B     		ldr	r3, .L90+8
+ 1012 01c4 1C19     		add	r4, r3, r4
+ 1013 01c6 E178     		ldrb	r1, [r4, #3]
+ 1014 01c8 4B1C     		add	r3, r1, #1
+ 1015 01ca DBB2     		uxtb	r3, r3
+ 1016 01cc E370     		strb	r3, [r4, #3]
+ 1017 01ce 8401     		lsl	r4, r0, #6
+ 1018 01d0 2418     		add	r4, r4, r0
+ARM GAS  /tmp/ccBCIwdJ.s 			page 26
+
+
+ 1019 01d2 6118     		add	r1, r4, r1
+ 1020 01d4 194C     		ldr	r4, .L90+12
+ 1021 01d6 6118     		add	r1, r4, r1
+ 1022 01d8 4A70     		strb	r2, [r1, #1]
+ 353:Src/usbd_midi_if.c **** 
+ 354:Src/usbd_midi_if.c **** 				if(analyzed_status[cable_num].data_idx > (MIDI_SENDDATA_MAX - 1) ){
+ 1023              		.loc 1 354 0
+ 1024 01da 3F2B     		cmp	r3, #63
+ 1025 01dc 1ED9     		bls	.L78
+ 355:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = END_ANALYSIS;
+ 1026              		.loc 1 355 0
+ 1027 01de 8300     		lsl	r3, r0, #2
+ 1028 01e0 0421     		mov	r1, #4
+ 1029 01e2 154A     		ldr	r2, .L90+8
+ 1030              	.LVL83:
+ 1031 01e4 9954     		strb	r1, [r3, r2]
+ 1032 01e6 19E0     		b	.L78
+ 1033              	.LVL84:
+ 1034              	.L83:
+ 356:Src/usbd_midi_if.c **** 				}
+ 357:Src/usbd_midi_if.c **** 				break;
+ 358:Src/usbd_midi_if.c **** 
+ 359:Src/usbd_midi_if.c **** 			case END_ANALYSIS://running status:When status byte is omitted.
+ 360:Src/usbd_midi_if.c **** 				midi_event[cable_num].midi_byte[1] = rx_midi_msg[cable_num];
+ 1035              		.loc 1 360 0
+ 1036 01e8 8301     		lsl	r3, r0, #6
+ 1037 01ea 1B18     		add	r3, r3, r0
+ 1038 01ec 1349     		ldr	r1, .L90+12
+ 1039 01ee CB18     		add	r3, r1, r3
+ 1040 01f0 9A70     		strb	r2, [r3, #2]
+ 361:Src/usbd_midi_if.c **** 				if(MSG_THREE_BYTE == analyzed_status[cable_num].type){
+ 1041              		.loc 1 361 0
+ 1042 01f2 8300     		lsl	r3, r0, #2
+ 1043 01f4 104A     		ldr	r2, .L90+8
+ 1044              	.LVL85:
+ 1045 01f6 D318     		add	r3, r2, r3
+ 1046 01f8 5B78     		ldrb	r3, [r3, #1]
+ 1047 01fa 042B     		cmp	r3, #4
+ 1048 01fc 03D1     		bne	.L87
+ 362:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = WAIT_DATA2;
+ 1049              		.loc 1 362 0
+ 1050 01fe 8300     		lsl	r3, r0, #2
+ 1051 0200 0221     		mov	r1, #2
+ 1052 0202 9954     		strb	r1, [r3, r2]
+ 1053 0204 0AE0     		b	.L78
+ 1054              	.L87:
+ 363:Src/usbd_midi_if.c **** 				}else if(MSG_TWO_BYTE == analyzed_status[cable_num].type){
+ 1055              		.loc 1 363 0
+ 1056 0206 032B     		cmp	r3, #3
+ 1057 0208 08D1     		bne	.L78
+ 364:Src/usbd_midi_if.c **** 					midi_event[cable_num].length = 2;
+ 1058              		.loc 1 364 0
+ 1059 020a 8201     		lsl	r2, r0, #6
+ 1060 020c 1218     		add	r2, r2, r0
+ 1061 020e 0221     		mov	r1, #2
+ 1062 0210 0A4B     		ldr	r3, .L90+12
+ 1063 0212 D154     		strb	r1, [r2, r3]
+ARM GAS  /tmp/ccBCIwdJ.s 			page 27
+
+
+ 365:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = END_ANALYSIS;
+ 1064              		.loc 1 365 0
+ 1065 0214 8300     		lsl	r3, r0, #2
+ 1066 0216 0421     		mov	r1, #4
+ 1067 0218 074A     		ldr	r2, .L90+8
+ 1068 021a 9954     		strb	r1, [r3, r2]
+ 1069              	.L78:
+ 366:Src/usbd_midi_if.c **** 				}
+ 367:Src/usbd_midi_if.c **** 				break;
+ 368:Src/usbd_midi_if.c **** 
+ 369:Src/usbd_midi_if.c **** 			case START_ANALYSIS:
+ 370:Src/usbd_midi_if.c **** 				break;
+ 371:Src/usbd_midi_if.c **** 
+ 372:Src/usbd_midi_if.c **** 			default:
+ 373:Src/usbd_midi_if.c **** 				break;
+ 374:Src/usbd_midi_if.c **** 		}
+ 375:Src/usbd_midi_if.c **** 	}
+ 376:Src/usbd_midi_if.c **** 
+ 377:Src/usbd_midi_if.c **** 	if(END_ANALYSIS == analyzed_status[cable_num].stat){
+ 1070              		.loc 1 377 0
+ 1071 021c 8000     		lsl	r0, r0, #2
+ 1072              	.LVL86:
+ 1073 021e 064B     		ldr	r3, .L90+8
+ 1074 0220 C35C     		ldrb	r3, [r0, r3]
+ 1075 0222 042B     		cmp	r3, #4
+ 1076 0224 01D1     		bne	.L89
+ 378:Src/usbd_midi_if.c **** 		return true;
+ 1077              		.loc 1 378 0
+ 1078 0226 0120     		mov	r0, #1
+ 1079 0228 00E0     		b	.L88
+ 1080              	.L89:
+ 379:Src/usbd_midi_if.c **** 	}else{
+ 380:Src/usbd_midi_if.c **** 		return false;
+ 1081              		.loc 1 380 0
+ 1082 022a 0020     		mov	r0, #0
+ 1083              	.L88:
+ 381:Src/usbd_midi_if.c **** 	}
+ 382:Src/usbd_midi_if.c **** 
+ 383:Src/usbd_midi_if.c **** }
+ 1084              		.loc 1 383 0
+ 1085              		@ sp needed
+ 1086 022c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1087              	.L91:
+ 1088 022e C046     		.align	2
+ 1089              	.L90:
+ 1090 0230 00000000 		.word	rx_midi_msg
+ 1091 0234 00000000 		.word	.L73
+ 1092 0238 00000000 		.word	analyzed_status
+ 1093 023c 00000000 		.word	midi_event
+ 1094              		.cfi_endproc
+ 1095              	.LFE44:
+ 1097              		.section	.text.midiGenerateUsbPacket,"ax",%progbits
+ 1098              		.align	2
+ 1099              		.global	midiGenerateUsbPacket
+ 1100              		.code	16
+ 1101              		.thumb_func
+ 1103              	midiGenerateUsbPacket:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 28
+
+
+ 1104              	.LFB45:
+ 384:Src/usbd_midi_if.c **** 
+ 385:Src/usbd_midi_if.c **** 
+ 386:Src/usbd_midi_if.c **** void midiGenerateUsbPacket(uint8_t cable_num)
+ 387:Src/usbd_midi_if.c **** {
+ 1105              		.loc 1 387 0
+ 1106              		.cfi_startproc
+ 1107              	.LVL87:
+ 1108 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1109              	.LCFI14:
+ 1110              		.cfi_def_cfa_offset 20
+ 1111              		.cfi_offset 4, -20
+ 1112              		.cfi_offset 5, -16
+ 1113              		.cfi_offset 6, -12
+ 1114              		.cfi_offset 7, -8
+ 1115              		.cfi_offset 14, -4
+ 1116 0002 5746     		mov	r7, r10
+ 1117 0004 4E46     		mov	r6, r9
+ 1118 0006 4546     		mov	r5, r8
+ 1119 0008 E0B4     		push	{r5, r6, r7}
+ 1120              	.LCFI15:
+ 1121              		.cfi_def_cfa_offset 32
+ 1122              		.cfi_offset 8, -32
+ 1123              		.cfi_offset 9, -28
+ 1124              		.cfi_offset 10, -24
+ 1125 000a 82B0     		sub	sp, sp, #8
+ 1126              	.LCFI16:
+ 1127              		.cfi_def_cfa_offset 40
+ 1128 000c 8246     		mov	r10, r0
+ 388:Src/usbd_midi_if.c **** 	uint8_t msg_buf[4] = {0x00,0x00,0x00,0x00};
+ 1129              		.loc 1 388 0
+ 1130 000e 01AB     		add	r3, sp, #4
+ 1131 0010 0022     		mov	r2, #0
+ 1132 0012 1A70     		strb	r2, [r3]
+ 1133 0014 5A70     		strb	r2, [r3, #1]
+ 1134 0016 9A70     		strb	r2, [r3, #2]
+ 1135 0018 DA70     		strb	r2, [r3, #3]
+ 1136              	.LVL88:
+ 389:Src/usbd_midi_if.c **** 	uint32_t cnt_remain=0, cnt_length;
+ 390:Src/usbd_midi_if.c **** 
+ 391:Src/usbd_midi_if.c **** 	switch(analyzed_status[cable_num].type){
+ 1137              		.loc 1 391 0
+ 1138 001a 061C     		mov	r6, r0
+ 1139 001c 8300     		lsl	r3, r0, #2
+ 1140 001e 524A     		ldr	r2, .L113
+ 1141 0020 D318     		add	r3, r2, r3
+ 1142 0022 5B78     		ldrb	r3, [r3, #1]
+ 1143 0024 022B     		cmp	r3, #2
+ 1144 0026 07D0     		beq	.L94
+ 1145 0028 03D8     		bhi	.L95
+ 1146 002a 012B     		cmp	r3, #1
+ 1147 002c 00D1     		bne	.LCB1101
+ 1148 002e 88E0     		b	.L110	@long jump
+ 1149              	.LCB1101:
+ 1150 0030 92E0     		b	.L93
+ 1151              	.L95:
+ 1152 0032 042B     		cmp	r3, #4
+ARM GAS  /tmp/ccBCIwdJ.s 			page 29
+
+
+ 1153 0034 0ED9     		bls	.L112
+ 1154 0036 8FE0     		b	.L93
+ 1155              	.L94:
+ 392:Src/usbd_midi_if.c **** 
+ 393:Src/usbd_midi_if.c **** 		case MSG_ONE_BYTE:
+ 394:Src/usbd_midi_if.c **** 			//byte 0: cable number + code index number
+ 395:Src/usbd_midi_if.c **** 			msg_buf[0] = (cable_num << 4) + ((midi_event[cable_num].midi_byte[0] & 0xF0) >> 4);
+ 1156              		.loc 1 395 0
+ 1157 0038 8301     		lsl	r3, r0, #6
+ 1158 003a 5344     		add	r3, r3, r10
+ 1159 003c 4B4A     		ldr	r2, .L113+4
+ 1160 003e D318     		add	r3, r2, r3
+ 1161 0040 5A78     		ldrb	r2, [r3, #1]
+ 1162 0042 1209     		lsr	r2, r2, #4
+ 1163 0044 01A8     		add	r0, sp, #4
+ 1164              	.LVL89:
+ 1165 0046 3301     		lsl	r3, r6, #4
+ 1166 0048 D318     		add	r3, r2, r3
+ 1167 004a 0370     		strb	r3, [r0]
+ 396:Src/usbd_midi_if.c **** 
+ 397:Src/usbd_midi_if.c **** 			sendMidiMessage(msg_buf,4);
+ 1168              		.loc 1 397 0
+ 1169 004c 0421     		mov	r1, #4
+ 1170 004e FFF7FEFF 		bl	sendMidiMessage
+ 1171              	.LVL90:
+ 398:Src/usbd_midi_if.c **** 			break;
+ 1172              		.loc 1 398 0
+ 1173 0052 81E0     		b	.L93
+ 1174              	.LVL91:
+ 1175              	.L112:
+ 399:Src/usbd_midi_if.c **** 
+ 400:Src/usbd_midi_if.c **** 		case MSG_TWO_BYTE:
+ 401:Src/usbd_midi_if.c **** 		case MSG_THREE_BYTE:
+ 402:Src/usbd_midi_if.c **** 			//byte 0: cable number + code index number
+ 403:Src/usbd_midi_if.c **** 			if(analyzed_status[cable_num].is_system_common){
+ 1176              		.loc 1 403 0
+ 1177 0054 8300     		lsl	r3, r0, #2
+ 1178 0056 444A     		ldr	r2, .L113
+ 1179 0058 D318     		add	r3, r2, r3
+ 1180 005a 9B78     		ldrb	r3, [r3, #2]
+ 1181 005c 002B     		cmp	r3, #0
+ 1182 005e 0CD0     		beq	.L98
+ 404:Src/usbd_midi_if.c **** 				msg_buf[0] = (cable_num << 4) + midi_event[cable_num].length;
+ 1183              		.loc 1 404 0
+ 1184 0060 8201     		lsl	r2, r0, #6
+ 1185 0062 5244     		add	r2, r2, r10
+ 1186 0064 414B     		ldr	r3, .L113+4
+ 1187 0066 D25C     		ldrb	r2, [r2, r3]
+ 1188 0068 0301     		lsl	r3, r0, #4
+ 1189 006a D218     		add	r2, r2, r3
+ 1190 006c 01AB     		add	r3, sp, #4
+ 1191 006e 1A70     		strb	r2, [r3]
+ 1192              	.L100:
+ 387:Src/usbd_midi_if.c **** {
+ 1193              		.loc 1 387 0 discriminator 1
+ 1194 0070 0023     		mov	r3, #0
+ 1195              	.LBB4:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 30
+
+
+ 405:Src/usbd_midi_if.c **** 			}else{
+ 406:Src/usbd_midi_if.c **** 				msg_buf[0] = (cable_num << 4) + ((midi_event[cable_num].midi_byte[0] & 0xF0) >> 4);
+ 407:Src/usbd_midi_if.c **** 			}
+ 408:Src/usbd_midi_if.c **** 
+ 409:Src/usbd_midi_if.c **** 			//byte 1-3
+ 410:Src/usbd_midi_if.c **** 			for(uint32_t i=0; i<midi_event[cable_num].length; i++){
+ 1196              		.loc 1 410 0 discriminator 1
+ 1197 0072 3E4D     		ldr	r5, .L113+4
+ 1198 0074 B101     		lsl	r1, r6, #6
+ 411:Src/usbd_midi_if.c **** 				msg_buf[i+1] = midi_event[cable_num].midi_byte[i];
+ 1199              		.loc 1 411 0 discriminator 1
+ 1200 0076 281C     		mov	r0, r5
+ 1201              	.LVL92:
+ 1202 0078 12E0     		b	.L99
+ 1203              	.LVL93:
+ 1204              	.L98:
+ 1205              	.LBE4:
+ 406:Src/usbd_midi_if.c **** 				msg_buf[0] = (cable_num << 4) + ((midi_event[cable_num].midi_byte[0] & 0xF0) >> 4);
+ 1206              		.loc 1 406 0
+ 1207 007a 8301     		lsl	r3, r0, #6
+ 1208 007c 5344     		add	r3, r3, r10
+ 1209 007e 3B4A     		ldr	r2, .L113+4
+ 1210 0080 D318     		add	r3, r2, r3
+ 1211 0082 5A78     		ldrb	r2, [r3, #1]
+ 1212 0084 1209     		lsr	r2, r2, #4
+ 1213 0086 0301     		lsl	r3, r0, #4
+ 1214 0088 D218     		add	r2, r2, r3
+ 1215 008a 01AB     		add	r3, sp, #4
+ 1216 008c 1A70     		strb	r2, [r3]
+ 1217 008e EFE7     		b	.L100
+ 1218              	.LVL94:
+ 1219              	.L101:
+ 1220              	.LBB5:
+ 1221              		.loc 1 411 0 discriminator 2
+ 1222 0090 5A1C     		add	r2, r3, #1
+ 1223 0092 8C19     		add	r4, r1, r6
+ 1224 0094 E318     		add	r3, r4, r3
+ 1225              	.LVL95:
+ 1226 0096 C318     		add	r3, r0, r3
+ 1227 0098 5C78     		ldrb	r4, [r3, #1]
+ 1228 009a 01AB     		add	r3, sp, #4
+ 1229 009c 9C54     		strb	r4, [r3, r2]
+ 1230              	.LVL96:
+ 410:Src/usbd_midi_if.c **** 			for(uint32_t i=0; i<midi_event[cable_num].length; i++){
+ 1231              		.loc 1 410 0 discriminator 2
+ 1232 009e 131C     		mov	r3, r2
+ 1233              	.LVL97:
+ 1234              	.L99:
+ 410:Src/usbd_midi_if.c **** 			for(uint32_t i=0; i<midi_event[cable_num].length; i++){
+ 1235              		.loc 1 410 0 is_stmt 0 discriminator 1
+ 1236 00a0 8A19     		add	r2, r1, r6
+ 1237 00a2 525D     		ldrb	r2, [r2, r5]
+ 1238 00a4 9A42     		cmp	r2, r3
+ 1239 00a6 F3D8     		bhi	.L101
+ 1240              	.LBE5:
+ 412:Src/usbd_midi_if.c **** 			}
+ 413:Src/usbd_midi_if.c **** 
+ARM GAS  /tmp/ccBCIwdJ.s 			page 31
+
+
+ 414:Src/usbd_midi_if.c **** 			sendMidiMessage(msg_buf,4);
+ 1241              		.loc 1 414 0 is_stmt 1
+ 1242 00a8 01A8     		add	r0, sp, #4
+ 1243 00aa 0421     		mov	r1, #4
+ 1244 00ac FFF7FEFF 		bl	sendMidiMessage
+ 1245              	.LVL98:
+ 415:Src/usbd_midi_if.c **** 			break;
+ 1246              		.loc 1 415 0
+ 1247 00b0 52E0     		b	.L93
+ 1248              	.LVL99:
+ 1249              	.L109:
+ 416:Src/usbd_midi_if.c **** 
+ 417:Src/usbd_midi_if.c **** 		case MSG_SYSEX:
+ 418:Src/usbd_midi_if.c **** 			for(cnt_length = 0; cnt_length < midi_event[cable_num].length; cnt_length++){
+ 419:Src/usbd_midi_if.c **** 				if( 0xF7 !=midi_event[cable_num].midi_byte[cnt_length] ){
+ 1250              		.loc 1 419 0
+ 1251 00b2 BB19     		add	r3, r7, r6
+ 1252 00b4 5B19     		add	r3, r3, r5
+ 1253 00b6 4B44     		add	r3, r3, r9
+ 1254 00b8 5B78     		ldrb	r3, [r3, #1]
+ 1255 00ba F72B     		cmp	r3, #247
+ 1256 00bc 0FD0     		beq	.L102
+ 420:Src/usbd_midi_if.c **** 					if(2 == cnt_remain){
+ 1257              		.loc 1 420 0
+ 1258 00be 022C     		cmp	r4, #2
+ 1259 00c0 09D1     		bne	.L103
+ 421:Src/usbd_midi_if.c **** 						msg_buf[3] = midi_event[cable_num].midi_byte[cnt_length];
+ 1260              		.loc 1 421 0
+ 1261 00c2 01A8     		add	r0, sp, #4
+ 1262 00c4 C370     		strb	r3, [r0, #3]
+ 422:Src/usbd_midi_if.c **** 						msg_buf[0] = (cable_num << 4) + 0x4;	//SysEx starts or continues
+ 1263              		.loc 1 422 0
+ 1264 00c6 5246     		mov	r2, r10
+ 1265 00c8 1301     		lsl	r3, r2, #4
+ 1266 00ca 0433     		add	r3, r3, #4
+ 1267 00cc 0370     		strb	r3, [r0]
+ 423:Src/usbd_midi_if.c **** 						sendMidiMessage(msg_buf,4);
+ 1268              		.loc 1 423 0
+ 1269 00ce 0421     		mov	r1, #4
+ 1270 00d0 FFF7FEFF 		bl	sendMidiMessage
+ 1271              	.LVL100:
+ 1272 00d4 2FE0     		b	.L104
+ 1273              	.L103:
+ 424:Src/usbd_midi_if.c **** 					}else{
+ 425:Src/usbd_midi_if.c **** 						msg_buf[1 + cnt_remain] = midi_event[cable_num].midi_byte[cnt_length];
+ 1274              		.loc 1 425 0
+ 1275 00d6 621C     		add	r2, r4, #1
+ 1276 00d8 01A9     		add	r1, sp, #4
+ 1277 00da 8B54     		strb	r3, [r1, r2]
+ 1278 00dc 2BE0     		b	.L104
+ 1279              	.L102:
+ 426:Src/usbd_midi_if.c **** 					}
+ 427:Src/usbd_midi_if.c **** 
+ 428:Src/usbd_midi_if.c **** 
+ 429:Src/usbd_midi_if.c **** 				}else{
+ 430:Src/usbd_midi_if.c **** 
+ 431:Src/usbd_midi_if.c **** 					switch (cnt_remain) {
+ARM GAS  /tmp/ccBCIwdJ.s 			page 32
+
+
+ 1280              		.loc 1 431 0
+ 1281 00de 012C     		cmp	r4, #1
+ 1282 00e0 12D0     		beq	.L105
+ 1283 00e2 002C     		cmp	r4, #0
+ 1284 00e4 02D0     		beq	.L106
+ 1285 00e6 022C     		cmp	r4, #2
+ 1286 00e8 1BD0     		beq	.L107
+ 1287 00ea 24E0     		b	.L104
+ 1288              	.L106:
+ 432:Src/usbd_midi_if.c **** 						case 0:
+ 433:Src/usbd_midi_if.c **** 							msg_buf[0] = (cable_num << 4) + 0x5;	//SysEx ends with following single byte
+ 1289              		.loc 1 433 0
+ 1290 00ec 01A8     		add	r0, sp, #4
+ 1291 00ee 5146     		mov	r1, r10
+ 1292 00f0 0B01     		lsl	r3, r1, #4
+ 1293 00f2 0533     		add	r3, r3, #5
+ 1294 00f4 0370     		strb	r3, [r0]
+ 434:Src/usbd_midi_if.c **** 							msg_buf[1] = 0xF7;
+ 1295              		.loc 1 434 0
+ 1296 00f6 F723     		mov	r3, #247
+ 1297 00f8 4370     		strb	r3, [r0, #1]
+ 435:Src/usbd_midi_if.c **** 							msg_buf[2] = msg_buf[3] = 0x00;
+ 1298              		.loc 1 435 0
+ 1299 00fa 0023     		mov	r3, #0
+ 1300 00fc C370     		strb	r3, [r0, #3]
+ 1301 00fe 8370     		strb	r3, [r0, #2]
+ 436:Src/usbd_midi_if.c **** 							sendMidiMessage(msg_buf,4);
+ 1302              		.loc 1 436 0
+ 1303 0100 0421     		mov	r1, #4
+ 1304 0102 FFF7FEFF 		bl	sendMidiMessage
+ 1305              	.LVL101:
+ 437:Src/usbd_midi_if.c **** 							break;
+ 1306              		.loc 1 437 0
+ 1307 0106 16E0     		b	.L104
+ 1308              	.L105:
+ 438:Src/usbd_midi_if.c **** 
+ 439:Src/usbd_midi_if.c **** 						case 1:
+ 440:Src/usbd_midi_if.c **** 							msg_buf[0] = (cable_num << 4) + 0x6;	//SysEx ends with following two bytes.
+ 1309              		.loc 1 440 0
+ 1310 0108 01A8     		add	r0, sp, #4
+ 1311 010a 5246     		mov	r2, r10
+ 1312 010c 1301     		lsl	r3, r2, #4
+ 1313 010e 0633     		add	r3, r3, #6
+ 1314 0110 0370     		strb	r3, [r0]
+ 441:Src/usbd_midi_if.c **** 							msg_buf[2] = 0xF7;
+ 1315              		.loc 1 441 0
+ 1316 0112 F723     		mov	r3, #247
+ 1317 0114 8370     		strb	r3, [r0, #2]
+ 442:Src/usbd_midi_if.c **** 							msg_buf[3] = 0x00;
+ 1318              		.loc 1 442 0
+ 1319 0116 0023     		mov	r3, #0
+ 1320 0118 C370     		strb	r3, [r0, #3]
+ 443:Src/usbd_midi_if.c **** 							sendMidiMessage(msg_buf,4);
+ 1321              		.loc 1 443 0
+ 1322 011a 0421     		mov	r1, #4
+ 1323 011c FFF7FEFF 		bl	sendMidiMessage
+ 1324              	.LVL102:
+ARM GAS  /tmp/ccBCIwdJ.s 			page 33
+
+
+ 444:Src/usbd_midi_if.c **** 							break;
+ 1325              		.loc 1 444 0
+ 1326 0120 09E0     		b	.L104
+ 1327              	.L107:
+ 445:Src/usbd_midi_if.c **** 
+ 446:Src/usbd_midi_if.c **** 						case 2:
+ 447:Src/usbd_midi_if.c **** 							msg_buf[0] = (cable_num << 4) + 0x7;	//SysEx ends with following three bytes.
+ 1328              		.loc 1 447 0
+ 1329 0122 01A8     		add	r0, sp, #4
+ 1330 0124 5146     		mov	r1, r10
+ 1331 0126 0B01     		lsl	r3, r1, #4
+ 1332 0128 0733     		add	r3, r3, #7
+ 1333 012a 0370     		strb	r3, [r0]
+ 448:Src/usbd_midi_if.c **** 							msg_buf[3] = 0xF7;
+ 1334              		.loc 1 448 0
+ 1335 012c F723     		mov	r3, #247
+ 1336 012e C370     		strb	r3, [r0, #3]
+ 449:Src/usbd_midi_if.c **** 							sendMidiMessage(msg_buf,4);
+ 1337              		.loc 1 449 0
+ 1338 0130 0421     		mov	r1, #4
+ 1339 0132 FFF7FEFF 		bl	sendMidiMessage
+ 1340              	.LVL103:
+ 1341              	.L104:
+ 450:Src/usbd_midi_if.c **** 							break;
+ 451:Src/usbd_midi_if.c **** 						default:
+ 452:Src/usbd_midi_if.c **** 							break;
+ 453:Src/usbd_midi_if.c **** 					}
+ 454:Src/usbd_midi_if.c **** 				}
+ 455:Src/usbd_midi_if.c **** 
+ 456:Src/usbd_midi_if.c **** 				cnt_remain++;
+ 1342              		.loc 1 456 0
+ 1343 0136 0134     		add	r4, r4, #1
+ 1344              	.LVL104:
+ 457:Src/usbd_midi_if.c **** 				if(cnt_remain >=3){
+ 1345              		.loc 1 457 0
+ 1346 0138 022C     		cmp	r4, #2
+ 1347 013a 00D9     		bls	.L108
+ 458:Src/usbd_midi_if.c **** 					cnt_remain = 0;
+ 1348              		.loc 1 458 0
+ 1349 013c 0024     		mov	r4, #0
+ 1350              	.LVL105:
+ 1351              	.L108:
+ 418:Src/usbd_midi_if.c **** 			for(cnt_length = 0; cnt_length < midi_event[cable_num].length; cnt_length++){
+ 1352              		.loc 1 418 0
+ 1353 013e 0135     		add	r5, r5, #1
+ 1354              	.LVL106:
+ 1355 0140 05E0     		b	.L96
+ 1356              	.LVL107:
+ 1357              	.L110:
+ 391:Src/usbd_midi_if.c **** 	switch(analyzed_status[cable_num].type){
+ 1358              		.loc 1 391 0
+ 1359 0142 0025     		mov	r5, #0
+ 1360 0144 0024     		mov	r4, #0
+ 418:Src/usbd_midi_if.c **** 			for(cnt_length = 0; cnt_length < midi_event[cable_num].length; cnt_length++){
+ 1361              		.loc 1 418 0
+ 1362 0146 094A     		ldr	r2, .L113+4
+ 1363 0148 9046     		mov	r8, r2
+ARM GAS  /tmp/ccBCIwdJ.s 			page 34
+
+
+ 1364 014a 8701     		lsl	r7, r0, #6
+ 419:Src/usbd_midi_if.c **** 				if( 0xF7 !=midi_event[cable_num].midi_byte[cnt_length] ){
+ 1365              		.loc 1 419 0
+ 1366 014c 9146     		mov	r9, r2
+ 1367              	.LVL108:
+ 1368              	.L96:
+ 418:Src/usbd_midi_if.c **** 			for(cnt_length = 0; cnt_length < midi_event[cable_num].length; cnt_length++){
+ 1369              		.loc 1 418 0 discriminator 1
+ 1370 014e BB19     		add	r3, r7, r6
+ 1371 0150 4146     		mov	r1, r8
+ 1372 0152 5B5C     		ldrb	r3, [r3, r1]
+ 1373 0154 AB42     		cmp	r3, r5
+ 1374 0156 ACD8     		bhi	.L109
+ 1375              	.LVL109:
+ 1376              	.L93:
+ 459:Src/usbd_midi_if.c **** 				}
+ 460:Src/usbd_midi_if.c **** 			}
+ 461:Src/usbd_midi_if.c **** 			break;
+ 462:Src/usbd_midi_if.c **** 
+ 463:Src/usbd_midi_if.c **** 		default:
+ 464:Src/usbd_midi_if.c **** 			break;
+ 465:Src/usbd_midi_if.c **** 	}
+ 466:Src/usbd_midi_if.c **** 	USBD_MIDI_SendPacket();
+ 1377              		.loc 1 466 0
+ 1378 0158 FFF7FEFF 		bl	USBD_MIDI_SendPacket
+ 1379              	.LVL110:
+ 467:Src/usbd_midi_if.c **** }
+ 1380              		.loc 1 467 0
+ 1381 015c 02B0     		add	sp, sp, #8
+ 1382              		@ sp needed
+ 1383 015e 1CBC     		pop	{r2, r3, r4}
+ 1384 0160 9046     		mov	r8, r2
+ 1385 0162 9946     		mov	r9, r3
+ 1386 0164 A246     		mov	r10, r4
+ 1387 0166 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1388              	.L114:
+ 1389              		.align	2
+ 1390              	.L113:
+ 1391 0168 00000000 		.word	analyzed_status
+ 1392 016c 00000000 		.word	midi_event
+ 1393              		.cfi_endproc
+ 1394              	.LFE45:
+ 1396              		.section	.text.midiProcess,"ax",%progbits
+ 1397              		.align	2
+ 1398              		.global	midiProcess
+ 1399              		.code	16
+ 1400              		.thumb_func
+ 1402              	midiProcess:
+ 1403              	.LFB46:
+ 468:Src/usbd_midi_if.c **** 
+ 469:Src/usbd_midi_if.c **** void midiProcess(){
+ 1404              		.loc 1 469 0
+ 1405              		.cfi_startproc
+ 1406              	.LVL111:
+ 470:Src/usbd_midi_if.c **** 
+ 471:Src/usbd_midi_if.c **** 	for(uint32_t cable_num=0; cable_num<MIDI_IN_JACK_NUM; cable_num++){
+ 472:Src/usbd_midi_if.c **** 		while( FUNC_SUCCESS == midiGetFromJackRx(cable_num) ){
+ARM GAS  /tmp/ccBCIwdJ.s 			page 35
+
+
+ 473:Src/usbd_midi_if.c **** 			if( midiEventIsGenerated(cable_num) ){// Generate MIDI event from UART buffer.
+ 474:Src/usbd_midi_if.c **** 				//Analyze MIDI Message.
+ 475:Src/usbd_midi_if.c **** 				midiGenerateUsbPacket(cable_num);
+ 476:Src/usbd_midi_if.c **** 			}
+ 477:Src/usbd_midi_if.c **** 		}
+ 478:Src/usbd_midi_if.c **** 	}
+ 479:Src/usbd_midi_if.c **** }
+ 1407              		.loc 1 479 0
+ 1408              		@ sp needed
+ 1409 0000 7047     		bx	lr
+ 1410              		.cfi_endproc
+ 1411              	.LFE46:
+ 1413              		.global	USBD_Interface_fops_FS
+ 1414              		.comm	rx_midi_msg,0,4
+ 1415              		.comm	midi_event,0,4
+ 1416              		.comm	analyzed_status,0,4
+ 1417              		.comm	rbuf_jack_rx,0,4
+ 1418              		.comm	rbuf_usb_rx,12,4
+ 1419 0002 C046     		.section	.data.USBD_Interface_fops_FS,"aw",%progbits
+ 1420              		.align	2
+ 1423              	USBD_Interface_fops_FS:
+ 1424 0000 00000000 		.word	MIDI_DataRx
+ 1425 0004 00000000 		.word	MIDI_DataTx
+ 1426              		.text
+ 1427              	.Letext0:
+ 1428              		.file 2 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
+ 1429              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
+ 1430              		.file 4 "Middlewares/USBMIDI/Inc/usbd_midi.h"
+ 1431              		.file 5 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
+ 1432              		.file 6 "Inc/curelib_inc/curemisc.h"
+ 1433              		.file 7 "Inc/curelib_inc/curebuffer.h"
+ 1434              		.file 8 "Inc/usbd_midi_if.h"
+ARM GAS  /tmp/ccBCIwdJ.s 			page 36
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usbd_midi_if.c
+     /tmp/ccBCIwdJ.s:18     .text.MIDI_DataTx:00000000 $t
+     /tmp/ccBCIwdJ.s:22     .text.MIDI_DataTx:00000000 MIDI_DataTx
+     /tmp/ccBCIwdJ.s:89     .text.MIDI_DataTx:00000038 $d
+     /tmp/ccBCIwdJ.s:95     .text.MIDI_DataRx:00000000 $t
+     /tmp/ccBCIwdJ.s:99     .text.MIDI_DataRx:00000000 MIDI_DataRx
+     /tmp/ccBCIwdJ.s:163    .rodata.MIDI_DataRx:00000000 $d
+     /tmp/ccBCIwdJ.s:268    .text.MIDI_DataRx:0000008c $d
+                            *COM*:0000000c rbuf_usb_rx
+     /tmp/ccBCIwdJ.s:274    .text.midiInit:00000000 $t
+     /tmp/ccBCIwdJ.s:279    .text.midiInit:00000000 midiInit
+     /tmp/ccBCIwdJ.s:332    .text.midiInit:0000002c $d
+     /tmp/ccBCIwdJ.s:337    .text.midiGetFromUsbRx:00000000 $t
+     /tmp/ccBCIwdJ.s:342    .text.midiGetFromUsbRx:00000000 midiGetFromUsbRx
+     /tmp/ccBCIwdJ.s:376    .text.midiGetFromUsbRx:0000001c $d
+     /tmp/ccBCIwdJ.s:381    .text.midiGetFromJackRx:00000000 $t
+     /tmp/ccBCIwdJ.s:386    .text.midiGetFromJackRx:00000000 midiGetFromJackRx
+     /tmp/ccBCIwdJ.s:423    .text.midiGetFromJackRx:00000024 $d
+                            *COM*:00000000 rbuf_jack_rx
+                            *COM*:00000000 rx_midi_msg
+     /tmp/ccBCIwdJ.s:429    .text.midiSetFromJackRx:00000000 $t
+     /tmp/ccBCIwdJ.s:434    .text.midiSetFromJackRx:00000000 midiSetFromJackRx
+     /tmp/ccBCIwdJ.s:468    .text.midiSetFromJackRx:0000001c $d
+     /tmp/ccBCIwdJ.s:473    .text.isUsbRxBufEmpty:00000000 $t
+     /tmp/ccBCIwdJ.s:478    .text.isUsbRxBufEmpty:00000000 isUsbRxBufEmpty
+     /tmp/ccBCIwdJ.s:512    .text.isUsbRxBufEmpty:0000001c $d
+     /tmp/ccBCIwdJ.s:517    .text.isJackRxBufEmpty:00000000 $t
+     /tmp/ccBCIwdJ.s:522    .text.isJackRxBufEmpty:00000000 isJackRxBufEmpty
+     /tmp/ccBCIwdJ.s:556    .text.isJackRxBufEmpty:0000001c $d
+     /tmp/ccBCIwdJ.s:561    .text.isRxBufEmpty:00000000 $t
+     /tmp/ccBCIwdJ.s:566    .text.isRxBufEmpty:00000000 isRxBufEmpty
+     /tmp/ccBCIwdJ.s:612    .text.isRxBufEmpty:00000028 $d
+     /tmp/ccBCIwdJ.s:617    .text.sendMidiMessage:00000000 $t
+     /tmp/ccBCIwdJ.s:622    .text.sendMidiMessage:00000000 sendMidiMessage
+     /tmp/ccBCIwdJ.s:646    .text.midiEventIsGenerated:00000000 $t
+     /tmp/ccBCIwdJ.s:651    .text.midiEventIsGenerated:00000000 midiEventIsGenerated
+     /tmp/ccBCIwdJ.s:714    .rodata.midiEventIsGenerated:00000000 $d
+     /tmp/ccBCIwdJ.s:1090   .text.midiEventIsGenerated:00000230 $d
+                            *COM*:00000000 analyzed_status
+                            *COM*:00000000 midi_event
+     /tmp/ccBCIwdJ.s:1098   .text.midiGenerateUsbPacket:00000000 $t
+     /tmp/ccBCIwdJ.s:1103   .text.midiGenerateUsbPacket:00000000 midiGenerateUsbPacket
+     /tmp/ccBCIwdJ.s:1391   .text.midiGenerateUsbPacket:00000168 $d
+     /tmp/ccBCIwdJ.s:1397   .text.midiProcess:00000000 $t
+     /tmp/ccBCIwdJ.s:1402   .text.midiProcess:00000000 midiProcess
+     /tmp/ccBCIwdJ.s:1423   .data.USBD_Interface_fops_FS:00000000 USBD_Interface_fops_FS
+     /tmp/ccBCIwdJ.s:1420   .data.USBD_Interface_fops_FS:00000000 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+APP_Rx_ptr_in
+APP_Rx_Buffer
+cureRingBufferU8Enqueue
+cureRingBufferU8Init
+cureRingBufferU8Dequeue
+_cureRingBufferU8GetUsedSize
+ARM GAS  /tmp/ccBCIwdJ.s 			page 37
+
+
+USBD_MIDI_SendPacket
