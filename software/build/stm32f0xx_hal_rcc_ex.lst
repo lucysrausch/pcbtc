@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc2ODhFS.s 			page 1
+ARM GAS  /tmp/ccsu72Lf.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-ARM GAS  /tmp/cc2ODhFS.s 			page 2
+ARM GAS  /tmp/ccsu72Lf.s 			page 2
 
 
   34:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****  *
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** @verbatim
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****  ===============================================================================
-ARM GAS  /tmp/cc2ODhFS.s 			page 3
+ARM GAS  /tmp/ccsu72Lf.s 			page 3
 
 
   91:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****                 ##### Extended Peripheral Control functions  #####
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  122:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   uint32_t tickstart = 0U;
  123:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   uint32_t temp_reg = 0U;
  124:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** 
-ARM GAS  /tmp/cc2ODhFS.s 			page 4
+ARM GAS  /tmp/ccsu72Lf.s 			page 4
 
 
  125:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   /* Check the parameters */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
   84              	.L3:
  143:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     }
  144:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     
-ARM GAS  /tmp/cc2ODhFS.s 			page 5
+ARM GAS  /tmp/ccsu72Lf.s 			page 5
 
 
  145:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     if(HAL_IS_BIT_CLR(PWR->CR, PWR_CR_DBP))
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  161:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     
  162:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     /* Reset the Backup domain only if the RTC Clock source selection is modified from reset value 
  163:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     temp_reg = (RCC->BDCR & RCC_BDCR_RTCSEL);
-ARM GAS  /tmp/cc2ODhFS.s 			page 6
+ARM GAS  /tmp/ccsu72Lf.s 			page 6
 
 
  122              		.loc 1 163 0
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  161              		.loc 1 178 0
  162 00a2 FFF7FEFF 		bl	HAL_GetTick
  163              	.LVL14:
-ARM GAS  /tmp/cc2ODhFS.s 			page 7
+ARM GAS  /tmp/ccsu72Lf.s 			page 7
 
 
  164 00a6 8146     		mov	r9, r0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  201              	.LVL19:
  194:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     {
  195:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       __HAL_RCC_PWR_CLK_DISABLE();
-ARM GAS  /tmp/cc2ODhFS.s 			page 8
+ARM GAS  /tmp/ccsu72Lf.s 			page 8
 
 
  202              		.loc 1 195 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  233 0100 E168     		ldr	r1, [r4, #12]
  234 0102 0A43     		orr	r2, r1
  235 0104 1A63     		str	r2, [r3, #48]
-ARM GAS  /tmp/cc2ODhFS.s 			page 9
+ARM GAS  /tmp/ccsu72Lf.s 			page 9
 
 
  236              	.L12:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  255 0120 0E4B     		ldr	r3, .L19
  256 0122 1A6B     		ldr	r2, [r3, #48]
  257 0124 8021     		mov	r1, #128
-ARM GAS  /tmp/cc2ODhFS.s 			page 10
+ARM GAS  /tmp/ccsu72Lf.s 			page 10
 
 
  258 0126 8A43     		bic	r2, r1
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  288 014c 00E0     		b	.L6
  289              	.LVL24:
  290              	.L18:
-ARM GAS  /tmp/cc2ODhFS.s 			page 11
+ARM GAS  /tmp/ccsu72Lf.s 			page 11
 
 
  291              	.LBE4:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  330              		.loc 1 292 0
  331 0004 114B     		ldr	r3, .L22+4
  332 0006 196A     		ldr	r1, [r3, #32]
-ARM GAS  /tmp/cc2ODhFS.s 			page 12
+ARM GAS  /tmp/ccsu72Lf.s 			page 12
 
 
  333 0008 C022     		mov	r2, #192
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  316:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** #endif /* STM32F042x6 || STM32F048xx || STM32F072xB || STM32F078xx || STM32F070xB || STM32F070x6 */
  317:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** 
  318:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** #if defined(STM32F042x6) || defined(STM32F048xx)\
-ARM GAS  /tmp/cc2ODhFS.s 			page 13
+ARM GAS  /tmp/ccsu72Lf.s 			page 13
 
 
  319:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****  || defined(STM32F051x8) || defined(STM32F058xx)\
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  344:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   @if STM32F048xx
  345:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_USB     USB peripheral clock
  346:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_CEC     CEC peripheral clock
-ARM GAS  /tmp/cc2ODhFS.s 			page 14
+ARM GAS  /tmp/ccsu72Lf.s 			page 14
 
 
  347:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   @endif
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  392:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** #if defined(USB)
  393:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   uint32_t pllmull = 0U, pllsource = 0U, predivfactor = 0U;
  394:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** #endif /* USB */
-ARM GAS  /tmp/cc2ODhFS.s 			page 15
+ARM GAS  /tmp/ccsu72Lf.s 			page 15
 
 
  395:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  445 0044 9107     		lsl	r1, r2, #30
  446 0046 00D5     		bpl	.LCB440
  447 0048 ABE0     		b	.L47	@long jump
-ARM GAS  /tmp/cc2ODhFS.s 			page 16
+ARM GAS  /tmp/ccsu72Lf.s 			page 16
 
 
  448              	.LCB440:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  425:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       /* Get the current USART1 source */
  426:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       srcclk = __HAL_RCC_GET_USART1_SOURCE();
  484              		.loc 1 426 0
-ARM GAS  /tmp/cc2ODhFS.s 			page 17
+ARM GAS  /tmp/ccsu72Lf.s 			page 17
 
 
  485 0074 5E4B     		ldr	r3, .L64
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  521 00a0 8AE0     		b	.L52	@long jump
  522              	.LCB515:
  523              		.loc 1 444 0 is_stmt 0 discriminator 1
-ARM GAS  /tmp/cc2ODhFS.s 			page 18
+ARM GAS  /tmp/ccsu72Lf.s 			page 18
 
 
  524 00a2 534B     		ldr	r3, .L64
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  559 00cc 1268     		ldr	r2, [r2]
  560 00ce 9107     		lsl	r1, r2, #30
  561 00d0 77D4     		bmi	.L54
-ARM GAS  /tmp/cc2ODhFS.s 			page 19
+ARM GAS  /tmp/ccsu72Lf.s 			page 19
 
 
  562              	.L39:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  487:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       {
  488:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****         frequency = HAL_RCC_GetPCLK1Freq();
  489:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       }
-ARM GAS  /tmp/cc2ODhFS.s 			page 20
+ARM GAS  /tmp/ccsu72Lf.s 			page 20
 
 
  490:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       /* Check if HSI is ready and if USART3 clock selection is HSI */
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  613              	.L31:
  522:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       }
  523:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       break;
-ARM GAS  /tmp/cc2ODhFS.s 			page 21
+ARM GAS  /tmp/ccsu72Lf.s 			page 21
 
 
  524:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     }
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  651              		.loc 1 540 0
  652 013e 8023     		mov	r3, #128
  653 0140 5B02     		lsl	r3, r3, #9
-ARM GAS  /tmp/cc2ODhFS.s 			page 22
+ARM GAS  /tmp/ccsu72Lf.s 			page 22
 
 
  654 0142 9A42     		cmp	r2, r3
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  561:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****         }
  562:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       }
  563:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** #if defined(RCC_CR2_HSI48ON)
-ARM GAS  /tmp/cc2ODhFS.s 			page 23
+ARM GAS  /tmp/ccsu72Lf.s 			page 23
 
 
  564:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       /* Check if HSI48 is ready and if USB clock selection is HSI48 */
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  719 0190 28D1     		bne	.L62
  720              		.loc 1 585 0 is_stmt 0 discriminator 1
  721 0192 174B     		ldr	r3, .L64
-ARM GAS  /tmp/cc2ODhFS.s 			page 24
+ARM GAS  /tmp/ccsu72Lf.s 			page 24
 
 
  722              	.LVL72:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  769 01b8 0020     		mov	r0, #0
  770              	.LVL87:
  771 01ba 17E0     		b	.L25
-ARM GAS  /tmp/cc2ODhFS.s 			page 25
+ARM GAS  /tmp/ccsu72Lf.s 			page 25
 
 
  772              	.LVL88:
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  819              	.LVL103:
  820 01de 05E0     		b	.L25
  821              	.LVL104:
-ARM GAS  /tmp/cc2ODhFS.s 			page 26
+ARM GAS  /tmp/ccsu72Lf.s 			page 26
 
 
  822              	.L61:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  599:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** 
  600:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** /**
  601:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   * @}
-ARM GAS  /tmp/cc2ODhFS.s 			page 27
+ARM GAS  /tmp/ccsu72Lf.s 			page 27
 
 
  602:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  656:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****               (++) Implement CRS status management in the following user callbacks called from 
  657:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****                    HAL_RCCEx_CRS_IRQHandler():
  658:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****                    (+++) @ref HAL_RCCEx_CRS_SyncOkCallback()
-ARM GAS  /tmp/cc2ODhFS.s 			page 28
+ARM GAS  /tmp/ccsu72Lf.s 			page 28
 
 
  659:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****                    (+++) @ref HAL_RCCEx_CRS_SyncWarnCallback()
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  879 0014 0268     		ldr	r2, [r0]
  880 0016 4168     		ldr	r1, [r0, #4]
  881 0018 0A43     		orr	r2, r1
-ARM GAS  /tmp/cc2ODhFS.s 			page 29
+ARM GAS  /tmp/ccsu72Lf.s 			page 29
 
 
  882 001a 8368     		ldr	r3, [r0, #8]
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  921 0050 FFC0FFFF 		.word	-16129
  922              		.cfi_endproc
  923              	.LFE37:
-ARM GAS  /tmp/cc2ODhFS.s 			page 30
+ARM GAS  /tmp/ccsu72Lf.s 			page 30
 
 
  925              		.section	.text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate,"ax",%progbits
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  732:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   /* Get the reload value */
  733:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   pSynchroInfo->ReloadValue = (uint32_t)(READ_BIT(CRS->CFGR, CRS_CFGR_RELOAD));
  962              		.loc 1 733 0
-ARM GAS  /tmp/cc2ODhFS.s 			page 31
+ARM GAS  /tmp/ccsu72Lf.s 			page 31
 
 
  963 0000 084B     		ldr	r3, .L73
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  752:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** *          This parameter can be a combination of the following values:
  753:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** *            @arg @ref RCC_CRS_TIMEOUT
  754:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** *            @arg @ref RCC_CRS_SYNCOK
-ARM GAS  /tmp/cc2ODhFS.s 			page 32
+ARM GAS  /tmp/ccsu72Lf.s 			page 32
 
 
  755:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** *            @arg @ref RCC_CRS_SYNCWARN
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  778:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     /* Check CRS SYNCOK flag  */
  779:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     if(__HAL_RCC_CRS_GET_FLAG(RCC_CRS_FLAG_SYNCOK))
  1031              		.loc 1 779 0
-ARM GAS  /tmp/cc2ODhFS.s 			page 33
+ARM GAS  /tmp/ccsu72Lf.s 			page 33
 
 
  1032 0014 1E4C     		ldr	r4, .L87
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  1075              	.L77:
  786:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     }
  787:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     
-ARM GAS  /tmp/cc2ODhFS.s 			page 34
+ARM GAS  /tmp/ccsu72Lf.s 			page 34
 
 
  788:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     /* Check CRS SYNCWARN flag  */
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  1105 0064 1D43     		orr	r5, r3
  1106              	.LVL133:
  813:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     
-ARM GAS  /tmp/cc2ODhFS.s 			page 35
+ARM GAS  /tmp/ccsu72Lf.s 			page 35
 
 
  814:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       /* Clear CRS Error bit */
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  1137              	.LVL135:
  1138              	.LVL136:
  1139              	.LVL137:
-ARM GAS  /tmp/cc2ODhFS.s 			page 36
+ARM GAS  /tmp/ccsu72Lf.s 			page 36
 
 
  1140 0088 0CBC     		pop	{r2, r3}
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  875:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****     HAL_RCCEx_CRS_ExpectedSyncCallback();
  876:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   }
  877:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   /* Check CRS Error flags  */
-ARM GAS  /tmp/cc2ODhFS.s 			page 37
+ARM GAS  /tmp/ccsu72Lf.s 			page 37
 
 
  878:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   else
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  918:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****   */
  919:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** __weak void HAL_RCCEx_CRS_SyncWarnCallback(void)
  920:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** {
-ARM GAS  /tmp/cc2ODhFS.s 			page 38
+ARM GAS  /tmp/ccsu72Lf.s 			page 38
 
 
  1175              		.loc 1 920 0
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  947:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c **** {
  1207              		.loc 1 947 0
  1208              		.cfi_startproc
-ARM GAS  /tmp/cc2ODhFS.s 			page 39
+ARM GAS  /tmp/ccsu72Lf.s 			page 39
 
 
  1209              	.LVL138:
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  1251              		.loc 1 857 0
  1252 0016 FFF7FEFF 		bl	HAL_RCCEx_CRS_SyncOkCallback
  1253              	.LVL144:
-ARM GAS  /tmp/cc2ODhFS.s 			page 40
+ARM GAS  /tmp/ccsu72Lf.s 			page 40
 
 
  1254 001a 29E0     		b	.L93
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  1298 004a 11D5     		bpl	.L93
  882:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c ****       if((itflags & RCC_CRS_FLAG_SYNCERR) != RESET)
  1299              		.loc 1 882 0 is_stmt 1
-ARM GAS  /tmp/cc2ODhFS.s 			page 41
+ARM GAS  /tmp/ccsu72Lf.s 			page 41
 
 
  1300 004c DA05     		lsl	r2, r3, #23
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  1346              		.text
  1347              	.Letext0:
  1348              		.file 2 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
-ARM GAS  /tmp/cc2ODhFS.s 			page 42
+ARM GAS  /tmp/ccsu72Lf.s 			page 42
 
 
  1349              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
@@ -2468,43 +2468,43 @@ ARM GAS  /tmp/cc2ODhFS.s 			page 1
  1353              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc_ex.h"
  1354              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
  1355              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h"
-ARM GAS  /tmp/cc2ODhFS.s 			page 43
+ARM GAS  /tmp/ccsu72Lf.s 			page 43
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_rcc_ex.c
-     /tmp/cc2ODhFS.s:18     .text.HAL_RCCEx_PeriphCLKConfig:00000000 $t
-     /tmp/cc2ODhFS.s:23     .text.HAL_RCCEx_PeriphCLKConfig:00000000 HAL_RCCEx_PeriphCLKConfig
-     /tmp/cc2ODhFS.s:306    .text.HAL_RCCEx_PeriphCLKConfig:0000015c $d
-     /tmp/cc2ODhFS.s:317    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 $t
-     /tmp/cc2ODhFS.s:322    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 HAL_RCCEx_GetPeriphCLKConfig
-     /tmp/cc2ODhFS.s:378    .text.HAL_RCCEx_GetPeriphCLKConfig:00000048 $d
-     /tmp/cc2ODhFS.s:388    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 $t
-     /tmp/cc2ODhFS.s:393    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 HAL_RCCEx_GetPeriphCLKFreq
-     /tmp/cc2ODhFS.s:847    .text.HAL_RCCEx_GetPeriphCLKFreq:000001f0 $d
-     /tmp/cc2ODhFS.s:856    .text.HAL_RCCEx_CRSConfig:00000000 $t
-     /tmp/cc2ODhFS.s:861    .text.HAL_RCCEx_CRSConfig:00000000 HAL_RCCEx_CRSConfig
-     /tmp/cc2ODhFS.s:918    .text.HAL_RCCEx_CRSConfig:00000044 $d
-     /tmp/cc2ODhFS.s:926    .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:00000000 $t
-     /tmp/cc2ODhFS.s:931    .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:00000000 HAL_RCCEx_CRSSoftwareSynchronizationGenerate
-     /tmp/cc2ODhFS.s:947    .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:0000000c $d
-     /tmp/cc2ODhFS.s:952    .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000000 $t
-     /tmp/cc2ODhFS.s:957    .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000000 HAL_RCCEx_CRSGetSynchronizationInfo
-     /tmp/cc2ODhFS.s:989    .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000024 $d
-     /tmp/cc2ODhFS.s:994    .text.HAL_RCCEx_CRSWaitSynchronization:00000000 $t
-     /tmp/cc2ODhFS.s:999    .text.HAL_RCCEx_CRSWaitSynchronization:00000000 HAL_RCCEx_CRSWaitSynchronization
-     /tmp/cc2ODhFS.s:1147   .text.HAL_RCCEx_CRSWaitSynchronization:00000090 $d
-     /tmp/cc2ODhFS.s:1152   .text.HAL_RCCEx_CRS_SyncOkCallback:00000000 $t
-     /tmp/cc2ODhFS.s:1157   .text.HAL_RCCEx_CRS_SyncOkCallback:00000000 HAL_RCCEx_CRS_SyncOkCallback
-     /tmp/cc2ODhFS.s:1168   .text.HAL_RCCEx_CRS_SyncWarnCallback:00000000 $t
-     /tmp/cc2ODhFS.s:1173   .text.HAL_RCCEx_CRS_SyncWarnCallback:00000000 HAL_RCCEx_CRS_SyncWarnCallback
-     /tmp/cc2ODhFS.s:1184   .text.HAL_RCCEx_CRS_ExpectedSyncCallback:00000000 $t
-     /tmp/cc2ODhFS.s:1189   .text.HAL_RCCEx_CRS_ExpectedSyncCallback:00000000 HAL_RCCEx_CRS_ExpectedSyncCallback
-     /tmp/cc2ODhFS.s:1200   .text.HAL_RCCEx_CRS_ErrorCallback:00000000 $t
-     /tmp/cc2ODhFS.s:1205   .text.HAL_RCCEx_CRS_ErrorCallback:00000000 HAL_RCCEx_CRS_ErrorCallback
-     /tmp/cc2ODhFS.s:1217   .text.HAL_RCCEx_CRS_IRQHandler:00000000 $t
-     /tmp/cc2ODhFS.s:1222   .text.HAL_RCCEx_CRS_IRQHandler:00000000 HAL_RCCEx_CRS_IRQHandler
-     /tmp/cc2ODhFS.s:1342   .text.HAL_RCCEx_CRS_IRQHandler:00000074 $d
+     /tmp/ccsu72Lf.s:18     .text.HAL_RCCEx_PeriphCLKConfig:00000000 $t
+     /tmp/ccsu72Lf.s:23     .text.HAL_RCCEx_PeriphCLKConfig:00000000 HAL_RCCEx_PeriphCLKConfig
+     /tmp/ccsu72Lf.s:306    .text.HAL_RCCEx_PeriphCLKConfig:0000015c $d
+     /tmp/ccsu72Lf.s:317    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 $t
+     /tmp/ccsu72Lf.s:322    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 HAL_RCCEx_GetPeriphCLKConfig
+     /tmp/ccsu72Lf.s:378    .text.HAL_RCCEx_GetPeriphCLKConfig:00000048 $d
+     /tmp/ccsu72Lf.s:388    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 $t
+     /tmp/ccsu72Lf.s:393    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 HAL_RCCEx_GetPeriphCLKFreq
+     /tmp/ccsu72Lf.s:847    .text.HAL_RCCEx_GetPeriphCLKFreq:000001f0 $d
+     /tmp/ccsu72Lf.s:856    .text.HAL_RCCEx_CRSConfig:00000000 $t
+     /tmp/ccsu72Lf.s:861    .text.HAL_RCCEx_CRSConfig:00000000 HAL_RCCEx_CRSConfig
+     /tmp/ccsu72Lf.s:918    .text.HAL_RCCEx_CRSConfig:00000044 $d
+     /tmp/ccsu72Lf.s:926    .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:00000000 $t
+     /tmp/ccsu72Lf.s:931    .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:00000000 HAL_RCCEx_CRSSoftwareSynchronizationGenerate
+     /tmp/ccsu72Lf.s:947    .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:0000000c $d
+     /tmp/ccsu72Lf.s:952    .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000000 $t
+     /tmp/ccsu72Lf.s:957    .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000000 HAL_RCCEx_CRSGetSynchronizationInfo
+     /tmp/ccsu72Lf.s:989    .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000024 $d
+     /tmp/ccsu72Lf.s:994    .text.HAL_RCCEx_CRSWaitSynchronization:00000000 $t
+     /tmp/ccsu72Lf.s:999    .text.HAL_RCCEx_CRSWaitSynchronization:00000000 HAL_RCCEx_CRSWaitSynchronization
+     /tmp/ccsu72Lf.s:1147   .text.HAL_RCCEx_CRSWaitSynchronization:00000090 $d
+     /tmp/ccsu72Lf.s:1152   .text.HAL_RCCEx_CRS_SyncOkCallback:00000000 $t
+     /tmp/ccsu72Lf.s:1157   .text.HAL_RCCEx_CRS_SyncOkCallback:00000000 HAL_RCCEx_CRS_SyncOkCallback
+     /tmp/ccsu72Lf.s:1168   .text.HAL_RCCEx_CRS_SyncWarnCallback:00000000 $t
+     /tmp/ccsu72Lf.s:1173   .text.HAL_RCCEx_CRS_SyncWarnCallback:00000000 HAL_RCCEx_CRS_SyncWarnCallback
+     /tmp/ccsu72Lf.s:1184   .text.HAL_RCCEx_CRS_ExpectedSyncCallback:00000000 $t
+     /tmp/ccsu72Lf.s:1189   .text.HAL_RCCEx_CRS_ExpectedSyncCallback:00000000 HAL_RCCEx_CRS_ExpectedSyncCallback
+     /tmp/ccsu72Lf.s:1200   .text.HAL_RCCEx_CRS_ErrorCallback:00000000 $t
+     /tmp/ccsu72Lf.s:1205   .text.HAL_RCCEx_CRS_ErrorCallback:00000000 HAL_RCCEx_CRS_ErrorCallback
+     /tmp/ccsu72Lf.s:1217   .text.HAL_RCCEx_CRS_IRQHandler:00000000 $t
+     /tmp/ccsu72Lf.s:1222   .text.HAL_RCCEx_CRS_IRQHandler:00000000 HAL_RCCEx_CRS_IRQHandler
+     /tmp/ccsu72Lf.s:1342   .text.HAL_RCCEx_CRS_IRQHandler:00000074 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

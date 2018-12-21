@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCvLBMM.s 			page 1
+ARM GAS  /tmp/ccwQaSbb.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
   31:Src/curelib_src/curebuffer.c **** 			return BUFFER_FAILURE;
   32:Src/curelib_src/curebuffer.c **** 		}
   33:Src/curelib_src/curebuffer.c **** 		for(i=0; i<buflen; i++){
-ARM GAS  /tmp/ccCvLBMM.s 			page 2
+ARM GAS  /tmp/ccwQaSbb.s 			page 2
 
 
   34:Src/curelib_src/curebuffer.c **** 			rbuf->buffer[i] = 0;
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
   62              		.thumb_func
   64              	cureRingBufferU8Init:
   65              	.LFB0:
-ARM GAS  /tmp/ccCvLBMM.s 			page 3
+ARM GAS  /tmp/ccwQaSbb.s 			page 3
 
 
   23:Src/curelib_src/curebuffer.c **** {
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
   39:Src/curelib_src/curebuffer.c **** 	return BUFFER_SUCCESS;
  111              		.loc 1 39 0
  112 002c 0120     		mov	r0, #1
-ARM GAS  /tmp/ccCvLBMM.s 			page 4
+ARM GAS  /tmp/ccwQaSbb.s 			page 4
 
 
  113 002e 00E0     		b	.L4
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  158 001a 0132     		add	r2, r2, #1
   62:Src/curelib_src/curebuffer.c **** 		rbuf->idx_front &= (rbuf->length -1);
  159              		.loc 1 62 0
-ARM GAS  /tmp/ccCvLBMM.s 			page 5
+ARM GAS  /tmp/ccwQaSbb.s 			page 5
 
 
  160 001c 8388     		ldrh	r3, [r0, #4]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
   75:Src/curelib_src/curebuffer.c **** 		rbuf->idx_rear &= (rbuf->length -1);
  203              		.loc 1 75 0
  204 0012 8388     		ldrh	r3, [r0, #4]
-ARM GAS  /tmp/ccCvLBMM.s 			page 6
+ARM GAS  /tmp/ccwQaSbb.s 			page 6
 
 
  205 0014 013B     		sub	r3, r3, #1
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  249              	.LVL23:
  250 0010 1218     		add	r2, r2, r0
  251 0012 D31A     		sub	r3, r2, r3
-ARM GAS  /tmp/ccCvLBMM.s 			page 7
+ARM GAS  /tmp/ccwQaSbb.s 			page 7
 
 
  252 0014 98B2     		uxth	r0, r3
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  279              	.LVL25:
  280 0006 0028     		cmp	r0, #0
  281 0008 01D0     		beq	.L18
-ARM GAS  /tmp/ccCvLBMM.s 			page 8
+ARM GAS  /tmp/ccwQaSbb.s 			page 8
 
 
  116:Src/curelib_src/curebuffer.c **** 		free(rbuf->buffer);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  327              	.LVL30:
  328 0012 A060     		str	r0, [r4, #8]
  103:Src/curelib_src/curebuffer.c **** 		if(NULL == rbuf->buffer){
-ARM GAS  /tmp/ccCvLBMM.s 			page 9
+ARM GAS  /tmp/ccwQaSbb.s 			page 9
 
 
  329              		.loc 1 103 0
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  126:Src/curelib_src/curebuffer.c **** {
  375              		.loc 1 126 0
  376              		.cfi_startproc
-ARM GAS  /tmp/ccCvLBMM.s 			page 10
+ARM GAS  /tmp/ccwQaSbb.s 			page 10
 
 
  377              	.LVL35:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  422 002e C046     		.section	.text.cureRingBuffer16EnqueueIgnoreErr,"ax",%progbits
  423              		.align	2
  424              		.global	cureRingBuffer16EnqueueIgnoreErr
-ARM GAS  /tmp/ccCvLBMM.s 			page 11
+ARM GAS  /tmp/ccwQaSbb.s 			page 11
 
 
  425              		.code	16
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  467              		.loc 1 150 0
  468 0000 0288     		ldrh	r2, [r0]
  469 0002 4388     		ldrh	r3, [r0, #2]
-ARM GAS  /tmp/ccCvLBMM.s 			page 12
+ARM GAS  /tmp/ccwQaSbb.s 			page 12
 
 
  470 0004 9A42     		cmp	r2, r3
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  513              	.LCFI6:
  514              		.cfi_def_cfa_offset 8
  515              		.cfi_offset 4, -8
-ARM GAS  /tmp/ccCvLBMM.s 			page 13
+ARM GAS  /tmp/ccwQaSbb.s 			page 13
 
 
  516              		.cfi_offset 14, -4
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  178:Src/curelib_src/curebuffer.c **** BUFFER_STATUS cureRingBufferU32Init(RingBuffer32 *rbuf, uint16_t buflen)
  179:Src/curelib_src/curebuffer.c **** {
  180:Src/curelib_src/curebuffer.c **** 
-ARM GAS  /tmp/ccCvLBMM.s 			page 14
+ARM GAS  /tmp/ccwQaSbb.s 			page 14
 
 
  181:Src/curelib_src/curebuffer.c **** 	uint32_t i;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  585 0018 10BD     		pop	{r4, pc}
  586              		.cfi_endproc
  587              	.LFE12:
-ARM GAS  /tmp/ccCvLBMM.s 			page 15
+ARM GAS  /tmp/ccwQaSbb.s 			page 15
 
 
  589 001a C046     		.section	.text.cureRingBufferU32Init,"ax",%progbits
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  636              		.loc 1 189 0 is_stmt 0 discriminator 1
  637 0028 AB42     		cmp	r3, r5
  638 002a F8D3     		bcc	.L39
-ARM GAS  /tmp/ccCvLBMM.s 			page 16
+ARM GAS  /tmp/ccwQaSbb.s 			page 16
 
 
  192:Src/curelib_src/curebuffer.c **** 	rbuf->length = buflen;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  684 0016 8168     		ldr	r1, [r0, #8]
  685              	.LVL65:
  686 0018 CA50     		str	r2, [r1, r3]
-ARM GAS  /tmp/ccCvLBMM.s 			page 17
+ARM GAS  /tmp/ccwQaSbb.s 			page 17
 
 
  214:Src/curelib_src/curebuffer.c **** 		rbuf->idx_front++;
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  731 000c 0132     		add	r2, r2, #1
  225:Src/curelib_src/curebuffer.c **** 	rbuf->idx_front &= (rbuf->length -1);
  732              		.loc 1 225 0
-ARM GAS  /tmp/ccCvLBMM.s 			page 18
+ARM GAS  /tmp/ccwQaSbb.s 			page 18
 
 
  733 000e 8388     		ldrh	r3, [r0, #4]
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  775 001c 0120     		mov	r0, #1
  776              	.LVL73:
  777 001e 00E0     		b	.L46
-ARM GAS  /tmp/ccCvLBMM.s 			page 19
+ARM GAS  /tmp/ccwQaSbb.s 			page 19
 
 
  778              	.LVL74:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  820              	.LVL80:
  821 0010 9A18     		add	r2, r3, r2
  822 0012 92B2     		uxth	r2, r2
-ARM GAS  /tmp/ccCvLBMM.s 			page 20
+ARM GAS  /tmp/ccwQaSbb.s 			page 20
 
 
  823              	.LVL81:
@@ -1168,45 +1168,45 @@ ARM GAS  /tmp/ccCvLBMM.s 			page 1
  843              		.file 4 "Inc/curelib_inc/curebuffer.h"
  844              		.file 5 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/lib/gcc/arm-none-eabi/4.8.4/include/s
  845              		.file 6 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdlib.h"
-ARM GAS  /tmp/ccCvLBMM.s 			page 21
+ARM GAS  /tmp/ccwQaSbb.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 curebuffer.c
-     /tmp/ccCvLBMM.s:18     .text.cureRingBufferU8Free:00000000 $t
-     /tmp/ccCvLBMM.s:23     .text.cureRingBufferU8Free:00000000 cureRingBufferU8Free
-     /tmp/ccCvLBMM.s:59     .text.cureRingBufferU8Init:00000000 $t
-     /tmp/ccCvLBMM.s:64     .text.cureRingBufferU8Init:00000000 cureRingBufferU8Init
-     /tmp/ccCvLBMM.s:127    .text.cureRingBufferU8Enqueue:00000000 $t
-     /tmp/ccCvLBMM.s:132    .text.cureRingBufferU8Enqueue:00000000 cureRingBufferU8Enqueue
-     /tmp/ccCvLBMM.s:181    .text.cureRingBufferU8Dequeue:00000000 $t
-     /tmp/ccCvLBMM.s:186    .text.cureRingBufferU8Dequeue:00000000 cureRingBufferU8Dequeue
-     /tmp/ccCvLBMM.s:225    .text._cureRingBufferU8GetUsedSize:00000000 $t
-     /tmp/ccCvLBMM.s:230    .text._cureRingBufferU8GetUsedSize:00000000 _cureRingBufferU8GetUsedSize
-     /tmp/ccCvLBMM.s:261    .text.cureRingBuffer16Free:00000000 $t
-     /tmp/ccCvLBMM.s:266    .text.cureRingBuffer16Free:00000000 cureRingBuffer16Free
-     /tmp/ccCvLBMM.s:301    .text.cureRingBuffer16Init:00000000 $t
-     /tmp/ccCvLBMM.s:306    .text.cureRingBuffer16Init:00000000 cureRingBuffer16Init
-     /tmp/ccCvLBMM.s:368    .text.cureRingBuffer16Enqueue:00000000 $t
-     /tmp/ccCvLBMM.s:373    .text.cureRingBuffer16Enqueue:00000000 cureRingBuffer16Enqueue
-     /tmp/ccCvLBMM.s:423    .text.cureRingBuffer16EnqueueIgnoreErr:00000000 $t
-     /tmp/ccCvLBMM.s:428    .text.cureRingBuffer16EnqueueIgnoreErr:00000000 cureRingBuffer16EnqueueIgnoreErr
-     /tmp/ccCvLBMM.s:457    .text.cureRingBuffer16Dequeue:00000000 $t
-     /tmp/ccCvLBMM.s:462    .text.cureRingBuffer16Dequeue:00000000 cureRingBuffer16Dequeue
-     /tmp/ccCvLBMM.s:502    .text.cureRingBuffer16GetElement:00000000 $t
-     /tmp/ccCvLBMM.s:507    .text.cureRingBuffer16GetElement:00000000 cureRingBuffer16GetElement
-     /tmp/ccCvLBMM.s:550    .text.cureRingBufferU32Free:00000000 $t
-     /tmp/ccCvLBMM.s:555    .text.cureRingBufferU32Free:00000000 cureRingBufferU32Free
-     /tmp/ccCvLBMM.s:590    .text.cureRingBufferU32Init:00000000 $t
-     /tmp/ccCvLBMM.s:595    .text.cureRingBufferU32Init:00000000 cureRingBufferU32Init
-     /tmp/ccCvLBMM.s:657    .text.cureRingBufferU32Enqueue:00000000 $t
-     /tmp/ccCvLBMM.s:662    .text.cureRingBufferU32Enqueue:00000000 cureRingBufferU32Enqueue
-     /tmp/ccCvLBMM.s:712    .text.cureRingBufferU32EnqueueIgnoreErr:00000000 $t
-     /tmp/ccCvLBMM.s:717    .text.cureRingBufferU32EnqueueIgnoreErr:00000000 cureRingBufferU32EnqueueIgnoreErr
-     /tmp/ccCvLBMM.s:746    .text.cureRingBufferU32Dequeue:00000000 $t
-     /tmp/ccCvLBMM.s:751    .text.cureRingBufferU32Dequeue:00000000 cureRingBufferU32Dequeue
-     /tmp/ccCvLBMM.s:791    .text.cureRingBufferU32GetElement:00000000 $t
-     /tmp/ccCvLBMM.s:796    .text.cureRingBufferU32GetElement:00000000 cureRingBufferU32GetElement
+     /tmp/ccwQaSbb.s:18     .text.cureRingBufferU8Free:00000000 $t
+     /tmp/ccwQaSbb.s:23     .text.cureRingBufferU8Free:00000000 cureRingBufferU8Free
+     /tmp/ccwQaSbb.s:59     .text.cureRingBufferU8Init:00000000 $t
+     /tmp/ccwQaSbb.s:64     .text.cureRingBufferU8Init:00000000 cureRingBufferU8Init
+     /tmp/ccwQaSbb.s:127    .text.cureRingBufferU8Enqueue:00000000 $t
+     /tmp/ccwQaSbb.s:132    .text.cureRingBufferU8Enqueue:00000000 cureRingBufferU8Enqueue
+     /tmp/ccwQaSbb.s:181    .text.cureRingBufferU8Dequeue:00000000 $t
+     /tmp/ccwQaSbb.s:186    .text.cureRingBufferU8Dequeue:00000000 cureRingBufferU8Dequeue
+     /tmp/ccwQaSbb.s:225    .text._cureRingBufferU8GetUsedSize:00000000 $t
+     /tmp/ccwQaSbb.s:230    .text._cureRingBufferU8GetUsedSize:00000000 _cureRingBufferU8GetUsedSize
+     /tmp/ccwQaSbb.s:261    .text.cureRingBuffer16Free:00000000 $t
+     /tmp/ccwQaSbb.s:266    .text.cureRingBuffer16Free:00000000 cureRingBuffer16Free
+     /tmp/ccwQaSbb.s:301    .text.cureRingBuffer16Init:00000000 $t
+     /tmp/ccwQaSbb.s:306    .text.cureRingBuffer16Init:00000000 cureRingBuffer16Init
+     /tmp/ccwQaSbb.s:368    .text.cureRingBuffer16Enqueue:00000000 $t
+     /tmp/ccwQaSbb.s:373    .text.cureRingBuffer16Enqueue:00000000 cureRingBuffer16Enqueue
+     /tmp/ccwQaSbb.s:423    .text.cureRingBuffer16EnqueueIgnoreErr:00000000 $t
+     /tmp/ccwQaSbb.s:428    .text.cureRingBuffer16EnqueueIgnoreErr:00000000 cureRingBuffer16EnqueueIgnoreErr
+     /tmp/ccwQaSbb.s:457    .text.cureRingBuffer16Dequeue:00000000 $t
+     /tmp/ccwQaSbb.s:462    .text.cureRingBuffer16Dequeue:00000000 cureRingBuffer16Dequeue
+     /tmp/ccwQaSbb.s:502    .text.cureRingBuffer16GetElement:00000000 $t
+     /tmp/ccwQaSbb.s:507    .text.cureRingBuffer16GetElement:00000000 cureRingBuffer16GetElement
+     /tmp/ccwQaSbb.s:550    .text.cureRingBufferU32Free:00000000 $t
+     /tmp/ccwQaSbb.s:555    .text.cureRingBufferU32Free:00000000 cureRingBufferU32Free
+     /tmp/ccwQaSbb.s:590    .text.cureRingBufferU32Init:00000000 $t
+     /tmp/ccwQaSbb.s:595    .text.cureRingBufferU32Init:00000000 cureRingBufferU32Init
+     /tmp/ccwQaSbb.s:657    .text.cureRingBufferU32Enqueue:00000000 $t
+     /tmp/ccwQaSbb.s:662    .text.cureRingBufferU32Enqueue:00000000 cureRingBufferU32Enqueue
+     /tmp/ccwQaSbb.s:712    .text.cureRingBufferU32EnqueueIgnoreErr:00000000 $t
+     /tmp/ccwQaSbb.s:717    .text.cureRingBufferU32EnqueueIgnoreErr:00000000 cureRingBufferU32EnqueueIgnoreErr
+     /tmp/ccwQaSbb.s:746    .text.cureRingBufferU32Dequeue:00000000 $t
+     /tmp/ccwQaSbb.s:751    .text.cureRingBufferU32Dequeue:00000000 cureRingBufferU32Dequeue
+     /tmp/ccwQaSbb.s:791    .text.cureRingBufferU32GetElement:00000000 $t
+     /tmp/ccwQaSbb.s:796    .text.cureRingBufferU32GetElement:00000000 cureRingBufferU32GetElement
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

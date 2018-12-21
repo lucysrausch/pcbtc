@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccHuiWdj.s 			page 1
+ARM GAS  /tmp/ccijM0ES.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -22,7 +22,7 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
   19              		.code	16
   20              		.thumb_func
   22              	MX_GPIO_Init:
-  23              	.LFB40:
+  23              	.LFB41:
   24              		.file 1 "Src/main.c"
    1:Src/main.c    **** 
    2:Src/main.c    **** /**
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
   32:Src/main.c    ****   *    this license.
   33:Src/main.c    ****   *
   34:Src/main.c    ****   * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
-ARM GAS  /tmp/ccHuiWdj.s 			page 2
+ARM GAS  /tmp/ccijM0ES.s 			page 2
 
 
   35:Src/main.c    ****   * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
@@ -95,379 +95,421 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
   66:Src/main.c    **** 
   67:Src/main.c    **** TIM_HandleTypeDef htim2;
   68:Src/main.c    **** 
-  69:Src/main.c    **** 
-  70:Src/main.c    **** uint8_t uart_tx_dat;
-  71:Src/main.c    **** /* USER CODE END PV */
-  72:Src/main.c    **** 
-  73:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
-  74:Src/main.c    **** void SystemClock_Config(void);
-  75:Src/main.c    **** static void MX_GPIO_Init(void);
-  76:Src/main.c    **** 
-  77:Src/main.c    **** static void MX_TIM14_Init(void);
-  78:Src/main.c    **** static void MX_TIM15_Init(void);
-  79:Src/main.c    **** static void USER_TIM2_Init(void);
-  80:Src/main.c    **** 
-  81:Src/main.c    **** /* USER CODE BEGIN PFP */
-  82:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
-  83:Src/main.c    **** 
-  84:Src/main.c    **** /* USER CODE END PFP */
-  85:Src/main.c    **** 
-  86:Src/main.c    **** /* USER CODE BEGIN 0 */
+  69:Src/main.c    **** DAC_HandleTypeDef hdac;
+  70:Src/main.c    **** 
+  71:Src/main.c    **** 
+  72:Src/main.c    **** uint8_t uart_tx_dat;
+  73:Src/main.c    **** /* USER CODE END PV */
+  74:Src/main.c    **** 
+  75:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+  76:Src/main.c    **** void SystemClock_Config(void);
+  77:Src/main.c    **** static void MX_GPIO_Init(void);
+  78:Src/main.c    **** 
+  79:Src/main.c    **** static void MX_TIM14_Init(void);
+  80:Src/main.c    **** static void MX_TIM15_Init(void);
+  81:Src/main.c    **** static void USER_TIM2_Init(void);
+  82:Src/main.c    **** 
+  83:Src/main.c    **** static void MX_DAC_Init(void);
+  84:Src/main.c    **** 
+  85:Src/main.c    **** /* USER CODE BEGIN PFP */
+  86:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
   87:Src/main.c    **** 
-  88:Src/main.c    **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-  89:Src/main.c    **** {
-  90:Src/main.c    **** 	if(htim->Instance == TIM14)
-  91:Src/main.c    **** 	{
-ARM GAS  /tmp/ccHuiWdj.s 			page 3
+  88:Src/main.c    **** /* USER CODE END PFP */
+  89:Src/main.c    **** 
+  90:Src/main.c    **** /* USER CODE BEGIN 0 */
+  91:Src/main.c    **** 
+ARM GAS  /tmp/ccijM0ES.s 			page 3
 
 
-  92:Src/main.c    **** 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
-  93:Src/main.c    **** 		TIM2->CR1 = TIM2->CR1 | 1;
-  94:Src/main.c    **** 	}
-  95:Src/main.c    **** 	if(htim->Instance == TIM15)
-  96:Src/main.c    **** 	{
-  97:Src/main.c    **** 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
-  98:Src/main.c    **** 		TIM2->CR1 = TIM2->CR1 | 1;
-  99:Src/main.c    **** 	}
- 100:Src/main.c    **** }
- 101:Src/main.c    **** 
- 102:Src/main.c    **** /**
- 103:Src/main.c    ****   * @brief  The application entry point.
- 104:Src/main.c    ****   *
- 105:Src/main.c    ****   * @retval None
- 106:Src/main.c    ****   */
- 107:Src/main.c    **** 
- 108:Src/main.c    **** 
- 109:Src/main.c    **** uint8_t midiBuffer[4];
- 110:Src/main.c    **** uint8_t midiState = 0;
+  92:Src/main.c    **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+  93:Src/main.c    **** {
+  94:Src/main.c    **** 	if(htim->Instance == TIM14)
+  95:Src/main.c    **** 	{
+  96:Src/main.c    **** 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
+  97:Src/main.c    **** 		TIM2->CR1 = TIM2->CR1 | 1;
+  98:Src/main.c    **** 	}
+  99:Src/main.c    **** 	if(htim->Instance == TIM15)
+ 100:Src/main.c    **** 	{
+ 101:Src/main.c    **** 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
+ 102:Src/main.c    **** 		//TIM2->CR1 = TIM2->CR1 | 1;
+ 103:Src/main.c    **** 	}
+ 104:Src/main.c    **** }
+ 105:Src/main.c    **** 
+ 106:Src/main.c    **** /**
+ 107:Src/main.c    ****   * @brief  The application entry point.
+ 108:Src/main.c    ****   *
+ 109:Src/main.c    ****   * @retval None
+ 110:Src/main.c    ****   */
  111:Src/main.c    **** 
- 112:Src/main.c    **** uint16_t curTone0 = 0;
- 113:Src/main.c    **** uint16_t curTone1 = 0;
- 114:Src/main.c    **** uint16_t curChannel = 0;
- 115:Src/main.c    **** uint16_t lastTone0 = 0;
- 116:Src/main.c    **** uint16_t lastTone1 = 0;
- 117:Src/main.c    **** uint32_t curPeriode0 = 0;
- 118:Src/main.c    **** uint32_t curPeriode1 = 0;
- 119:Src/main.c    **** uint32_t noteTimeout = 0;
- 120:Src/main.c    **** 
- 121:Src/main.c    **** uint16_t freqs[16] = {0};
- 122:Src/main.c    **** 
- 123:Src/main.c    **** 
- 124:Src/main.c    **** int main(void)
- 125:Src/main.c    **** {
- 126:Src/main.c    ****   /* USER CODE BEGIN 1 */
+ 112:Src/main.c    **** 
+ 113:Src/main.c    **** uint8_t midiBuffer[4];
+ 114:Src/main.c    **** uint8_t midiState = 0;
+ 115:Src/main.c    **** 
+ 116:Src/main.c    **** uint16_t curTone0 = 0;
+ 117:Src/main.c    **** uint16_t curTone1 = 0;
+ 118:Src/main.c    **** uint16_t curChannel = 0;
+ 119:Src/main.c    **** uint16_t lastTone0 = 0;
+ 120:Src/main.c    **** uint16_t lastTone1 = 0;
+ 121:Src/main.c    **** uint32_t curPeriode0 = 0;
+ 122:Src/main.c    **** uint32_t curPeriode1 = 0;
+ 123:Src/main.c    **** uint32_t noteTimeout = 0;
+ 124:Src/main.c    **** 
+ 125:Src/main.c    **** uint16_t freqs[16] = {0};
+ 126:Src/main.c    **** 
  127:Src/main.c    **** 
- 128:Src/main.c    ****   /* USER CODE END 1 */
- 129:Src/main.c    **** 
- 130:Src/main.c    ****   /* MCU Configuration----------------------------------------------------------*/
+ 128:Src/main.c    **** int main(void)
+ 129:Src/main.c    **** {
+ 130:Src/main.c    ****   /* USER CODE BEGIN 1 */
  131:Src/main.c    **** 
- 132:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- 133:Src/main.c    ****   HAL_Init();
- 134:Src/main.c    **** 
- 135:Src/main.c    ****   /* USER CODE BEGIN Init */
- 136:Src/main.c    **** 
- 137:Src/main.c    ****   /* USER CODE END Init */
+ 132:Src/main.c    ****   /* USER CODE END 1 */
+ 133:Src/main.c    **** 
+ 134:Src/main.c    ****   /* MCU Configuration----------------------------------------------------------*/
+ 135:Src/main.c    **** 
+ 136:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 137:Src/main.c    ****   HAL_Init();
  138:Src/main.c    **** 
- 139:Src/main.c    ****   /* Configure the system clock */
- 140:Src/main.c    ****   SystemClock_Config();
- 141:Src/main.c    **** 
- 142:Src/main.c    ****   /* USER CODE BEGIN SysInit */
- 143:Src/main.c    **** 
- 144:Src/main.c    ****   /* USER CODE END SysInit */
+ 139:Src/main.c    ****   /* USER CODE BEGIN Init */
+ 140:Src/main.c    **** 
+ 141:Src/main.c    ****   /* USER CODE END Init */
+ 142:Src/main.c    **** 
+ 143:Src/main.c    ****   /* Configure the system clock */
+ 144:Src/main.c    ****   SystemClock_Config();
  145:Src/main.c    **** 
- 146:Src/main.c    ****   /* Initialize all configured peripherals */
- 147:Src/main.c    ****   MX_GPIO_Init();
- 148:Src/main.c    **** 
-ARM GAS  /tmp/ccHuiWdj.s 			page 4
+ 146:Src/main.c    ****   /* USER CODE BEGIN SysInit */
+ 147:Src/main.c    **** 
+ 148:Src/main.c    ****   /* USER CODE END SysInit */
+ARM GAS  /tmp/ccijM0ES.s 			page 4
 
 
- 149:Src/main.c    **** 	MX_TIM14_Init();
- 150:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim14);
- 151:Src/main.c    **** 	TIM14->CR1 &= ~(1UL);
- 152:Src/main.c    **** 
- 153:Src/main.c    **** 	MX_TIM15_Init();
- 154:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim15);
- 155:Src/main.c    **** 	TIM15->CR1 &= ~(1UL);
+ 149:Src/main.c    **** 
+ 150:Src/main.c    ****   /* Initialize all configured peripherals */
+ 151:Src/main.c    ****   MX_GPIO_Init();
+ 152:Src/main.c    **** 	MX_DAC_Init();
+ 153:Src/main.c    **** 
+ 154:Src/main.c    **** 	HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+ 155:Src/main.c    **** 	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2048);
  156:Src/main.c    **** 
- 157:Src/main.c    **** 	USER_TIM2_Init();
- 158:Src/main.c    **** 
- 159:Src/main.c    **** 	HAL_TIM_Base_Start(&htim2);
- 160:Src/main.c    **** 	HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
- 161:Src/main.c    **** 
- 162:Src/main.c    ****   /* USER CODE BEGIN 2 */
- 163:Src/main.c    **** 
- 164:Src/main.c    ****   //USB-MIDI Init
- 165:Src/main.c    ****   MX_USB_MIDI_INIT();
+ 157:Src/main.c    **** 	MX_TIM14_Init();
+ 158:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim14);
+ 159:Src/main.c    **** 	TIM14->CR1 &= ~(1UL);
+ 160:Src/main.c    **** 
+ 161:Src/main.c    **** 	MX_TIM15_Init();
+ 162:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim15);
+ 163:Src/main.c    **** 	TIM15->CR1 &= ~(1UL);
+ 164:Src/main.c    **** 
+ 165:Src/main.c    **** 	USER_TIM2_Init();
  166:Src/main.c    **** 
- 167:Src/main.c    **** 
- 168:Src/main.c    ****   if(FUNC_ERROR == midiInit() ){
- 169:Src/main.c    **** 	  while(1){
- 170:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 171:Src/main.c    **** 		  HAL_Delay(500);
- 172:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
- 173:Src/main.c    **** 		  HAL_Delay(500);
- 174:Src/main.c    **** 	  }
- 175:Src/main.c    ****   }
- 176:Src/main.c    **** 
- 177:Src/main.c    ****   //Wait usb configuration.
- 178:Src/main.c    ****   while(1){
- 179:Src/main.c    **** 	  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
- 180:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 181:Src/main.c    **** 		  break;
- 182:Src/main.c    **** 	  }else{
- 183:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
- 184:Src/main.c    **** 	  }
- 185:Src/main.c    ****   }
- 186:Src/main.c    **** 
- 187:Src/main.c    ****   while (1)
- 188:Src/main.c    ****   {
- 189:Src/main.c    ****   //Wait USB configuration when USB connection error has occurred.
- 190:Src/main.c    **** 	  while(1){
- 191:Src/main.c    **** 		  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
- 192:Src/main.c    **** 			  //HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 193:Src/main.c    **** 			  break;
- 194:Src/main.c    **** 		  }else{
- 195:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 196:Src/main.c    **** 			  HAL_Delay(200);
- 197:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
- 198:Src/main.c    **** 			  HAL_Delay(200);
- 199:Src/main.c    **** 		  }
- 200:Src/main.c    **** 	  }
- 201:Src/main.c    **** 
- 202:Src/main.c    **** 		curTone0 = 0;
- 203:Src/main.c    **** 		curTone1 = 0;
- 204:Src/main.c    **** 
- 205:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
-ARM GAS  /tmp/ccHuiWdj.s 			page 5
+ 167:Src/main.c    **** 	HAL_TIM_Base_Start(&htim2);
+ 168:Src/main.c    **** 	HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
+ 169:Src/main.c    **** 
+ 170:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 171:Src/main.c    **** 
+ 172:Src/main.c    ****   //USB-MIDI Init
+ 173:Src/main.c    ****   MX_USB_MIDI_INIT();
+ 174:Src/main.c    **** 
+ 175:Src/main.c    **** 
+ 176:Src/main.c    ****   if(FUNC_ERROR == midiInit() ){
+ 177:Src/main.c    **** 	  while(1){
+ 178:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 179:Src/main.c    **** 		  HAL_Delay(500);
+ 180:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+ 181:Src/main.c    **** 		  HAL_Delay(500);
+ 182:Src/main.c    **** 	  }
+ 183:Src/main.c    ****   }
+ 184:Src/main.c    **** 
+ 185:Src/main.c    ****   //Wait usb configuration.
+ 186:Src/main.c    ****   while(1){
+ 187:Src/main.c    **** 	  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
+ 188:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 189:Src/main.c    **** 		  break;
+ 190:Src/main.c    **** 	  }else{
+ 191:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+ 192:Src/main.c    **** 	  }
+ 193:Src/main.c    ****   }
+ 194:Src/main.c    **** 
+ 195:Src/main.c    ****   while (1)
+ 196:Src/main.c    ****   {
+ 197:Src/main.c    ****   //Wait USB configuration when USB connection error has occurred.
+ 198:Src/main.c    **** 	  while(1){
+ 199:Src/main.c    **** 		  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
+ 200:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 201:Src/main.c    **** 			  break;
+ 202:Src/main.c    **** 		  }else{
+ 203:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 204:Src/main.c    **** 			  HAL_Delay(200);
+ 205:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+ARM GAS  /tmp/ccijM0ES.s 			page 5
 
 
- 206:Src/main.c    **** 	      if( freqs[i] > curTone0 ) {
- 207:Src/main.c    **** 	          curTone1 = curTone0;
- 208:Src/main.c    **** 	          curTone0 = freqs[i];
- 209:Src/main.c    **** 	      }
- 210:Src/main.c    **** 	      else if( freqs[i] > curTone1 ) {
- 211:Src/main.c    **** 	          curTone1 = freqs[i];
- 212:Src/main.c    **** 	      }
- 213:Src/main.c    **** 	  }
- 214:Src/main.c    **** 
- 215:Src/main.c    **** 		if (curTone0 > 20 && curTone0 != lastTone0) { // play one tone using TIM14
- 216:Src/main.c    **** 			curPeriode0 = (uint32_t)1000000 / (uint32_t)(curTone0);
- 217:Src/main.c    **** 			TIM14->CNT = 0;
- 218:Src/main.c    **** 			TIM14->ARR = curPeriode0;
- 219:Src/main.c    **** 			TIM14->CR1 = TIM14->CR1 | 1;
- 220:Src/main.c    **** 			lastTone0 = curTone0;
- 221:Src/main.c    **** 			noteTimeout = HAL_GetTick();
- 222:Src/main.c    **** 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
- 223:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
- 224:Src/main.c    **** 		}
- 225:Src/main.c    **** 
- 226:Src/main.c    **** 		if (curTone1 > 20 && curTone1 != lastTone1) { // play other polyphonic tone ussing TIM15
- 227:Src/main.c    **** 			curPeriode1 = (uint32_t)1000000 / (uint32_t)(curTone1);
- 228:Src/main.c    **** 			TIM15->CNT = 0;
- 229:Src/main.c    **** 			TIM15->ARR = curPeriode1;
- 230:Src/main.c    **** 			TIM15->CR1 = TIM15->CR1 | 1;
- 231:Src/main.c    **** 			lastTone1 = curTone1;
- 232:Src/main.c    **** 			noteTimeout = HAL_GetTick();
- 233:Src/main.c    **** 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
- 234:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
- 235:Src/main.c    **** 		}
- 236:Src/main.c    **** 
- 237:Src/main.c    **** 		if ((HAL_GetTick() - noteTimeout) > 1000) {
- 238:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
- 239:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
- 240:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
- 241:Src/main.c    **** 				freqs[i] = 0;
- 242:Src/main.c    **** 			}
- 243:Src/main.c    **** 		}
- 244:Src/main.c    **** 
- 245:Src/main.c    **** 
- 246:Src/main.c    **** 		//[USB-MIDI IN] to [MIDI JACK OUT]
- 247:Src/main.c    **** 
- 248:Src/main.c    **** 		if( FUNC_SUCCESS == midiGetFromUsbRx(0, &uart_tx_dat)){
- 249:Src/main.c    **** 			if (uart_tx_dat >> 7 == 1) {
- 250:Src/main.c    **** 				midiBuffer[0] = uart_tx_dat;
- 251:Src/main.c    **** 				midiBuffer[1] = 0;
- 252:Src/main.c    **** 				midiBuffer[2] = 0;
- 253:Src/main.c    **** 				midiState = 1;
- 254:Src/main.c    **** 			} else if (midiState == 1) {
- 255:Src/main.c    **** 				midiBuffer[1] = uart_tx_dat;
- 256:Src/main.c    **** 				midiState = 2;
- 257:Src/main.c    **** 			} else if (midiState == 2) {
- 258:Src/main.c    **** 				midiBuffer[2] = uart_tx_dat;
- 259:Src/main.c    **** 				midiState = 3;
- 260:Src/main.c    **** 
- 261:Src/main.c    **** 				if ((midiBuffer[0] & 0xF0) == 0x90) { // Note on, 2 data bytes
- 262:Src/main.c    **** 					char key = midiBuffer[1];
-ARM GAS  /tmp/ccHuiWdj.s 			page 6
+ 206:Src/main.c    **** 			  HAL_Delay(200);
+ 207:Src/main.c    **** 		  }
+ 208:Src/main.c    **** 	  }
+ 209:Src/main.c    **** 
+ 210:Src/main.c    **** 		curTone0 = 0;
+ 211:Src/main.c    **** 		curTone1 = 0;
+ 212:Src/main.c    **** 
+ 213:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
+ 214:Src/main.c    **** 	      if( freqs[i] > curTone0 ) {
+ 215:Src/main.c    **** 	          curTone1 = curTone0;
+ 216:Src/main.c    **** 	          curTone0 = freqs[i];
+ 217:Src/main.c    **** 	      }
+ 218:Src/main.c    **** 	      else if( freqs[i] > curTone1 ) {
+ 219:Src/main.c    **** 	          curTone1 = freqs[i];
+ 220:Src/main.c    **** 	      }
+ 221:Src/main.c    **** 	  }
+ 222:Src/main.c    **** 
+ 223:Src/main.c    **** 		if (curTone0 > 20 && curTone0 != lastTone0) { // play one tone using TIM14
+ 224:Src/main.c    **** 			curPeriode0 = (uint32_t)1000000 / (uint32_t)(curTone0);
+ 225:Src/main.c    **** 			TIM14->CNT = 0;
+ 226:Src/main.c    **** 			TIM14->ARR = curPeriode0;
+ 227:Src/main.c    **** 			TIM14->CR1 = TIM14->CR1 | 1;
+ 228:Src/main.c    **** 			lastTone0 = curTone0;
+ 229:Src/main.c    **** 			noteTimeout = HAL_GetTick();
+ 230:Src/main.c    **** 
+ 231:Src/main.c    **** 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, SET);
+ 232:Src/main.c    **** 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
+ 233:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
+ 234:Src/main.c    **** 
+ 235:Src/main.c    **** 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
+ 236:Src/main.c    **** 		}
+ 237:Src/main.c    **** 
+ 238:Src/main.c    **** 		if (curTone1 > 20 && curTone1 != lastTone1) { // play other polyphonic tone ussing TIM15
+ 239:Src/main.c    **** 			curPeriode1 = (uint32_t)1000000 / (uint32_t)(curTone1);
+ 240:Src/main.c    **** 			TIM15->CNT = 0;
+ 241:Src/main.c    **** 			TIM15->ARR = curPeriode1;
+ 242:Src/main.c    **** 			TIM15->CR1 = TIM15->CR1 | 1;
+ 243:Src/main.c    **** 			lastTone1 = curTone1;
+ 244:Src/main.c    **** 			noteTimeout = HAL_GetTick();
+ 245:Src/main.c    **** 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
+ 246:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
+ 247:Src/main.c    **** 		}
+ 248:Src/main.c    **** 
+ 249:Src/main.c    **** 		if ((HAL_GetTick() - noteTimeout) > 1000) {
+ 250:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
+ 251:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
+ 252:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
+ 253:Src/main.c    **** 				freqs[i] = 0;
+ 254:Src/main.c    **** 			}
+ 255:Src/main.c    **** 
+ 256:Src/main.c    **** 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
+ 257:Src/main.c    **** 		}
+ 258:Src/main.c    **** 
+ 259:Src/main.c    **** 
+ 260:Src/main.c    **** 		//[USB-MIDI IN] to [MIDI JACK OUT]
+ 261:Src/main.c    **** 
+ 262:Src/main.c    **** 		if( FUNC_SUCCESS == midiGetFromUsbRx(0, &uart_tx_dat)){
+ARM GAS  /tmp/ccijM0ES.s 			page 6
 
 
- 263:Src/main.c    **** 					char vel = midiBuffer[2];
- 264:Src/main.c    **** 
- 265:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
- 266:Src/main.c    **** 					curChannel = midiBuffer[0] & 0xF;
- 267:Src/main.c    **** 					freqs[curChannel] = freq;
- 268:Src/main.c    **** 
- 269:Src/main.c    **** 
- 270:Src/main.c    **** 				} if ((midiBuffer[0] &0xF0) == 0x80) { // Note off, 2 data bytes
- 271:Src/main.c    **** 					char key = midiBuffer[1];
- 272:Src/main.c    **** 					char vel = midiBuffer[2];
- 273:Src/main.c    **** 
- 274:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
- 275:Src/main.c    **** 
- 276:Src/main.c    **** 					//if (freqs[midiBuffer[0] & 0xF] == freq) {
- 277:Src/main.c    **** 					freqs[midiBuffer[0] & 0xF] = 0;
- 278:Src/main.c    **** 					//}
- 279:Src/main.c    **** 				}
- 280:Src/main.c    **** 			}
- 281:Src/main.c    **** 		}
+ 263:Src/main.c    **** 			if (uart_tx_dat >> 7 == 1) {
+ 264:Src/main.c    **** 				midiBuffer[0] = uart_tx_dat;
+ 265:Src/main.c    **** 				midiBuffer[1] = 0;
+ 266:Src/main.c    **** 				midiBuffer[2] = 0;
+ 267:Src/main.c    **** 				midiState = 1;
+ 268:Src/main.c    **** 			} else if (midiState == 1) {
+ 269:Src/main.c    **** 				midiBuffer[1] = uart_tx_dat;
+ 270:Src/main.c    **** 				midiState = 2;
+ 271:Src/main.c    **** 			} else if (midiState == 2) {
+ 272:Src/main.c    **** 				midiBuffer[2] = uart_tx_dat;
+ 273:Src/main.c    **** 				midiState = 3;
+ 274:Src/main.c    **** 
+ 275:Src/main.c    **** 				if ((midiBuffer[0] & 0xF0) == 0x90) { // Note on, 2 data bytes
+ 276:Src/main.c    **** 					char key = midiBuffer[1];
+ 277:Src/main.c    **** 					char vel = midiBuffer[2];
+ 278:Src/main.c    **** 
+ 279:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
+ 280:Src/main.c    **** 					curChannel = midiBuffer[0] & 0xF;
+ 281:Src/main.c    **** 					freqs[curChannel] = freq;
  282:Src/main.c    **** 
- 283:Src/main.c    **** 	//[MIDI JACK IN] to [USB-MIDI OUT]
- 284:Src/main.c    **** 	//midiProcess();
- 285:Src/main.c    **** 
- 286:Src/main.c    **** 
- 287:Src/main.c    ****   }
- 288:Src/main.c    ****   /* USER CODE END 3 */
+ 283:Src/main.c    **** 
+ 284:Src/main.c    **** 				} if ((midiBuffer[0] &0xF0) == 0x80) { // Note off, 2 data bytes
+ 285:Src/main.c    **** 					char key = midiBuffer[1];
+ 286:Src/main.c    **** 					char vel = midiBuffer[2];
+ 287:Src/main.c    **** 
+ 288:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
  289:Src/main.c    **** 
- 290:Src/main.c    **** }
- 291:Src/main.c    **** 
- 292:Src/main.c    **** /** System Clock Configuration
- 293:Src/main.c    **** */
- 294:Src/main.c    **** void SystemClock_Config(void)
- 295:Src/main.c    **** {
+ 290:Src/main.c    **** 					//if (freqs[midiBuffer[0] & 0xF] == freq) {
+ 291:Src/main.c    **** 					freqs[midiBuffer[0] & 0xF] = 0;
+ 292:Src/main.c    **** 					//}
+ 293:Src/main.c    **** 				}
+ 294:Src/main.c    **** 			}
+ 295:Src/main.c    **** 		}
  296:Src/main.c    **** 
- 297:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
- 298:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
- 299:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit;
+ 297:Src/main.c    **** 	//[MIDI JACK IN] to [USB-MIDI OUT]
+ 298:Src/main.c    **** 	//midiProcess();
+ 299:Src/main.c    **** 
  300:Src/main.c    **** 
- 301:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks
- 302:Src/main.c    ****     */
- 303:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI14|RCC_OSCILLATORTYPE_HSI48;
- 304:Src/main.c    ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
- 305:Src/main.c    ****   RCC_OscInitStruct.HSI14State = RCC_HSI14_ON;
- 306:Src/main.c    ****   RCC_OscInitStruct.HSI14CalibrationValue = 16;
- 307:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
- 308:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 309:Src/main.c    ****   {
- 310:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 311:Src/main.c    ****   }
- 312:Src/main.c    **** 
- 313:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks
- 314:Src/main.c    ****     */
- 315:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 316:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1;
- 317:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
- 318:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 319:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-ARM GAS  /tmp/ccHuiWdj.s 			page 7
+ 301:Src/main.c    ****   }
+ 302:Src/main.c    ****   /* USER CODE END 3 */
+ 303:Src/main.c    **** 
+ 304:Src/main.c    **** }
+ 305:Src/main.c    **** 
+ 306:Src/main.c    **** /** System Clock Configuration
+ 307:Src/main.c    **** */
+ 308:Src/main.c    **** void SystemClock_Config(void)
+ 309:Src/main.c    **** {
+ 310:Src/main.c    **** 
+ 311:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
+ 312:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+ 313:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit;
+ 314:Src/main.c    **** 
+ 315:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks
+ 316:Src/main.c    ****     */
+ 317:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI14|RCC_OSCILLATORTYPE_HSI48;
+ 318:Src/main.c    ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+ 319:Src/main.c    ****   RCC_OscInitStruct.HSI14State = RCC_HSI14_ON;
+ARM GAS  /tmp/ccijM0ES.s 			page 7
 
 
- 320:Src/main.c    **** 
- 321:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
- 322:Src/main.c    ****   {
- 323:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 324:Src/main.c    ****   }
- 325:Src/main.c    **** 
- 326:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
- 327:Src/main.c    ****   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
- 328:Src/main.c    **** 
- 329:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 330:Src/main.c    ****   {
- 331:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 332:Src/main.c    ****   }
- 333:Src/main.c    **** 
- 334:Src/main.c    ****     /**Configure the Systick interrupt time
- 335:Src/main.c    ****     */
- 336:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
- 337:Src/main.c    **** 
- 338:Src/main.c    ****     /**Configure the Systick
- 339:Src/main.c    ****     */
- 340:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
- 341:Src/main.c    **** 
- 342:Src/main.c    ****   /* SysTick_IRQn interrupt configuration */
- 343:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
- 344:Src/main.c    **** }
- 345:Src/main.c    **** 
- 346:Src/main.c    **** 
- 347:Src/main.c    **** /* TIM14 init function */
- 348:Src/main.c    **** static void MX_TIM14_Init(void)
- 349:Src/main.c    **** {
- 350:Src/main.c    ****   htim14.Instance = TIM14;
- 351:Src/main.c    ****   htim14.Init.Prescaler = 11;
- 352:Src/main.c    ****   htim14.Init.CounterMode = TIM_COUNTERMODE_UP;
- 353:Src/main.c    ****   htim14.Init.Period = 1000;
- 354:Src/main.c    ****   htim14.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
- 355:Src/main.c    ****   htim14.Init.RepetitionCounter = 0;
- 356:Src/main.c    ****   htim14.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 357:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim14) != HAL_OK)
- 358:Src/main.c    ****   {
- 359:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 360:Src/main.c    ****   }
- 361:Src/main.c    **** }
- 362:Src/main.c    **** 
- 363:Src/main.c    **** /* TIM15 init function */
- 364:Src/main.c    **** static void MX_TIM15_Init(void)
- 365:Src/main.c    **** {
- 366:Src/main.c    ****   htim15.Instance = TIM15;
- 367:Src/main.c    ****   htim15.Init.Prescaler = 11;
- 368:Src/main.c    ****   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
- 369:Src/main.c    ****   htim15.Init.Period = 1000;
- 370:Src/main.c    ****   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
- 371:Src/main.c    ****   htim15.Init.RepetitionCounter = 0;
- 372:Src/main.c    ****   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 373:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
- 374:Src/main.c    ****   {
- 375:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 376:Src/main.c    ****   }
-ARM GAS  /tmp/ccHuiWdj.s 			page 8
+ 320:Src/main.c    ****   RCC_OscInitStruct.HSI14CalibrationValue = 16;
+ 321:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+ 322:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 323:Src/main.c    ****   {
+ 324:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 325:Src/main.c    ****   }
+ 326:Src/main.c    **** 
+ 327:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks
+ 328:Src/main.c    ****     */
+ 329:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 330:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1;
+ 331:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
+ 332:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 333:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 334:Src/main.c    **** 
+ 335:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+ 336:Src/main.c    ****   {
+ 337:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 338:Src/main.c    ****   }
+ 339:Src/main.c    **** 
+ 340:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+ 341:Src/main.c    ****   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
+ 342:Src/main.c    **** 
+ 343:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 344:Src/main.c    ****   {
+ 345:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 346:Src/main.c    ****   }
+ 347:Src/main.c    **** 
+ 348:Src/main.c    ****     /**Configure the Systick interrupt time
+ 349:Src/main.c    ****     */
+ 350:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+ 351:Src/main.c    **** 
+ 352:Src/main.c    ****     /**Configure the Systick
+ 353:Src/main.c    ****     */
+ 354:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 355:Src/main.c    **** 
+ 356:Src/main.c    ****   /* SysTick_IRQn interrupt configuration */
+ 357:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+ 358:Src/main.c    **** }
+ 359:Src/main.c    **** 
+ 360:Src/main.c    **** 
+ 361:Src/main.c    **** /* TIM14 init function */
+ 362:Src/main.c    **** static void MX_TIM14_Init(void)
+ 363:Src/main.c    **** {
+ 364:Src/main.c    ****   htim14.Instance = TIM14;
+ 365:Src/main.c    ****   htim14.Init.Prescaler = 11;
+ 366:Src/main.c    ****   htim14.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 367:Src/main.c    ****   htim14.Init.Period = 1000;
+ 368:Src/main.c    ****   htim14.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+ 369:Src/main.c    ****   htim14.Init.RepetitionCounter = 0;
+ 370:Src/main.c    ****   htim14.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 371:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim14) != HAL_OK)
+ 372:Src/main.c    ****   {
+ 373:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 374:Src/main.c    ****   }
+ 375:Src/main.c    **** }
+ 376:Src/main.c    **** 
+ARM GAS  /tmp/ccijM0ES.s 			page 8
 
 
- 377:Src/main.c    **** }
- 378:Src/main.c    **** 
- 379:Src/main.c    **** static void USER_TIM2_Init(void) {
- 380:Src/main.c    **** 	__HAL_RCC_TIM2_CLK_ENABLE();
- 381:Src/main.c    **** 
- 382:Src/main.c    **** 	TIM_ClockConfigTypeDef sClockSourceConfig;
- 383:Src/main.c    **** 	TIM_MasterConfigTypeDef sMasterConfig;
- 384:Src/main.c    **** 	TIM_OC_InitTypeDef sConfigOC;
- 385:Src/main.c    **** 
- 386:Src/main.c    **** 	htim2.Instance = TIM2;
- 387:Src/main.c    **** 	htim2.Init.Prescaler = 0;
- 388:Src/main.c    **** 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
- 389:Src/main.c    **** 	htim2.Init.Period = 2000;
- 390:Src/main.c    **** 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
- 391:Src/main.c    **** 	HAL_TIM_Base_Init(&htim2);
+ 377:Src/main.c    **** /* TIM15 init function */
+ 378:Src/main.c    **** static void MX_TIM15_Init(void)
+ 379:Src/main.c    **** {
+ 380:Src/main.c    ****   htim15.Instance = TIM15;
+ 381:Src/main.c    ****   htim15.Init.Prescaler = 11;
+ 382:Src/main.c    ****   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 383:Src/main.c    ****   htim15.Init.Period = 1000;
+ 384:Src/main.c    ****   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+ 385:Src/main.c    ****   htim15.Init.RepetitionCounter = 0;
+ 386:Src/main.c    ****   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 387:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
+ 388:Src/main.c    ****   {
+ 389:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 390:Src/main.c    ****   }
+ 391:Src/main.c    **** }
  392:Src/main.c    **** 
- 393:Src/main.c    **** 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 394:Src/main.c    **** 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 395:Src/main.c    **** 	HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
- 396:Src/main.c    **** 
- 397:Src/main.c    **** 	sConfigOC.OCMode = TIM_OCMODE_PWM1;
- 398:Src/main.c    **** 	sConfigOC.Pulse = 1;
- 399:Src/main.c    **** 	sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
- 400:Src/main.c    **** 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
- 401:Src/main.c    **** 	HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2);
- 402:Src/main.c    **** 
- 403:Src/main.c    **** 	HAL_TIM_OnePulse_Init(&htim2, TIM_OPMODE_SINGLE);
- 404:Src/main.c    **** 	HAL_TIM_MspPostInit(&htim2);
- 405:Src/main.c    **** }
+ 393:Src/main.c    **** static void USER_TIM2_Init(void) {
+ 394:Src/main.c    **** 	__HAL_RCC_TIM2_CLK_ENABLE();
+ 395:Src/main.c    **** 
+ 396:Src/main.c    **** 	TIM_ClockConfigTypeDef sClockSourceConfig;
+ 397:Src/main.c    **** 	TIM_MasterConfigTypeDef sMasterConfig;
+ 398:Src/main.c    **** 	TIM_OC_InitTypeDef sConfigOC;
+ 399:Src/main.c    **** 
+ 400:Src/main.c    **** 	htim2.Instance = TIM2;
+ 401:Src/main.c    **** 	htim2.Init.Prescaler = 0;
+ 402:Src/main.c    **** 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 403:Src/main.c    **** 	htim2.Init.Period = 2000;
+ 404:Src/main.c    **** 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+ 405:Src/main.c    **** 	HAL_TIM_Base_Init(&htim2);
  406:Src/main.c    **** 
- 407:Src/main.c    **** 
- 408:Src/main.c    **** 
- 409:Src/main.c    **** /**
- 410:Src/main.c    ****   * Enable DMA controller clock
- 411:Src/main.c    ****   */
- 412:Src/main.c    **** 
- 413:Src/main.c    **** 
- 414:Src/main.c    **** /** Configure pins as
- 415:Src/main.c    ****         * Analog
- 416:Src/main.c    ****         * Input
- 417:Src/main.c    ****         * Output
- 418:Src/main.c    ****         * EVENT_OUT
- 419:Src/main.c    ****         * EXTI
- 420:Src/main.c    **** */
- 421:Src/main.c    **** static void MX_GPIO_Init(void)
- 422:Src/main.c    **** {
-  25              		.loc 1 422 0
+ 407:Src/main.c    **** 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 408:Src/main.c    **** 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 409:Src/main.c    **** 	HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
+ 410:Src/main.c    **** 
+ 411:Src/main.c    **** 	sConfigOC.OCMode = TIM_OCMODE_PWM1;
+ 412:Src/main.c    **** 	sConfigOC.Pulse = 1;
+ 413:Src/main.c    **** 	sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
+ 414:Src/main.c    **** 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+ 415:Src/main.c    **** 	HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2);
+ 416:Src/main.c    **** 
+ 417:Src/main.c    **** 	HAL_TIM_OnePulse_Init(&htim2, TIM_OPMODE_SINGLE);
+ 418:Src/main.c    **** 	HAL_TIM_MspPostInit(&htim2);
+ 419:Src/main.c    **** }
+ 420:Src/main.c    **** 
+ 421:Src/main.c    **** /* DAC init function */
+ 422:Src/main.c    **** static void MX_DAC_Init(void)
+ 423:Src/main.c    **** {
+ 424:Src/main.c    **** 
+ 425:Src/main.c    ****   DAC_ChannelConfTypeDef sConfig;
+ 426:Src/main.c    **** 
+ 427:Src/main.c    ****     /**DAC Initialization
+ 428:Src/main.c    ****     */
+ 429:Src/main.c    ****   hdac.Instance = DAC;
+ 430:Src/main.c    ****   if (HAL_DAC_Init(&hdac) != HAL_OK)
+ 431:Src/main.c    ****   {
+ 432:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 433:Src/main.c    ****   }
+ARM GAS  /tmp/ccijM0ES.s 			page 9
+
+
+ 434:Src/main.c    **** 
+ 435:Src/main.c    ****     /**DAC channel OUT1 config
+ 436:Src/main.c    ****     */
+ 437:Src/main.c    ****   sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
+ 438:Src/main.c    ****   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+ 439:Src/main.c    ****   if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1) != HAL_OK)
+ 440:Src/main.c    ****   {
+ 441:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 442:Src/main.c    ****   }
+ 443:Src/main.c    **** 
+ 444:Src/main.c    **** }
+ 445:Src/main.c    **** 
+ 446:Src/main.c    **** 
+ 447:Src/main.c    **** 
+ 448:Src/main.c    **** /**
+ 449:Src/main.c    ****   * Enable DMA controller clock
+ 450:Src/main.c    ****   */
+ 451:Src/main.c    **** 
+ 452:Src/main.c    **** 
+ 453:Src/main.c    **** /** Configure pins as
+ 454:Src/main.c    ****         * Analog
+ 455:Src/main.c    ****         * Input
+ 456:Src/main.c    ****         * Output
+ 457:Src/main.c    ****         * EVENT_OUT
+ 458:Src/main.c    ****         * EXTI
+ 459:Src/main.c    **** */
+ 460:Src/main.c    **** static void MX_GPIO_Init(void)
+ 461:Src/main.c    **** {
+  25              		.loc 1 461 0
   26              		.cfi_startproc
   27 0000 30B5     		push	{r4, r5, lr}
   28              	.LCFI0:
@@ -478,16 +520,13 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
   33 0002 89B0     		sub	sp, sp, #36
   34              	.LCFI1:
   35              		.cfi_def_cfa_offset 48
-ARM GAS  /tmp/ccHuiWdj.s 			page 9
-
-
   36              	.LBB2:
- 423:Src/main.c    **** 
- 424:Src/main.c    ****   GPIO_InitTypeDef GPIO_InitStruct;
- 425:Src/main.c    **** 
- 426:Src/main.c    ****   /* GPIO Ports Clock Enable */
- 427:Src/main.c    ****   __HAL_RCC_GPIOF_CLK_ENABLE();
-  37              		.loc 1 427 0
+ 462:Src/main.c    **** 
+ 463:Src/main.c    ****   GPIO_InitTypeDef GPIO_InitStruct;
+ 464:Src/main.c    **** 
+ 465:Src/main.c    ****   /* GPIO Ports Clock Enable */
+ 466:Src/main.c    ****   __HAL_RCC_GPIOF_CLK_ENABLE();
+  37              		.loc 1 466 0
   38 0004 184B     		ldr	r3, .L2
   39 0006 5969     		ldr	r1, [r3, #20]
   40 0008 8022     		mov	r2, #128
@@ -499,9 +538,12 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
   46 0014 0092     		str	r2, [sp]
   47 0016 009A     		ldr	r2, [sp]
   48              	.LBE2:
+ARM GAS  /tmp/ccijM0ES.s 			page 10
+
+
   49              	.LBB3:
- 428:Src/main.c    ****   __HAL_RCC_GPIOA_CLK_ENABLE();
-  50              		.loc 1 428 0
+ 467:Src/main.c    ****   __HAL_RCC_GPIOA_CLK_ENABLE();
+  50              		.loc 1 467 0
   51 0018 5969     		ldr	r1, [r3, #20]
   52 001a 8022     		mov	r2, #128
   53 001c 9202     		lsl	r2, r2, #10
@@ -513,8 +555,8 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
   59 0028 019A     		ldr	r2, [sp, #4]
   60              	.LBE3:
   61              	.LBB4:
- 429:Src/main.c    ****   __HAL_RCC_GPIOB_CLK_ENABLE();
-  62              		.loc 1 429 0
+ 468:Src/main.c    ****   __HAL_RCC_GPIOB_CLK_ENABLE();
+  62              		.loc 1 468 0
   63 002a 5969     		ldr	r1, [r3, #20]
   64 002c 8022     		mov	r2, #128
   65 002e D202     		lsl	r2, r2, #11
@@ -525,46 +567,46 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
   70 0038 0292     		str	r2, [sp, #8]
   71 003a 029B     		ldr	r3, [sp, #8]
   72              	.LBE4:
- 430:Src/main.c    **** 
- 431:Src/main.c    ****   /*Configure GPIO pin Output Level */
- 432:Src/main.c    ****   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
-  73              		.loc 1 432 0
+ 469:Src/main.c    **** 
+ 470:Src/main.c    ****   /*Configure GPIO pin Output Level */
+ 471:Src/main.c    ****   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10|GPIO_PIN_15, GPIO_PIN_RESET);
+  73              		.loc 1 471 0
   74 003c 9024     		mov	r4, #144
   75 003e E405     		lsl	r4, r4, #23
-  76 0040 8025     		mov	r5, #128
+  76 0040 8425     		mov	r5, #132
   77 0042 2D02     		lsl	r5, r5, #8
   78 0044 201C     		mov	r0, r4
   79 0046 291C     		mov	r1, r5
   80 0048 0022     		mov	r2, #0
   81 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
   82              	.LVL0:
-ARM GAS  /tmp/ccHuiWdj.s 			page 10
-
-
- 433:Src/main.c    **** 
- 434:Src/main.c    ****   /*Configure GPIO pins : PA4 PA5 PA6 PA7 */
- 435:Src/main.c    ****   GPIO_InitStruct.Pin = GPIO_PIN_15;
-  83              		.loc 1 435 0
+ 472:Src/main.c    **** 
+ 473:Src/main.c    ****   /*Configure GPIO pins : PA4 PA5 PA6 PA7 */
+ 474:Src/main.c    ****   GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_15;
+  83              		.loc 1 474 0
   84 004e 0395     		str	r5, [sp, #12]
- 436:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  85              		.loc 1 436 0
+ 475:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  85              		.loc 1 475 0
   86 0050 0123     		mov	r3, #1
   87 0052 0493     		str	r3, [sp, #16]
- 437:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  88              		.loc 1 437 0
+ 476:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  88              		.loc 1 476 0
   89 0054 0023     		mov	r3, #0
   90 0056 0593     		str	r3, [sp, #20]
- 438:Src/main.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  91              		.loc 1 438 0
+ 477:Src/main.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  91              		.loc 1 477 0
   92 0058 0693     		str	r3, [sp, #24]
- 439:Src/main.c    ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-  93              		.loc 1 439 0
+ 478:Src/main.c    ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  93              		.loc 1 478 0
+ARM GAS  /tmp/ccijM0ES.s 			page 11
+
+
   94 005a 201C     		mov	r0, r4
   95 005c 03A9     		add	r1, sp, #12
   96 005e FFF7FEFF 		bl	HAL_GPIO_Init
   97              	.LVL1:
- 440:Src/main.c    **** }
-  98              		.loc 1 440 0
+ 479:Src/main.c    **** }
+  98              		.loc 1 479 0
   99 0062 09B0     		add	sp, sp, #36
  100              		@ sp needed
  101 0064 30BD     		pop	{r4, r5, pc}
@@ -573,15 +615,15 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
  104              	.L2:
  105 0068 00100240 		.word	1073876992
  106              		.cfi_endproc
- 107              	.LFE40:
+ 107              	.LFE41:
  109              		.section	.text.USER_TIM2_Init,"ax",%progbits
  110              		.align	2
  111              		.code	16
  112              		.thumb_func
  114              	USER_TIM2_Init:
  115              	.LFB39:
- 379:Src/main.c    **** static void USER_TIM2_Init(void) {
- 116              		.loc 1 379 0
+ 393:Src/main.c    **** static void USER_TIM2_Init(void) {
+ 116              		.loc 1 393 0
  117              		.cfi_startproc
  118 0000 70B5     		push	{r4, r5, r6, lr}
  119              	.LCFI2:
@@ -594,13 +636,10 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
  126              	.LCFI3:
  127              		.cfi_def_cfa_offset 56
  128              	.LBB5:
- 380:Src/main.c    **** 	__HAL_RCC_TIM2_CLK_ENABLE();
- 129              		.loc 1 380 0
+ 394:Src/main.c    **** 	__HAL_RCC_TIM2_CLK_ENABLE();
+ 129              		.loc 1 394 0
  130 0004 194B     		ldr	r3, .L5
  131 0006 DA69     		ldr	r2, [r3, #28]
-ARM GAS  /tmp/ccHuiWdj.s 			page 11
-
-
  132 0008 0126     		mov	r6, #1
  133 000a 3243     		orr	r2, r6
  134 000c DA61     		str	r2, [r3, #28]
@@ -609,83 +648,86 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
  137 0012 0093     		str	r3, [sp]
  138 0014 009B     		ldr	r3, [sp]
  139              	.LBE5:
- 386:Src/main.c    **** 	htim2.Instance = TIM2;
- 140              		.loc 1 386 0
+ 400:Src/main.c    **** 	htim2.Instance = TIM2;
+ 140              		.loc 1 400 0
  141 0016 164C     		ldr	r4, .L5+4
  142 0018 8023     		mov	r3, #128
  143 001a DB05     		lsl	r3, r3, #23
  144 001c 2360     		str	r3, [r4]
- 387:Src/main.c    **** 	htim2.Init.Prescaler = 0;
- 145              		.loc 1 387 0
+ 401:Src/main.c    **** 	htim2.Init.Prescaler = 0;
+ 145              		.loc 1 401 0
  146 001e 0025     		mov	r5, #0
  147 0020 6560     		str	r5, [r4, #4]
- 388:Src/main.c    **** 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
- 148              		.loc 1 388 0
+ARM GAS  /tmp/ccijM0ES.s 			page 12
+
+
+ 402:Src/main.c    **** 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 148              		.loc 1 402 0
  149 0022 A560     		str	r5, [r4, #8]
- 389:Src/main.c    **** 	htim2.Init.Period = 2000;
- 150              		.loc 1 389 0
+ 403:Src/main.c    **** 	htim2.Init.Period = 2000;
+ 150              		.loc 1 403 0
  151 0024 FA23     		mov	r3, #250
  152 0026 DB00     		lsl	r3, r3, #3
  153 0028 E360     		str	r3, [r4, #12]
- 390:Src/main.c    **** 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
- 154              		.loc 1 390 0
+ 404:Src/main.c    **** 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+ 154              		.loc 1 404 0
  155 002a 8023     		mov	r3, #128
  156 002c 9B00     		lsl	r3, r3, #2
  157 002e 2361     		str	r3, [r4, #16]
- 391:Src/main.c    **** 	HAL_TIM_Base_Init(&htim2);
- 158              		.loc 1 391 0
+ 405:Src/main.c    **** 	HAL_TIM_Base_Init(&htim2);
+ 158              		.loc 1 405 0
  159 0030 201C     		mov	r0, r4
  160 0032 FFF7FEFF 		bl	HAL_TIM_Base_Init
  161              	.LVL2:
- 393:Src/main.c    **** 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 162              		.loc 1 393 0
+ 407:Src/main.c    **** 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 162              		.loc 1 407 0
  163 0036 0895     		str	r5, [sp, #32]
- 394:Src/main.c    **** 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 164              		.loc 1 394 0
+ 408:Src/main.c    **** 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 164              		.loc 1 408 0
  165 0038 0995     		str	r5, [sp, #36]
- 395:Src/main.c    **** 	HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
- 166              		.loc 1 395 0
+ 409:Src/main.c    **** 	HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
+ 166              		.loc 1 409 0
  167 003a 201C     		mov	r0, r4
  168 003c 08A9     		add	r1, sp, #32
  169 003e FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
  170              	.LVL3:
- 397:Src/main.c    **** 	sConfigOC.OCMode = TIM_OCMODE_PWM1;
- 171              		.loc 1 397 0
+ 411:Src/main.c    **** 	sConfigOC.OCMode = TIM_OCMODE_PWM1;
+ 171              		.loc 1 411 0
  172 0042 6023     		mov	r3, #96
  173 0044 0193     		str	r3, [sp, #4]
- 398:Src/main.c    **** 	sConfigOC.Pulse = 1;
- 174              		.loc 1 398 0
+ 412:Src/main.c    **** 	sConfigOC.Pulse = 1;
+ 174              		.loc 1 412 0
  175 0046 0296     		str	r6, [sp, #8]
- 399:Src/main.c    **** 	sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
- 176              		.loc 1 399 0
-ARM GAS  /tmp/ccHuiWdj.s 			page 12
-
-
+ 413:Src/main.c    **** 	sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
+ 176              		.loc 1 413 0
  177 0048 0223     		mov	r3, #2
  178 004a 0393     		str	r3, [sp, #12]
- 400:Src/main.c    **** 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
- 179              		.loc 1 400 0
+ 414:Src/main.c    **** 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+ 179              		.loc 1 414 0
  180 004c 0595     		str	r5, [sp, #20]
- 401:Src/main.c    **** 	HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2);
- 181              		.loc 1 401 0
+ 415:Src/main.c    **** 	HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2);
+ 181              		.loc 1 415 0
  182 004e 201C     		mov	r0, r4
  183 0050 01A9     		add	r1, sp, #4
  184 0052 0422     		mov	r2, #4
  185 0054 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
  186              	.LVL4:
- 403:Src/main.c    **** 	HAL_TIM_OnePulse_Init(&htim2, TIM_OPMODE_SINGLE);
- 187              		.loc 1 403 0
+ 417:Src/main.c    **** 	HAL_TIM_OnePulse_Init(&htim2, TIM_OPMODE_SINGLE);
+ 187              		.loc 1 417 0
  188 0058 201C     		mov	r0, r4
  189 005a 0821     		mov	r1, #8
  190 005c FFF7FEFF 		bl	HAL_TIM_OnePulse_Init
  191              	.LVL5:
- 404:Src/main.c    **** 	HAL_TIM_MspPostInit(&htim2);
- 192              		.loc 1 404 0
+ARM GAS  /tmp/ccijM0ES.s 			page 13
+
+
+ 418:Src/main.c    **** 	HAL_TIM_MspPostInit(&htim2);
+ 192              		.loc 1 418 0
  193 0060 201C     		mov	r0, r4
  194 0062 FFF7FEFF 		bl	HAL_TIM_MspPostInit
  195              	.LVL6:
- 405:Src/main.c    **** }
- 196              		.loc 1 405 0
+ 419:Src/main.c    **** }
+ 196              		.loc 1 419 0
  197 0066 0AB0     		add	sp, sp, #40
  198              		@ sp needed
  199 0068 70BD     		pop	{r4, r5, r6, pc}
@@ -703,1235 +745,1360 @@ ARM GAS  /tmp/ccHuiWdj.s 			page 1
  212              		.thumb_func
  214              	HAL_TIM_PeriodElapsedCallback:
  215              	.LFB34:
-  89:Src/main.c    **** {
- 216              		.loc 1 89 0
+  93:Src/main.c    **** {
+ 216              		.loc 1 93 0
  217              		.cfi_startproc
  218              	.LVL7:
-  90:Src/main.c    **** 	if(htim->Instance == TIM14)
- 219              		.loc 1 90 0
- 220 0000 0A4B     		ldr	r3, .L10
- 221 0002 0268     		ldr	r2, [r0]
+  94:Src/main.c    **** 	if(htim->Instance == TIM14)
+ 219              		.loc 1 94 0
+ 220 0000 0268     		ldr	r2, [r0]
+ 221 0002 054B     		ldr	r3, .L9
  222 0004 9A42     		cmp	r2, r3
- 223 0006 05D1     		bne	.L8
-  93:Src/main.c    **** 		TIM2->CR1 = TIM2->CR1 | 1;
- 224              		.loc 1 93 0
+ 223 0006 05D1     		bne	.L7
+  97:Src/main.c    **** 		TIM2->CR1 = TIM2->CR1 | 1;
+ 224              		.loc 1 97 0
  225 0008 8023     		mov	r3, #128
  226 000a DB05     		lsl	r3, r3, #23
  227 000c 1968     		ldr	r1, [r3]
-ARM GAS  /tmp/ccHuiWdj.s 			page 13
-
-
  228 000e 0122     		mov	r2, #1
  229 0010 0A43     		orr	r2, r1
  230 0012 1A60     		str	r2, [r3]
- 231              	.L8:
-  95:Src/main.c    **** 	if(htim->Instance == TIM15)
- 232              		.loc 1 95 0
- 233 0014 0268     		ldr	r2, [r0]
- 234 0016 064B     		ldr	r3, .L10+4
- 235 0018 9A42     		cmp	r2, r3
- 236 001a 05D1     		bne	.L7
-  98:Src/main.c    **** 		TIM2->CR1 = TIM2->CR1 | 1;
- 237              		.loc 1 98 0
- 238 001c 8023     		mov	r3, #128
- 239 001e DB05     		lsl	r3, r3, #23
- 240 0020 1968     		ldr	r1, [r3]
- 241 0022 0122     		mov	r2, #1
- 242 0024 0A43     		orr	r2, r1
- 243 0026 1A60     		str	r2, [r3]
- 244              	.L7:
- 100:Src/main.c    **** }
- 245              		.loc 1 100 0
- 246              		@ sp needed
- 247 0028 7047     		bx	lr
- 248              	.L11:
- 249 002a C046     		.align	2
- 250              	.L10:
- 251 002c 00200040 		.word	1073750016
- 252 0030 00400140 		.word	1073823744
- 253              		.cfi_endproc
- 254              	.LFE34:
- 256              		.section	.text._Error_Handler,"ax",%progbits
- 257              		.align	2
- 258              		.global	_Error_Handler
- 259              		.code	16
- 260              		.thumb_func
- 262              	_Error_Handler:
- 263              	.LFB41:
- 441:Src/main.c    **** 
- 442:Src/main.c    **** /* USER CODE BEGIN 4 */
- 443:Src/main.c    **** 
- 444:Src/main.c    **** /* USER CODE END 4 */
- 445:Src/main.c    **** 
- 446:Src/main.c    **** /**
- 447:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 448:Src/main.c    ****   * @param  file: The file name as string.
- 449:Src/main.c    ****   * @param  line: The line in file as a number.
- 450:Src/main.c    ****   * @retval None
- 451:Src/main.c    ****   */
- 452:Src/main.c    **** void _Error_Handler(char *file, int line)
- 453:Src/main.c    **** {
- 264              		.loc 1 453 0
- 265              		.cfi_startproc
- 266              	.LVL8:
- 267              	.L13:
- 268 0000 FEE7     		b	.L13
- 269              		.cfi_endproc
- 270              	.LFE41:
-ARM GAS  /tmp/ccHuiWdj.s 			page 14
+ 231              	.L7:
+ 104:Src/main.c    **** }
+ 232              		.loc 1 104 0
+ 233              		@ sp needed
+ 234 0014 7047     		bx	lr
+ 235              	.L10:
+ 236 0016 C046     		.align	2
+ 237              	.L9:
+ 238 0018 00200040 		.word	1073750016
+ 239              		.cfi_endproc
+ 240              	.LFE34:
+ 242              		.section	.text._Error_Handler,"ax",%progbits
+ 243              		.align	2
+ 244              		.global	_Error_Handler
+ 245              		.code	16
+ARM GAS  /tmp/ccijM0ES.s 			page 14
 
 
- 272 0002 C046     		.section	.text.MX_TIM14_Init,"ax",%progbits
- 273              		.align	2
- 274              		.code	16
- 275              		.thumb_func
- 277              	MX_TIM14_Init:
- 278              	.LFB37:
- 349:Src/main.c    **** {
- 279              		.loc 1 349 0
- 280              		.cfi_startproc
- 349:Src/main.c    **** {
- 281              		.loc 1 349 0
- 282 0000 08B5     		push	{r3, lr}
- 283              	.LCFI4:
- 284              		.cfi_def_cfa_offset 8
- 285              		.cfi_offset 3, -8
- 286              		.cfi_offset 14, -4
- 350:Src/main.c    ****   htim14.Instance = TIM14;
- 287              		.loc 1 350 0
- 288 0002 0C48     		ldr	r0, .L16
- 289 0004 0C4B     		ldr	r3, .L16+4
- 290 0006 0360     		str	r3, [r0]
- 351:Src/main.c    ****   htim14.Init.Prescaler = 11;
- 291              		.loc 1 351 0
- 292 0008 0B23     		mov	r3, #11
- 293 000a 4360     		str	r3, [r0, #4]
- 352:Src/main.c    ****   htim14.Init.CounterMode = TIM_COUNTERMODE_UP;
- 294              		.loc 1 352 0
- 295 000c 0023     		mov	r3, #0
- 296 000e 8360     		str	r3, [r0, #8]
- 353:Src/main.c    ****   htim14.Init.Period = 1000;
- 297              		.loc 1 353 0
- 298 0010 FA22     		mov	r2, #250
- 299 0012 9200     		lsl	r2, r2, #2
- 300 0014 C260     		str	r2, [r0, #12]
- 354:Src/main.c    ****   htim14.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
- 301              		.loc 1 354 0
- 302 0016 8022     		mov	r2, #128
- 303 0018 9200     		lsl	r2, r2, #2
- 304 001a 0261     		str	r2, [r0, #16]
- 355:Src/main.c    ****   htim14.Init.RepetitionCounter = 0;
- 305              		.loc 1 355 0
- 306 001c 4361     		str	r3, [r0, #20]
- 356:Src/main.c    ****   htim14.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 307              		.loc 1 356 0
- 308 001e 8361     		str	r3, [r0, #24]
- 357:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim14) != HAL_OK)
- 309              		.loc 1 357 0
- 310 0020 FFF7FEFF 		bl	HAL_TIM_Base_Init
- 311              	.LVL9:
- 312 0024 0028     		cmp	r0, #0
- 313 0026 04D0     		beq	.L14
- 359:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 314              		.loc 1 359 0
- 315 0028 0448     		ldr	r0, .L16+8
- 316 002a 6821     		mov	r1, #104
- 317 002c FF31     		add	r1, r1, #255
- 318 002e FFF7FEFF 		bl	_Error_Handler
-ARM GAS  /tmp/ccHuiWdj.s 			page 15
+ 246              		.thumb_func
+ 248              	_Error_Handler:
+ 249              	.LFB42:
+ 480:Src/main.c    **** 
+ 481:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 482:Src/main.c    **** 
+ 483:Src/main.c    **** /* USER CODE END 4 */
+ 484:Src/main.c    **** 
+ 485:Src/main.c    **** /**
+ 486:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 487:Src/main.c    ****   * @param  file: The file name as string.
+ 488:Src/main.c    ****   * @param  line: The line in file as a number.
+ 489:Src/main.c    ****   * @retval None
+ 490:Src/main.c    ****   */
+ 491:Src/main.c    **** void _Error_Handler(char *file, int line)
+ 492:Src/main.c    **** {
+ 250              		.loc 1 492 0
+ 251              		.cfi_startproc
+ 252              	.LVL8:
+ 253              	.L12:
+ 254 0000 FEE7     		b	.L12
+ 255              		.cfi_endproc
+ 256              	.LFE42:
+ 258 0002 C046     		.section	.text.MX_DAC_Init,"ax",%progbits
+ 259              		.align	2
+ 260              		.code	16
+ 261              		.thumb_func
+ 263              	MX_DAC_Init:
+ 264              	.LFB40:
+ 423:Src/main.c    **** {
+ 265              		.loc 1 423 0
+ 266              		.cfi_startproc
+ 423:Src/main.c    **** {
+ 267              		.loc 1 423 0
+ 268 0000 00B5     		push	{lr}
+ 269              	.LCFI4:
+ 270              		.cfi_def_cfa_offset 4
+ 271              		.cfi_offset 14, -4
+ 272 0002 83B0     		sub	sp, sp, #12
+ 273              	.LCFI5:
+ 274              		.cfi_def_cfa_offset 16
+ 429:Src/main.c    ****   hdac.Instance = DAC;
+ 275              		.loc 1 429 0
+ 276 0004 0E48     		ldr	r0, .L16
+ 277 0006 0F4B     		ldr	r3, .L16+4
+ 278 0008 0360     		str	r3, [r0]
+ 430:Src/main.c    ****   if (HAL_DAC_Init(&hdac) != HAL_OK)
+ 279              		.loc 1 430 0
+ 280 000a FFF7FEFF 		bl	HAL_DAC_Init
+ 281              	.LVL9:
+ 282 000e 0028     		cmp	r0, #0
+ 283 0010 04D0     		beq	.L14
+ 432:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 284              		.loc 1 432 0
+ 285 0012 0D48     		ldr	r0, .L16+8
+ 286 0014 D821     		mov	r1, #216
+ 287 0016 4900     		lsl	r1, r1, #1
+ARM GAS  /tmp/ccijM0ES.s 			page 15
 
 
- 319              	.LVL10:
- 320              	.L14:
- 361:Src/main.c    **** }
- 321              		.loc 1 361 0
- 322              		@ sp needed
- 323 0032 08BD     		pop	{r3, pc}
- 324              	.L17:
+ 288 0018 FFF7FEFF 		bl	_Error_Handler
+ 289              	.LVL10:
+ 290              	.L14:
+ 437:Src/main.c    ****   sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
+ 291              		.loc 1 437 0
+ 292 001c 0023     		mov	r3, #0
+ 293 001e 0093     		str	r3, [sp]
+ 438:Src/main.c    ****   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+ 294              		.loc 1 438 0
+ 295 0020 0193     		str	r3, [sp, #4]
+ 439:Src/main.c    ****   if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1) != HAL_OK)
+ 296              		.loc 1 439 0
+ 297 0022 0748     		ldr	r0, .L16
+ 298 0024 6946     		mov	r1, sp
+ 299 0026 0022     		mov	r2, #0
+ 300 0028 FFF7FEFF 		bl	HAL_DAC_ConfigChannel
+ 301              	.LVL11:
+ 302 002c 0028     		cmp	r0, #0
+ 303 002e 04D0     		beq	.L13
+ 441:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 304              		.loc 1 441 0
+ 305 0030 0548     		ldr	r0, .L16+8
+ 306 0032 BA21     		mov	r1, #186
+ 307 0034 FF31     		add	r1, r1, #255
+ 308 0036 FFF7FEFF 		bl	_Error_Handler
+ 309              	.LVL12:
+ 310              	.L13:
+ 444:Src/main.c    **** }
+ 311              		.loc 1 444 0
+ 312 003a 03B0     		add	sp, sp, #12
+ 313              		@ sp needed
+ 314 003c 00BD     		pop	{pc}
+ 315              	.L17:
+ 316 003e C046     		.align	2
+ 317              	.L16:
+ 318 0040 00000000 		.word	hdac
+ 319 0044 00740040 		.word	1073771520
+ 320 0048 00000000 		.word	.LC2
+ 321              		.cfi_endproc
+ 322              	.LFE40:
+ 324              		.section	.text.MX_TIM14_Init,"ax",%progbits
  325              		.align	2
- 326              	.L16:
- 327 0034 00000000 		.word	htim14
- 328 0038 00200040 		.word	1073750016
- 329 003c 00000000 		.word	.LC2
- 330              		.cfi_endproc
- 331              	.LFE37:
- 333              		.section	.text.MX_TIM15_Init,"ax",%progbits
- 334              		.align	2
- 335              		.code	16
- 336              		.thumb_func
- 338              	MX_TIM15_Init:
- 339              	.LFB38:
- 365:Src/main.c    **** {
- 340              		.loc 1 365 0
- 341              		.cfi_startproc
- 342 0000 08B5     		push	{r3, lr}
- 343              	.LCFI5:
- 344              		.cfi_def_cfa_offset 8
- 345              		.cfi_offset 3, -8
- 346              		.cfi_offset 14, -4
- 366:Src/main.c    ****   htim15.Instance = TIM15;
- 347              		.loc 1 366 0
- 348 0002 0C48     		ldr	r0, .L20
- 349 0004 0C4B     		ldr	r3, .L20+4
- 350 0006 0360     		str	r3, [r0]
- 367:Src/main.c    ****   htim15.Init.Prescaler = 11;
- 351              		.loc 1 367 0
- 352 0008 0B23     		mov	r3, #11
- 353 000a 4360     		str	r3, [r0, #4]
- 368:Src/main.c    ****   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
- 354              		.loc 1 368 0
- 355 000c 0023     		mov	r3, #0
- 356 000e 8360     		str	r3, [r0, #8]
- 369:Src/main.c    ****   htim15.Init.Period = 1000;
- 357              		.loc 1 369 0
- 358 0010 FA22     		mov	r2, #250
- 359 0012 9200     		lsl	r2, r2, #2
- 360 0014 C260     		str	r2, [r0, #12]
- 370:Src/main.c    ****   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
- 361              		.loc 1 370 0
- 362 0016 8022     		mov	r2, #128
- 363 0018 9200     		lsl	r2, r2, #2
- 364 001a 0261     		str	r2, [r0, #16]
- 371:Src/main.c    ****   htim15.Init.RepetitionCounter = 0;
- 365              		.loc 1 371 0
- 366 001c 4361     		str	r3, [r0, #20]
- 372:Src/main.c    ****   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 367              		.loc 1 372 0
- 368 001e 8361     		str	r3, [r0, #24]
-ARM GAS  /tmp/ccHuiWdj.s 			page 16
+ 326              		.code	16
+ 327              		.thumb_func
+ 329              	MX_TIM14_Init:
+ 330              	.LFB37:
+ 363:Src/main.c    **** {
+ 331              		.loc 1 363 0
+ 332              		.cfi_startproc
+ 333 0000 08B5     		push	{r3, lr}
+ 334              	.LCFI6:
+ 335              		.cfi_def_cfa_offset 8
+ 336              		.cfi_offset 3, -8
+ 337              		.cfi_offset 14, -4
+ 364:Src/main.c    ****   htim14.Instance = TIM14;
+ 338              		.loc 1 364 0
+ 339 0002 0C48     		ldr	r0, .L20
+ARM GAS  /tmp/ccijM0ES.s 			page 16
 
 
- 373:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
- 369              		.loc 1 373 0
- 370 0020 FFF7FEFF 		bl	HAL_TIM_Base_Init
- 371              	.LVL11:
- 372 0024 0028     		cmp	r0, #0
- 373 0026 04D0     		beq	.L18
- 375:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 374              		.loc 1 375 0
- 375 0028 0448     		ldr	r0, .L20+8
- 376 002a 7821     		mov	r1, #120
- 377 002c FF31     		add	r1, r1, #255
- 378 002e FFF7FEFF 		bl	_Error_Handler
- 379              	.LVL12:
- 380              	.L18:
- 377:Src/main.c    **** }
- 381              		.loc 1 377 0
- 382              		@ sp needed
- 383 0032 08BD     		pop	{r3, pc}
- 384              	.L21:
+ 340 0004 0C4B     		ldr	r3, .L20+4
+ 341 0006 0360     		str	r3, [r0]
+ 365:Src/main.c    ****   htim14.Init.Prescaler = 11;
+ 342              		.loc 1 365 0
+ 343 0008 0B23     		mov	r3, #11
+ 344 000a 4360     		str	r3, [r0, #4]
+ 366:Src/main.c    ****   htim14.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 345              		.loc 1 366 0
+ 346 000c 0023     		mov	r3, #0
+ 347 000e 8360     		str	r3, [r0, #8]
+ 367:Src/main.c    ****   htim14.Init.Period = 1000;
+ 348              		.loc 1 367 0
+ 349 0010 FA22     		mov	r2, #250
+ 350 0012 9200     		lsl	r2, r2, #2
+ 351 0014 C260     		str	r2, [r0, #12]
+ 368:Src/main.c    ****   htim14.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+ 352              		.loc 1 368 0
+ 353 0016 8022     		mov	r2, #128
+ 354 0018 9200     		lsl	r2, r2, #2
+ 355 001a 0261     		str	r2, [r0, #16]
+ 369:Src/main.c    ****   htim14.Init.RepetitionCounter = 0;
+ 356              		.loc 1 369 0
+ 357 001c 4361     		str	r3, [r0, #20]
+ 370:Src/main.c    ****   htim14.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 358              		.loc 1 370 0
+ 359 001e 8361     		str	r3, [r0, #24]
+ 371:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim14) != HAL_OK)
+ 360              		.loc 1 371 0
+ 361 0020 FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 362              	.LVL13:
+ 363 0024 0028     		cmp	r0, #0
+ 364 0026 04D0     		beq	.L18
+ 373:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 365              		.loc 1 373 0
+ 366 0028 0448     		ldr	r0, .L20+8
+ 367 002a 7621     		mov	r1, #118
+ 368 002c FF31     		add	r1, r1, #255
+ 369 002e FFF7FEFF 		bl	_Error_Handler
+ 370              	.LVL14:
+ 371              	.L18:
+ 375:Src/main.c    **** }
+ 372              		.loc 1 375 0
+ 373              		@ sp needed
+ 374 0032 08BD     		pop	{r3, pc}
+ 375              	.L21:
+ 376              		.align	2
+ 377              	.L20:
+ 378 0034 00000000 		.word	htim14
+ 379 0038 00200040 		.word	1073750016
+ 380 003c 00000000 		.word	.LC2
+ 381              		.cfi_endproc
+ 382              	.LFE37:
+ 384              		.section	.text.MX_TIM15_Init,"ax",%progbits
  385              		.align	2
- 386              	.L20:
- 387 0034 00000000 		.word	htim15
- 388 0038 00400140 		.word	1073823744
- 389 003c 00000000 		.word	.LC2
- 390              		.cfi_endproc
- 391              	.LFE38:
- 393              		.global	__aeabi_uidiv
- 394              		.section	.text.SystemClock_Config,"ax",%progbits
- 395              		.align	2
- 396              		.global	SystemClock_Config
- 397              		.code	16
- 398              		.thumb_func
- 400              	SystemClock_Config:
- 401              	.LFB36:
- 295:Src/main.c    **** {
- 402              		.loc 1 295 0
- 403              		.cfi_startproc
- 404 0000 00B5     		push	{lr}
- 405              	.LCFI6:
- 406              		.cfi_def_cfa_offset 4
- 407              		.cfi_offset 14, -4
- 408 0002 99B0     		sub	sp, sp, #100
- 409              	.LCFI7:
- 410              		.cfi_def_cfa_offset 104
- 303:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI14|RCC_OSCILLATORTYPE_HSI48;
- 411              		.loc 1 303 0
- 412 0004 3023     		mov	r3, #48
- 413 0006 0B93     		str	r3, [sp, #44]
- 304:Src/main.c    ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
- 414              		.loc 1 304 0
- 415 0008 0123     		mov	r3, #1
- 416 000a 1393     		str	r3, [sp, #76]
- 305:Src/main.c    ****   RCC_OscInitStruct.HSI14State = RCC_HSI14_ON;
- 417              		.loc 1 305 0
- 418 000c 1093     		str	r3, [sp, #64]
- 306:Src/main.c    ****   RCC_OscInitStruct.HSI14CalibrationValue = 16;
- 419              		.loc 1 306 0
-ARM GAS  /tmp/ccHuiWdj.s 			page 17
+ 386              		.code	16
+ 387              		.thumb_func
+ 389              	MX_TIM15_Init:
+ARM GAS  /tmp/ccijM0ES.s 			page 17
 
 
- 420 000e 1023     		mov	r3, #16
- 421 0010 1193     		str	r3, [sp, #68]
- 307:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
- 422              		.loc 1 307 0
- 423 0012 0023     		mov	r3, #0
- 424 0014 1493     		str	r3, [sp, #80]
- 308:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 425              		.loc 1 308 0
- 426 0016 0BA8     		add	r0, sp, #44
- 427 0018 FFF7FEFF 		bl	HAL_RCC_OscConfig
- 428              	.LVL13:
- 429 001c 0028     		cmp	r0, #0
- 430 001e 04D0     		beq	.L23
- 310:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 431              		.loc 1 310 0
- 432 0020 1C48     		ldr	r0, .L26
- 433 0022 9B21     		mov	r1, #155
- 434 0024 4900     		lsl	r1, r1, #1
- 435 0026 FFF7FEFF 		bl	_Error_Handler
- 436              	.LVL14:
- 437              	.L23:
- 315:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 438              		.loc 1 315 0
- 439 002a 0723     		mov	r3, #7
- 440 002c 0793     		str	r3, [sp, #28]
- 317:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
- 441              		.loc 1 317 0
- 442 002e 0323     		mov	r3, #3
- 443 0030 0893     		str	r3, [sp, #32]
- 318:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 444              		.loc 1 318 0
- 445 0032 0023     		mov	r3, #0
- 446 0034 0993     		str	r3, [sp, #36]
- 319:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 447              		.loc 1 319 0
- 448 0036 0A93     		str	r3, [sp, #40]
- 321:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
- 449              		.loc 1 321 0
- 450 0038 07A8     		add	r0, sp, #28
- 451 003a 0121     		mov	r1, #1
- 452 003c FFF7FEFF 		bl	HAL_RCC_ClockConfig
- 453              	.LVL15:
- 454 0040 0028     		cmp	r0, #0
- 455 0042 04D0     		beq	.L24
- 323:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 456              		.loc 1 323 0
- 457 0044 1348     		ldr	r0, .L26
- 458 0046 4421     		mov	r1, #68
- 459 0048 FF31     		add	r1, r1, #255
- 460 004a FFF7FEFF 		bl	_Error_Handler
- 461              	.LVL16:
- 462              	.L24:
- 326:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
- 463              		.loc 1 326 0
- 464 004e 8023     		mov	r3, #128
- 465 0050 9B02     		lsl	r3, r3, #10
- 466 0052 0093     		str	r3, [sp]
-ARM GAS  /tmp/ccHuiWdj.s 			page 18
+ 390              	.LFB38:
+ 379:Src/main.c    **** {
+ 391              		.loc 1 379 0
+ 392              		.cfi_startproc
+ 393 0000 08B5     		push	{r3, lr}
+ 394              	.LCFI7:
+ 395              		.cfi_def_cfa_offset 8
+ 396              		.cfi_offset 3, -8
+ 397              		.cfi_offset 14, -4
+ 380:Src/main.c    ****   htim15.Instance = TIM15;
+ 398              		.loc 1 380 0
+ 399 0002 0C48     		ldr	r0, .L24
+ 400 0004 0C4B     		ldr	r3, .L24+4
+ 401 0006 0360     		str	r3, [r0]
+ 381:Src/main.c    ****   htim15.Init.Prescaler = 11;
+ 402              		.loc 1 381 0
+ 403 0008 0B23     		mov	r3, #11
+ 404 000a 4360     		str	r3, [r0, #4]
+ 382:Src/main.c    ****   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 405              		.loc 1 382 0
+ 406 000c 0023     		mov	r3, #0
+ 407 000e 8360     		str	r3, [r0, #8]
+ 383:Src/main.c    ****   htim15.Init.Period = 1000;
+ 408              		.loc 1 383 0
+ 409 0010 FA22     		mov	r2, #250
+ 410 0012 9200     		lsl	r2, r2, #2
+ 411 0014 C260     		str	r2, [r0, #12]
+ 384:Src/main.c    ****   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+ 412              		.loc 1 384 0
+ 413 0016 8022     		mov	r2, #128
+ 414 0018 9200     		lsl	r2, r2, #2
+ 415 001a 0261     		str	r2, [r0, #16]
+ 385:Src/main.c    ****   htim15.Init.RepetitionCounter = 0;
+ 416              		.loc 1 385 0
+ 417 001c 4361     		str	r3, [r0, #20]
+ 386:Src/main.c    ****   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 418              		.loc 1 386 0
+ 419 001e 8361     		str	r3, [r0, #24]
+ 387:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
+ 420              		.loc 1 387 0
+ 421 0020 FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 422              	.LVL15:
+ 423 0024 0028     		cmp	r0, #0
+ 424 0026 04D0     		beq	.L22
+ 389:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 425              		.loc 1 389 0
+ 426 0028 0448     		ldr	r0, .L24+8
+ 427 002a 8621     		mov	r1, #134
+ 428 002c FF31     		add	r1, r1, #255
+ 429 002e FFF7FEFF 		bl	_Error_Handler
+ 430              	.LVL16:
+ 431              	.L22:
+ 391:Src/main.c    **** }
+ 432              		.loc 1 391 0
+ 433              		@ sp needed
+ 434 0032 08BD     		pop	{r3, pc}
+ 435              	.L25:
+ARM GAS  /tmp/ccijM0ES.s 			page 18
 
 
- 327:Src/main.c    ****   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
- 467              		.loc 1 327 0
- 468 0054 0023     		mov	r3, #0
- 469 0056 0693     		str	r3, [sp, #24]
- 329:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 470              		.loc 1 329 0
- 471 0058 6846     		mov	r0, sp
- 472 005a FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
- 473              	.LVL17:
- 474 005e 0028     		cmp	r0, #0
- 475 0060 04D0     		beq	.L25
- 331:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 476              		.loc 1 331 0
- 477 0062 0C48     		ldr	r0, .L26
- 478 0064 4C21     		mov	r1, #76
- 479 0066 FF31     		add	r1, r1, #255
- 480 0068 FFF7FEFF 		bl	_Error_Handler
- 481              	.LVL18:
- 482              	.L25:
- 336:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
- 483              		.loc 1 336 0
- 484 006c FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
- 485              	.LVL19:
- 486 0070 FA21     		mov	r1, #250
- 487 0072 8900     		lsl	r1, r1, #2
- 488 0074 FFF7FEFF 		bl	__aeabi_uidiv
- 489              	.LVL20:
- 490 0078 FFF7FEFF 		bl	HAL_SYSTICK_Config
- 491              	.LVL21:
- 340:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
- 492              		.loc 1 340 0
- 493 007c 0420     		mov	r0, #4
- 494 007e FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
- 495              	.LVL22:
- 343:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
- 496              		.loc 1 343 0
- 497 0082 0120     		mov	r0, #1
- 498 0084 4042     		neg	r0, r0
- 499 0086 0021     		mov	r1, #0
- 500 0088 0022     		mov	r2, #0
- 501 008a FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 502              	.LVL23:
- 344:Src/main.c    **** }
- 503              		.loc 1 344 0
- 504 008e 19B0     		add	sp, sp, #100
- 505              		@ sp needed
- 506 0090 00BD     		pop	{pc}
- 507              	.L27:
- 508 0092 C046     		.align	2
- 509              	.L26:
- 510 0094 00000000 		.word	.LC2
- 511              		.cfi_endproc
- 512              	.LFE36:
- 514              		.global	__aeabi_i2d
- 515              		.global	__aeabi_ddiv
- 516              		.global	__aeabi_dmul
- 517              		.global	__aeabi_d2uiz
-ARM GAS  /tmp/ccHuiWdj.s 			page 19
+ 436              		.align	2
+ 437              	.L24:
+ 438 0034 00000000 		.word	htim15
+ 439 0038 00400140 		.word	1073823744
+ 440 003c 00000000 		.word	.LC2
+ 441              		.cfi_endproc
+ 442              	.LFE38:
+ 444              		.global	__aeabi_uidiv
+ 445              		.section	.text.SystemClock_Config,"ax",%progbits
+ 446              		.align	2
+ 447              		.global	SystemClock_Config
+ 448              		.code	16
+ 449              		.thumb_func
+ 451              	SystemClock_Config:
+ 452              	.LFB36:
+ 309:Src/main.c    **** {
+ 453              		.loc 1 309 0
+ 454              		.cfi_startproc
+ 455 0000 00B5     		push	{lr}
+ 456              	.LCFI8:
+ 457              		.cfi_def_cfa_offset 4
+ 458              		.cfi_offset 14, -4
+ 459 0002 99B0     		sub	sp, sp, #100
+ 460              	.LCFI9:
+ 461              		.cfi_def_cfa_offset 104
+ 317:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI14|RCC_OSCILLATORTYPE_HSI48;
+ 462              		.loc 1 317 0
+ 463 0004 3023     		mov	r3, #48
+ 464 0006 0B93     		str	r3, [sp, #44]
+ 318:Src/main.c    ****   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+ 465              		.loc 1 318 0
+ 466 0008 0123     		mov	r3, #1
+ 467 000a 1393     		str	r3, [sp, #76]
+ 319:Src/main.c    ****   RCC_OscInitStruct.HSI14State = RCC_HSI14_ON;
+ 468              		.loc 1 319 0
+ 469 000c 1093     		str	r3, [sp, #64]
+ 320:Src/main.c    ****   RCC_OscInitStruct.HSI14CalibrationValue = 16;
+ 470              		.loc 1 320 0
+ 471 000e 1023     		mov	r3, #16
+ 472 0010 1193     		str	r3, [sp, #68]
+ 321:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+ 473              		.loc 1 321 0
+ 474 0012 0023     		mov	r3, #0
+ 475 0014 1493     		str	r3, [sp, #80]
+ 322:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 476              		.loc 1 322 0
+ 477 0016 0BA8     		add	r0, sp, #44
+ 478 0018 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 479              	.LVL17:
+ 480 001c 0028     		cmp	r0, #0
+ 481 001e 04D0     		beq	.L27
+ 324:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 482              		.loc 1 324 0
+ 483 0020 1C48     		ldr	r0, .L30
+ 484 0022 A221     		mov	r1, #162
+ 485 0024 4900     		lsl	r1, r1, #1
+ 486 0026 FFF7FEFF 		bl	_Error_Handler
+ARM GAS  /tmp/ccijM0ES.s 			page 19
 
 
- 518              		.section	.text.main,"ax",%progbits
- 519              		.align	2
- 520              		.global	main
- 521              		.code	16
- 522              		.thumb_func
- 524              	main:
- 525              	.LFB35:
- 125:Src/main.c    **** {
- 526              		.loc 1 125 0
- 527              		.cfi_startproc
- 528 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 529              	.LCFI8:
- 530              		.cfi_def_cfa_offset 20
- 531              		.cfi_offset 4, -20
- 532              		.cfi_offset 5, -16
- 533              		.cfi_offset 6, -12
- 534              		.cfi_offset 7, -8
- 535              		.cfi_offset 14, -4
- 536 0002 4746     		mov	r7, r8
- 537 0004 80B4     		push	{r7}
- 538              	.LCFI9:
- 539              		.cfi_def_cfa_offset 24
- 540              		.cfi_offset 8, -24
- 133:Src/main.c    ****   HAL_Init();
- 541              		.loc 1 133 0
- 542 0006 FFF7FEFF 		bl	HAL_Init
- 543              	.LVL24:
- 140:Src/main.c    ****   SystemClock_Config();
- 544              		.loc 1 140 0
- 545 000a FFF7FEFF 		bl	SystemClock_Config
- 546              	.LVL25:
- 147:Src/main.c    ****   MX_GPIO_Init();
- 547              		.loc 1 147 0
- 548 000e FFF7FEFF 		bl	MX_GPIO_Init
- 549              	.LVL26:
- 149:Src/main.c    **** 	MX_TIM14_Init();
- 550              		.loc 1 149 0
- 551 0012 FFF7FEFF 		bl	MX_TIM14_Init
- 552              	.LVL27:
- 150:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim14);
- 553              		.loc 1 150 0
- 554 0016 B448     		ldr	r0, .L52+24
- 555 0018 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 556              	.LVL28:
- 151:Src/main.c    **** 	TIM14->CR1 &= ~(1UL);
- 557              		.loc 1 151 0
- 558 001c B34B     		ldr	r3, .L52+28
- 559 001e 1A68     		ldr	r2, [r3]
- 560 0020 0124     		mov	r4, #1
- 561 0022 A243     		bic	r2, r4
- 562 0024 1A60     		str	r2, [r3]
- 153:Src/main.c    **** 	MX_TIM15_Init();
- 563              		.loc 1 153 0
- 564 0026 FFF7FEFF 		bl	MX_TIM15_Init
- 565              	.LVL29:
- 154:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim15);
- 566              		.loc 1 154 0
-ARM GAS  /tmp/ccHuiWdj.s 			page 20
+ 487              	.LVL18:
+ 488              	.L27:
+ 329:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 489              		.loc 1 329 0
+ 490 002a 0723     		mov	r3, #7
+ 491 002c 0793     		str	r3, [sp, #28]
+ 331:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
+ 492              		.loc 1 331 0
+ 493 002e 0323     		mov	r3, #3
+ 494 0030 0893     		str	r3, [sp, #32]
+ 332:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 495              		.loc 1 332 0
+ 496 0032 0023     		mov	r3, #0
+ 497 0034 0993     		str	r3, [sp, #36]
+ 333:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 498              		.loc 1 333 0
+ 499 0036 0A93     		str	r3, [sp, #40]
+ 335:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+ 500              		.loc 1 335 0
+ 501 0038 07A8     		add	r0, sp, #28
+ 502 003a 0121     		mov	r1, #1
+ 503 003c FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 504              	.LVL19:
+ 505 0040 0028     		cmp	r0, #0
+ 506 0042 04D0     		beq	.L28
+ 337:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 507              		.loc 1 337 0
+ 508 0044 1348     		ldr	r0, .L30
+ 509 0046 5221     		mov	r1, #82
+ 510 0048 FF31     		add	r1, r1, #255
+ 511 004a FFF7FEFF 		bl	_Error_Handler
+ 512              	.LVL20:
+ 513              	.L28:
+ 340:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+ 514              		.loc 1 340 0
+ 515 004e 8023     		mov	r3, #128
+ 516 0050 9B02     		lsl	r3, r3, #10
+ 517 0052 0093     		str	r3, [sp]
+ 341:Src/main.c    ****   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
+ 518              		.loc 1 341 0
+ 519 0054 0023     		mov	r3, #0
+ 520 0056 0693     		str	r3, [sp, #24]
+ 343:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 521              		.loc 1 343 0
+ 522 0058 6846     		mov	r0, sp
+ 523 005a FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 524              	.LVL21:
+ 525 005e 0028     		cmp	r0, #0
+ 526 0060 04D0     		beq	.L29
+ 345:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 527              		.loc 1 345 0
+ 528 0062 0C48     		ldr	r0, .L30
+ 529 0064 5A21     		mov	r1, #90
+ 530 0066 FF31     		add	r1, r1, #255
+ 531 0068 FFF7FEFF 		bl	_Error_Handler
+ 532              	.LVL22:
+ 533              	.L29:
+ARM GAS  /tmp/ccijM0ES.s 			page 20
 
 
- 567 002a B148     		ldr	r0, .L52+32
- 568 002c FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 569              	.LVL30:
- 155:Src/main.c    **** 	TIM15->CR1 &= ~(1UL);
- 570              		.loc 1 155 0
- 571 0030 B04B     		ldr	r3, .L52+36
- 572 0032 1A68     		ldr	r2, [r3]
- 573 0034 A243     		bic	r2, r4
- 574 0036 1A60     		str	r2, [r3]
- 157:Src/main.c    **** 	USER_TIM2_Init();
- 575              		.loc 1 157 0
- 576 0038 FFF7FEFF 		bl	USER_TIM2_Init
- 577              	.LVL31:
- 159:Src/main.c    **** 	HAL_TIM_Base_Start(&htim2);
- 578              		.loc 1 159 0
- 579 003c AE4C     		ldr	r4, .L52+40
- 580 003e 201C     		mov	r0, r4
- 581 0040 FFF7FEFF 		bl	HAL_TIM_Base_Start
- 582              	.LVL32:
- 160:Src/main.c    **** 	HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
- 583              		.loc 1 160 0
- 584 0044 201C     		mov	r0, r4
- 585 0046 0421     		mov	r1, #4
- 586 0048 FFF7FEFF 		bl	HAL_TIM_OnePulse_Start
- 587              	.LVL33:
- 165:Src/main.c    ****   MX_USB_MIDI_INIT();
- 588              		.loc 1 165 0
- 589 004c FFF7FEFF 		bl	MX_USB_MIDI_INIT
- 590              	.LVL34:
- 168:Src/main.c    ****   if(FUNC_ERROR == midiInit() ){
- 591              		.loc 1 168 0
- 592 0050 FFF7FEFF 		bl	midiInit
- 593              	.LVL35:
- 594 0054 0028     		cmp	r0, #0
- 595 0056 16D1     		bne	.L29
- 170:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 596              		.loc 1 170 0 discriminator 1
- 597 0058 9026     		mov	r6, #144
- 598 005a F605     		lsl	r6, r6, #23
- 599 005c 8025     		mov	r5, #128
- 600 005e 2D02     		lsl	r5, r5, #8
- 171:Src/main.c    **** 		  HAL_Delay(500);
- 601              		.loc 1 171 0 discriminator 1
- 602 0060 FA24     		mov	r4, #250
- 603 0062 6400     		lsl	r4, r4, #1
- 604              	.L50:
- 170:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 605              		.loc 1 170 0 discriminator 1
- 606 0064 301C     		mov	r0, r6
- 607 0066 291C     		mov	r1, r5
- 608 0068 0122     		mov	r2, #1
- 609 006a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 610              	.LVL36:
- 171:Src/main.c    **** 		  HAL_Delay(500);
- 611              		.loc 1 171 0 discriminator 1
- 612 006e 201C     		mov	r0, r4
- 613 0070 FFF7FEFF 		bl	HAL_Delay
-ARM GAS  /tmp/ccHuiWdj.s 			page 21
+ 350:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+ 534              		.loc 1 350 0
+ 535 006c FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 536              	.LVL23:
+ 537 0070 FA21     		mov	r1, #250
+ 538 0072 8900     		lsl	r1, r1, #2
+ 539 0074 FFF7FEFF 		bl	__aeabi_uidiv
+ 540              	.LVL24:
+ 541 0078 FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 542              	.LVL25:
+ 354:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 543              		.loc 1 354 0
+ 544 007c 0420     		mov	r0, #4
+ 545 007e FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
+ 546              	.LVL26:
+ 357:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+ 547              		.loc 1 357 0
+ 548 0082 0120     		mov	r0, #1
+ 549 0084 4042     		neg	r0, r0
+ 550 0086 0021     		mov	r1, #0
+ 551 0088 0022     		mov	r2, #0
+ 552 008a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 553              	.LVL27:
+ 358:Src/main.c    **** }
+ 554              		.loc 1 358 0
+ 555 008e 19B0     		add	sp, sp, #100
+ 556              		@ sp needed
+ 557 0090 00BD     		pop	{pc}
+ 558              	.L31:
+ 559 0092 C046     		.align	2
+ 560              	.L30:
+ 561 0094 00000000 		.word	.LC2
+ 562              		.cfi_endproc
+ 563              	.LFE36:
+ 565              		.global	__aeabi_i2d
+ 566              		.global	__aeabi_ddiv
+ 567              		.global	__aeabi_dmul
+ 568              		.global	__aeabi_d2uiz
+ 569              		.section	.text.main,"ax",%progbits
+ 570              		.align	2
+ 571              		.global	main
+ 572              		.code	16
+ 573              		.thumb_func
+ 575              	main:
+ 576              	.LFB35:
+ 129:Src/main.c    **** {
+ 577              		.loc 1 129 0
+ 578              		.cfi_startproc
+ 579 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 580              	.LCFI10:
+ 581              		.cfi_def_cfa_offset 20
+ 582              		.cfi_offset 4, -20
+ 583              		.cfi_offset 5, -16
+ 584              		.cfi_offset 6, -12
+ 585              		.cfi_offset 7, -8
+ 586              		.cfi_offset 14, -4
+ 587 0002 4746     		mov	r7, r8
+ARM GAS  /tmp/ccijM0ES.s 			page 21
 
 
- 614              	.LVL37:
- 172:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
- 615              		.loc 1 172 0 discriminator 1
- 616 0074 301C     		mov	r0, r6
- 617 0076 291C     		mov	r1, r5
- 618 0078 0022     		mov	r2, #0
- 619 007a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 620              	.LVL38:
- 173:Src/main.c    **** 		  HAL_Delay(500);
- 621              		.loc 1 173 0 discriminator 1
- 622 007e 201C     		mov	r0, r4
- 623 0080 FFF7FEFF 		bl	HAL_Delay
- 624              	.LVL39:
- 625 0084 EEE7     		b	.L50
- 626              	.L29:
- 179:Src/main.c    **** 	  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
- 627              		.loc 1 179 0
- 628 0086 9D4E     		ldr	r6, .L52+44
- 629 0088 FE25     		mov	r5, #254
- 630 008a 6D00     		lsl	r5, r5, #1
- 183:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
- 631              		.loc 1 183 0
- 632 008c 9024     		mov	r4, #144
- 633 008e E405     		lsl	r4, r4, #23
- 634              	.L51:
- 179:Src/main.c    **** 	  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
- 635              		.loc 1 179 0
- 636 0090 735D     		ldrb	r3, [r6, r5]
- 637 0092 032B     		cmp	r3, #3
- 638 0094 09D1     		bne	.L31
- 180:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 639              		.loc 1 180 0
- 640 0096 9020     		mov	r0, #144
- 641 0098 C005     		lsl	r0, r0, #23
- 642 009a 8021     		mov	r1, #128
- 643 009c 0902     		lsl	r1, r1, #8
- 644 009e 0122     		mov	r2, #1
- 645 00a0 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 646              	.LVL40:
- 227:Src/main.c    **** 			curPeriode1 = (uint32_t)1000000 / (uint32_t)(curTone1);
- 647              		.loc 1 227 0
- 648 00a4 9649     		ldr	r1, .L52+48
- 649 00a6 8846     		mov	r8, r1
- 181:Src/main.c    **** 		  break;
- 650              		.loc 1 181 0
- 651 00a8 06E0     		b	.L49
- 652              	.L31:
- 183:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
- 653              		.loc 1 183 0
- 654 00aa 201C     		mov	r0, r4
- 655 00ac 8021     		mov	r1, #128
- 656 00ae 0902     		lsl	r1, r1, #8
- 657 00b0 0022     		mov	r2, #0
- 658 00b2 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 659              	.LVL41:
- 185:Src/main.c    ****   }
- 660              		.loc 1 185 0
-ARM GAS  /tmp/ccHuiWdj.s 			page 22
+ 588 0004 80B4     		push	{r7}
+ 589              	.LCFI11:
+ 590              		.cfi_def_cfa_offset 24
+ 591              		.cfi_offset 8, -24
+ 137:Src/main.c    ****   HAL_Init();
+ 592              		.loc 1 137 0
+ 593 0006 FFF7FEFF 		bl	HAL_Init
+ 594              	.LVL28:
+ 144:Src/main.c    ****   SystemClock_Config();
+ 595              		.loc 1 144 0
+ 596 000a FFF7FEFF 		bl	SystemClock_Config
+ 597              	.LVL29:
+ 151:Src/main.c    ****   MX_GPIO_Init();
+ 598              		.loc 1 151 0
+ 599 000e FFF7FEFF 		bl	MX_GPIO_Init
+ 600              	.LVL30:
+ 152:Src/main.c    **** 	MX_DAC_Init();
+ 601              		.loc 1 152 0
+ 602 0012 FFF7FEFF 		bl	MX_DAC_Init
+ 603              	.LVL31:
+ 154:Src/main.c    **** 	HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+ 604              		.loc 1 154 0
+ 605 0016 C84C     		ldr	r4, .L56+24
+ 606 0018 201C     		mov	r0, r4
+ 607 001a 0021     		mov	r1, #0
+ 608 001c FFF7FEFF 		bl	HAL_DAC_Start
+ 609              	.LVL32:
+ 155:Src/main.c    **** 	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2048);
+ 610              		.loc 1 155 0
+ 611 0020 201C     		mov	r0, r4
+ 612 0022 0021     		mov	r1, #0
+ 613 0024 0022     		mov	r2, #0
+ 614 0026 8023     		mov	r3, #128
+ 615 0028 1B01     		lsl	r3, r3, #4
+ 616 002a FFF7FEFF 		bl	HAL_DAC_SetValue
+ 617              	.LVL33:
+ 157:Src/main.c    **** 	MX_TIM14_Init();
+ 618              		.loc 1 157 0
+ 619 002e FFF7FEFF 		bl	MX_TIM14_Init
+ 620              	.LVL34:
+ 158:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim14);
+ 621              		.loc 1 158 0
+ 622 0032 C248     		ldr	r0, .L56+28
+ 623 0034 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 624              	.LVL35:
+ 159:Src/main.c    **** 	TIM14->CR1 &= ~(1UL);
+ 625              		.loc 1 159 0
+ 626 0038 C14B     		ldr	r3, .L56+32
+ 627 003a 1A68     		ldr	r2, [r3]
+ 628 003c 0124     		mov	r4, #1
+ 629 003e A243     		bic	r2, r4
+ 630 0040 1A60     		str	r2, [r3]
+ 161:Src/main.c    **** 	MX_TIM15_Init();
+ 631              		.loc 1 161 0
+ 632 0042 FFF7FEFF 		bl	MX_TIM15_Init
+ 633              	.LVL36:
+ 162:Src/main.c    **** 	HAL_TIM_Base_Start_IT(&htim15);
+ARM GAS  /tmp/ccijM0ES.s 			page 22
 
 
- 661 00b6 EBE7     		b	.L51
- 662              	.L49:
- 191:Src/main.c    **** 		  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
- 663              		.loc 1 191 0
- 664 00b8 FE23     		mov	r3, #254
- 665 00ba 5B00     		lsl	r3, r3, #1
- 666 00bc 8F4A     		ldr	r2, .L52+44
- 667 00be D35C     		ldrb	r3, [r2, r3]
- 668 00c0 032B     		cmp	r3, #3
- 669 00c2 14D0     		beq	.L33
- 195:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
- 670              		.loc 1 195 0
- 671 00c4 9025     		mov	r5, #144
- 672 00c6 ED05     		lsl	r5, r5, #23
- 673 00c8 8024     		mov	r4, #128
- 674 00ca 2402     		lsl	r4, r4, #8
- 675 00cc 281C     		mov	r0, r5
- 676 00ce 211C     		mov	r1, r4
- 677 00d0 0122     		mov	r2, #1
- 678 00d2 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 679              	.LVL42:
- 196:Src/main.c    **** 			  HAL_Delay(200);
- 680              		.loc 1 196 0
- 681 00d6 C820     		mov	r0, #200
- 682 00d8 FFF7FEFF 		bl	HAL_Delay
- 683              	.LVL43:
- 197:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
- 684              		.loc 1 197 0
- 685 00dc 281C     		mov	r0, r5
- 686 00de 211C     		mov	r1, r4
- 687 00e0 0022     		mov	r2, #0
- 688 00e2 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 689              	.LVL44:
- 198:Src/main.c    **** 			  HAL_Delay(200);
- 690              		.loc 1 198 0
- 691 00e6 C820     		mov	r0, #200
- 692 00e8 FFF7FEFF 		bl	HAL_Delay
- 693              	.LVL45:
- 200:Src/main.c    **** 	  }
- 694              		.loc 1 200 0
- 695 00ec E4E7     		b	.L49
- 696              	.L33:
- 202:Src/main.c    **** 		curTone0 = 0;
- 697              		.loc 1 202 0
- 698 00ee 0023     		mov	r3, #0
- 699 00f0 844A     		ldr	r2, .L52+52
- 700 00f2 1380     		strh	r3, [r2]
- 203:Src/main.c    **** 		curTone1 = 0;
- 701              		.loc 1 203 0
- 702 00f4 844A     		ldr	r2, .L52+56
- 703 00f6 1380     		strh	r3, [r2]
- 704              	.LVL46:
- 705              	.LBB6:
- 206:Src/main.c    **** 	      if( freqs[i] > curTone0 ) {
- 706              		.loc 1 206 0
- 707 00f8 844C     		ldr	r4, .L52+60
- 708 00fa 8248     		ldr	r0, .L52+52
-ARM GAS  /tmp/ccHuiWdj.s 			page 23
+ 634              		.loc 1 162 0
+ 635 0046 BF48     		ldr	r0, .L56+36
+ 636 0048 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 637              	.LVL37:
+ 163:Src/main.c    **** 	TIM15->CR1 &= ~(1UL);
+ 638              		.loc 1 163 0
+ 639 004c BE4B     		ldr	r3, .L56+40
+ 640 004e 1A68     		ldr	r2, [r3]
+ 641 0050 A243     		bic	r2, r4
+ 642 0052 1A60     		str	r2, [r3]
+ 165:Src/main.c    **** 	USER_TIM2_Init();
+ 643              		.loc 1 165 0
+ 644 0054 FFF7FEFF 		bl	USER_TIM2_Init
+ 645              	.LVL38:
+ 167:Src/main.c    **** 	HAL_TIM_Base_Start(&htim2);
+ 646              		.loc 1 167 0
+ 647 0058 BC4C     		ldr	r4, .L56+44
+ 648 005a 201C     		mov	r0, r4
+ 649 005c FFF7FEFF 		bl	HAL_TIM_Base_Start
+ 650              	.LVL39:
+ 168:Src/main.c    **** 	HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
+ 651              		.loc 1 168 0
+ 652 0060 201C     		mov	r0, r4
+ 653 0062 0421     		mov	r1, #4
+ 654 0064 FFF7FEFF 		bl	HAL_TIM_OnePulse_Start
+ 655              	.LVL40:
+ 173:Src/main.c    ****   MX_USB_MIDI_INIT();
+ 656              		.loc 1 173 0
+ 657 0068 FFF7FEFF 		bl	MX_USB_MIDI_INIT
+ 658              	.LVL41:
+ 176:Src/main.c    ****   if(FUNC_ERROR == midiInit() ){
+ 659              		.loc 1 176 0
+ 660 006c FFF7FEFF 		bl	midiInit
+ 661              	.LVL42:
+ 662 0070 0028     		cmp	r0, #0
+ 663 0072 16D1     		bne	.L33
+ 178:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 664              		.loc 1 178 0 discriminator 1
+ 665 0074 9026     		mov	r6, #144
+ 666 0076 F605     		lsl	r6, r6, #23
+ 667 0078 8025     		mov	r5, #128
+ 668 007a 2D02     		lsl	r5, r5, #8
+ 179:Src/main.c    **** 		  HAL_Delay(500);
+ 669              		.loc 1 179 0 discriminator 1
+ 670 007c FA24     		mov	r4, #250
+ 671 007e 6400     		lsl	r4, r4, #1
+ 672              	.L54:
+ 178:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 673              		.loc 1 178 0 discriminator 1
+ 674 0080 301C     		mov	r0, r6
+ 675 0082 291C     		mov	r1, r5
+ 676 0084 0122     		mov	r2, #1
+ 677 0086 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 678              	.LVL43:
+ 179:Src/main.c    **** 		  HAL_Delay(500);
+ 679              		.loc 1 179 0 discriminator 1
+ 680 008a 201C     		mov	r0, r4
+ARM GAS  /tmp/ccijM0ES.s 			page 23
 
 
- 210:Src/main.c    **** 	      else if( freqs[i] > curTone1 ) {
- 709              		.loc 1 210 0
- 710 00fc 151C     		mov	r5, r2
- 207:Src/main.c    **** 	          curTone1 = curTone0;
- 711              		.loc 1 207 0
- 712 00fe 171C     		mov	r7, r2
- 208:Src/main.c    **** 	          curTone0 = freqs[i];
- 713              		.loc 1 208 0
- 714 0100 061C     		mov	r6, r0
- 205:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
- 715              		.loc 1 205 0
- 716 0102 0DE0     		b	.L35
- 717              	.LVL47:
- 718              	.L38:
- 206:Src/main.c    **** 	      if( freqs[i] > curTone0 ) {
- 719              		.loc 1 206 0
- 720 0104 5A00     		lsl	r2, r3, #1
- 721 0106 125B     		ldrh	r2, [r2, r4]
- 722 0108 0188     		ldrh	r1, [r0]
- 723 010a 8A42     		cmp	r2, r1
- 724 010c 02D9     		bls	.L36
- 207:Src/main.c    **** 	          curTone1 = curTone0;
- 725              		.loc 1 207 0
- 726 010e 3980     		strh	r1, [r7]
- 208:Src/main.c    **** 	          curTone0 = freqs[i];
- 727              		.loc 1 208 0
- 728 0110 3280     		strh	r2, [r6]
- 729 0112 04E0     		b	.L37
- 730              	.L36:
- 210:Src/main.c    **** 	      else if( freqs[i] > curTone1 ) {
- 731              		.loc 1 210 0
- 732 0114 2988     		ldrh	r1, [r5]
- 733 0116 8A42     		cmp	r2, r1
- 734 0118 01D9     		bls	.L37
- 211:Src/main.c    **** 	          curTone1 = freqs[i];
- 735              		.loc 1 211 0
- 736 011a 7B49     		ldr	r1, .L52+56
- 737 011c 0A80     		strh	r2, [r1]
- 738              	.L37:
- 205:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
- 739              		.loc 1 205 0
- 740 011e 0133     		add	r3, r3, #1
- 741              	.LVL48:
- 742              	.L35:
- 205:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
- 743              		.loc 1 205 0 is_stmt 0 discriminator 1
- 744 0120 0F2B     		cmp	r3, #15
- 745 0122 EFDD     		ble	.L38
- 746              	.LBE6:
- 215:Src/main.c    **** 		if (curTone0 > 20 && curTone0 != lastTone0) { // play one tone using TIM14
- 747              		.loc 1 215 0 is_stmt 1
- 748 0124 774B     		ldr	r3, .L52+52
- 749              	.LVL49:
- 750 0126 1988     		ldrh	r1, [r3]
- 751 0128 1429     		cmp	r1, #20
- 752 012a 19D9     		bls	.L39
- 215:Src/main.c    **** 		if (curTone0 > 20 && curTone0 != lastTone0) { // play one tone using TIM14
-ARM GAS  /tmp/ccHuiWdj.s 			page 24
+ 681 008c FFF7FEFF 		bl	HAL_Delay
+ 682              	.LVL44:
+ 180:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+ 683              		.loc 1 180 0 discriminator 1
+ 684 0090 301C     		mov	r0, r6
+ 685 0092 291C     		mov	r1, r5
+ 686 0094 0022     		mov	r2, #0
+ 687 0096 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 688              	.LVL45:
+ 181:Src/main.c    **** 		  HAL_Delay(500);
+ 689              		.loc 1 181 0 discriminator 1
+ 690 009a 201C     		mov	r0, r4
+ 691 009c FFF7FEFF 		bl	HAL_Delay
+ 692              	.LVL46:
+ 693 00a0 EEE7     		b	.L54
+ 694              	.L33:
+ 187:Src/main.c    **** 	  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
+ 695              		.loc 1 187 0
+ 696 00a2 AB4E     		ldr	r6, .L56+48
+ 697 00a4 FE25     		mov	r5, #254
+ 698 00a6 6D00     		lsl	r5, r5, #1
+ 191:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+ 699              		.loc 1 191 0
+ 700 00a8 9024     		mov	r4, #144
+ 701 00aa E405     		lsl	r4, r4, #23
+ 702              	.L55:
+ 187:Src/main.c    **** 	  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
+ 703              		.loc 1 187 0
+ 704 00ac 735D     		ldrb	r3, [r6, r5]
+ 705 00ae 032B     		cmp	r3, #3
+ 706 00b0 09D1     		bne	.L35
+ 188:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 707              		.loc 1 188 0
+ 708 00b2 9020     		mov	r0, #144
+ 709 00b4 C005     		lsl	r0, r0, #23
+ 710 00b6 8021     		mov	r1, #128
+ 711 00b8 0902     		lsl	r1, r1, #8
+ 712 00ba 0122     		mov	r2, #1
+ 713 00bc FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 714              	.LVL47:
+ 239:Src/main.c    **** 			curPeriode1 = (uint32_t)1000000 / (uint32_t)(curTone1);
+ 715              		.loc 1 239 0
+ 716 00c0 A449     		ldr	r1, .L56+52
+ 717 00c2 8846     		mov	r8, r1
+ 189:Src/main.c    **** 		  break;
+ 718              		.loc 1 189 0
+ 719 00c4 06E0     		b	.L53
+ 720              	.L35:
+ 191:Src/main.c    **** 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+ 721              		.loc 1 191 0
+ 722 00c6 201C     		mov	r0, r4
+ 723 00c8 8021     		mov	r1, #128
+ 724 00ca 0902     		lsl	r1, r1, #8
+ 725 00cc 0022     		mov	r2, #0
+ 726 00ce FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 727              	.LVL48:
+ 193:Src/main.c    ****   }
+ARM GAS  /tmp/ccijM0ES.s 			page 24
 
 
- 753              		.loc 1 215 0 is_stmt 0 discriminator 1
- 754 012c 784B     		ldr	r3, .L52+64
- 755 012e 1B88     		ldrh	r3, [r3]
- 756 0130 9942     		cmp	r1, r3
- 757 0132 15D0     		beq	.L39
- 216:Src/main.c    **** 			curPeriode0 = (uint32_t)1000000 / (uint32_t)(curTone0);
- 758              		.loc 1 216 0 is_stmt 1
- 759 0134 4046     		mov	r0, r8
- 760 0136 FFF7FEFF 		bl	__aeabi_uidiv
- 761              	.LVL50:
- 762 013a 764B     		ldr	r3, .L52+68
- 763 013c 1860     		str	r0, [r3]
- 217:Src/main.c    **** 			TIM14->CNT = 0;
- 764              		.loc 1 217 0
- 765 013e 6B4B     		ldr	r3, .L52+28
- 766 0140 0022     		mov	r2, #0
- 767 0142 5A62     		str	r2, [r3, #36]
- 218:Src/main.c    **** 			TIM14->ARR = curPeriode0;
- 768              		.loc 1 218 0
- 769 0144 D862     		str	r0, [r3, #44]
- 219:Src/main.c    **** 			TIM14->CR1 = TIM14->CR1 | 1;
- 770              		.loc 1 219 0
- 771 0146 1968     		ldr	r1, [r3]
- 772 0148 0122     		mov	r2, #1
- 773 014a 0A43     		orr	r2, r1
- 774 014c 1A60     		str	r2, [r3]
- 220:Src/main.c    **** 			lastTone0 = curTone0;
- 775              		.loc 1 220 0
- 776 014e 6D4B     		ldr	r3, .L52+52
- 777 0150 1A88     		ldrh	r2, [r3]
- 778 0152 6F4B     		ldr	r3, .L52+64
- 779 0154 1A80     		strh	r2, [r3]
- 221:Src/main.c    **** 			noteTimeout = HAL_GetTick();
- 780              		.loc 1 221 0
- 781 0156 FFF7FEFF 		bl	HAL_GetTick
- 782              	.LVL51:
- 783 015a 6F4B     		ldr	r3, .L52+72
- 784 015c 1860     		str	r0, [r3]
- 785 015e 0AE0     		b	.L40
- 786              	.L39:
- 222:Src/main.c    **** 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
- 787              		.loc 1 222 0
- 788 0160 1329     		cmp	r1, #19
- 789 0162 08D8     		bhi	.L40
- 222:Src/main.c    **** 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
- 790              		.loc 1 222 0 is_stmt 0 discriminator 1
- 791 0164 6A4B     		ldr	r3, .L52+64
- 792 0166 1B88     		ldrh	r3, [r3]
- 793 0168 9942     		cmp	r1, r3
- 794 016a 04D0     		beq	.L40
- 223:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
- 795              		.loc 1 223 0 is_stmt 1
- 796 016c 5F4B     		ldr	r3, .L52+28
- 797 016e 1A68     		ldr	r2, [r3]
- 798 0170 0121     		mov	r1, #1
- 799 0172 8A43     		bic	r2, r1
- 800 0174 1A60     		str	r2, [r3]
-ARM GAS  /tmp/ccHuiWdj.s 			page 25
+ 728              		.loc 1 193 0
+ 729 00d2 EBE7     		b	.L55
+ 730              	.L53:
+ 199:Src/main.c    **** 		  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
+ 731              		.loc 1 199 0
+ 732 00d4 FE23     		mov	r3, #254
+ 733 00d6 5B00     		lsl	r3, r3, #1
+ 734 00d8 9D4A     		ldr	r2, .L56+48
+ 735 00da D35C     		ldrb	r3, [r2, r3]
+ 736 00dc 032B     		cmp	r3, #3
+ 737 00de 11D1     		bne	.L37
+ 200:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 738              		.loc 1 200 0
+ 739 00e0 9020     		mov	r0, #144
+ 740 00e2 C005     		lsl	r0, r0, #23
+ 741 00e4 8021     		mov	r1, #128
+ 742 00e6 0902     		lsl	r1, r1, #8
+ 743 00e8 0122     		mov	r2, #1
+ 744 00ea FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 745              	.LVL49:
+ 210:Src/main.c    **** 		curTone0 = 0;
+ 746              		.loc 1 210 0
+ 747 00ee 0023     		mov	r3, #0
+ 748 00f0 994A     		ldr	r2, .L56+56
+ 749 00f2 1380     		strh	r3, [r2]
+ 211:Src/main.c    **** 		curTone1 = 0;
+ 750              		.loc 1 211 0
+ 751 00f4 994A     		ldr	r2, .L56+60
+ 752 00f6 1380     		strh	r3, [r2]
+ 753              	.LVL50:
+ 754              	.LBB6:
+ 214:Src/main.c    **** 	      if( freqs[i] > curTone0 ) {
+ 755              		.loc 1 214 0
+ 756 00f8 994C     		ldr	r4, .L56+64
+ 757 00fa 9748     		ldr	r0, .L56+56
+ 218:Src/main.c    **** 	      else if( freqs[i] > curTone1 ) {
+ 758              		.loc 1 218 0
+ 759 00fc 151C     		mov	r5, r2
+ 215:Src/main.c    **** 	          curTone1 = curTone0;
+ 760              		.loc 1 215 0
+ 761 00fe 171C     		mov	r7, r2
+ 216:Src/main.c    **** 	          curTone0 = freqs[i];
+ 762              		.loc 1 216 0
+ 763 0100 061C     		mov	r6, r0
+ 213:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
+ 764              		.loc 1 213 0
+ 765 0102 22E0     		b	.L38
+ 766              	.LVL51:
+ 767              	.L37:
+ 768              	.LBE6:
+ 203:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+ 769              		.loc 1 203 0
+ 770 0104 9025     		mov	r5, #144
+ 771 0106 ED05     		lsl	r5, r5, #23
+ 772 0108 8024     		mov	r4, #128
+ 773 010a 2402     		lsl	r4, r4, #8
+ 774 010c 281C     		mov	r0, r5
+ARM GAS  /tmp/ccijM0ES.s 			page 25
 
 
- 801              	.L40:
- 226:Src/main.c    **** 		if (curTone1 > 20 && curTone1 != lastTone1) { // play other polyphonic tone ussing TIM15
- 802              		.loc 1 226 0
- 803 0176 644B     		ldr	r3, .L52+56
- 804 0178 1988     		ldrh	r1, [r3]
- 805 017a 1429     		cmp	r1, #20
- 806 017c 19D9     		bls	.L41
- 226:Src/main.c    **** 		if (curTone1 > 20 && curTone1 != lastTone1) { // play other polyphonic tone ussing TIM15
- 807              		.loc 1 226 0 is_stmt 0 discriminator 1
- 808 017e 674B     		ldr	r3, .L52+76
- 809 0180 1B88     		ldrh	r3, [r3]
- 810 0182 9942     		cmp	r1, r3
- 811 0184 15D0     		beq	.L41
- 227:Src/main.c    **** 			curPeriode1 = (uint32_t)1000000 / (uint32_t)(curTone1);
- 812              		.loc 1 227 0 is_stmt 1
- 813 0186 4046     		mov	r0, r8
- 814 0188 FFF7FEFF 		bl	__aeabi_uidiv
- 815              	.LVL52:
- 816 018c 644B     		ldr	r3, .L52+80
- 817 018e 1860     		str	r0, [r3]
- 228:Src/main.c    **** 			TIM15->CNT = 0;
- 818              		.loc 1 228 0
- 819 0190 584B     		ldr	r3, .L52+36
- 820 0192 0022     		mov	r2, #0
- 821 0194 5A62     		str	r2, [r3, #36]
- 229:Src/main.c    **** 			TIM15->ARR = curPeriode1;
- 822              		.loc 1 229 0
- 823 0196 D862     		str	r0, [r3, #44]
- 230:Src/main.c    **** 			TIM15->CR1 = TIM15->CR1 | 1;
- 824              		.loc 1 230 0
- 825 0198 1968     		ldr	r1, [r3]
- 826 019a 0122     		mov	r2, #1
- 827 019c 0A43     		orr	r2, r1
- 828 019e 1A60     		str	r2, [r3]
- 231:Src/main.c    **** 			lastTone1 = curTone1;
- 829              		.loc 1 231 0
- 830 01a0 594B     		ldr	r3, .L52+56
- 831 01a2 1A88     		ldrh	r2, [r3]
- 832 01a4 5D4B     		ldr	r3, .L52+76
- 833 01a6 1A80     		strh	r2, [r3]
- 232:Src/main.c    **** 			noteTimeout = HAL_GetTick();
- 834              		.loc 1 232 0
- 835 01a8 FFF7FEFF 		bl	HAL_GetTick
- 836              	.LVL53:
- 837 01ac 5A4B     		ldr	r3, .L52+72
- 838 01ae 1860     		str	r0, [r3]
- 839 01b0 0AE0     		b	.L42
- 840              	.L41:
- 233:Src/main.c    **** 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
- 841              		.loc 1 233 0
- 842 01b2 1329     		cmp	r1, #19
- 843 01b4 08D8     		bhi	.L42
- 233:Src/main.c    **** 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
- 844              		.loc 1 233 0 is_stmt 0 discriminator 1
- 845 01b6 594B     		ldr	r3, .L52+76
- 846 01b8 1B88     		ldrh	r3, [r3]
- 847 01ba 9942     		cmp	r1, r3
-ARM GAS  /tmp/ccHuiWdj.s 			page 26
+ 775 010e 211C     		mov	r1, r4
+ 776 0110 0122     		mov	r2, #1
+ 777 0112 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 778              	.LVL52:
+ 204:Src/main.c    **** 			  HAL_Delay(200);
+ 779              		.loc 1 204 0
+ 780 0116 C820     		mov	r0, #200
+ 781 0118 FFF7FEFF 		bl	HAL_Delay
+ 782              	.LVL53:
+ 205:Src/main.c    **** 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+ 783              		.loc 1 205 0
+ 784 011c 281C     		mov	r0, r5
+ 785 011e 211C     		mov	r1, r4
+ 786 0120 0022     		mov	r2, #0
+ 787 0122 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 788              	.LVL54:
+ 206:Src/main.c    **** 			  HAL_Delay(200);
+ 789              		.loc 1 206 0
+ 790 0126 C820     		mov	r0, #200
+ 791 0128 FFF7FEFF 		bl	HAL_Delay
+ 792              	.LVL55:
+ 208:Src/main.c    **** 	  }
+ 793              		.loc 1 208 0
+ 794 012c D2E7     		b	.L53
+ 795              	.LVL56:
+ 796              	.L42:
+ 797              	.LBB7:
+ 214:Src/main.c    **** 	      if( freqs[i] > curTone0 ) {
+ 798              		.loc 1 214 0
+ 799 012e 5A00     		lsl	r2, r3, #1
+ 800 0130 125B     		ldrh	r2, [r2, r4]
+ 801 0132 0188     		ldrh	r1, [r0]
+ 802 0134 8A42     		cmp	r2, r1
+ 803 0136 02D9     		bls	.L40
+ 215:Src/main.c    **** 	          curTone1 = curTone0;
+ 804              		.loc 1 215 0
+ 805 0138 3980     		strh	r1, [r7]
+ 216:Src/main.c    **** 	          curTone0 = freqs[i];
+ 806              		.loc 1 216 0
+ 807 013a 3280     		strh	r2, [r6]
+ 808 013c 04E0     		b	.L41
+ 809              	.L40:
+ 218:Src/main.c    **** 	      else if( freqs[i] > curTone1 ) {
+ 810              		.loc 1 218 0
+ 811 013e 2988     		ldrh	r1, [r5]
+ 812 0140 8A42     		cmp	r2, r1
+ 813 0142 01D9     		bls	.L41
+ 219:Src/main.c    **** 	          curTone1 = freqs[i];
+ 814              		.loc 1 219 0
+ 815 0144 8549     		ldr	r1, .L56+60
+ 816 0146 0A80     		strh	r2, [r1]
+ 817              	.L41:
+ 213:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
+ 818              		.loc 1 213 0
+ 819 0148 0133     		add	r3, r3, #1
+ 820              	.LVL57:
+ 821              	.L38:
+ARM GAS  /tmp/ccijM0ES.s 			page 26
 
 
- 848 01bc 04D0     		beq	.L42
- 234:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
- 849              		.loc 1 234 0 is_stmt 1
- 850 01be 4D4B     		ldr	r3, .L52+36
- 851 01c0 1A68     		ldr	r2, [r3]
- 852 01c2 0121     		mov	r1, #1
- 853 01c4 8A43     		bic	r2, r1
- 854 01c6 1A60     		str	r2, [r3]
- 855              	.L42:
- 237:Src/main.c    **** 		if ((HAL_GetTick() - noteTimeout) > 1000) {
- 856              		.loc 1 237 0
- 857 01c8 FFF7FEFF 		bl	HAL_GetTick
- 858              	.LVL54:
- 859 01cc 524B     		ldr	r3, .L52+72
- 860 01ce 1B68     		ldr	r3, [r3]
- 861 01d0 C01A     		sub	r0, r0, r3
- 862 01d2 FA23     		mov	r3, #250
- 863 01d4 9B00     		lsl	r3, r3, #2
- 864 01d6 9842     		cmp	r0, r3
- 865 01d8 11D9     		bls	.L43
- 238:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
- 866              		.loc 1 238 0
- 867 01da 444B     		ldr	r3, .L52+28
- 868 01dc 1968     		ldr	r1, [r3]
- 869 01de 0122     		mov	r2, #1
- 870 01e0 9143     		bic	r1, r2
- 871 01e2 1960     		str	r1, [r3]
- 239:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
- 872              		.loc 1 239 0
- 873 01e4 434B     		ldr	r3, .L52+36
- 874 01e6 1968     		ldr	r1, [r3]
- 875 01e8 9143     		bic	r1, r2
- 876 01ea 1960     		str	r1, [r3]
- 877              	.LVL55:
- 878              	.LBB7:
- 240:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
- 879              		.loc 1 240 0
- 880 01ec 0023     		mov	r3, #0
- 241:Src/main.c    **** 				freqs[i] = 0;
- 881              		.loc 1 241 0
- 882 01ee 4748     		ldr	r0, .L52+60
- 883 01f0 0021     		mov	r1, #0
- 240:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
- 884              		.loc 1 240 0
- 885 01f2 02E0     		b	.L44
- 886              	.LVL56:
- 887              	.L45:
- 241:Src/main.c    **** 				freqs[i] = 0;
- 888              		.loc 1 241 0 discriminator 2
- 889 01f4 5A00     		lsl	r2, r3, #1
- 890 01f6 1152     		strh	r1, [r2, r0]
- 240:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
- 891              		.loc 1 240 0 discriminator 2
- 892 01f8 0133     		add	r3, r3, #1
- 893              	.LVL57:
- 894              	.L44:
- 240:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
-ARM GAS  /tmp/ccHuiWdj.s 			page 27
+ 213:Src/main.c    **** 	  for( int i = 0; i < 16; i++ ) { // find max pitch from all channels
+ 822              		.loc 1 213 0 is_stmt 0 discriminator 1
+ 823 014a 0F2B     		cmp	r3, #15
+ 824 014c EFDD     		ble	.L42
+ 825              	.LBE7:
+ 223:Src/main.c    **** 		if (curTone0 > 20 && curTone0 != lastTone0) { // play one tone using TIM14
+ 826              		.loc 1 223 0 is_stmt 1
+ 827 014e 824B     		ldr	r3, .L56+56
+ 828              	.LVL58:
+ 829 0150 1988     		ldrh	r1, [r3]
+ 830 0152 1429     		cmp	r1, #20
+ 831 0154 20D9     		bls	.L43
+ 223:Src/main.c    **** 		if (curTone0 > 20 && curTone0 != lastTone0) { // play one tone using TIM14
+ 832              		.loc 1 223 0 is_stmt 0 discriminator 1
+ 833 0156 834B     		ldr	r3, .L56+68
+ 834 0158 1B88     		ldrh	r3, [r3]
+ 835 015a 9942     		cmp	r1, r3
+ 836 015c 1CD0     		beq	.L43
+ 224:Src/main.c    **** 			curPeriode0 = (uint32_t)1000000 / (uint32_t)(curTone0);
+ 837              		.loc 1 224 0 is_stmt 1
+ 838 015e 4046     		mov	r0, r8
+ 839 0160 FFF7FEFF 		bl	__aeabi_uidiv
+ 840              	.LVL59:
+ 841 0164 804B     		ldr	r3, .L56+72
+ 842 0166 1860     		str	r0, [r3]
+ 225:Src/main.c    **** 			TIM14->CNT = 0;
+ 843              		.loc 1 225 0
+ 844 0168 754B     		ldr	r3, .L56+32
+ 845 016a 0022     		mov	r2, #0
+ 846 016c 5A62     		str	r2, [r3, #36]
+ 226:Src/main.c    **** 			TIM14->ARR = curPeriode0;
+ 847              		.loc 1 226 0
+ 848 016e D862     		str	r0, [r3, #44]
+ 227:Src/main.c    **** 			TIM14->CR1 = TIM14->CR1 | 1;
+ 849              		.loc 1 227 0
+ 850 0170 1968     		ldr	r1, [r3]
+ 851 0172 0122     		mov	r2, #1
+ 852 0174 0A43     		orr	r2, r1
+ 853 0176 1A60     		str	r2, [r3]
+ 228:Src/main.c    **** 			lastTone0 = curTone0;
+ 854              		.loc 1 228 0
+ 855 0178 774B     		ldr	r3, .L56+56
+ 856 017a 1A88     		ldrh	r2, [r3]
+ 857 017c 794B     		ldr	r3, .L56+68
+ 858 017e 1A80     		strh	r2, [r3]
+ 229:Src/main.c    **** 			noteTimeout = HAL_GetTick();
+ 859              		.loc 1 229 0
+ 860 0180 FFF7FEFF 		bl	HAL_GetTick
+ 861              	.LVL60:
+ 862 0184 794B     		ldr	r3, .L56+76
+ 863 0186 1860     		str	r0, [r3]
+ 231:Src/main.c    **** 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, SET);
+ 864              		.loc 1 231 0
+ 865 0188 9020     		mov	r0, #144
+ 866 018a C005     		lsl	r0, r0, #23
+ 867 018c 8021     		mov	r1, #128
+ 868 018e C900     		lsl	r1, r1, #3
+ARM GAS  /tmp/ccijM0ES.s 			page 27
 
 
- 895              		.loc 1 240 0 is_stmt 0 discriminator 1
- 896 01fa 0F2B     		cmp	r3, #15
- 897 01fc FADD     		ble	.L45
- 898              	.LVL58:
- 899              	.L43:
- 900              	.LBE7:
- 248:Src/main.c    **** 		if( FUNC_SUCCESS == midiGetFromUsbRx(0, &uart_tx_dat)){
- 901              		.loc 1 248 0 is_stmt 1
- 902 01fe 0020     		mov	r0, #0
- 903 0200 4849     		ldr	r1, .L52+84
- 904 0202 FFF7FEFF 		bl	midiGetFromUsbRx
- 905              	.LVL59:
- 906 0206 0128     		cmp	r0, #1
- 907 0208 00D0     		beq	.LCB761
- 908 020a 55E7     		b	.L49	@long jump
- 909              	.LCB761:
- 249:Src/main.c    **** 			if (uart_tx_dat >> 7 == 1) {
- 910              		.loc 1 249 0
- 911 020c 454B     		ldr	r3, .L52+84
- 912 020e 1B78     		ldrb	r3, [r3]
- 913 0210 DA09     		lsr	r2, r3, #7
- 914 0212 012A     		cmp	r2, #1
- 915 0214 08D1     		bne	.L46
- 250:Src/main.c    **** 				midiBuffer[0] = uart_tx_dat;
- 916              		.loc 1 250 0
- 917 0216 444A     		ldr	r2, .L52+88
- 918 0218 1370     		strb	r3, [r2]
- 251:Src/main.c    **** 				midiBuffer[1] = 0;
- 919              		.loc 1 251 0
- 920 021a 0023     		mov	r3, #0
- 921 021c 5370     		strb	r3, [r2, #1]
- 252:Src/main.c    **** 				midiBuffer[2] = 0;
- 922              		.loc 1 252 0
- 923 021e 9370     		strb	r3, [r2, #2]
- 253:Src/main.c    **** 				midiState = 1;
- 924              		.loc 1 253 0
- 925 0220 0122     		mov	r2, #1
- 926 0222 424B     		ldr	r3, .L52+92
- 927 0224 1A70     		strb	r2, [r3]
- 928 0226 47E7     		b	.L49
- 929              	.L46:
- 254:Src/main.c    **** 			} else if (midiState == 1) {
- 930              		.loc 1 254 0
- 931 0228 404A     		ldr	r2, .L52+92
- 932 022a 1278     		ldrb	r2, [r2]
- 933 022c 012A     		cmp	r2, #1
- 934 022e 05D1     		bne	.L47
- 255:Src/main.c    **** 				midiBuffer[1] = uart_tx_dat;
- 935              		.loc 1 255 0
- 936 0230 3D4A     		ldr	r2, .L52+88
- 937 0232 5370     		strb	r3, [r2, #1]
- 256:Src/main.c    **** 				midiState = 2;
- 938              		.loc 1 256 0
- 939 0234 0222     		mov	r2, #2
- 940 0236 3D4B     		ldr	r3, .L52+92
- 941 0238 1A70     		strb	r2, [r3]
- 942 023a 3DE7     		b	.L49
-ARM GAS  /tmp/ccHuiWdj.s 			page 28
+ 869 0190 0122     		mov	r2, #1
+ 870 0192 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 871              	.LVL61:
+ 872 0196 11E0     		b	.L44
+ 873              	.L43:
+ 232:Src/main.c    **** 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
+ 874              		.loc 1 232 0
+ 875 0198 1329     		cmp	r1, #19
+ 876 019a 0FD8     		bhi	.L44
+ 232:Src/main.c    **** 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
+ 877              		.loc 1 232 0 is_stmt 0 discriminator 1
+ 878 019c 714B     		ldr	r3, .L56+68
+ 879 019e 1B88     		ldrh	r3, [r3]
+ 880 01a0 9942     		cmp	r1, r3
+ 881 01a2 0BD0     		beq	.L44
+ 233:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
+ 882              		.loc 1 233 0 is_stmt 1
+ 883 01a4 664B     		ldr	r3, .L56+32
+ 884 01a6 1A68     		ldr	r2, [r3]
+ 885 01a8 0121     		mov	r1, #1
+ 886 01aa 8A43     		bic	r2, r1
+ 887 01ac 1A60     		str	r2, [r3]
+ 235:Src/main.c    **** 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
+ 888              		.loc 1 235 0
+ 889 01ae 9020     		mov	r0, #144
+ 890 01b0 C005     		lsl	r0, r0, #23
+ 891 01b2 8021     		mov	r1, #128
+ 892 01b4 C900     		lsl	r1, r1, #3
+ 893 01b6 0022     		mov	r2, #0
+ 894 01b8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 895              	.LVL62:
+ 896              	.L44:
+ 238:Src/main.c    **** 		if (curTone1 > 20 && curTone1 != lastTone1) { // play other polyphonic tone ussing TIM15
+ 897              		.loc 1 238 0
+ 898 01bc 674B     		ldr	r3, .L56+60
+ 899 01be 1988     		ldrh	r1, [r3]
+ 900 01c0 1429     		cmp	r1, #20
+ 901 01c2 19D9     		bls	.L45
+ 238:Src/main.c    **** 		if (curTone1 > 20 && curTone1 != lastTone1) { // play other polyphonic tone ussing TIM15
+ 902              		.loc 1 238 0 is_stmt 0 discriminator 1
+ 903 01c4 6A4B     		ldr	r3, .L56+80
+ 904 01c6 1B88     		ldrh	r3, [r3]
+ 905 01c8 9942     		cmp	r1, r3
+ 906 01ca 15D0     		beq	.L45
+ 239:Src/main.c    **** 			curPeriode1 = (uint32_t)1000000 / (uint32_t)(curTone1);
+ 907              		.loc 1 239 0 is_stmt 1
+ 908 01cc 4046     		mov	r0, r8
+ 909 01ce FFF7FEFF 		bl	__aeabi_uidiv
+ 910              	.LVL63:
+ 911 01d2 684B     		ldr	r3, .L56+84
+ 912 01d4 1860     		str	r0, [r3]
+ 240:Src/main.c    **** 			TIM15->CNT = 0;
+ 913              		.loc 1 240 0
+ 914 01d6 5C4B     		ldr	r3, .L56+40
+ 915 01d8 0022     		mov	r2, #0
+ 916 01da 5A62     		str	r2, [r3, #36]
+ 241:Src/main.c    **** 			TIM15->ARR = curPeriode1;
+ARM GAS  /tmp/ccijM0ES.s 			page 28
 
 
- 943              	.L47:
- 257:Src/main.c    **** 			} else if (midiState == 2) {
- 944              		.loc 1 257 0
- 945 023c 022A     		cmp	r2, #2
- 946 023e 00D0     		beq	.LCB794
- 947 0240 3AE7     		b	.L49	@long jump
- 948              	.LCB794:
- 258:Src/main.c    **** 				midiBuffer[2] = uart_tx_dat;
- 949              		.loc 1 258 0
- 950 0242 394A     		ldr	r2, .L52+88
- 951 0244 9370     		strb	r3, [r2, #2]
- 259:Src/main.c    **** 				midiState = 3;
- 952              		.loc 1 259 0
- 953 0246 0321     		mov	r1, #3
- 954 0248 384B     		ldr	r3, .L52+92
- 955 024a 1970     		strb	r1, [r3]
- 261:Src/main.c    **** 				if ((midiBuffer[0] & 0xF0) == 0x90) { // Note on, 2 data bytes
- 956              		.loc 1 261 0
- 957 024c 1378     		ldrb	r3, [r2]
- 958 024e 0F22     		mov	r2, #15
- 959 0250 9343     		bic	r3, r2
- 960 0252 902B     		cmp	r3, #144
- 961 0254 1CD1     		bne	.L48
- 962              	.LBB8:
- 262:Src/main.c    **** 					char key = midiBuffer[1];
- 963              		.loc 1 262 0
- 964 0256 344C     		ldr	r4, .L52+88
- 965 0258 6078     		ldrb	r0, [r4, #1]
- 966              	.LVL60:
- 265:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
- 967              		.loc 1 265 0
- 968 025a 4538     		sub	r0, r0, #69
- 969 025c FFF7FEFF 		bl	__aeabi_i2d
- 970              	.LVL61:
- 971 0260 1C4B     		ldr	r3, .L52+4
- 972 0262 1B4A     		ldr	r2, .L52
- 973 0264 FFF7FEFF 		bl	__aeabi_ddiv
- 974              	.LVL62:
- 975 0268 021C     		mov	r2, r0
- 976 026a 0B1C     		mov	r3, r1
- 977 026c 1A48     		ldr	r0, .L52+8
- 978 026e 1B49     		ldr	r1, .L52+12
- 979 0270 FFF7FEFF 		bl	pow
- 980              	.LVL63:
- 981 0274 1A4A     		ldr	r2, .L52+16
- 982 0276 1B4B     		ldr	r3, .L52+20
- 983 0278 FFF7FEFF 		bl	__aeabi_dmul
- 984              	.LVL64:
- 985 027c FFF7FEFF 		bl	__aeabi_d2uiz
- 986              	.LVL65:
- 266:Src/main.c    **** 					curChannel = midiBuffer[0] & 0xF;
- 987              		.loc 1 266 0
- 988 0280 2378     		ldrb	r3, [r4]
- 989 0282 0F22     		mov	r2, #15
- 990 0284 1340     		and	r3, r2
- 991 0286 2A4A     		ldr	r2, .L52+96
- 992 0288 1380     		strh	r3, [r2]
-ARM GAS  /tmp/ccHuiWdj.s 			page 29
+ 917              		.loc 1 241 0
+ 918 01dc D862     		str	r0, [r3, #44]
+ 242:Src/main.c    **** 			TIM15->CR1 = TIM15->CR1 | 1;
+ 919              		.loc 1 242 0
+ 920 01de 1968     		ldr	r1, [r3]
+ 921 01e0 0122     		mov	r2, #1
+ 922 01e2 0A43     		orr	r2, r1
+ 923 01e4 1A60     		str	r2, [r3]
+ 243:Src/main.c    **** 			lastTone1 = curTone1;
+ 924              		.loc 1 243 0
+ 925 01e6 5D4B     		ldr	r3, .L56+60
+ 926 01e8 1A88     		ldrh	r2, [r3]
+ 927 01ea 614B     		ldr	r3, .L56+80
+ 928 01ec 1A80     		strh	r2, [r3]
+ 244:Src/main.c    **** 			noteTimeout = HAL_GetTick();
+ 929              		.loc 1 244 0
+ 930 01ee FFF7FEFF 		bl	HAL_GetTick
+ 931              	.LVL64:
+ 932 01f2 5E4B     		ldr	r3, .L56+76
+ 933 01f4 1860     		str	r0, [r3]
+ 934 01f6 0AE0     		b	.L46
+ 935              	.L45:
+ 245:Src/main.c    **** 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
+ 936              		.loc 1 245 0
+ 937 01f8 1329     		cmp	r1, #19
+ 938 01fa 08D8     		bhi	.L46
+ 245:Src/main.c    **** 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
+ 939              		.loc 1 245 0 is_stmt 0 discriminator 1
+ 940 01fc 5C4B     		ldr	r3, .L56+80
+ 941 01fe 1B88     		ldrh	r3, [r3]
+ 942 0200 9942     		cmp	r1, r3
+ 943 0202 04D0     		beq	.L46
+ 246:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
+ 944              		.loc 1 246 0 is_stmt 1
+ 945 0204 504B     		ldr	r3, .L56+40
+ 946 0206 1A68     		ldr	r2, [r3]
+ 947 0208 0121     		mov	r1, #1
+ 948 020a 8A43     		bic	r2, r1
+ 949 020c 1A60     		str	r2, [r3]
+ 950              	.L46:
+ 249:Src/main.c    **** 		if ((HAL_GetTick() - noteTimeout) > 1000) {
+ 951              		.loc 1 249 0
+ 952 020e FFF7FEFF 		bl	HAL_GetTick
+ 953              	.LVL65:
+ 954 0212 564B     		ldr	r3, .L56+76
+ 955 0214 1B68     		ldr	r3, [r3]
+ 956 0216 C01A     		sub	r0, r0, r3
+ 957 0218 FA23     		mov	r3, #250
+ 958 021a 9B00     		lsl	r3, r3, #2
+ 959 021c 9842     		cmp	r0, r3
+ 960 021e 18D9     		bls	.L47
+ 250:Src/main.c    **** 			TIM14->CR1 &= ~(1UL);
+ 961              		.loc 1 250 0
+ 962 0220 474B     		ldr	r3, .L56+32
+ 963 0222 1968     		ldr	r1, [r3]
+ 964 0224 0122     		mov	r2, #1
+ 965 0226 9143     		bic	r1, r2
+ARM GAS  /tmp/ccijM0ES.s 			page 29
 
 
- 267:Src/main.c    **** 					freqs[curChannel] = freq;
- 993              		.loc 1 267 0
- 994 028a 5B00     		lsl	r3, r3, #1
- 995 028c 1F4A     		ldr	r2, .L52+60
- 996 028e D052     		strh	r0, [r2, r3]
- 997              	.LVL66:
- 998              	.L48:
- 999              	.LBE8:
- 270:Src/main.c    **** 				} if ((midiBuffer[0] &0xF0) == 0x80) { // Note off, 2 data bytes
- 1000              		.loc 1 270 0
- 1001 0290 254B     		ldr	r3, .L52+88
- 1002 0292 1B78     		ldrb	r3, [r3]
- 1003 0294 0F22     		mov	r2, #15
- 1004 0296 9343     		bic	r3, r2
- 1005 0298 802B     		cmp	r3, #128
- 1006 029a 00D0     		beq	.LCB853
- 1007 029c 0CE7     		b	.L49	@long jump
- 1008              	.LCB853:
- 1009              	.LBB9:
- 271:Src/main.c    **** 					char key = midiBuffer[1];
- 1010              		.loc 1 271 0
- 1011 029e 224C     		ldr	r4, .L52+88
- 1012 02a0 6078     		ldrb	r0, [r4, #1]
- 1013              	.LVL67:
- 274:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
- 1014              		.loc 1 274 0
- 1015 02a2 4538     		sub	r0, r0, #69
- 1016 02a4 FFF7FEFF 		bl	__aeabi_i2d
- 1017              	.LVL68:
- 1018 02a8 0A4B     		ldr	r3, .L52+4
- 1019 02aa 094A     		ldr	r2, .L52
- 1020 02ac FFF7FEFF 		bl	__aeabi_ddiv
- 1021              	.LVL69:
- 1022 02b0 021C     		mov	r2, r0
- 1023 02b2 0B1C     		mov	r3, r1
- 1024 02b4 0848     		ldr	r0, .L52+8
- 1025 02b6 0949     		ldr	r1, .L52+12
- 1026 02b8 FFF7FEFF 		bl	pow
- 1027              	.LVL70:
- 277:Src/main.c    **** 					freqs[midiBuffer[0] & 0xF] = 0;
- 1028              		.loc 1 277 0
- 1029 02bc 2378     		ldrb	r3, [r4]
- 1030 02be 0F22     		mov	r2, #15
- 1031 02c0 1A40     		and	r2, r3
- 1032 02c2 5200     		lsl	r2, r2, #1
- 1033 02c4 0021     		mov	r1, #0
- 1034 02c6 114B     		ldr	r3, .L52+60
- 1035 02c8 D152     		strh	r1, [r2, r3]
- 1036 02ca F5E6     		b	.L49
- 1037              	.L53:
- 1038 02cc C046C046 		.align	3
- 1039              	.L52:
- 1040 02d0 00000000 		.word	0
- 1041 02d4 00002840 		.word	1076363264
- 1042 02d8 00000000 		.word	0
- 1043 02dc 00000040 		.word	1073741824
- 1044 02e0 00000000 		.word	0
-ARM GAS  /tmp/ccHuiWdj.s 			page 30
+ 966 0228 1960     		str	r1, [r3]
+ 251:Src/main.c    **** 			TIM15->CR1 &= ~(1UL);
+ 967              		.loc 1 251 0
+ 968 022a 474B     		ldr	r3, .L56+40
+ 969 022c 1968     		ldr	r1, [r3]
+ 970 022e 9143     		bic	r1, r2
+ 971 0230 1960     		str	r1, [r3]
+ 972              	.LVL66:
+ 973              	.LBB8:
+ 252:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
+ 974              		.loc 1 252 0
+ 975 0232 0023     		mov	r3, #0
+ 253:Src/main.c    **** 				freqs[i] = 0;
+ 976              		.loc 1 253 0
+ 977 0234 4A48     		ldr	r0, .L56+64
+ 978 0236 0021     		mov	r1, #0
+ 252:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
+ 979              		.loc 1 252 0
+ 980 0238 02E0     		b	.L48
+ 981              	.LVL67:
+ 982              	.L49:
+ 253:Src/main.c    **** 				freqs[i] = 0;
+ 983              		.loc 1 253 0 discriminator 2
+ 984 023a 5A00     		lsl	r2, r3, #1
+ 985 023c 1152     		strh	r1, [r2, r0]
+ 252:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
+ 986              		.loc 1 252 0 discriminator 2
+ 987 023e 0133     		add	r3, r3, #1
+ 988              	.LVL68:
+ 989              	.L48:
+ 252:Src/main.c    **** 			for (int i = 0; i < 16; i++) {
+ 990              		.loc 1 252 0 is_stmt 0 discriminator 1
+ 991 0240 0F2B     		cmp	r3, #15
+ 992 0242 FADD     		ble	.L49
+ 993              	.LBE8:
+ 256:Src/main.c    **** 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
+ 994              		.loc 1 256 0 is_stmt 1
+ 995 0244 9020     		mov	r0, #144
+ 996 0246 C005     		lsl	r0, r0, #23
+ 997 0248 8021     		mov	r1, #128
+ 998 024a C900     		lsl	r1, r1, #3
+ 999 024c 0022     		mov	r2, #0
+ 1000 024e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1001              	.LVL69:
+ 1002              	.L47:
+ 262:Src/main.c    **** 		if( FUNC_SUCCESS == midiGetFromUsbRx(0, &uart_tx_dat)){
+ 1003              		.loc 1 262 0
+ 1004 0252 0020     		mov	r0, #0
+ 1005 0254 4849     		ldr	r1, .L56+88
+ 1006 0256 FFF7FEFF 		bl	midiGetFromUsbRx
+ 1007              	.LVL70:
+ 1008 025a 0128     		cmp	r0, #1
+ 1009 025c 00D0     		beq	.LCB854
+ 1010 025e 39E7     		b	.L53	@long jump
+ 1011              	.LCB854:
+ 263:Src/main.c    **** 			if (uart_tx_dat >> 7 == 1) {
+ 1012              		.loc 1 263 0
+ARM GAS  /tmp/ccijM0ES.s 			page 30
 
 
- 1045 02e4 00807B40 		.word	1081835520
- 1046 02e8 00000000 		.word	htim14
- 1047 02ec 00200040 		.word	1073750016
- 1048 02f0 00000000 		.word	htim15
- 1049 02f4 00400140 		.word	1073823744
- 1050 02f8 00000000 		.word	htim2
- 1051 02fc 00000000 		.word	hUsbDeviceFS
- 1052 0300 40420F00 		.word	1000000
- 1053 0304 00000000 		.word	.LANCHOR0
- 1054 0308 00000000 		.word	.LANCHOR1
- 1055 030c 00000000 		.word	.LANCHOR2
- 1056 0310 00000000 		.word	.LANCHOR3
- 1057 0314 00000000 		.word	.LANCHOR4
- 1058 0318 00000000 		.word	.LANCHOR5
- 1059 031c 00000000 		.word	.LANCHOR6
- 1060 0320 00000000 		.word	.LANCHOR7
- 1061 0324 00000000 		.word	uart_tx_dat
- 1062 0328 00000000 		.word	midiBuffer
- 1063 032c 00000000 		.word	.LANCHOR8
- 1064 0330 00000000 		.word	.LANCHOR9
- 1065              	.LBE9:
- 1066              		.cfi_endproc
- 1067              	.LFE35:
- 1069              		.global	freqs
- 1070              		.global	noteTimeout
- 1071              		.global	curPeriode1
- 1072              		.global	curPeriode0
- 1073              		.global	lastTone1
- 1074              		.global	lastTone0
- 1075              		.global	curChannel
- 1076              		.global	curTone1
- 1077              		.global	curTone0
- 1078              		.global	midiState
- 1079              		.comm	midiBuffer,4,4
- 1080              		.comm	uart_tx_dat,1,1
- 1081              		.comm	htim2,64,4
- 1082              		.comm	htim15,64,4
- 1083              		.comm	htim14,64,4
- 1084 0334 C046C046 		.section	.bss.lastTone0,"aw",%nobits
- 1085              		.align	1
- 1086              		.set	.LANCHOR3,. + 0
- 1089              	lastTone0:
- 1090 0000 0000     		.space	2
- 1091              		.section	.bss.lastTone1,"aw",%nobits
- 1092              		.align	1
- 1093              		.set	.LANCHOR6,. + 0
- 1096              	lastTone1:
- 1097 0000 0000     		.space	2
- 1098              		.section	.bss.curTone0,"aw",%nobits
- 1099              		.align	1
- 1100              		.set	.LANCHOR0,. + 0
- 1103              	curTone0:
- 1104 0000 0000     		.space	2
- 1105              		.section	.bss.curTone1,"aw",%nobits
- 1106              		.align	1
- 1107              		.set	.LANCHOR1,. + 0
- 1110              	curTone1:
-ARM GAS  /tmp/ccHuiWdj.s 			page 31
+ 1013 0260 454B     		ldr	r3, .L56+88
+ 1014 0262 1B78     		ldrb	r3, [r3]
+ 1015 0264 DA09     		lsr	r2, r3, #7
+ 1016 0266 012A     		cmp	r2, #1
+ 1017 0268 08D1     		bne	.L50
+ 264:Src/main.c    **** 				midiBuffer[0] = uart_tx_dat;
+ 1018              		.loc 1 264 0
+ 1019 026a 444A     		ldr	r2, .L56+92
+ 1020 026c 1370     		strb	r3, [r2]
+ 265:Src/main.c    **** 				midiBuffer[1] = 0;
+ 1021              		.loc 1 265 0
+ 1022 026e 0023     		mov	r3, #0
+ 1023 0270 5370     		strb	r3, [r2, #1]
+ 266:Src/main.c    **** 				midiBuffer[2] = 0;
+ 1024              		.loc 1 266 0
+ 1025 0272 9370     		strb	r3, [r2, #2]
+ 267:Src/main.c    **** 				midiState = 1;
+ 1026              		.loc 1 267 0
+ 1027 0274 0122     		mov	r2, #1
+ 1028 0276 424B     		ldr	r3, .L56+96
+ 1029 0278 1A70     		strb	r2, [r3]
+ 1030 027a 2BE7     		b	.L53
+ 1031              	.L50:
+ 268:Src/main.c    **** 			} else if (midiState == 1) {
+ 1032              		.loc 1 268 0
+ 1033 027c 404A     		ldr	r2, .L56+96
+ 1034 027e 1278     		ldrb	r2, [r2]
+ 1035 0280 012A     		cmp	r2, #1
+ 1036 0282 05D1     		bne	.L51
+ 269:Src/main.c    **** 				midiBuffer[1] = uart_tx_dat;
+ 1037              		.loc 1 269 0
+ 1038 0284 3D4A     		ldr	r2, .L56+92
+ 1039 0286 5370     		strb	r3, [r2, #1]
+ 270:Src/main.c    **** 				midiState = 2;
+ 1040              		.loc 1 270 0
+ 1041 0288 0222     		mov	r2, #2
+ 1042 028a 3D4B     		ldr	r3, .L56+96
+ 1043 028c 1A70     		strb	r2, [r3]
+ 1044 028e 21E7     		b	.L53
+ 1045              	.L51:
+ 271:Src/main.c    **** 			} else if (midiState == 2) {
+ 1046              		.loc 1 271 0
+ 1047 0290 022A     		cmp	r2, #2
+ 1048 0292 00D0     		beq	.LCB887
+ 1049 0294 1EE7     		b	.L53	@long jump
+ 1050              	.LCB887:
+ 272:Src/main.c    **** 				midiBuffer[2] = uart_tx_dat;
+ 1051              		.loc 1 272 0
+ 1052 0296 394A     		ldr	r2, .L56+92
+ 1053 0298 9370     		strb	r3, [r2, #2]
+ 273:Src/main.c    **** 				midiState = 3;
+ 1054              		.loc 1 273 0
+ 1055 029a 0321     		mov	r1, #3
+ 1056 029c 384B     		ldr	r3, .L56+96
+ 1057 029e 1970     		strb	r1, [r3]
+ 275:Src/main.c    **** 				if ((midiBuffer[0] & 0xF0) == 0x90) { // Note on, 2 data bytes
+ 1058              		.loc 1 275 0
+ARM GAS  /tmp/ccijM0ES.s 			page 31
 
 
- 1111 0000 0000     		.space	2
- 1112              		.section	.bss.curPeriode0,"aw",%nobits
- 1113              		.align	2
- 1114              		.set	.LANCHOR4,. + 0
- 1117              	curPeriode0:
- 1118 0000 00000000 		.space	4
- 1119              		.section	.bss.curPeriode1,"aw",%nobits
- 1120              		.align	2
- 1121              		.set	.LANCHOR7,. + 0
- 1124              	curPeriode1:
- 1125 0000 00000000 		.space	4
- 1126              		.section	.bss.noteTimeout,"aw",%nobits
- 1127              		.align	2
- 1128              		.set	.LANCHOR5,. + 0
- 1131              	noteTimeout:
- 1132 0000 00000000 		.space	4
- 1133              		.section	.bss.freqs,"aw",%nobits
- 1134              		.align	2
- 1135              		.set	.LANCHOR2,. + 0
- 1138              	freqs:
- 1139 0000 00000000 		.space	32
- 1139      00000000 
- 1139      00000000 
- 1139      00000000 
- 1139      00000000 
- 1140              		.section	.rodata.str1.4,"aMS",%progbits,1
- 1141              		.align	2
- 1142              	.LC2:
- 1143 0000 5372632F 		.ascii	"Src/main.c\000"
- 1143      6D61696E 
- 1143      2E6300
- 1144 000b 00       		.section	.bss.curChannel,"aw",%nobits
- 1145              		.align	1
- 1146              		.set	.LANCHOR9,. + 0
- 1149              	curChannel:
- 1150 0000 0000     		.space	2
- 1151              		.section	.bss.midiState,"aw",%nobits
- 1152              		.set	.LANCHOR8,. + 0
- 1155              	midiState:
- 1156 0000 00       		.space	1
- 1157              		.text
- 1158              	.Letext0:
- 1159              		.file 2 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 1160              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
- 1161              		.file 4 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
- 1162              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
- 1163              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
- 1164              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h"
- 1165              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc_ex.h"
- 1166              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
- 1167              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 1168              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
- 1169              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h"
- 1170              		.file 13 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
- 1171              		.file 14 "Inc/curelib_inc/curemisc.h"
- 1172              		.file 15 "Inc/usb_device.h"
- 1173              		.file 16 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/ccHuiWdj.s 			page 32
+ 1059 02a0 1378     		ldrb	r3, [r2]
+ 1060 02a2 0F22     		mov	r2, #15
+ 1061 02a4 9343     		bic	r3, r2
+ 1062 02a6 902B     		cmp	r3, #144
+ 1063 02a8 1CD1     		bne	.L52
+ 1064              	.LBB9:
+ 276:Src/main.c    **** 					char key = midiBuffer[1];
+ 1065              		.loc 1 276 0
+ 1066 02aa 344C     		ldr	r4, .L56+92
+ 1067 02ac 6078     		ldrb	r0, [r4, #1]
+ 1068              	.LVL71:
+ 279:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
+ 1069              		.loc 1 279 0
+ 1070 02ae 4538     		sub	r0, r0, #69
+ 1071 02b0 FFF7FEFF 		bl	__aeabi_i2d
+ 1072              	.LVL72:
+ 1073 02b4 1B4B     		ldr	r3, .L56+4
+ 1074 02b6 1A4A     		ldr	r2, .L56
+ 1075 02b8 FFF7FEFF 		bl	__aeabi_ddiv
+ 1076              	.LVL73:
+ 1077 02bc 021C     		mov	r2, r0
+ 1078 02be 0B1C     		mov	r3, r1
+ 1079 02c0 1948     		ldr	r0, .L56+8
+ 1080 02c2 1A49     		ldr	r1, .L56+12
+ 1081 02c4 FFF7FEFF 		bl	pow
+ 1082              	.LVL74:
+ 1083 02c8 194A     		ldr	r2, .L56+16
+ 1084 02ca 1A4B     		ldr	r3, .L56+20
+ 1085 02cc FFF7FEFF 		bl	__aeabi_dmul
+ 1086              	.LVL75:
+ 1087 02d0 FFF7FEFF 		bl	__aeabi_d2uiz
+ 1088              	.LVL76:
+ 280:Src/main.c    **** 					curChannel = midiBuffer[0] & 0xF;
+ 1089              		.loc 1 280 0
+ 1090 02d4 2378     		ldrb	r3, [r4]
+ 1091 02d6 0F22     		mov	r2, #15
+ 1092 02d8 1340     		and	r3, r2
+ 1093 02da 2A4A     		ldr	r2, .L56+100
+ 1094 02dc 1380     		strh	r3, [r2]
+ 281:Src/main.c    **** 					freqs[curChannel] = freq;
+ 1095              		.loc 1 281 0
+ 1096 02de 5B00     		lsl	r3, r3, #1
+ 1097 02e0 1F4A     		ldr	r2, .L56+64
+ 1098 02e2 D052     		strh	r0, [r2, r3]
+ 1099              	.LVL77:
+ 1100              	.L52:
+ 1101              	.LBE9:
+ 284:Src/main.c    **** 				} if ((midiBuffer[0] &0xF0) == 0x80) { // Note off, 2 data bytes
+ 1102              		.loc 1 284 0
+ 1103 02e4 254B     		ldr	r3, .L56+92
+ 1104 02e6 1B78     		ldrb	r3, [r3]
+ 1105 02e8 0F22     		mov	r2, #15
+ 1106 02ea 9343     		bic	r3, r2
+ 1107 02ec 802B     		cmp	r3, #128
+ 1108 02ee 00D0     		beq	.LCB946
+ 1109 02f0 F0E6     		b	.L53	@long jump
+ 1110              	.LCB946:
+ARM GAS  /tmp/ccijM0ES.s 			page 32
 
 
- 1174              		.file 17 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
- 1175              		.file 18 "Inc/usbd_midi_if.h"
- 1176              		.file 19 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/math.h"
-ARM GAS  /tmp/ccHuiWdj.s 			page 33
+ 1111              	.LBB10:
+ 285:Src/main.c    **** 					char key = midiBuffer[1];
+ 1112              		.loc 1 285 0
+ 1113 02f2 224C     		ldr	r4, .L56+92
+ 1114 02f4 6078     		ldrb	r0, [r4, #1]
+ 1115              	.LVL78:
+ 288:Src/main.c    **** 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
+ 1116              		.loc 1 288 0
+ 1117 02f6 4538     		sub	r0, r0, #69
+ 1118 02f8 FFF7FEFF 		bl	__aeabi_i2d
+ 1119              	.LVL79:
+ 1120 02fc 094B     		ldr	r3, .L56+4
+ 1121 02fe 084A     		ldr	r2, .L56
+ 1122 0300 FFF7FEFF 		bl	__aeabi_ddiv
+ 1123              	.LVL80:
+ 1124 0304 021C     		mov	r2, r0
+ 1125 0306 0B1C     		mov	r3, r1
+ 1126 0308 0748     		ldr	r0, .L56+8
+ 1127 030a 0849     		ldr	r1, .L56+12
+ 1128 030c FFF7FEFF 		bl	pow
+ 1129              	.LVL81:
+ 291:Src/main.c    **** 					freqs[midiBuffer[0] & 0xF] = 0;
+ 1130              		.loc 1 291 0
+ 1131 0310 2378     		ldrb	r3, [r4]
+ 1132 0312 0F22     		mov	r2, #15
+ 1133 0314 1A40     		and	r2, r3
+ 1134 0316 5200     		lsl	r2, r2, #1
+ 1135 0318 0021     		mov	r1, #0
+ 1136 031a 114B     		ldr	r3, .L56+64
+ 1137 031c D152     		strh	r1, [r2, r3]
+ 1138 031e D9E6     		b	.L53
+ 1139              	.L57:
+ 1140              		.align	3
+ 1141              	.L56:
+ 1142 0320 00000000 		.word	0
+ 1143 0324 00002840 		.word	1076363264
+ 1144 0328 00000000 		.word	0
+ 1145 032c 00000040 		.word	1073741824
+ 1146 0330 00000000 		.word	0
+ 1147 0334 00807B40 		.word	1081835520
+ 1148 0338 00000000 		.word	hdac
+ 1149 033c 00000000 		.word	htim14
+ 1150 0340 00200040 		.word	1073750016
+ 1151 0344 00000000 		.word	htim15
+ 1152 0348 00400140 		.word	1073823744
+ 1153 034c 00000000 		.word	htim2
+ 1154 0350 00000000 		.word	hUsbDeviceFS
+ 1155 0354 40420F00 		.word	1000000
+ 1156 0358 00000000 		.word	.LANCHOR0
+ 1157 035c 00000000 		.word	.LANCHOR1
+ 1158 0360 00000000 		.word	.LANCHOR2
+ 1159 0364 00000000 		.word	.LANCHOR3
+ 1160 0368 00000000 		.word	.LANCHOR4
+ 1161 036c 00000000 		.word	.LANCHOR5
+ 1162 0370 00000000 		.word	.LANCHOR6
+ 1163 0374 00000000 		.word	.LANCHOR7
+ 1164 0378 00000000 		.word	uart_tx_dat
+ARM GAS  /tmp/ccijM0ES.s 			page 33
+
+
+ 1165 037c 00000000 		.word	midiBuffer
+ 1166 0380 00000000 		.word	.LANCHOR8
+ 1167 0384 00000000 		.word	.LANCHOR9
+ 1168              	.LBE10:
+ 1169              		.cfi_endproc
+ 1170              	.LFE35:
+ 1172              		.global	freqs
+ 1173              		.global	noteTimeout
+ 1174              		.global	curPeriode1
+ 1175              		.global	curPeriode0
+ 1176              		.global	lastTone1
+ 1177              		.global	lastTone0
+ 1178              		.global	curChannel
+ 1179              		.global	curTone1
+ 1180              		.global	curTone0
+ 1181              		.global	midiState
+ 1182              		.comm	midiBuffer,4,4
+ 1183              		.comm	uart_tx_dat,1,1
+ 1184              		.comm	hdac,20,4
+ 1185              		.comm	htim2,64,4
+ 1186              		.comm	htim15,64,4
+ 1187              		.comm	htim14,64,4
+ 1188              		.section	.bss.lastTone0,"aw",%nobits
+ 1189              		.align	1
+ 1190              		.set	.LANCHOR3,. + 0
+ 1193              	lastTone0:
+ 1194 0000 0000     		.space	2
+ 1195              		.section	.bss.lastTone1,"aw",%nobits
+ 1196              		.align	1
+ 1197              		.set	.LANCHOR6,. + 0
+ 1200              	lastTone1:
+ 1201 0000 0000     		.space	2
+ 1202              		.section	.bss.curTone0,"aw",%nobits
+ 1203              		.align	1
+ 1204              		.set	.LANCHOR0,. + 0
+ 1207              	curTone0:
+ 1208 0000 0000     		.space	2
+ 1209              		.section	.bss.curTone1,"aw",%nobits
+ 1210              		.align	1
+ 1211              		.set	.LANCHOR1,. + 0
+ 1214              	curTone1:
+ 1215 0000 0000     		.space	2
+ 1216              		.section	.bss.curPeriode0,"aw",%nobits
+ 1217              		.align	2
+ 1218              		.set	.LANCHOR4,. + 0
+ 1221              	curPeriode0:
+ 1222 0000 00000000 		.space	4
+ 1223              		.section	.bss.curPeriode1,"aw",%nobits
+ 1224              		.align	2
+ 1225              		.set	.LANCHOR7,. + 0
+ 1228              	curPeriode1:
+ 1229 0000 00000000 		.space	4
+ 1230              		.section	.bss.noteTimeout,"aw",%nobits
+ 1231              		.align	2
+ 1232              		.set	.LANCHOR5,. + 0
+ 1235              	noteTimeout:
+ 1236 0000 00000000 		.space	4
+ARM GAS  /tmp/ccijM0ES.s 			page 34
+
+
+ 1237              		.section	.bss.freqs,"aw",%nobits
+ 1238              		.align	2
+ 1239              		.set	.LANCHOR2,. + 0
+ 1242              	freqs:
+ 1243 0000 00000000 		.space	32
+ 1243      00000000 
+ 1243      00000000 
+ 1243      00000000 
+ 1243      00000000 
+ 1244              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 1245              		.align	2
+ 1246              	.LC2:
+ 1247 0000 5372632F 		.ascii	"Src/main.c\000"
+ 1247      6D61696E 
+ 1247      2E6300
+ 1248 000b 00       		.section	.bss.curChannel,"aw",%nobits
+ 1249              		.align	1
+ 1250              		.set	.LANCHOR9,. + 0
+ 1253              	curChannel:
+ 1254 0000 0000     		.space	2
+ 1255              		.section	.bss.midiState,"aw",%nobits
+ 1256              		.set	.LANCHOR8,. + 0
+ 1259              	midiState:
+ 1260 0000 00       		.space	1
+ 1261              		.text
+ 1262              	.Letext0:
+ 1263              		.file 2 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 1264              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
+ 1265              		.file 4 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
+ 1266              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h"
+ 1267              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 1268              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h"
+ 1269              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc_ex.h"
+ 1270              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 1271              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 1272              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac.h"
+ 1273              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
+ 1274              		.file 13 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h"
+ 1275              		.file 14 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
+ 1276              		.file 15 "Inc/curelib_inc/curemisc.h"
+ 1277              		.file 16 "Inc/usb_device.h"
+ 1278              		.file 17 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
+ 1279              		.file 18 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ 1280              		.file 19 "Inc/usbd_midi_if.h"
+ 1281              		.file 20 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/math.h"
+ARM GAS  /tmp/ccijM0ES.s 			page 35
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccHuiWdj.s:18     .text.MX_GPIO_Init:00000000 $t
-     /tmp/ccHuiWdj.s:22     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-     /tmp/ccHuiWdj.s:105    .text.MX_GPIO_Init:00000068 $d
-     /tmp/ccHuiWdj.s:110    .text.USER_TIM2_Init:00000000 $t
-     /tmp/ccHuiWdj.s:114    .text.USER_TIM2_Init:00000000 USER_TIM2_Init
-     /tmp/ccHuiWdj.s:203    .text.USER_TIM2_Init:0000006c $d
+     /tmp/ccijM0ES.s:18     .text.MX_GPIO_Init:00000000 $t
+     /tmp/ccijM0ES.s:22     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+     /tmp/ccijM0ES.s:105    .text.MX_GPIO_Init:00000068 $d
+     /tmp/ccijM0ES.s:110    .text.USER_TIM2_Init:00000000 $t
+     /tmp/ccijM0ES.s:114    .text.USER_TIM2_Init:00000000 USER_TIM2_Init
+     /tmp/ccijM0ES.s:203    .text.USER_TIM2_Init:0000006c $d
                             *COM*:00000040 htim2
-     /tmp/ccHuiWdj.s:209    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-     /tmp/ccHuiWdj.s:214    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-     /tmp/ccHuiWdj.s:251    .text.HAL_TIM_PeriodElapsedCallback:0000002c $d
-     /tmp/ccHuiWdj.s:257    .text._Error_Handler:00000000 $t
-     /tmp/ccHuiWdj.s:262    .text._Error_Handler:00000000 _Error_Handler
-     /tmp/ccHuiWdj.s:273    .text.MX_TIM14_Init:00000000 $t
-     /tmp/ccHuiWdj.s:277    .text.MX_TIM14_Init:00000000 MX_TIM14_Init
-     /tmp/ccHuiWdj.s:327    .text.MX_TIM14_Init:00000034 $d
+     /tmp/ccijM0ES.s:209    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+     /tmp/ccijM0ES.s:214    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+     /tmp/ccijM0ES.s:238    .text.HAL_TIM_PeriodElapsedCallback:00000018 $d
+     /tmp/ccijM0ES.s:243    .text._Error_Handler:00000000 $t
+     /tmp/ccijM0ES.s:248    .text._Error_Handler:00000000 _Error_Handler
+     /tmp/ccijM0ES.s:259    .text.MX_DAC_Init:00000000 $t
+     /tmp/ccijM0ES.s:263    .text.MX_DAC_Init:00000000 MX_DAC_Init
+     /tmp/ccijM0ES.s:318    .text.MX_DAC_Init:00000040 $d
+                            *COM*:00000014 hdac
+     /tmp/ccijM0ES.s:325    .text.MX_TIM14_Init:00000000 $t
+     /tmp/ccijM0ES.s:329    .text.MX_TIM14_Init:00000000 MX_TIM14_Init
+     /tmp/ccijM0ES.s:378    .text.MX_TIM14_Init:00000034 $d
                             *COM*:00000040 htim14
-     /tmp/ccHuiWdj.s:334    .text.MX_TIM15_Init:00000000 $t
-     /tmp/ccHuiWdj.s:338    .text.MX_TIM15_Init:00000000 MX_TIM15_Init
-     /tmp/ccHuiWdj.s:387    .text.MX_TIM15_Init:00000034 $d
+     /tmp/ccijM0ES.s:385    .text.MX_TIM15_Init:00000000 $t
+     /tmp/ccijM0ES.s:389    .text.MX_TIM15_Init:00000000 MX_TIM15_Init
+     /tmp/ccijM0ES.s:438    .text.MX_TIM15_Init:00000034 $d
                             *COM*:00000040 htim15
-     /tmp/ccHuiWdj.s:395    .text.SystemClock_Config:00000000 $t
-     /tmp/ccHuiWdj.s:400    .text.SystemClock_Config:00000000 SystemClock_Config
-     /tmp/ccHuiWdj.s:510    .text.SystemClock_Config:00000094 $d
-     /tmp/ccHuiWdj.s:519    .text.main:00000000 $t
-     /tmp/ccHuiWdj.s:524    .text.main:00000000 main
-     /tmp/ccHuiWdj.s:1040   .text.main:000002d0 $d
+     /tmp/ccijM0ES.s:446    .text.SystemClock_Config:00000000 $t
+     /tmp/ccijM0ES.s:451    .text.SystemClock_Config:00000000 SystemClock_Config
+     /tmp/ccijM0ES.s:561    .text.SystemClock_Config:00000094 $d
+     /tmp/ccijM0ES.s:570    .text.main:00000000 $t
+     /tmp/ccijM0ES.s:575    .text.main:00000000 main
+     /tmp/ccijM0ES.s:1142   .text.main:00000320 $d
                             *COM*:00000001 uart_tx_dat
                             *COM*:00000004 midiBuffer
-     /tmp/ccHuiWdj.s:1138   .bss.freqs:00000000 freqs
-     /tmp/ccHuiWdj.s:1131   .bss.noteTimeout:00000000 noteTimeout
-     /tmp/ccHuiWdj.s:1124   .bss.curPeriode1:00000000 curPeriode1
-     /tmp/ccHuiWdj.s:1117   .bss.curPeriode0:00000000 curPeriode0
-     /tmp/ccHuiWdj.s:1096   .bss.lastTone1:00000000 lastTone1
-     /tmp/ccHuiWdj.s:1089   .bss.lastTone0:00000000 lastTone0
-     /tmp/ccHuiWdj.s:1149   .bss.curChannel:00000000 curChannel
-     /tmp/ccHuiWdj.s:1110   .bss.curTone1:00000000 curTone1
-     /tmp/ccHuiWdj.s:1103   .bss.curTone0:00000000 curTone0
-     /tmp/ccHuiWdj.s:1155   .bss.midiState:00000000 midiState
-     /tmp/ccHuiWdj.s:1085   .bss.lastTone0:00000000 $d
-     /tmp/ccHuiWdj.s:1092   .bss.lastTone1:00000000 $d
-     /tmp/ccHuiWdj.s:1099   .bss.curTone0:00000000 $d
-     /tmp/ccHuiWdj.s:1106   .bss.curTone1:00000000 $d
-     /tmp/ccHuiWdj.s:1113   .bss.curPeriode0:00000000 $d
-     /tmp/ccHuiWdj.s:1120   .bss.curPeriode1:00000000 $d
-     /tmp/ccHuiWdj.s:1127   .bss.noteTimeout:00000000 $d
-     /tmp/ccHuiWdj.s:1134   .bss.freqs:00000000 $d
-     /tmp/ccHuiWdj.s:1141   .rodata.str1.4:00000000 $d
-     /tmp/ccHuiWdj.s:1145   .bss.curChannel:00000000 $d
-     /tmp/ccHuiWdj.s:1156   .bss.midiState:00000000 $d
+     /tmp/ccijM0ES.s:1242   .bss.freqs:00000000 freqs
+     /tmp/ccijM0ES.s:1235   .bss.noteTimeout:00000000 noteTimeout
+     /tmp/ccijM0ES.s:1228   .bss.curPeriode1:00000000 curPeriode1
+     /tmp/ccijM0ES.s:1221   .bss.curPeriode0:00000000 curPeriode0
+     /tmp/ccijM0ES.s:1200   .bss.lastTone1:00000000 lastTone1
+     /tmp/ccijM0ES.s:1193   .bss.lastTone0:00000000 lastTone0
+     /tmp/ccijM0ES.s:1253   .bss.curChannel:00000000 curChannel
+     /tmp/ccijM0ES.s:1214   .bss.curTone1:00000000 curTone1
+     /tmp/ccijM0ES.s:1207   .bss.curTone0:00000000 curTone0
+     /tmp/ccijM0ES.s:1259   .bss.midiState:00000000 midiState
+     /tmp/ccijM0ES.s:1189   .bss.lastTone0:00000000 $d
+     /tmp/ccijM0ES.s:1196   .bss.lastTone1:00000000 $d
+     /tmp/ccijM0ES.s:1203   .bss.curTone0:00000000 $d
+     /tmp/ccijM0ES.s:1210   .bss.curTone1:00000000 $d
+     /tmp/ccijM0ES.s:1217   .bss.curPeriode0:00000000 $d
+     /tmp/ccijM0ES.s:1224   .bss.curPeriode1:00000000 $d
+     /tmp/ccijM0ES.s:1231   .bss.noteTimeout:00000000 $d
+     /tmp/ccijM0ES.s:1238   .bss.freqs:00000000 $d
+     /tmp/ccijM0ES.s:1245   .rodata.str1.4:00000000 $d
+     /tmp/ccijM0ES.s:1249   .bss.curChannel:00000000 $d
+     /tmp/ccijM0ES.s:1260   .bss.midiState:00000000 $d
                      .debug_frame:00000010 $d
-     /tmp/ccHuiWdj.s:1084   .text.main:00000334 $t
+
+ARM GAS  /tmp/ccijM0ES.s 			page 36
+
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
 HAL_GPIO_Init
-ARM GAS  /tmp/ccHuiWdj.s 			page 34
-
-
 HAL_TIM_Base_Init
 HAL_TIMEx_MasterConfigSynchronization
 HAL_TIM_PWM_ConfigChannel
 HAL_TIM_OnePulse_Init
 HAL_TIM_MspPostInit
+HAL_DAC_Init
+HAL_DAC_ConfigChannel
 __aeabi_uidiv
 HAL_RCC_OscConfig
 HAL_RCC_ClockConfig
@@ -1945,6 +2112,8 @@ __aeabi_ddiv
 __aeabi_dmul
 __aeabi_d2uiz
 HAL_Init
+HAL_DAC_Start
+HAL_DAC_SetValue
 HAL_TIM_Base_Start_IT
 HAL_TIM_Base_Start
 HAL_TIM_OnePulse_Start

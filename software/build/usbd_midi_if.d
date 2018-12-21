@@ -17,6 +17,8 @@ build/usbd_midi_if.d: Src/usbd_midi_if.c Inc/usbd_midi_if.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma_ex.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h \
+ Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac.h \
+ Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac_ex.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_flash.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_flash_ex.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c.h \
@@ -80,6 +82,10 @@ Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h:
 Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma_ex.h:
 
 Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h:
+
+Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac.h:
+
+Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac_ex.h:
 
 Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_flash.h:
 

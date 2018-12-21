@@ -66,6 +66,8 @@ TIM_HandleTypeDef htim15;
 
 TIM_HandleTypeDef htim2;
 
+DAC_HandleTypeDef hdac;
+
 
 uint8_t uart_tx_dat;
 /* USER CODE END PV */
@@ -77,6 +79,8 @@ static void MX_GPIO_Init(void);
 static void MX_TIM14_Init(void);
 static void MX_TIM15_Init(void);
 static void USER_TIM2_Init(void);
+
+static void MX_DAC_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -95,7 +99,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(htim->Instance == TIM15)
 	{
 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
-		TIM2->CR1 = TIM2->CR1 | 1;
+		//TIM2->CR1 = TIM2->CR1 | 1;
 	}
 }
 
@@ -145,6 +149,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+	MX_DAC_Init();
+
+	HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2048);
 
 	MX_TIM14_Init();
 	HAL_TIM_Base_Start_IT(&htim14);
@@ -189,7 +197,7 @@ int main(void)
   //Wait USB configuration when USB connection error has occurred.
 	  while(1){
 		  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
-			  //HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
 			  break;
 		  }else{
 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
@@ -219,8 +227,12 @@ int main(void)
 			TIM14->CR1 = TIM14->CR1 | 1;
 			lastTone0 = curTone0;
 			noteTimeout = HAL_GetTick();
+
+			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, SET);
 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
 			TIM14->CR1 &= ~(1UL);
+
+			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
 		}
 
 		if (curTone1 > 20 && curTone1 != lastTone1) { // play other polyphonic tone ussing TIM15
@@ -240,6 +252,8 @@ int main(void)
 			for (int i = 0; i < 16; i++) {
 				freqs[i] = 0;
 			}
+
+			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
 		}
 
 
@@ -404,6 +418,31 @@ static void USER_TIM2_Init(void) {
 	HAL_TIM_MspPostInit(&htim2);
 }
 
+/* DAC init function */
+static void MX_DAC_Init(void)
+{
+
+  DAC_ChannelConfTypeDef sConfig;
+
+    /**DAC Initialization
+    */
+  hdac.Instance = DAC;
+  if (HAL_DAC_Init(&hdac) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+    /**DAC channel OUT1 config
+    */
+  sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
+  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+  if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
 
 
 /**
@@ -429,10 +468,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10|GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PA4 PA5 PA6 PA7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_15;
+  GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

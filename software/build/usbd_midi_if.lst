@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccBCIwdJ.s 			page 1
+ARM GAS  /tmp/ccKxoKu3.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
   32:Src/usbd_midi_if.c **** RingBufferU8 rbuf_usb_rx[MIDI_OUT_JACK_NUM]; //for input from USB
   33:Src/usbd_midi_if.c **** RingBufferU8 rbuf_jack_rx[MIDI_IN_JACK_NUM];  //for input from MIDI-IN jack
   34:Src/usbd_midi_if.c **** 
-ARM GAS  /tmp/ccBCIwdJ.s 			page 2
+ARM GAS  /tmp/ccKxoKu3.s 			page 2
 
 
   35:Src/usbd_midi_if.c **** //for receiving midi data from jack
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
   89:Src/usbd_midi_if.c **** 		return FUNC_ERROR;
   90:Src/usbd_midi_if.c **** 	}
   91:Src/usbd_midi_if.c **** 
-ARM GAS  /tmp/ccBCIwdJ.s 			page 3
+ARM GAS  /tmp/ccKxoKu3.s 			page 3
 
 
   92:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  146:Src/usbd_midi_if.c **** {
  147:Src/usbd_midi_if.c ****   MIDI_DataRx,
  148:Src/usbd_midi_if.c ****   MIDI_DataTx
-ARM GAS  /tmp/ccBCIwdJ.s 			page 4
+ARM GAS  /tmp/ccKxoKu3.s 			page 4
 
 
  149:Src/usbd_midi_if.c **** };
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  203:Src/usbd_midi_if.c **** 		  default:
  204:Src/usbd_midi_if.c **** 			  midi_size = 0;
  205:Src/usbd_midi_if.c **** 			  break;
-ARM GAS  /tmp/ccBCIwdJ.s 			page 5
+ARM GAS  /tmp/ccKxoKu3.s 			page 5
 
 
  206:Src/usbd_midi_if.c **** 	  }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  235:Src/usbd_midi_if.c ****       APP_Rx_ptr_in = 0;
   50              		.loc 1 235 0
   51 0010 A046     		mov	r8, r4
-ARM GAS  /tmp/ccBCIwdJ.s 			page 6
+ARM GAS  /tmp/ccKxoKu3.s 			page 6
 
 
   52 0012 9C46     		mov	ip, r3
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
   97              		.thumb_func
   99              	MIDI_DataRx:
  100              	.LFB41:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 7
+ARM GAS  /tmp/ccKxoKu3.s 			page 7
 
 
  152:Src/usbd_midi_if.c **** static uint16_t MIDI_DataRx(uint8_t *msg, uint16_t length){
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  150 0028 0F21     		mov	r1, #15
  151 002a 0A40     		and	r2, r1
  152              	.LVL11:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 8
+ARM GAS  /tmp/ccKxoKu3.s 			page 8
 
 
  169:Src/usbd_midi_if.c **** 	  switch (code_idx_num) {
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  200              		.loc 1 180 0
  201 0044 0127     		mov	r7, #1
  202              	.L15:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 9
+ARM GAS  /tmp/ccKxoKu3.s 			page 9
 
 
  203              	.LVL17:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  247              		.loc 1 164 0 is_stmt 0 discriminator 1
  248 0078 D345     		cmp	fp, r10
  249 007a D0D8     		bhi	.L18
-ARM GAS  /tmp/ccBCIwdJ.s 			page 10
+ARM GAS  /tmp/ccKxoKu3.s 			page 10
 
 
  250              	.LVL24:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  300              		.loc 1 47 0
  301 000a 6000     		lsl	r0, r4, #1
  302 000c 0019     		add	r0, r0, r4
-ARM GAS  /tmp/ccBCIwdJ.s 			page 11
+ARM GAS  /tmp/ccKxoKu3.s 			page 11
 
 
  303 000e 8000     		lsl	r0, r0, #2
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  352              		.loc 1 77 0
  353 0002 4300     		lsl	r3, r0, #1
  354 0004 1818     		add	r0, r3, r0
-ARM GAS  /tmp/ccBCIwdJ.s 			page 12
+ARM GAS  /tmp/ccKxoKu3.s 			page 12
 
 
  355              	.LVL33:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  406 0012 FFF7FEFF 		bl	cureRingBufferU8Dequeue
  407              	.LVL37:
  408 0016 0128     		cmp	r0, #1
-ARM GAS  /tmp/ccBCIwdJ.s 			page 13
+ARM GAS  /tmp/ccKxoKu3.s 			page 13
 
 
  409 0018 01D0     		beq	.L36
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  102:Src/usbd_midi_if.c **** 	return FUNC_SUCCESS;
  459              		.loc 1 102 0
  460 0018 0120     		mov	r0, #1
-ARM GAS  /tmp/ccBCIwdJ.s 			page 14
+ARM GAS  /tmp/ccKxoKu3.s 			page 14
 
 
  461              	.L40:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  511              	.L47:
  512 001c 00000000 		.word	rbuf_usb_rx
  513              		.cfi_endproc
-ARM GAS  /tmp/ccBCIwdJ.s 			page 15
+ARM GAS  /tmp/ccKxoKu3.s 			page 15
 
 
  514              	.LFE38:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  567              	.LFB40:
  125:Src/usbd_midi_if.c **** {
  568              		.loc 1 125 0
-ARM GAS  /tmp/ccBCIwdJ.s 			page 16
+ARM GAS  /tmp/ccKxoKu3.s 			page 16
 
 
  569              		.cfi_startproc
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  617              		.align	2
  618              		.global	sendMidiMessage
  619              		.code	16
-ARM GAS  /tmp/ccBCIwdJ.s 			page 17
+ARM GAS  /tmp/ccKxoKu3.s 			page 17
 
 
  620              		.thumb_func
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  669 000a 9943     		bic	r1, r3
  670 000c 0B1C     		mov	r3, r1
  671              	.LVL55:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 18
+ARM GAS  /tmp/ccKxoKu3.s 			page 18
 
 
  244:Src/usbd_midi_if.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  719 000c A8000000 		.word	.L74
  720 0010 C2000000 		.word	.L76
  721 0014 C2000000 		.word	.L76
-ARM GAS  /tmp/ccBCIwdJ.s 			page 19
+ARM GAS  /tmp/ccKxoKu3.s 			page 19
 
 
  722 0018 C2000000 		.word	.L76
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  766 007e 2D18     		add	r5, r5, r0
  767 0080 EF19     		add	r7, r5, r7
  768 0082 E719     		add	r7, r4, r7
-ARM GAS  /tmp/ccBCIwdJ.s 			page 20
+ARM GAS  /tmp/ccKxoKu3.s 			page 20
 
 
  769 0084 7A70     		strb	r2, [r7, #1]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  809              	.LVL64:
  810 00b6 9918     		add	r1, r3, r2
  811 00b8 0324     		mov	r4, #3
-ARM GAS  /tmp/ccBCIwdJ.s 			page 21
+ARM GAS  /tmp/ccKxoKu3.s 			page 21
 
 
  812 00ba 4C70     		strb	r4, [r1, #1]
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  845 00e6 9A70     		strb	r2, [r3, #2]
  296:Src/usbd_midi_if.c **** 				break;
  846              		.loc 1 296 0
-ARM GAS  /tmp/ccBCIwdJ.s 			page 22
+ARM GAS  /tmp/ccKxoKu3.s 			page 22
 
 
  847 00e8 98E0     		b	.L78
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  885 0116 5318     		add	r3, r2, r1
  886 0118 0324     		mov	r4, #3
  887 011a 5C70     		strb	r4, [r3, #1]
-ARM GAS  /tmp/ccBCIwdJ.s 			page 23
+ARM GAS  /tmp/ccKxoKu3.s 			page 23
 
 
  313:Src/usbd_midi_if.c **** 				analyzed_status[cable_num].stat = WAIT_DATA1;
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  928 014e 4BD0     		beq	.L83
  929 0150 64E0     		b	.L78
  930              	.L81:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 24
+ARM GAS  /tmp/ccKxoKu3.s 			page 24
 
 
  327:Src/usbd_midi_if.c **** 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  974              	.L79:
  338:Src/usbd_midi_if.c **** 				}
  339:Src/usbd_midi_if.c **** 				break;
-ARM GAS  /tmp/ccBCIwdJ.s 			page 25
+ARM GAS  /tmp/ccKxoKu3.s 			page 25
 
 
  340:Src/usbd_midi_if.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1016 01cc E370     		strb	r3, [r4, #3]
  1017 01ce 8401     		lsl	r4, r0, #6
  1018 01d0 2418     		add	r4, r4, r0
-ARM GAS  /tmp/ccBCIwdJ.s 			page 26
+ARM GAS  /tmp/ccKxoKu3.s 			page 26
 
 
  1019 01d2 6118     		add	r1, r4, r1
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1061 020e 0221     		mov	r1, #2
  1062 0210 0A4B     		ldr	r3, .L90+12
  1063 0212 D154     		strb	r1, [r2, r3]
-ARM GAS  /tmp/ccBCIwdJ.s 			page 27
+ARM GAS  /tmp/ccKxoKu3.s 			page 27
 
 
  365:Src/usbd_midi_if.c **** 					analyzed_status[cable_num].stat = END_ANALYSIS;
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1100              		.code	16
  1101              		.thumb_func
  1103              	midiGenerateUsbPacket:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 28
+ARM GAS  /tmp/ccKxoKu3.s 			page 28
 
 
  1104              	.LFB45:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1150 0030 92E0     		b	.L93
  1151              	.L95:
  1152 0032 042B     		cmp	r3, #4
-ARM GAS  /tmp/ccBCIwdJ.s 			page 29
+ARM GAS  /tmp/ccKxoKu3.s 			page 29
 
 
  1153 0034 0ED9     		bls	.L112
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1193              		.loc 1 387 0 discriminator 1
  1194 0070 0023     		mov	r3, #0
  1195              	.LBB4:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 30
+ARM GAS  /tmp/ccKxoKu3.s 			page 30
 
 
  405:Src/usbd_midi_if.c **** 			}else{
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1240              	.LBE5:
  412:Src/usbd_midi_if.c **** 			}
  413:Src/usbd_midi_if.c **** 
-ARM GAS  /tmp/ccBCIwdJ.s 			page 31
+ARM GAS  /tmp/ccKxoKu3.s 			page 31
 
 
  414:Src/usbd_midi_if.c **** 			sendMidiMessage(msg_buf,4);
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  429:Src/usbd_midi_if.c **** 				}else{
  430:Src/usbd_midi_if.c **** 
  431:Src/usbd_midi_if.c **** 					switch (cnt_remain) {
-ARM GAS  /tmp/ccBCIwdJ.s 			page 32
+ARM GAS  /tmp/ccKxoKu3.s 			page 32
 
 
  1280              		.loc 1 431 0
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1322 011a 0421     		mov	r1, #4
  1323 011c FFF7FEFF 		bl	sendMidiMessage
  1324              	.LVL102:
-ARM GAS  /tmp/ccBCIwdJ.s 			page 33
+ARM GAS  /tmp/ccKxoKu3.s 			page 33
 
 
  444:Src/usbd_midi_if.c **** 							break;
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1361              		.loc 1 418 0
  1362 0146 094A     		ldr	r2, .L113+4
  1363 0148 9046     		mov	r8, r2
-ARM GAS  /tmp/ccBCIwdJ.s 			page 34
+ARM GAS  /tmp/ccKxoKu3.s 			page 34
 
 
  1364 014a 8701     		lsl	r7, r0, #6
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  470:Src/usbd_midi_if.c **** 
  471:Src/usbd_midi_if.c **** 	for(uint32_t cable_num=0; cable_num<MIDI_IN_JACK_NUM; cable_num++){
  472:Src/usbd_midi_if.c **** 		while( FUNC_SUCCESS == midiGetFromJackRx(cable_num) ){
-ARM GAS  /tmp/ccBCIwdJ.s 			page 35
+ARM GAS  /tmp/ccKxoKu3.s 			page 35
 
 
  473:Src/usbd_midi_if.c **** 			if( midiEventIsGenerated(cable_num) ){// Generate MIDI event from UART buffer.
@@ -2073,57 +2073,57 @@ ARM GAS  /tmp/ccBCIwdJ.s 			page 1
  1432              		.file 6 "Inc/curelib_inc/curemisc.h"
  1433              		.file 7 "Inc/curelib_inc/curebuffer.h"
  1434              		.file 8 "Inc/usbd_midi_if.h"
-ARM GAS  /tmp/ccBCIwdJ.s 			page 36
+ARM GAS  /tmp/ccKxoKu3.s 			page 36
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_midi_if.c
-     /tmp/ccBCIwdJ.s:18     .text.MIDI_DataTx:00000000 $t
-     /tmp/ccBCIwdJ.s:22     .text.MIDI_DataTx:00000000 MIDI_DataTx
-     /tmp/ccBCIwdJ.s:89     .text.MIDI_DataTx:00000038 $d
-     /tmp/ccBCIwdJ.s:95     .text.MIDI_DataRx:00000000 $t
-     /tmp/ccBCIwdJ.s:99     .text.MIDI_DataRx:00000000 MIDI_DataRx
-     /tmp/ccBCIwdJ.s:163    .rodata.MIDI_DataRx:00000000 $d
-     /tmp/ccBCIwdJ.s:268    .text.MIDI_DataRx:0000008c $d
+     /tmp/ccKxoKu3.s:18     .text.MIDI_DataTx:00000000 $t
+     /tmp/ccKxoKu3.s:22     .text.MIDI_DataTx:00000000 MIDI_DataTx
+     /tmp/ccKxoKu3.s:89     .text.MIDI_DataTx:00000038 $d
+     /tmp/ccKxoKu3.s:95     .text.MIDI_DataRx:00000000 $t
+     /tmp/ccKxoKu3.s:99     .text.MIDI_DataRx:00000000 MIDI_DataRx
+     /tmp/ccKxoKu3.s:163    .rodata.MIDI_DataRx:00000000 $d
+     /tmp/ccKxoKu3.s:268    .text.MIDI_DataRx:0000008c $d
                             *COM*:0000000c rbuf_usb_rx
-     /tmp/ccBCIwdJ.s:274    .text.midiInit:00000000 $t
-     /tmp/ccBCIwdJ.s:279    .text.midiInit:00000000 midiInit
-     /tmp/ccBCIwdJ.s:332    .text.midiInit:0000002c $d
-     /tmp/ccBCIwdJ.s:337    .text.midiGetFromUsbRx:00000000 $t
-     /tmp/ccBCIwdJ.s:342    .text.midiGetFromUsbRx:00000000 midiGetFromUsbRx
-     /tmp/ccBCIwdJ.s:376    .text.midiGetFromUsbRx:0000001c $d
-     /tmp/ccBCIwdJ.s:381    .text.midiGetFromJackRx:00000000 $t
-     /tmp/ccBCIwdJ.s:386    .text.midiGetFromJackRx:00000000 midiGetFromJackRx
-     /tmp/ccBCIwdJ.s:423    .text.midiGetFromJackRx:00000024 $d
+     /tmp/ccKxoKu3.s:274    .text.midiInit:00000000 $t
+     /tmp/ccKxoKu3.s:279    .text.midiInit:00000000 midiInit
+     /tmp/ccKxoKu3.s:332    .text.midiInit:0000002c $d
+     /tmp/ccKxoKu3.s:337    .text.midiGetFromUsbRx:00000000 $t
+     /tmp/ccKxoKu3.s:342    .text.midiGetFromUsbRx:00000000 midiGetFromUsbRx
+     /tmp/ccKxoKu3.s:376    .text.midiGetFromUsbRx:0000001c $d
+     /tmp/ccKxoKu3.s:381    .text.midiGetFromJackRx:00000000 $t
+     /tmp/ccKxoKu3.s:386    .text.midiGetFromJackRx:00000000 midiGetFromJackRx
+     /tmp/ccKxoKu3.s:423    .text.midiGetFromJackRx:00000024 $d
                             *COM*:00000000 rbuf_jack_rx
                             *COM*:00000000 rx_midi_msg
-     /tmp/ccBCIwdJ.s:429    .text.midiSetFromJackRx:00000000 $t
-     /tmp/ccBCIwdJ.s:434    .text.midiSetFromJackRx:00000000 midiSetFromJackRx
-     /tmp/ccBCIwdJ.s:468    .text.midiSetFromJackRx:0000001c $d
-     /tmp/ccBCIwdJ.s:473    .text.isUsbRxBufEmpty:00000000 $t
-     /tmp/ccBCIwdJ.s:478    .text.isUsbRxBufEmpty:00000000 isUsbRxBufEmpty
-     /tmp/ccBCIwdJ.s:512    .text.isUsbRxBufEmpty:0000001c $d
-     /tmp/ccBCIwdJ.s:517    .text.isJackRxBufEmpty:00000000 $t
-     /tmp/ccBCIwdJ.s:522    .text.isJackRxBufEmpty:00000000 isJackRxBufEmpty
-     /tmp/ccBCIwdJ.s:556    .text.isJackRxBufEmpty:0000001c $d
-     /tmp/ccBCIwdJ.s:561    .text.isRxBufEmpty:00000000 $t
-     /tmp/ccBCIwdJ.s:566    .text.isRxBufEmpty:00000000 isRxBufEmpty
-     /tmp/ccBCIwdJ.s:612    .text.isRxBufEmpty:00000028 $d
-     /tmp/ccBCIwdJ.s:617    .text.sendMidiMessage:00000000 $t
-     /tmp/ccBCIwdJ.s:622    .text.sendMidiMessage:00000000 sendMidiMessage
-     /tmp/ccBCIwdJ.s:646    .text.midiEventIsGenerated:00000000 $t
-     /tmp/ccBCIwdJ.s:651    .text.midiEventIsGenerated:00000000 midiEventIsGenerated
-     /tmp/ccBCIwdJ.s:714    .rodata.midiEventIsGenerated:00000000 $d
-     /tmp/ccBCIwdJ.s:1090   .text.midiEventIsGenerated:00000230 $d
+     /tmp/ccKxoKu3.s:429    .text.midiSetFromJackRx:00000000 $t
+     /tmp/ccKxoKu3.s:434    .text.midiSetFromJackRx:00000000 midiSetFromJackRx
+     /tmp/ccKxoKu3.s:468    .text.midiSetFromJackRx:0000001c $d
+     /tmp/ccKxoKu3.s:473    .text.isUsbRxBufEmpty:00000000 $t
+     /tmp/ccKxoKu3.s:478    .text.isUsbRxBufEmpty:00000000 isUsbRxBufEmpty
+     /tmp/ccKxoKu3.s:512    .text.isUsbRxBufEmpty:0000001c $d
+     /tmp/ccKxoKu3.s:517    .text.isJackRxBufEmpty:00000000 $t
+     /tmp/ccKxoKu3.s:522    .text.isJackRxBufEmpty:00000000 isJackRxBufEmpty
+     /tmp/ccKxoKu3.s:556    .text.isJackRxBufEmpty:0000001c $d
+     /tmp/ccKxoKu3.s:561    .text.isRxBufEmpty:00000000 $t
+     /tmp/ccKxoKu3.s:566    .text.isRxBufEmpty:00000000 isRxBufEmpty
+     /tmp/ccKxoKu3.s:612    .text.isRxBufEmpty:00000028 $d
+     /tmp/ccKxoKu3.s:617    .text.sendMidiMessage:00000000 $t
+     /tmp/ccKxoKu3.s:622    .text.sendMidiMessage:00000000 sendMidiMessage
+     /tmp/ccKxoKu3.s:646    .text.midiEventIsGenerated:00000000 $t
+     /tmp/ccKxoKu3.s:651    .text.midiEventIsGenerated:00000000 midiEventIsGenerated
+     /tmp/ccKxoKu3.s:714    .rodata.midiEventIsGenerated:00000000 $d
+     /tmp/ccKxoKu3.s:1090   .text.midiEventIsGenerated:00000230 $d
                             *COM*:00000000 analyzed_status
                             *COM*:00000000 midi_event
-     /tmp/ccBCIwdJ.s:1098   .text.midiGenerateUsbPacket:00000000 $t
-     /tmp/ccBCIwdJ.s:1103   .text.midiGenerateUsbPacket:00000000 midiGenerateUsbPacket
-     /tmp/ccBCIwdJ.s:1391   .text.midiGenerateUsbPacket:00000168 $d
-     /tmp/ccBCIwdJ.s:1397   .text.midiProcess:00000000 $t
-     /tmp/ccBCIwdJ.s:1402   .text.midiProcess:00000000 midiProcess
-     /tmp/ccBCIwdJ.s:1423   .data.USBD_Interface_fops_FS:00000000 USBD_Interface_fops_FS
-     /tmp/ccBCIwdJ.s:1420   .data.USBD_Interface_fops_FS:00000000 $d
+     /tmp/ccKxoKu3.s:1098   .text.midiGenerateUsbPacket:00000000 $t
+     /tmp/ccKxoKu3.s:1103   .text.midiGenerateUsbPacket:00000000 midiGenerateUsbPacket
+     /tmp/ccKxoKu3.s:1391   .text.midiGenerateUsbPacket:00000168 $d
+     /tmp/ccKxoKu3.s:1397   .text.midiProcess:00000000 $t
+     /tmp/ccKxoKu3.s:1402   .text.midiProcess:00000000 midiProcess
+     /tmp/ccKxoKu3.s:1423   .data.USBD_Interface_fops_FS:00000000 USBD_Interface_fops_FS
+     /tmp/ccKxoKu3.s:1420   .data.USBD_Interface_fops_FS:00000000 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -2133,7 +2133,7 @@ cureRingBufferU8Enqueue
 cureRingBufferU8Init
 cureRingBufferU8Dequeue
 _cureRingBufferU8GetUsedSize
-ARM GAS  /tmp/ccBCIwdJ.s 			page 37
+ARM GAS  /tmp/ccKxoKu3.s 			page 37
 
 
 USBD_MIDI_SendPacket

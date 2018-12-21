@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc65C2f9.s 			page 1
+ARM GAS  /tmp/ccCvQojK.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
   31:Src/system_stm32f0xx.c ****   *        SYSCLK(Hz)                             | 8000000
   32:Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
   33:Src/system_stm32f0xx.c ****   *        HCLK(Hz)                               | 8000000
-ARM GAS  /tmp/cc65C2f9.s 			page 2
+ARM GAS  /tmp/ccCvQojK.s 			page 2
 
 
   34:Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
   88:Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_TypesDefinitions
   89:Src/system_stm32f0xx.c ****   * @{
   90:Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/cc65C2f9.s 			page 3
+ARM GAS  /tmp/ccCvQojK.s 			page 3
 
 
   91:Src/system_stm32f0xx.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
  145:Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_FunctionPrototypes
  146:Src/system_stm32f0xx.c ****   * @{
  147:Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/cc65C2f9.s 			page 4
+ARM GAS  /tmp/ccCvQojK.s 			page 4
 
 
  148:Src/system_stm32f0xx.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
   46 001c 0D49     		ldr	r1, .L2+12
   47 001e 0140     		and	r1, r0
   48 0020 1960     		str	r1, [r3]
-ARM GAS  /tmp/cc65C2f9.s 			page 5
+ARM GAS  /tmp/ccCvQojK.s 			page 5
 
 
  182:Src/system_stm32f0xx.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
   67 003e 5963     		str	r1, [r3, #52]
  218:Src/system_stm32f0xx.c **** 
  219:Src/system_stm32f0xx.c ****   /* Disable all interrupts */
-ARM GAS  /tmp/cc65C2f9.s 			page 6
+ARM GAS  /tmp/ccCvQojK.s 			page 6
 
 
  220:Src/system_stm32f0xx.c ****   RCC->CIR = 0x00000000U;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
  249:Src/system_stm32f0xx.c ****   *         (**) HSE_VALUE is a constant defined in stm32f0xx_hal.h file (default value
  250:Src/system_stm32f0xx.c ****   *              8 MHz), user has to ensure that HSE_VALUE is same as the real
  251:Src/system_stm32f0xx.c ****   *              frequency of the crystal used. Otherwise, this function may
-ARM GAS  /tmp/cc65C2f9.s 			page 7
+ARM GAS  /tmp/ccCvQojK.s 			page 7
 
 
  252:Src/system_stm32f0xx.c ****   *              have wrong result.
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
  127 0020 1F4B     		ldr	r3, .L13+8
  128              	.LVL4:
  129 0022 1A60     		str	r2, [r3]
-ARM GAS  /tmp/cc65C2f9.s 			page 8
+ARM GAS  /tmp/ccCvQojK.s 			page 8
 
 
  274:Src/system_stm32f0xx.c ****       break;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
  286:Src/system_stm32f0xx.c ****       }
  287:Src/system_stm32f0xx.c **** #if defined(STM32F042x6) || defined(STM32F048xx) || defined(STM32F072xB) || defined(STM32F078xx) ||
  288:Src/system_stm32f0xx.c ****       else if (pllsource == RCC_CFGR_PLLSRC_HSI48_PREDIV)
-ARM GAS  /tmp/cc65C2f9.s 			page 9
+ARM GAS  /tmp/ccCvQojK.s 			page 9
 
 
  172              		.loc 1 288 0
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
  204              	.LVL21:
  205              	.L9:
  311:Src/system_stm32f0xx.c ****       break;
-ARM GAS  /tmp/cc65C2f9.s 			page 10
+ARM GAS  /tmp/ccCvQojK.s 			page 10
 
 
  312:Src/system_stm32f0xx.c ****   }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
  256 000e 08       		.byte	8
  257 000f 09       		.byte	9
  258              		.section	.rodata.APBPrescTable,"a",%progbits
-ARM GAS  /tmp/cc65C2f9.s 			page 11
+ARM GAS  /tmp/ccCvQojK.s 			page 11
 
 
  259              		.align	2
@@ -621,23 +621,23 @@ ARM GAS  /tmp/cc65C2f9.s 			page 1
  280              		.file 2 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
  281              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
  282              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-ARM GAS  /tmp/cc65C2f9.s 			page 12
+ARM GAS  /tmp/ccCvQojK.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 system_stm32f0xx.c
-     /tmp/cc65C2f9.s:18     .text.SystemInit:00000000 $t
-     /tmp/cc65C2f9.s:23     .text.SystemInit:00000000 SystemInit
-     /tmp/cc65C2f9.s:77     .text.SystemInit:00000048 $d
-     /tmp/cc65C2f9.s:88     .text.SystemCoreClockUpdate:00000000 $t
-     /tmp/cc65C2f9.s:93     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
-     /tmp/cc65C2f9.s:225    .text.SystemCoreClockUpdate:00000098 $d
-     /tmp/cc65C2f9.s:262    .rodata.APBPrescTable:00000000 APBPrescTable
-     /tmp/cc65C2f9.s:241    .rodata.AHBPrescTable:00000000 AHBPrescTable
-     /tmp/cc65C2f9.s:276    .data.SystemCoreClock:00000000 SystemCoreClock
-     /tmp/cc65C2f9.s:237    .rodata.AHBPrescTable:00000000 $d
-     /tmp/cc65C2f9.s:259    .rodata.APBPrescTable:00000000 $d
-     /tmp/cc65C2f9.s:272    .data.SystemCoreClock:00000000 $d
+     /tmp/ccCvQojK.s:18     .text.SystemInit:00000000 $t
+     /tmp/ccCvQojK.s:23     .text.SystemInit:00000000 SystemInit
+     /tmp/ccCvQojK.s:77     .text.SystemInit:00000048 $d
+     /tmp/ccCvQojK.s:88     .text.SystemCoreClockUpdate:00000000 $t
+     /tmp/ccCvQojK.s:93     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+     /tmp/ccCvQojK.s:225    .text.SystemCoreClockUpdate:00000098 $d
+     /tmp/ccCvQojK.s:262    .rodata.APBPrescTable:00000000 APBPrescTable
+     /tmp/ccCvQojK.s:241    .rodata.AHBPrescTable:00000000 AHBPrescTable
+     /tmp/ccCvQojK.s:276    .data.SystemCoreClock:00000000 SystemCoreClock
+     /tmp/ccCvQojK.s:237    .rodata.AHBPrescTable:00000000 $d
+     /tmp/ccCvQojK.s:259    .rodata.APBPrescTable:00000000 $d
+     /tmp/ccCvQojK.s:272    .data.SystemCoreClock:00000000 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

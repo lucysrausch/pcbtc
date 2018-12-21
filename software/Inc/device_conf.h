@@ -11,5 +11,7 @@
 #define LED_POW_GPIO GPIOA
 #define LED_POW_PIN GPIO_PIN_15
 
+#define LED_FAULT_GPIO GPIOA
+#define LED_FAULT_PIN GPIO_PIN_10
 
 #endif /* DEVICE_CONF_H_ */
