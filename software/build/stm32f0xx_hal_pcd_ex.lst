@@ -1,30 +1,32 @@
-ARM GAS  /tmp/ccYzkdzb.s 			page 1
+ARM GAS  /tmp/ccORjVhJ.s 			page 1
 
 
    1              		.cpu cortex-m0
-   2              		.fpu softvfp
-   3              		.eabi_attribute 20, 1
-   4              		.eabi_attribute 21, 1
-   5              		.eabi_attribute 23, 3
-   6              		.eabi_attribute 24, 1
-   7              		.eabi_attribute 25, 1
-   8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 1
-  10              		.eabi_attribute 34, 0
-  11              		.eabi_attribute 18, 4
-  12              		.code	16
-  13              		.file	"stm32f0xx_hal_pcd_ex.c"
-  14              		.text
-  15              	.Ltext0:
-  16              		.cfi_sections	.debug_frame
-  17              		.section	.text.HAL_PCDEx_PMAConfig,"ax",%progbits
-  18              		.align	2
-  19              		.global	HAL_PCDEx_PMAConfig
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"stm32f0xx_hal_pcd_ex.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.HAL_PCDEx_PMAConfig,"ax",%progbits
+  16              		.align	1
+  17              		.global	HAL_PCDEx_PMAConfig
+  18              		.arch armv6s-m
+  19              		.syntax unified
   20              		.code	16
   21              		.thumb_func
-  23              	HAL_PCDEx_PMAConfig:
-  24              	.LFB34:
-  25              		.file 1 "Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c"
+  22              		.fpu softvfp
+  24              	HAL_PCDEx_PMAConfig:
+  25              	.LVL0:
+  26              	.LFB37:
+  27              		.file 1 "Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c"
    1:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** /**
    2:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   ******************************************************************************
    3:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * @file    stm32f0xx_hal_pcd_ex.c
@@ -56,11 +58,11 @@ ARM GAS  /tmp/ccYzkdzb.s 			page 1
   29:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ARM GAS  /tmp/ccORjVhJ.s 			page 2
+
+
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccYzkdzb.s 			page 2
-
-
   34:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
   35:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   36:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *
@@ -116,11 +118,11 @@ ARM GAS  /tmp/ccYzkdzb.s 			page 1
   86:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *                @arg USB_DBL_BUF: Double Buffer used
   87:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   * @param  pmaadress: EP address in The PMA: In case of single buffer endpoint
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *                   this parameter is 16-bit value providing the address
+ARM GAS  /tmp/ccORjVhJ.s 			page 3
+
+
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *                   in PMA allocated to endpoint.
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *                   In case of double buffer endpoint this parameter
-ARM GAS  /tmp/ccYzkdzb.s 			page 3
-
-
   91:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *                   is a 32-bit value providing the endpoint buffer 0 address
   92:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *                   in the LSB part of 32-bit value and endpoint buffer 1 address
   93:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   *                   in the MSB part of 32-bit value.
@@ -133,115 +135,154 @@ ARM GAS  /tmp/ccYzkdzb.s 			page 1
  100:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****                         uint32_t pmaadress)
  101:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** 
  102:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** {
-  26              		.loc 1 102 0
-  27              		.cfi_startproc
-  28              	.LVL0:
-  29 0000 10B5     		push	{r4, lr}
-  30              	.LCFI0:
-  31              		.cfi_def_cfa_offset 8
-  32              		.cfi_offset 4, -8
-  33              		.cfi_offset 14, -4
+  28              		.loc 1 102 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 102 1 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
  103:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   PCD_EPTypeDef *ep;
+  38              		.loc 1 103 3 is_stmt 1 view .LVU2
  104:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   
  105:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   /* initialize ep structure*/
  106:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   if ((0x80U & ep_addr) == 0x80U)
-  34              		.loc 1 106 0
-  35 0002 0C06     		lsl	r4, r1, #24
-  36 0004 07D5     		bpl	.L2
+  39              		.loc 1 106 3 view .LVU3
+  40              		.loc 1 106 6 is_stmt 0 view .LVU4
+  41 0002 0C06     		lsls	r4, r1, #24
+  42 0004 0CD5     		bpl	.L2
  107:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   {
  108:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep = &hpcd->IN_ep[ep_addr & 0x7FU];
-  37              		.loc 1 108 0
-  38 0006 7F24     		mov	r4, #127
-  39 0008 2140     		and	r1, r4
-  40              	.LVL1:
-  41 000a CC00     		lsl	r4, r1, #3
-  42 000c 611A     		sub	r1, r4, r1
-  43 000e 8900     		lsl	r1, r1, #2
-  44 0010 2831     		add	r1, r1, #40
-  45 0012 4018     		add	r0, r0, r1
-  46              	.LVL2:
-  47 0014 05E0     		b	.L3
-  48              	.LVL3:
-  49              	.L2:
+  43              		.loc 1 108 5 is_stmt 1 view .LVU5
+  44              		.loc 1 108 31 is_stmt 0 view .LVU6
+  45 0006 7F24     		movs	r4, #127
+  46 0008 2140     		ands	r1, r4
+  47              	.LVL1:
+  48              		.loc 1 108 8 view .LVU7
+  49 000a CC00     		lsls	r4, r1, #3
+  50 000c 611A     		subs	r1, r4, r1
+  51 000e 8C00     		lsls	r4, r1, #2
+  52 0010 2834     		adds	r4, r4, #40
+  53 0012 0019     		adds	r0, r0, r4
+  54              	.LVL2:
+  55              	.L3:
  109:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
  110:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   else
  111:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   {
  112:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep = &hpcd->OUT_ep[ep_addr];
-  50              		.loc 1 112 0
-  51 0016 CC00     		lsl	r4, r1, #3
-  52 0018 611A     		sub	r1, r4, r1
-  53              	.LVL4:
-  54 001a 8900     		lsl	r1, r1, #2
-  55 001c 0931     		add	r1, r1, #9
-  56 001e FF31     		add	r1, r1, #255
-  57 0020 4018     		add	r0, r0, r1
-  58              	.LVL5:
-  59              	.L3:
  113:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
-ARM GAS  /tmp/ccYzkdzb.s 			page 4
-
-
  114:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   
  115:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   /* Here we check if the endpoint is single or double Buffer*/
  116:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   if (ep_kind == PCD_SNG_BUF)
-  60              		.loc 1 116 0
-  61 0022 002A     		cmp	r2, #0
-  62 0024 02D1     		bne	.L4
+  56              		.loc 1 116 3 is_stmt 1 view .LVU8
+ARM GAS  /tmp/ccORjVhJ.s 			page 4
+
+
+  57              		.loc 1 116 6 is_stmt 0 view .LVU9
+  58 0014 002A     		cmp	r2, #0
+  59 0016 0AD1     		bne	.L4
  117:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   {
  118:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     /*Single Buffer*/
  119:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep->doublebuffer = 0U;
-  63              		.loc 1 119 0
-  64 0026 8272     		strb	r2, [r0, #10]
+  60              		.loc 1 119 5 is_stmt 1 view .LVU10
+  61              		.loc 1 119 22 is_stmt 0 view .LVU11
+  62 0018 8272     		strb	r2, [r0, #10]
  120:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     /*Configure the PMA*/
  121:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep->pmaadress = (uint16_t)pmaadress;
-  65              		.loc 1 121 0
-  66 0028 8380     		strh	r3, [r0, #4]
-  67 002a 04E0     		b	.L5
-  68              	.L4:
+  63              		.loc 1 121 5 is_stmt 1 view .LVU12
+  64              		.loc 1 121 19 is_stmt 0 view .LVU13
+  65 001a 8380     		strh	r3, [r0, #4]
+  66              	.LVL3:
+  67              	.L5:
  122:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
  123:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   else /*USB_DBL_BUF*/
  124:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   {
  125:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     /*Double Buffer Endpoint*/
  126:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep->doublebuffer = 1U;
-  69              		.loc 1 126 0
-  70 002c 0122     		mov	r2, #1
-  71              	.LVL6:
-  72 002e 8272     		strb	r2, [r0, #10]
  127:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     /*Configure the PMA*/
  128:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep->pmaaddr0 =  pmaadress & 0xFFFFU;
-  73              		.loc 1 128 0
-  74 0030 C380     		strh	r3, [r0, #6]
  129:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep->pmaaddr1 =  (pmaadress & 0xFFFF0000U) >> 16U;
-  75              		.loc 1 129 0
-  76 0032 1B0C     		lsr	r3, r3, #16
-  77              	.LVL7:
-  78 0034 0381     		strh	r3, [r0, #8]
-  79              	.L5:
  130:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
  131:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   
  132:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   return HAL_OK;
+  68              		.loc 1 132 3 is_stmt 1 view .LVU14
  133:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c **** }
-  80              		.loc 1 133 0
-  81 0036 0020     		mov	r0, #0
-  82              	.LVL8:
-  83              		@ sp needed
-  84 0038 10BD     		pop	{r4, pc}
-  85              		.cfi_endproc
-  86              	.LFE34:
-  88 003a C046     		.text
-  89              	.Letext0:
-  90              		.file 2 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
-  91              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
-  92              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-  93              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
-  94              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd.h"
-ARM GAS  /tmp/ccYzkdzb.s 			page 5
+  69              		.loc 1 133 1 is_stmt 0 view .LVU15
+  70 001c 0020     		movs	r0, #0
+  71              	.LVL4:
+  72              		.loc 1 133 1 view .LVU16
+  73              		@ sp needed
+  74 001e 10BD     		pop	{r4, pc}
+  75              	.LVL5:
+  76              	.L2:
+ 112:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
+  77              		.loc 1 112 5 is_stmt 1 view .LVU17
+ 112:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
+  78              		.loc 1 112 8 is_stmt 0 view .LVU18
+  79 0020 CC00     		lsls	r4, r1, #3
+  80 0022 611A     		subs	r1, r4, r1
+  81              	.LVL6:
+ 112:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
+  82              		.loc 1 112 8 view .LVU19
+  83 0024 8C00     		lsls	r4, r1, #2
+  84 0026 0934     		adds	r4, r4, #9
+  85 0028 FF34     		adds	r4, r4, #255
+  86 002a 0019     		adds	r0, r0, r4
+  87              	.LVL7:
+ 112:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
+  88              		.loc 1 112 8 view .LVU20
+  89 002c F2E7     		b	.L3
+  90              	.L4:
+ 126:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     /*Configure the PMA*/
+  91              		.loc 1 126 5 is_stmt 1 view .LVU21
+ARM GAS  /tmp/ccORjVhJ.s 			page 5
+
+
+ 126:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     /*Configure the PMA*/
+  92              		.loc 1 126 22 is_stmt 0 view .LVU22
+  93 002e 0122     		movs	r2, #1
+  94              	.LVL8:
+ 126:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     /*Configure the PMA*/
+  95              		.loc 1 126 22 view .LVU23
+  96 0030 8272     		strb	r2, [r0, #10]
+ 128:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep->pmaaddr1 =  (pmaadress & 0xFFFF0000U) >> 16U;
+  97              		.loc 1 128 5 is_stmt 1 view .LVU24
+ 128:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****     ep->pmaaddr1 =  (pmaadress & 0xFFFF0000U) >> 16U;
+  98              		.loc 1 128 18 is_stmt 0 view .LVU25
+  99 0032 C380     		strh	r3, [r0, #6]
+ 129:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
+ 100              		.loc 1 129 5 is_stmt 1 view .LVU26
+ 129:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
+ 101              		.loc 1 129 47 is_stmt 0 view .LVU27
+ 102 0034 1B0C     		lsrs	r3, r3, #16
+ 103              	.LVL9:
+ 129:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c ****   }
+ 104              		.loc 1 129 18 view .LVU28
+ 105 0036 0381     		strh	r3, [r0, #8]
+ 106 0038 F0E7     		b	.L5
+ 107              		.cfi_endproc
+ 108              	.LFE37:
+ 110              		.text
+ 111              	.Letext0:
+ 112              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 113              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 114              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 115              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 116              		.file 6 "/usr/arm-none-eabi/include/sys/lock.h"
+ 117              		.file 7 "/usr/arm-none-eabi/include/sys/_types.h"
+ 118              		.file 8 "/usr/lib/gcc/arm-none-eabi/8.3.0/include/stddef.h"
+ 119              		.file 9 "/usr/arm-none-eabi/include/sys/reent.h"
+ 120              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 121              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd.h"
+ARM GAS  /tmp/ccORjVhJ.s 			page 6
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 stm32f0xx_hal_pcd_ex.c
-     /tmp/ccYzkdzb.s:18     .text.HAL_PCDEx_PMAConfig:00000000 $t
-     /tmp/ccYzkdzb.s:23     .text.HAL_PCDEx_PMAConfig:00000000 HAL_PCDEx_PMAConfig
-                     .debug_frame:00000010 $d
+                            *ABS*:0000000000000000 stm32f0xx_hal_pcd_ex.c
+     /tmp/ccORjVhJ.s:16     .text.HAL_PCDEx_PMAConfig:0000000000000000 $t
+     /tmp/ccORjVhJ.s:24     .text.HAL_PCDEx_PMAConfig:0000000000000000 HAL_PCDEx_PMAConfig
 
 NO UNDEFINED SYMBOLS

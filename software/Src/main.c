@@ -56,7 +56,10 @@
 #include "curemisc.h"
 #include "curebuffer.h"
 #include "usbd_midi_if.h"
+#include "usbd_cdc_if.h"
 #include "math.h"
+
+//#define USE_CDC
 
 /* USER CODE END Includes */
 
@@ -145,7 +148,9 @@ uint16_t lastTone1 = 0;
 uint32_t noteTimeout = 0;
 
 uint16_t freqs[16] = {0};
-
+#ifdef USE_CDC
+char str[40];
+#endif
 
 int main(void)
 {
@@ -204,9 +209,14 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   //USB-MIDI Init
+#ifdef USE_CDC
+  MX_USB_DEVICE_Init();
+#endif
+#ifndef USE_CDC
   MX_USB_MIDI_INIT();
+#endif
 
-
+#ifndef USE_CDC
   if(FUNC_ERROR == midiInit() ){
 	  while(1){
 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
@@ -225,6 +235,7 @@ int main(void)
 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
 	  }
   }
+#endif
 
   while (1)
   {
@@ -241,6 +252,16 @@ int main(void)
 			  HAL_Delay(200);
 		  }
 	  }*/
+#ifdef USE_CDC
+      memset(str, ' ', 40);
+      sprintf(&str[0], "Otter!\n\r");
+      CDC_Transmit_FS((unsigned char*)str, sizeof(str));
+      HAL_Delay(200);
+
+      if (HAL_GPIO_ReadPin(BUTTON_GPIO, BUTTON_PIN)) {
+        dfu_otter_bootloader();
+      }
+#endif
 
     if (HAL_GPIO_ReadPin(BUTTON_GPIO, BUTTON_PIN)) {
       dfu_otter_bootloader();
@@ -253,7 +274,7 @@ int main(void)
     } else {
       HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
     }
-
+#ifndef USE_CDC
 		curTone0 = 0;
 		curTone1 = 0;
 
@@ -342,7 +363,7 @@ int main(void)
 				}
 			}
 		}
-
+#endif
 	//[MIDI JACK IN] to [USB-MIDI OUT]
 	//midiProcess();
 

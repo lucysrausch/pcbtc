@@ -72,6 +72,7 @@ Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.c \
 Src/main.c \
 Src/usb_device.c \
 Src/usbd_conf.c \
+Src/usbd_cdc_if.c \
 Src/usbd_desc.c \
 Src/usbd_midi_if.c \
 Src/curelib_src/curebuffer.c \
@@ -81,6 +82,7 @@ Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac_ex.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
+Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
 Middlewares/USBMIDI/Src/usbd_midi.c \
 
 # ASM sources
@@ -139,6 +141,7 @@ C_INCLUDES =  \
 -IInc \
 -IInc/curelib_inc \
 -IMiddlewares/ST/STM32_USB_Device_Library/Core/Inc \
+-IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
 -IMiddlewares/USBMIDI/Inc \
 -IDrivers/STM32F0xx_HAL_Driver/Inc \
 -IDrivers/STM32F0xx_HAL_Driver/Inc/Legacy \
