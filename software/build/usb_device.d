@@ -38,7 +38,8 @@ build/usb_device.d: Src/usb_device.c Inc/usb_device.h \
  Inc/usbd_desc.h Middlewares/USBMIDI/Inc/usbd_midi.h \
  Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  Inc/usbd_midi_if.h Inc/usbd_desc.h Inc/curelib_inc/curemisc.h \
- Inc/curelib_inc/curebuffer.h
+ Inc/curelib_inc/curebuffer.h Inc/usbd_cdc_if.h \
+ Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h
 
 Inc/usb_device.h:
 
@@ -133,3 +134,7 @@ Inc/usbd_desc.h:
 Inc/curelib_inc/curemisc.h:
 
 Inc/curelib_inc/curebuffer.h:
+
+Inc/usbd_cdc_if.h:
+
+Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:

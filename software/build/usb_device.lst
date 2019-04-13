@@ -1,30 +1,31 @@
-ARM GAS  /tmp/ccswdujQ.s 			page 1
+ARM GAS  /tmp/cc1G8wui.s 			page 1
 
 
    1              		.cpu cortex-m0
-   2              		.fpu softvfp
-   3              		.eabi_attribute 20, 1
-   4              		.eabi_attribute 21, 1
-   5              		.eabi_attribute 23, 3
-   6              		.eabi_attribute 24, 1
-   7              		.eabi_attribute 25, 1
-   8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 1
-  10              		.eabi_attribute 34, 0
-  11              		.eabi_attribute 18, 4
-  12              		.code	16
-  13              		.file	"usb_device.c"
-  14              		.text
-  15              	.Ltext0:
-  16              		.cfi_sections	.debug_frame
-  17              		.section	.text.MX_USB_MIDI_INIT,"ax",%progbits
-  18              		.align	2
-  19              		.global	MX_USB_MIDI_INIT
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"usb_device.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.MX_USB_MIDI_INIT,"ax",%progbits
+  16              		.align	1
+  17              		.global	MX_USB_MIDI_INIT
+  18              		.arch armv6s-m
+  19              		.syntax unified
   20              		.code	16
   21              		.thumb_func
-  23              	MX_USB_MIDI_INIT:
-  24              	.LFB34:
-  25              		.file 1 "Src/usb_device.c"
+  22              		.fpu softvfp
+  24              	MX_USB_MIDI_INIT:
+  25              	.LFB37:
+  26              		.file 1 "Src/usb_device.c"
    1:Src/usb_device.c **** /**
    2:Src/usb_device.c ****   ******************************************************************************
    3:Src/usb_device.c ****   * @file           : usb_device.c
@@ -57,10 +58,10 @@ ARM GAS  /tmp/ccswdujQ.s 			page 1
   30:Src/usb_device.c ****   * 5. Redistribution and use of this software other than as permitted under 
   31:Src/usb_device.c ****   *    this license is void and will automatically terminate your rights under 
   32:Src/usb_device.c ****   *    this license. 
+ARM GAS  /tmp/cc1G8wui.s 			page 2
+
+
   33:Src/usb_device.c ****   *
-ARM GAS  /tmp/ccswdujQ.s 			page 2
-
-
   34:Src/usb_device.c ****   * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
   35:Src/usb_device.c ****   * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
   36:Src/usb_device.c ****   * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
@@ -87,151 +88,205 @@ ARM GAS  /tmp/ccswdujQ.s 			page 1
   57:Src/usb_device.c **** #include "usbd_midi.h"
   58:Src/usb_device.c **** #include "usbd_midi_if.h"
   59:Src/usb_device.c **** 
-  60:Src/usb_device.c **** /* USER CODE END Includes */
-  61:Src/usb_device.c **** 
-  62:Src/usb_device.c **** /* USER CODE BEGIN PV */
-  63:Src/usb_device.c **** /* Private variables ---------------------------------------------------------*/
+  60:Src/usb_device.c **** #include "usbd_cdc_if.h"
+  61:Src/usb_device.c **** //#include "usbd_cdc.h"
+  62:Src/usb_device.c **** 
+  63:Src/usb_device.c **** /* USER CODE END Includes */
   64:Src/usb_device.c **** 
-  65:Src/usb_device.c **** /* USER CODE END PV */
-  66:Src/usb_device.c **** 
-  67:Src/usb_device.c **** /* USER CODE BEGIN PFP */
-  68:Src/usb_device.c **** /* Private function prototypes -----------------------------------------------*/
+  65:Src/usb_device.c **** /* USER CODE BEGIN PV */
+  66:Src/usb_device.c **** /* Private variables ---------------------------------------------------------*/
+  67:Src/usb_device.c **** 
+  68:Src/usb_device.c **** /* USER CODE END PV */
   69:Src/usb_device.c **** 
-  70:Src/usb_device.c **** /* USER CODE END PFP */
-  71:Src/usb_device.c **** 
-  72:Src/usb_device.c **** /* USB Device Core handle declaration. */
-  73:Src/usb_device.c **** USBD_HandleTypeDef hUsbDeviceFS;
+  70:Src/usb_device.c **** /* USER CODE BEGIN PFP */
+  71:Src/usb_device.c **** /* Private function prototypes -----------------------------------------------*/
+  72:Src/usb_device.c **** 
+  73:Src/usb_device.c **** /* USER CODE END PFP */
   74:Src/usb_device.c **** 
-  75:Src/usb_device.c **** /*
-  76:Src/usb_device.c ****  * -- Insert your variables declaration here --
-  77:Src/usb_device.c ****  */
-  78:Src/usb_device.c **** /* USER CODE BEGIN 0 */
-  79:Src/usb_device.c **** 
-  80:Src/usb_device.c **** /* USER CODE END 0 */
-  81:Src/usb_device.c **** 
-  82:Src/usb_device.c **** /*
-  83:Src/usb_device.c ****  * -- Insert your external function declaration here --
-  84:Src/usb_device.c ****  */
-  85:Src/usb_device.c **** /* USER CODE BEGIN 1 */
-  86:Src/usb_device.c **** 
-  87:Src/usb_device.c **** void MX_USB_MIDI_INIT(void)
-  88:Src/usb_device.c **** {
-  26              		.loc 1 88 0
-  27              		.cfi_startproc
-ARM GAS  /tmp/ccswdujQ.s 			page 3
+  75:Src/usb_device.c **** /* USB Device Core handle declaration. */
+  76:Src/usb_device.c **** USBD_HandleTypeDef hUsbDeviceFS;
+  77:Src/usb_device.c **** 
+  78:Src/usb_device.c **** /*
+  79:Src/usb_device.c ****  * -- Insert your variables declaration here --
+  80:Src/usb_device.c ****  */
+  81:Src/usb_device.c **** /* USER CODE BEGIN 0 */
+  82:Src/usb_device.c **** 
+  83:Src/usb_device.c **** /* USER CODE END 0 */
+  84:Src/usb_device.c **** 
+  85:Src/usb_device.c **** /*
+  86:Src/usb_device.c ****  * -- Insert your external function declaration here --
+  87:Src/usb_device.c ****  */
+  88:Src/usb_device.c **** /* USER CODE BEGIN 1 */
+  89:Src/usb_device.c **** 
+ARM GAS  /tmp/cc1G8wui.s 			page 3
 
 
-  28 0000 10B5     		push	{r4, lr}
-  29              	.LCFI0:
-  30              		.cfi_def_cfa_offset 8
-  31              		.cfi_offset 4, -8
-  32              		.cfi_offset 14, -4
-  89:Src/usb_device.c ****   USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
-  33              		.loc 1 89 0
-  34 0002 094C     		ldr	r4, .L2
-  35 0004 201C     		mov	r0, r4
-  36 0006 0949     		ldr	r1, .L2+4
-  37 0008 0022     		mov	r2, #0
-  38 000a FFF7FEFF 		bl	USBD_Init
-  39              	.LVL0:
-  90:Src/usb_device.c **** 
-  91:Src/usb_device.c ****   USBD_RegisterClass(&hUsbDeviceFS, &USBD_MIDI);
-  40              		.loc 1 91 0
-  41 000e 201C     		mov	r0, r4
-  42 0010 0749     		ldr	r1, .L2+8
-  43 0012 FFF7FEFF 		bl	USBD_RegisterClass
-  44              	.LVL1:
-  92:Src/usb_device.c **** 
-  93:Src/usb_device.c ****   USBD_MIDI_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
-  45              		.loc 1 93 0
-  46 0016 201C     		mov	r0, r4
-  47 0018 0649     		ldr	r1, .L2+12
-  48 001a FFF7FEFF 		bl	USBD_MIDI_RegisterInterface
-  49              	.LVL2:
-  94:Src/usb_device.c **** 
-  95:Src/usb_device.c ****   USBD_Start(&hUsbDeviceFS);
-  50              		.loc 1 95 0
-  51 001e 201C     		mov	r0, r4
-  52 0020 FFF7FEFF 		bl	USBD_Start
-  53              	.LVL3:
-  96:Src/usb_device.c **** }
-  54              		.loc 1 96 0
-  55              		@ sp needed
-  56 0024 10BD     		pop	{r4, pc}
-  57              	.L3:
-  58 0026 C046     		.align	2
-  59              	.L2:
-  60 0028 00000000 		.word	hUsbDeviceFS
-  61 002c 00000000 		.word	FS_Desc
-  62 0030 00000000 		.word	USBD_MIDI
-  63 0034 00000000 		.word	USBD_Interface_fops_FS
-  64              		.cfi_endproc
-  65              	.LFE34:
-  67              		.section	.text.MX_USB_DEVICE_Init,"ax",%progbits
-  68              		.align	2
-  69              		.global	MX_USB_DEVICE_Init
-  70              		.code	16
-  71              		.thumb_func
-  73              	MX_USB_DEVICE_Init:
-  74              	.LFB35:
+  90:Src/usb_device.c **** void MX_USB_MIDI_INIT(void)
+  91:Src/usb_device.c **** {
+  27              		.loc 1 91 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  92:Src/usb_device.c ****   USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
+  36              		.loc 1 92 3 view .LVU1
+  37 0002 094C     		ldr	r4, .L2
+  38 0004 0022     		movs	r2, #0
+  39 0006 0949     		ldr	r1, .L2+4
+  40 0008 2000     		movs	r0, r4
+  41 000a FFF7FEFF 		bl	USBD_Init
+  42              	.LVL0:
+  93:Src/usb_device.c **** 
+  94:Src/usb_device.c ****   USBD_RegisterClass(&hUsbDeviceFS, &USBD_MIDI);
+  43              		.loc 1 94 3 view .LVU2
+  44 000e 0849     		ldr	r1, .L2+8
+  45 0010 2000     		movs	r0, r4
+  46 0012 FFF7FEFF 		bl	USBD_RegisterClass
+  47              	.LVL1:
+  95:Src/usb_device.c **** 
+  96:Src/usb_device.c ****   USBD_MIDI_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
+  48              		.loc 1 96 3 view .LVU3
+  49 0016 0749     		ldr	r1, .L2+12
+  50 0018 2000     		movs	r0, r4
+  51 001a FFF7FEFF 		bl	USBD_MIDI_RegisterInterface
+  52              	.LVL2:
   97:Src/usb_device.c **** 
-  98:Src/usb_device.c **** /* USER CODE END 1 */
-  99:Src/usb_device.c **** 
- 100:Src/usb_device.c **** /**
-ARM GAS  /tmp/ccswdujQ.s 			page 4
+  98:Src/usb_device.c ****   USBD_Start(&hUsbDeviceFS);
+  53              		.loc 1 98 3 view .LVU4
+  54 001e 2000     		movs	r0, r4
+  55 0020 FFF7FEFF 		bl	USBD_Start
+  56              	.LVL3:
+  99:Src/usb_device.c **** }
+  57              		.loc 1 99 1 is_stmt 0 view .LVU5
+  58              		@ sp needed
+  59 0024 10BD     		pop	{r4, pc}
+  60              	.L3:
+  61 0026 C046     		.align	2
+  62              	.L2:
+  63 0028 00000000 		.word	hUsbDeviceFS
+  64 002c 00000000 		.word	FS_Desc
+  65 0030 00000000 		.word	USBD_MIDI
+  66 0034 00000000 		.word	USBD_Interface_fops_FS
+  67              		.cfi_endproc
+  68              	.LFE37:
+  70              		.section	.text.MX_USB_DEVICE_Init,"ax",%progbits
+  71              		.align	1
+  72              		.global	MX_USB_DEVICE_Init
+  73              		.syntax unified
+  74              		.code	16
+ARM GAS  /tmp/cc1G8wui.s 			page 4
 
 
- 101:Src/usb_device.c ****   * Init USB device Library, add supported class and start the library
- 102:Src/usb_device.c ****   * @retval None
- 103:Src/usb_device.c ****   */
- 104:Src/usb_device.c **** void MX_USB_DEVICE_Init(void)
- 105:Src/usb_device.c **** {
-  75              		.loc 1 105 0
-  76              		.cfi_startproc
- 106:Src/usb_device.c ****   /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
- 107:Src/usb_device.c **** #ifdef USBMIDI
- 108:Src/usb_device.c ****   /* USER CODE END USB_DEVICE_Init_PreTreatment */
- 109:Src/usb_device.c ****   
- 110:Src/usb_device.c ****   /* Init Device Library, add supported class and start the library. */
- 111:Src/usb_device.c ****   USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
- 112:Src/usb_device.c **** 
- 113:Src/usb_device.c ****   USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC);
- 114:Src/usb_device.c **** 
- 115:Src/usb_device.c ****   USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
- 116:Src/usb_device.c **** 
- 117:Src/usb_device.c ****   USBD_Start(&hUsbDeviceFS);
- 118:Src/usb_device.c **** 
- 119:Src/usb_device.c ****   /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
- 120:Src/usb_device.c **** #endif
- 121:Src/usb_device.c ****   /* USER CODE END USB_DEVICE_Init_PostTreatment */
- 122:Src/usb_device.c **** }
-  77              		.loc 1 122 0
-  78              		@ sp needed
-  79 0000 7047     		bx	lr
-  80              		.cfi_endproc
-  81              	.LFE35:
-  83              		.comm	hUsbDeviceFS,548,4
-  84 0002 C046     		.text
-  85              	.Letext0:
-  86              		.file 2 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
-  87              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
-  88              		.file 4 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
-  89              		.file 5 "Middlewares/USBMIDI/Inc/usbd_midi.h"
-  90              		.file 6 "Inc/usbd_desc.h"
-  91              		.file 7 "Inc/usbd_midi_if.h"
-  92              		.file 8 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h"
-ARM GAS  /tmp/ccswdujQ.s 			page 5
+  75              		.thumb_func
+  76              		.fpu softvfp
+  78              	MX_USB_DEVICE_Init:
+  79              	.LFB38:
+ 100:Src/usb_device.c **** 
+ 101:Src/usb_device.c **** /* USER CODE END 1 */
+ 102:Src/usb_device.c **** 
+ 103:Src/usb_device.c **** /**
+ 104:Src/usb_device.c ****   * Init USB device Library, add supported class and start the library
+ 105:Src/usb_device.c ****   * @retval None
+ 106:Src/usb_device.c ****   */
+ 107:Src/usb_device.c **** void MX_USB_DEVICE_Init(void)
+ 108:Src/usb_device.c **** {
+  80              		.loc 1 108 1 is_stmt 1 view -0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 10B5     		push	{r4, lr}
+  85              	.LCFI1:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 4, -8
+  88              		.cfi_offset 14, -4
+ 109:Src/usb_device.c ****   /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
+ 110:Src/usb_device.c **** //#ifdef USBMIDI
+ 111:Src/usb_device.c ****   /* USER CODE END USB_DEVICE_Init_PreTreatment */
+ 112:Src/usb_device.c ****   
+ 113:Src/usb_device.c ****   /* Init Device Library, add supported class and start the library. */
+ 114:Src/usb_device.c ****   USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
+  89              		.loc 1 114 3 view .LVU7
+  90 0002 094C     		ldr	r4, .L5
+  91 0004 0022     		movs	r2, #0
+  92 0006 0949     		ldr	r1, .L5+4
+  93 0008 2000     		movs	r0, r4
+  94 000a FFF7FEFF 		bl	USBD_Init
+  95              	.LVL4:
+ 115:Src/usb_device.c **** 
+ 116:Src/usb_device.c ****   USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC);
+  96              		.loc 1 116 3 view .LVU8
+  97 000e 0849     		ldr	r1, .L5+8
+  98 0010 2000     		movs	r0, r4
+  99 0012 FFF7FEFF 		bl	USBD_RegisterClass
+ 100              	.LVL5:
+ 117:Src/usb_device.c **** 
+ 118:Src/usb_device.c ****   USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS_CDC);
+ 101              		.loc 1 118 3 view .LVU9
+ 102 0016 0749     		ldr	r1, .L5+12
+ 103 0018 2000     		movs	r0, r4
+ 104 001a FFF7FEFF 		bl	USBD_CDC_RegisterInterface
+ 105              	.LVL6:
+ 119:Src/usb_device.c **** 
+ 120:Src/usb_device.c ****   USBD_Start(&hUsbDeviceFS);
+ 106              		.loc 1 120 3 view .LVU10
+ 107 001e 2000     		movs	r0, r4
+ 108 0020 FFF7FEFF 		bl	USBD_Start
+ 109              	.LVL7:
+ 121:Src/usb_device.c **** 
+ 122:Src/usb_device.c ****   /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
+ARM GAS  /tmp/cc1G8wui.s 			page 5
+
+
+ 123:Src/usb_device.c **** //#endif
+ 124:Src/usb_device.c ****   /* USER CODE END USB_DEVICE_Init_PostTreatment */
+ 125:Src/usb_device.c **** }
+ 110              		.loc 1 125 1 is_stmt 0 view .LVU11
+ 111              		@ sp needed
+ 112 0024 10BD     		pop	{r4, pc}
+ 113              	.L6:
+ 114 0026 C046     		.align	2
+ 115              	.L5:
+ 116 0028 00000000 		.word	hUsbDeviceFS
+ 117 002c 00000000 		.word	FS_Desc
+ 118 0030 00000000 		.word	USBD_CDC
+ 119 0034 00000000 		.word	USBD_Interface_fops_FS_CDC
+ 120              		.cfi_endproc
+ 121              	.LFE38:
+ 123              		.comm	hUsbDeviceFS,548,4
+ 124              		.text
+ 125              	.Letext0:
+ 126              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 127              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 128              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 129              		.file 5 "/usr/arm-none-eabi/include/sys/lock.h"
+ 130              		.file 6 "/usr/arm-none-eabi/include/sys/_types.h"
+ 131              		.file 7 "/usr/lib/gcc/arm-none-eabi/8.3.0/include/stddef.h"
+ 132              		.file 8 "/usr/arm-none-eabi/include/sys/reent.h"
+ 133              		.file 9 "/usr/arm-none-eabi/include/stdlib.h"
+ 134              		.file 10 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
+ 135              		.file 11 "Inc/usb_device.h"
+ 136              		.file 12 "Inc/usbd_desc.h"
+ 137              		.file 13 "Middlewares/USBMIDI/Inc/usbd_midi.h"
+ 138              		.file 14 "Inc/usbd_midi_if.h"
+ 139              		.file 15 "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h"
+ 140              		.file 16 "Inc/usbd_cdc_if.h"
+ 141              		.file 17 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h"
+ARM GAS  /tmp/cc1G8wui.s 			page 6
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 usb_device.c
-     /tmp/ccswdujQ.s:18     .text.MX_USB_MIDI_INIT:00000000 $t
-     /tmp/ccswdujQ.s:23     .text.MX_USB_MIDI_INIT:00000000 MX_USB_MIDI_INIT
-     /tmp/ccswdujQ.s:60     .text.MX_USB_MIDI_INIT:00000028 $d
-                            *COM*:00000224 hUsbDeviceFS
-     /tmp/ccswdujQ.s:68     .text.MX_USB_DEVICE_Init:00000000 $t
-     /tmp/ccswdujQ.s:73     .text.MX_USB_DEVICE_Init:00000000 MX_USB_DEVICE_Init
-                     .debug_frame:00000010 $d
+                            *ABS*:0000000000000000 usb_device.c
+     /tmp/cc1G8wui.s:16     .text.MX_USB_MIDI_INIT:0000000000000000 $t
+     /tmp/cc1G8wui.s:24     .text.MX_USB_MIDI_INIT:0000000000000000 MX_USB_MIDI_INIT
+     /tmp/cc1G8wui.s:63     .text.MX_USB_MIDI_INIT:0000000000000028 $d
+                            *COM*:0000000000000224 hUsbDeviceFS
+     /tmp/cc1G8wui.s:71     .text.MX_USB_DEVICE_Init:0000000000000000 $t
+     /tmp/cc1G8wui.s:78     .text.MX_USB_DEVICE_Init:0000000000000000 MX_USB_DEVICE_Init
+     /tmp/cc1G8wui.s:116    .text.MX_USB_DEVICE_Init:0000000000000028 $d
 
 UNDEFINED SYMBOLS
 USBD_Init
@@ -241,3 +296,6 @@ USBD_Start
 FS_Desc
 USBD_MIDI
 USBD_Interface_fops_FS
+USBD_CDC_RegisterInterface
+USBD_CDC
+USBD_Interface_fops_FS_CDC
