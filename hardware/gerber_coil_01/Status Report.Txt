@@ -1,0 +1,21 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [coils.PrjPCB]
+   Generated File[altium_coil_01.GTL]
+   Generated File[altium_coil_01.GBL]
+   Generated File[altium_coil_01.GPB]
+   Generated File[altium_coil_01.GPT]
+   Generated File[altium_coil_01.GTO]
+   Generated File[altium_coil_01.GTS]
+   Generated File[altium_coil_01.GBS]
+   Generated File[altium_coil_01.GBO]
+   Generated File[altium_coil_01.GM1]
+   Generated File[altium_coil_01.RUL]
+   Generated File[altium_coil_01.EXTREP]
+   Generated File[altium_coil_01.REP]
+
+
+Files Generated   : 12
+Documents Printed : 0
+
+Finished Output Generation At 5:04:16 AM On 3/9/2019

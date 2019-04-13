@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [coils.PrjPCB]
+   Generated File[altium_coil_04.TXT]
+   Generated File[altium_coil_04.LDP]
+   Generated File[altium_coil_04.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 5:10:20 AM On 3/9/2019

@@ -1,0 +1,19 @@
+G04 Layer_Physical_Order=2*
+G04 Layer_Color=16711680*
+%FSLAX25Y25*%
+%MOIN*%
+G70*
+G01*
+G75*
+G04:AMPARAMS|DCode=13|XSize=118.11mil|YSize=78.74mil|CornerRadius=0mil|HoleSize=0mil|Usage=FLASHONLY|Rotation=135.000|XOffset=0mil|YOffset=0mil|HoleType=Round|Shape=Round|*
+%AMOVALD13*
+21,1,0.03937,0.07874,0.00000,0.00000,135.0*
+1,1,0.07874,0.01392,-0.01392*
+1,1,0.07874,-0.01392,0.01392*
+%
+%ADD13OVALD13*%
+
+D13*
+X135827Y135827D02*
+D03*
+M02*

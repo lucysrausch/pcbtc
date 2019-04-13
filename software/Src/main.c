@@ -84,22 +84,35 @@ static void MX_DAC_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
+void dfu_otter_bootloader(void)
+{
+  *((unsigned long *)0x20003FF0) = 0xDEADBEEF;
+  NVIC_SystemReset();
+}
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+
+uint32_t curPeriode0 = 0;
+uint32_t curPeriode1 = 0;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM14)
 	{
 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
-		TIM2->CR1 = TIM2->CR1 | 1;
+    if (TIM2->CNT == 0) {
+      TIM2->ARR = (uint32_t)(curPeriode0 / 5); // Play first channel
+    	TIM2->CR1 = TIM2->CR1 | 1;
+    }
 	}
 	if(htim->Instance == TIM15)
 	{
 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
-		//TIM2->CR1 = TIM2->CR1 | 1;
+    if (TIM2->CNT == 0) {
+    	TIM2->ARR = (uint32_t)(curPeriode1 / 10); // Play second channel with less power
+    	TIM2->CR1 = TIM2->CR1 | 1;
+    }
 	}
 }
 
@@ -118,8 +131,6 @@ uint16_t curTone1 = 0;
 uint16_t curChannel = 0;
 uint16_t lastTone0 = 0;
 uint16_t lastTone1 = 0;
-uint32_t curPeriode0 = 0;
-uint32_t curPeriode1 = 0;
 uint32_t noteTimeout = 0;
 
 uint16_t freqs[16] = {0};
@@ -196,7 +207,11 @@ int main(void)
   {
   //Wait USB configuration when USB connection error has occurred.
 	  while(1){
-		  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
+			if (HAL_GPIO_ReadPin(BUTTON_GPIO, BUTTON_PIN)) {
+				dfu_otter_bootloader();
+			}
+				//HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+			if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
 			  break;
 		  }else{
@@ -231,6 +246,7 @@ int main(void)
 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, SET);
 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
 			TIM14->CR1 &= ~(1UL);
+      curPeriode0 = 0;
 
 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
 		}
@@ -244,6 +260,7 @@ int main(void)
 			noteTimeout = HAL_GetTick();
 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
 			TIM15->CR1 &= ~(1UL);
+      curPeriode1 = 0;
 		}
 
 		if ((HAL_GetTick() - noteTimeout) > 1000) {
@@ -400,7 +417,7 @@ static void USER_TIM2_Init(void) {
 	htim2.Instance = TIM2;
 	htim2.Init.Prescaler = 0;
 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim2.Init.Period = 2000;
+	htim2.Init.Period = 3200;
 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
 	HAL_TIM_Base_Init(&htim2);
 

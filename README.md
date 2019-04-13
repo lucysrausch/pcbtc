@@ -2,6 +2,8 @@
 
 Docs todo
 
+Flash with dfu-util -d 0483:df11 -a 0 -s 0x8000000:leave -D build/pcbtcMIDI.bin
+
 Midi stack based on:
 https://github.com/keshikan/CureMIDI 
 
