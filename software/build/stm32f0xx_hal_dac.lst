@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cceDZLio.s 			page 1
+ARM GAS  /tmp/ccbWE57H.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****       *** DAC Triggers ***
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****       ====================
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****     [..]
-ARM GAS  /tmp/cceDZLio.s 			page 2
+ARM GAS  /tmp/ccbWE57H.s 			page 2
 
 
   34:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****     Digital to Analog conversion can be non-triggered using DAC_TRIGGER_NONE
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****        by the following equation: 
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****        [..]
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****        DAC_OUTx = VREF+ * DOR / 4095
-ARM GAS  /tmp/cceDZLio.s 			page 3
+ARM GAS  /tmp/ccbWE57H.s 			page 3
 
 
   91:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****        (+) with  DOR is the Data Output Register
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  145:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****        (+) In case of DMA underrun, DAC interruption triggers and execute internal function HAL_DAC
  146:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****            HAL_DAC_DMAUnderrunCallbackCh1() or HAL_DACEx_DMAUnderrunCallbackCh2()  
  147:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****            function is executed and user can add his own code by customization of function pointer 
-ARM GAS  /tmp/cceDZLio.s 			page 4
+ARM GAS  /tmp/ccbWE57H.s 			page 4
 
 
  148:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****            HAL_DAC_DMAUnderrunCallbackCh1() or HAL_DACEx_DMAUnderrunCallbackCh2() and
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  202:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   */
  203:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** 
  204:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** #ifdef HAL_DAC_MODULE_ENABLED
-ARM GAS  /tmp/cceDZLio.s 			page 5
+ARM GAS  /tmp/ccbWE57H.s 			page 5
 
 
  205:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  259:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   *         the configuration information for the specified DAC.
  260:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   * @retval HAL status
  261:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   */
-ARM GAS  /tmp/cceDZLio.s 			page 6
+ARM GAS  /tmp/ccbWE57H.s 			page 6
 
 
  262:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** HAL_StatusTypeDef HAL_DAC_Init(DAC_HandleTypeDef* hdac)
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  316:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** 
  317:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   /* Set DAC error code to none */
  318:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   hdac->ErrorCode = HAL_DAC_ERROR_NONE;
-ARM GAS  /tmp/cceDZLio.s 			page 7
+ARM GAS  /tmp/ccbWE57H.s 			page 7
 
 
  319:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  272:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   if(hdac->State == HAL_DAC_STATE_RESET)
   54              		.loc 1 272 0
   55 0006 0379     		ldrb	r3, [r0, #4]
-ARM GAS  /tmp/cceDZLio.s 			page 8
+ARM GAS  /tmp/ccbWE57H.s 			page 8
 
 
   56 0008 002B     		cmp	r3, #0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  352:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** __weak void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
  353:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** {
   97              		.loc 1 353 0
-ARM GAS  /tmp/cceDZLio.s 			page 9
+ARM GAS  /tmp/ccbWE57H.s 			page 9
 
 
   98              		.cfi_startproc
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  139 0016 0020     		mov	r0, #0
  140 0018 00E0     		b	.L8
  141              	.LVL9:
-ARM GAS  /tmp/cceDZLio.s 			page 10
+ARM GAS  /tmp/ccbWE57H.s 			page 10
 
 
  142              	.L9:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  395:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** {
  162              		.loc 1 395 0
  163              		.cfi_startproc
-ARM GAS  /tmp/cceDZLio.s 			page 11
+ARM GAS  /tmp/ccbWE57H.s 			page 11
 
 
  164              	.LVL12:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  192 0004 1468     		ldr	r4, [r2]
  193 0006 0123     		mov	r3, #1
  194 0008 1D1C     		mov	r5, r3
-ARM GAS  /tmp/cceDZLio.s 			page 12
+ARM GAS  /tmp/ccbWE57H.s 			page 12
 
 
  195 000a 8D40     		lsl	r5, r5, r1
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  456:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   UNUSED(Alignment);
  457:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** 
  458:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   /* Note : This function is defined into this file for library reference. */
-ARM GAS  /tmp/cceDZLio.s 			page 13
+ARM GAS  /tmp/ccbWE57H.s 			page 13
 
 
  459:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   /*        Function content is located into file stm32f0xx_hal_dac_ex.c   */
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  250 000a 4001     		lsl	r0, r0, #5
  251 000c 8840     		lsl	r0, r0, r1
  252 000e 8243     		bic	r2, r0
-ARM GAS  /tmp/cceDZLio.s 			page 14
+ARM GAS  /tmp/ccbWE57H.s 			page 14
 
 
  253 0010 1A60     		str	r2, [r3]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  281              		.loc 1 509 0
  282 003a 2368     		ldr	r3, [r4]
  283 003c 1968     		ldr	r1, [r3]
-ARM GAS  /tmp/cceDZLio.s 			page 15
+ARM GAS  /tmp/ccbWE57H.s 			page 15
 
 
  284 003e 064A     		ldr	r2, .L18+4
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  529:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** 
  530:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** /**
  531:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   * @brief  Handles DAC interrupt request  
-ARM GAS  /tmp/cceDZLio.s 			page 16
+ARM GAS  /tmp/ccbWE57H.s 			page 16
 
 
  532:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   * @param  hdac: pointer to a DAC_HandleTypeDef structure that contains
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  346 0002 82B0     		sub	sp, sp, #8
  347              	.LCFI5:
  348              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/cceDZLio.s 			page 17
+ARM GAS  /tmp/ccbWE57H.s 			page 17
 
 
  563:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   __IO uint32_t tmp = 0;
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  380              		.loc 1 585 0
  381 0026 0020     		mov	r0, #0
  382 0028 02B0     		add	sp, sp, #8
-ARM GAS  /tmp/cceDZLio.s 			page 18
+ARM GAS  /tmp/ccbWE57H.s 			page 18
 
 
  383              		@ sp needed
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  611:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   /* Prevent unused argument(s) compilation warning */
  612:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   UNUSED(hdac);
  613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** 
-ARM GAS  /tmp/cceDZLio.s 			page 19
+ARM GAS  /tmp/ccbWE57H.s 			page 19
 
 
  614:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   /* NOTE : This function should not be modified, when the callback is needed,
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  641:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** __weak void HAL_DAC_DMAUnderrunCallbackCh1(DAC_HandleTypeDef *hdac)
  642:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c **** {
  447              		.loc 1 642 0
-ARM GAS  /tmp/cceDZLio.s 			page 20
+ARM GAS  /tmp/ccbWE57H.s 			page 20
 
 
  448              		.cfi_startproc
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  465              		.cfi_startproc
  466              	.LVL38:
  682:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   /* Prevent unused argument(s) compilation warning */
-ARM GAS  /tmp/cceDZLio.s 			page 21
+ARM GAS  /tmp/ccbWE57H.s 			page 21
 
 
  683:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c ****   UNUSED(hdac);
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  489              		@ sp needed
  490 0002 7047     		bx	lr
  491              		.cfi_endproc
-ARM GAS  /tmp/cceDZLio.s 			page 22
+ARM GAS  /tmp/ccbWE57H.s 			page 22
 
 
  492              	.LFE49:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  517              		.global	HAL_DAC_GetError
  518              		.code	16
  519              		.thumb_func
-ARM GAS  /tmp/cceDZLio.s 			page 23
+ARM GAS  /tmp/ccbWE57H.s 			page 23
 
 
  521              	HAL_DAC_GetError:
@@ -1354,48 +1354,48 @@ ARM GAS  /tmp/cceDZLio.s 			page 1
  540              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  541              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  542              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac.h"
-ARM GAS  /tmp/cceDZLio.s 			page 24
+ARM GAS  /tmp/ccbWE57H.s 			page 24
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_dac.c
-     /tmp/cceDZLio.s:18     .text.HAL_DAC_MspInit:00000000 $t
-     /tmp/cceDZLio.s:23     .text.HAL_DAC_MspInit:00000000 HAL_DAC_MspInit
-     /tmp/cceDZLio.s:36     .text.HAL_DAC_Init:00000000 $t
-     /tmp/cceDZLio.s:41     .text.HAL_DAC_Init:00000000 HAL_DAC_Init
-     /tmp/cceDZLio.s:90     .text.HAL_DAC_MspDeInit:00000000 $t
-     /tmp/cceDZLio.s:95     .text.HAL_DAC_MspDeInit:00000000 HAL_DAC_MspDeInit
-     /tmp/cceDZLio.s:107    .text.HAL_DAC_DeInit:00000000 $t
-     /tmp/cceDZLio.s:112    .text.HAL_DAC_DeInit:00000000 HAL_DAC_DeInit
-     /tmp/cceDZLio.s:155    .text.HAL_DAC_Start:00000000 $t
-     /tmp/cceDZLio.s:160    .text.HAL_DAC_Start:00000000 HAL_DAC_Start
-     /tmp/cceDZLio.s:174    .text.HAL_DAC_Stop:00000000 $t
-     /tmp/cceDZLio.s:179    .text.HAL_DAC_Stop:00000000 HAL_DAC_Stop
-     /tmp/cceDZLio.s:209    .text.HAL_DAC_Start_DMA:00000000 $t
-     /tmp/cceDZLio.s:214    .text.HAL_DAC_Start_DMA:00000000 HAL_DAC_Start_DMA
-     /tmp/cceDZLio.s:228    .text.HAL_DAC_Stop_DMA:00000000 $t
-     /tmp/cceDZLio.s:233    .text.HAL_DAC_Stop_DMA:00000000 HAL_DAC_Stop_DMA
-     /tmp/cceDZLio.s:308    .text.HAL_DAC_Stop_DMA:00000054 $d
-     /tmp/cceDZLio.s:314    .text.HAL_DAC_IRQHandler:00000000 $t
-     /tmp/cceDZLio.s:319    .text.HAL_DAC_IRQHandler:00000000 HAL_DAC_IRQHandler
-     /tmp/cceDZLio.s:331    .text.HAL_DAC_SetValue:00000000 $t
-     /tmp/cceDZLio.s:336    .text.HAL_DAC_SetValue:00000000 HAL_DAC_SetValue
-     /tmp/cceDZLio.s:389    .text.HAL_DAC_ConvCpltCallbackCh1:00000000 $t
-     /tmp/cceDZLio.s:394    .text.HAL_DAC_ConvCpltCallbackCh1:00000000 HAL_DAC_ConvCpltCallbackCh1
-     /tmp/cceDZLio.s:406    .text.HAL_DAC_ConvHalfCpltCallbackCh1:00000000 $t
-     /tmp/cceDZLio.s:411    .text.HAL_DAC_ConvHalfCpltCallbackCh1:00000000 HAL_DAC_ConvHalfCpltCallbackCh1
-     /tmp/cceDZLio.s:423    .text.HAL_DAC_ErrorCallbackCh1:00000000 $t
-     /tmp/cceDZLio.s:428    .text.HAL_DAC_ErrorCallbackCh1:00000000 HAL_DAC_ErrorCallbackCh1
-     /tmp/cceDZLio.s:440    .text.HAL_DAC_DMAUnderrunCallbackCh1:00000000 $t
-     /tmp/cceDZLio.s:445    .text.HAL_DAC_DMAUnderrunCallbackCh1:00000000 HAL_DAC_DMAUnderrunCallbackCh1
-     /tmp/cceDZLio.s:457    .text.HAL_DAC_GetValue:00000000 $t
-     /tmp/cceDZLio.s:462    .text.HAL_DAC_GetValue:00000000 HAL_DAC_GetValue
-     /tmp/cceDZLio.s:476    .text.HAL_DAC_ConfigChannel:00000000 $t
-     /tmp/cceDZLio.s:481    .text.HAL_DAC_ConfigChannel:00000000 HAL_DAC_ConfigChannel
-     /tmp/cceDZLio.s:495    .text.HAL_DAC_GetState:00000000 $t
-     /tmp/cceDZLio.s:500    .text.HAL_DAC_GetState:00000000 HAL_DAC_GetState
-     /tmp/cceDZLio.s:516    .text.HAL_DAC_GetError:00000000 $t
-     /tmp/cceDZLio.s:521    .text.HAL_DAC_GetError:00000000 HAL_DAC_GetError
+     /tmp/ccbWE57H.s:18     .text.HAL_DAC_MspInit:00000000 $t
+     /tmp/ccbWE57H.s:23     .text.HAL_DAC_MspInit:00000000 HAL_DAC_MspInit
+     /tmp/ccbWE57H.s:36     .text.HAL_DAC_Init:00000000 $t
+     /tmp/ccbWE57H.s:41     .text.HAL_DAC_Init:00000000 HAL_DAC_Init
+     /tmp/ccbWE57H.s:90     .text.HAL_DAC_MspDeInit:00000000 $t
+     /tmp/ccbWE57H.s:95     .text.HAL_DAC_MspDeInit:00000000 HAL_DAC_MspDeInit
+     /tmp/ccbWE57H.s:107    .text.HAL_DAC_DeInit:00000000 $t
+     /tmp/ccbWE57H.s:112    .text.HAL_DAC_DeInit:00000000 HAL_DAC_DeInit
+     /tmp/ccbWE57H.s:155    .text.HAL_DAC_Start:00000000 $t
+     /tmp/ccbWE57H.s:160    .text.HAL_DAC_Start:00000000 HAL_DAC_Start
+     /tmp/ccbWE57H.s:174    .text.HAL_DAC_Stop:00000000 $t
+     /tmp/ccbWE57H.s:179    .text.HAL_DAC_Stop:00000000 HAL_DAC_Stop
+     /tmp/ccbWE57H.s:209    .text.HAL_DAC_Start_DMA:00000000 $t
+     /tmp/ccbWE57H.s:214    .text.HAL_DAC_Start_DMA:00000000 HAL_DAC_Start_DMA
+     /tmp/ccbWE57H.s:228    .text.HAL_DAC_Stop_DMA:00000000 $t
+     /tmp/ccbWE57H.s:233    .text.HAL_DAC_Stop_DMA:00000000 HAL_DAC_Stop_DMA
+     /tmp/ccbWE57H.s:308    .text.HAL_DAC_Stop_DMA:00000054 $d
+     /tmp/ccbWE57H.s:314    .text.HAL_DAC_IRQHandler:00000000 $t
+     /tmp/ccbWE57H.s:319    .text.HAL_DAC_IRQHandler:00000000 HAL_DAC_IRQHandler
+     /tmp/ccbWE57H.s:331    .text.HAL_DAC_SetValue:00000000 $t
+     /tmp/ccbWE57H.s:336    .text.HAL_DAC_SetValue:00000000 HAL_DAC_SetValue
+     /tmp/ccbWE57H.s:389    .text.HAL_DAC_ConvCpltCallbackCh1:00000000 $t
+     /tmp/ccbWE57H.s:394    .text.HAL_DAC_ConvCpltCallbackCh1:00000000 HAL_DAC_ConvCpltCallbackCh1
+     /tmp/ccbWE57H.s:406    .text.HAL_DAC_ConvHalfCpltCallbackCh1:00000000 $t
+     /tmp/ccbWE57H.s:411    .text.HAL_DAC_ConvHalfCpltCallbackCh1:00000000 HAL_DAC_ConvHalfCpltCallbackCh1
+     /tmp/ccbWE57H.s:423    .text.HAL_DAC_ErrorCallbackCh1:00000000 $t
+     /tmp/ccbWE57H.s:428    .text.HAL_DAC_ErrorCallbackCh1:00000000 HAL_DAC_ErrorCallbackCh1
+     /tmp/ccbWE57H.s:440    .text.HAL_DAC_DMAUnderrunCallbackCh1:00000000 $t
+     /tmp/ccbWE57H.s:445    .text.HAL_DAC_DMAUnderrunCallbackCh1:00000000 HAL_DAC_DMAUnderrunCallbackCh1
+     /tmp/ccbWE57H.s:457    .text.HAL_DAC_GetValue:00000000 $t
+     /tmp/ccbWE57H.s:462    .text.HAL_DAC_GetValue:00000000 HAL_DAC_GetValue
+     /tmp/ccbWE57H.s:476    .text.HAL_DAC_ConfigChannel:00000000 $t
+     /tmp/ccbWE57H.s:481    .text.HAL_DAC_ConfigChannel:00000000 HAL_DAC_ConfigChannel
+     /tmp/ccbWE57H.s:495    .text.HAL_DAC_GetState:00000000 $t
+     /tmp/ccbWE57H.s:500    .text.HAL_DAC_GetState:00000000 HAL_DAC_GetState
+     /tmp/ccbWE57H.s:516    .text.HAL_DAC_GetError:00000000 $t
+     /tmp/ccbWE57H.s:521    .text.HAL_DAC_GetError:00000000 HAL_DAC_GetError
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

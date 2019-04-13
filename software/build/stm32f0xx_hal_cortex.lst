@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccYCLRCw.s 			page 1
+ARM GAS  /tmp/ccNrXzWd.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** 
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****       (#)  Enable the selected IRQ Channels using HAL_NVIC_EnableIRQ()
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****       
-ARM GAS  /tmp/ccYCLRCw.s 			page 2
+ARM GAS  /tmp/ccNrXzWd.s 			page 2
 
 
   34:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****       -@-  Negative value of IRQn_Type are not allowed.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-ARM GAS  /tmp/ccYCLRCw.s 			page 3
+ARM GAS  /tmp/ccNrXzWd.s 			page 3
 
 
   91:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  145:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   *         This parameter can be a value between 0 and 3.
  146:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   *         A lower priority value indicates a higher priority
  147:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * @param  SubPriority: the subpriority level for the IRQ channel.
-ARM GAS  /tmp/ccYCLRCw.s 			page 4
+ARM GAS  /tmp/ccNrXzWd.s 			page 4
 
 
  148:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   *         with stm32f0xx devices, this parameter is a dummy value and it is ignored, because 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
   35:Drivers/CMSIS/Include/core_cm0.h **** #if   defined ( __ICCARM__ )
   36:Drivers/CMSIS/Include/core_cm0.h ****  #pragma system_include         /* treat file as system include file for MISRA check */
   37:Drivers/CMSIS/Include/core_cm0.h **** #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
-ARM GAS  /tmp/ccYCLRCw.s 			page 5
+ARM GAS  /tmp/ccNrXzWd.s 			page 5
 
 
   38:Drivers/CMSIS/Include/core_cm0.h ****   #pragma clang system_header   /* treat file as system include file */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
   92:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __GNUC__ )
   93:Drivers/CMSIS/Include/core_cm0.h ****   #define __ASM            __asm                                      /*!< asm keyword for GNU Comp
   94:Drivers/CMSIS/Include/core_cm0.h ****   #define __INLINE         inline                                     /*!< inline keyword for GNU C
-ARM GAS  /tmp/ccYCLRCw.s 			page 6
+ARM GAS  /tmp/ccNrXzWd.s 			page 6
 
 
   95:Drivers/CMSIS/Include/core_cm0.h ****   #define __STATIC_INLINE  static inline
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  149:Drivers/CMSIS/Include/core_cm0.h ****   #endif
  150:Drivers/CMSIS/Include/core_cm0.h **** 
  151:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __TASKING__ )
-ARM GAS  /tmp/ccYCLRCw.s 			page 7
+ARM GAS  /tmp/ccNrXzWd.s 			page 7
 
 
  152:Drivers/CMSIS/Include/core_cm0.h ****   #if defined __FPU_VFP__
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  206:Drivers/CMSIS/Include/core_cm0.h **** */
  207:Drivers/CMSIS/Include/core_cm0.h **** #ifdef __cplusplus
  208:Drivers/CMSIS/Include/core_cm0.h ****   #define   __I     volatile             /*!< Defines 'read only' permissions */
-ARM GAS  /tmp/ccYCLRCw.s 			page 8
+ARM GAS  /tmp/ccNrXzWd.s 			page 8
 
 
  209:Drivers/CMSIS/Include/core_cm0.h **** #else
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  263:Drivers/CMSIS/Include/core_cm0.h **** 
  264:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_Z_Pos                         30U                                            /*!< APSR
  265:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_Z_Msk                         (1UL << APSR_Z_Pos)                            /*!< APSR
-ARM GAS  /tmp/ccYCLRCw.s 			page 9
+ARM GAS  /tmp/ccNrXzWd.s 			page 9
 
 
  266:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  320:Drivers/CMSIS/Include/core_cm0.h **** 
  321:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_V_Pos                         28U                                            /*!< xPSR
  322:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_V_Msk                         (1UL << xPSR_V_Pos)                            /*!< xPSR
-ARM GAS  /tmp/ccYCLRCw.s 			page 10
+ARM GAS  /tmp/ccNrXzWd.s 			page 10
 
 
  323:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  377:Drivers/CMSIS/Include/core_cm0.h **** 
  378:Drivers/CMSIS/Include/core_cm0.h **** 
  379:Drivers/CMSIS/Include/core_cm0.h **** /**
-ARM GAS  /tmp/ccYCLRCw.s 			page 11
+ARM GAS  /tmp/ccNrXzWd.s 			page 11
 
 
  380:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup  CMSIS_core_register
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  434:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Pos            23U                                            /*!< SCB 
  435:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Msk            (1UL << SCB_ICSR_ISRPREEMPT_Pos)               /*!< SCB 
  436:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccYCLRCw.s 			page 12
+ARM GAS  /tmp/ccNrXzWd.s 			page 12
 
 
  437:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPENDING_Pos            22U                                            /*!< SCB 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  491:Drivers/CMSIS/Include/core_cm0.h ****  */
  492:Drivers/CMSIS/Include/core_cm0.h **** 
  493:Drivers/CMSIS/Include/core_cm0.h **** /**
-ARM GAS  /tmp/ccYCLRCw.s 			page 13
+ARM GAS  /tmp/ccNrXzWd.s 			page 13
 
 
  494:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Structure type to access the System Timer (SysTick).
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  548:Drivers/CMSIS/Include/core_cm0.h **** /**
  549:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup    CMSIS_core_register
  550:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup   CMSIS_core_bitfield     Core register bit field macros
-ARM GAS  /tmp/ccYCLRCw.s 			page 14
+ARM GAS  /tmp/ccNrXzWd.s 			page 14
 
 
  551:Drivers/CMSIS/Include/core_cm0.h ****   \brief      Macros for use with bit field definitions (xxx_Pos, xxx_Msk).
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  605:Drivers/CMSIS/Include/core_cm0.h **** */
  606:Drivers/CMSIS/Include/core_cm0.h **** 
  607:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccYCLRCw.s 			page 15
+ARM GAS  /tmp/ccNrXzWd.s 			page 15
 
 
  608:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  662:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Interrupt number. Value cannot be negative.
  663:Drivers/CMSIS/Include/core_cm0.h ****  */
  664:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE void NVIC_SetPendingIRQ(IRQn_Type IRQn)
-ARM GAS  /tmp/ccYCLRCw.s 			page 16
+ARM GAS  /tmp/ccNrXzWd.s 			page 16
 
 
  665:Drivers/CMSIS/Include/core_cm0.h **** {
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
   65              	.LVL5:
   66 0028 0A40     		and	r2, r1
   67 002a 8240     		lsl	r2, r2, r0
-ARM GAS  /tmp/ccYCLRCw.s 			page 17
+ARM GAS  /tmp/ccNrXzWd.s 			page 17
 
 
  692:Drivers/CMSIS/Include/core_cm0.h ****     SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  111              	.LFE34:
  113              		.section	.text.HAL_NVIC_EnableIRQ,"ax",%progbits
  114              		.align	2
-ARM GAS  /tmp/ccYCLRCw.s 			page 18
+ARM GAS  /tmp/ccNrXzWd.s 			page 18
 
 
  115              		.global	HAL_NVIC_EnableIRQ
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  153              	HAL_NVIC_DisableIRQ:
  154              	.LFB36:
  176:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** 
-ARM GAS  /tmp/ccYCLRCw.s 			page 19
+ARM GAS  /tmp/ccNrXzWd.s 			page 19
 
 
  177:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** /**
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  197:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** void HAL_NVIC_SystemReset(void)
  198:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** {
  190              		.loc 1 198 0
-ARM GAS  /tmp/ccYCLRCw.s 			page 20
+ARM GAS  /tmp/ccNrXzWd.s 			page 20
 
 
  191              		.cfi_startproc
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
   49:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
   50:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
   51:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccYCLRCw.s 			page 21
+ARM GAS  /tmp/ccNrXzWd.s 			page 21
 
 
   52:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  106:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  107:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  108:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccYCLRCw.s 			page 22
+ARM GAS  /tmp/ccNrXzWd.s 			page 22
 
 
  109:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  163:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  164:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psp, %0\n" : : "r" (topOfProcStack) : "sp");
  165:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/ccYCLRCw.s 			page 23
+ARM GAS  /tmp/ccNrXzWd.s 			page 23
 
 
  166:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  220:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  221:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  222:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable FIQ
-ARM GAS  /tmp/ccYCLRCw.s 			page 24
+ARM GAS  /tmp/ccNrXzWd.s 			page 24
 
 
  223:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables FIQ interrupts by clearing the F-bit in the CPSR.
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  277:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  278:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  279:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccYCLRCw.s 			page 25
+ARM GAS  /tmp/ccNrXzWd.s 			page 25
 
 
  280:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  334:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  335:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_FPSCR(uint32_t fpscr)
  336:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/ccYCLRCw.s 			page 26
+ARM GAS  /tmp/ccNrXzWd.s 			page 26
 
 
  337:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (__FPU_PRESENT == 1U) && (__FPU_USED == 1U)
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  391:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Wait For Event is a hint instruction that permits the processor to enter
  392:Drivers/CMSIS/Include/cmsis_gcc.h ****     a low-power state until one of a number of events occurs.
  393:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccYCLRCw.s 			page 27
+ARM GAS  /tmp/ccNrXzWd.s 			page 27
 
 
  394:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__((always_inline)) __STATIC_INLINE void __WFE(void)
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  710:Drivers/CMSIS/Include/core_cm0.h ****                       Value is aligned automatically to the implemented priority bits of the microc
  711:Drivers/CMSIS/Include/core_cm0.h ****  */
  712:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE uint32_t NVIC_GetPriority(IRQn_Type IRQn)
-ARM GAS  /tmp/ccYCLRCw.s 			page 28
+ARM GAS  /tmp/ccNrXzWd.s 			page 28
 
 
  713:Drivers/CMSIS/Include/core_cm0.h **** {
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  235              		.cfi_endproc
  236              	.LFE37:
  238              		.section	.text.HAL_SYSTICK_Config,"ax",%progbits
-ARM GAS  /tmp/ccYCLRCw.s 			page 29
+ARM GAS  /tmp/ccNrXzWd.s 			page 29
 
 
  239              		.align	2
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  765:Drivers/CMSIS/Include/core_cm0.h ****   \note    When the variable <b>__Vendor_SysTickConfig</b> is set to 1, then the
  766:Drivers/CMSIS/Include/core_cm0.h ****            function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.
  767:Drivers/CMSIS/Include/core_cm0.h ****            must contain a vendor-specific implementation of this function.
-ARM GAS  /tmp/ccYCLRCw.s 			page 30
+ARM GAS  /tmp/ccNrXzWd.s 			page 30
 
 
  768:Drivers/CMSIS/Include/core_cm0.h ****  */
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  288 0028 0120     		mov	r0, #1
  289              	.L17:
  290              	.LBE47:
-ARM GAS  /tmp/ccYCLRCw.s 			page 31
+ARM GAS  /tmp/ccNrXzWd.s 			page 31
 
 
  291              	.LBE46:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  315              	.LBB52:
  316              	.LBB53:
  715:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) < 0)
-ARM GAS  /tmp/ccYCLRCw.s 			page 32
+ARM GAS  /tmp/ccNrXzWd.s 			page 32
 
 
  317              		.loc 2 715 0
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  366              	.LFE39:
  368              		.section	.text.HAL_NVIC_SetPendingIRQ,"ax",%progbits
  369              		.align	2
-ARM GAS  /tmp/ccYCLRCw.s 			page 33
+ARM GAS  /tmp/ccNrXzWd.s 			page 33
 
 
  370              		.global	HAL_NVIC_SetPendingIRQ
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  410              	HAL_NVIC_GetPendingIRQ:
  411              	.LFB41:
  263:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** 
-ARM GAS  /tmp/ccYCLRCw.s 			page 34
+ARM GAS  /tmp/ccNrXzWd.s 			page 34
 
 
  264:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** /**
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  282:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** /**
  283:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * @brief  Clears the pending bit of an external interrupt.
  284:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * @param  IRQn External interrupt number.
-ARM GAS  /tmp/ccYCLRCw.s 			page 35
+ARM GAS  /tmp/ccNrXzWd.s 			page 35
 
 
  285:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   *         This parameter can be an enumerator of IRQn_Type enumeration
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  304:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   * @retval None
  305:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   */
  306:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** void HAL_SYSTICK_CLKSourceConfig(uint32_t CLKSource)
-ARM GAS  /tmp/ccYCLRCw.s 			page 36
+ARM GAS  /tmp/ccNrXzWd.s 			page 36
 
 
  307:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** {
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  324:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** void HAL_SYSTICK_IRQHandler(void)
  325:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** {
  326:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c ****   HAL_SYSTICK_Callback();
-ARM GAS  /tmp/ccYCLRCw.s 			page 37
+ARM GAS  /tmp/ccNrXzWd.s 			page 37
 
 
  327:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c **** }
@@ -2210,45 +2210,45 @@ ARM GAS  /tmp/ccYCLRCw.s 			page 1
  558              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
  559              		.file 5 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
  560              		.file 6 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
-ARM GAS  /tmp/ccYCLRCw.s 			page 38
+ARM GAS  /tmp/ccNrXzWd.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_cortex.c
-     /tmp/ccYCLRCw.s:18     .text.HAL_NVIC_SetPriority:00000000 $t
-     /tmp/ccYCLRCw.s:23     .text.HAL_NVIC_SetPriority:00000000 HAL_NVIC_SetPriority
-     /tmp/ccYCLRCw.s:108    .text.HAL_NVIC_SetPriority:0000005c $d
-     /tmp/ccYCLRCw.s:114    .text.HAL_NVIC_EnableIRQ:00000000 $t
-     /tmp/ccYCLRCw.s:119    .text.HAL_NVIC_EnableIRQ:00000000 HAL_NVIC_EnableIRQ
-     /tmp/ccYCLRCw.s:143    .text.HAL_NVIC_EnableIRQ:00000010 $d
-     /tmp/ccYCLRCw.s:148    .text.HAL_NVIC_DisableIRQ:00000000 $t
-     /tmp/ccYCLRCw.s:153    .text.HAL_NVIC_DisableIRQ:00000000 HAL_NVIC_DisableIRQ
-     /tmp/ccYCLRCw.s:178    .text.HAL_NVIC_DisableIRQ:00000014 $d
-     /tmp/ccYCLRCw.s:183    .text.HAL_NVIC_SystemReset:00000000 $t
-     /tmp/ccYCLRCw.s:188    .text.HAL_NVIC_SystemReset:00000000 HAL_NVIC_SystemReset
-     /tmp/ccYCLRCw.s:229    .text.HAL_NVIC_SystemReset:00000014 $d
-     /tmp/ccYCLRCw.s:239    .text.HAL_SYSTICK_Config:00000000 $t
-     /tmp/ccYCLRCw.s:244    .text.HAL_SYSTICK_Config:00000000 HAL_SYSTICK_Config
-     /tmp/ccYCLRCw.s:298    .text.HAL_SYSTICK_Config:0000002c $d
-     /tmp/ccYCLRCw.s:305    .text.HAL_NVIC_GetPriority:00000000 $t
-     /tmp/ccYCLRCw.s:310    .text.HAL_NVIC_GetPriority:00000000 HAL_NVIC_GetPriority
-     /tmp/ccYCLRCw.s:363    .text.HAL_NVIC_GetPriority:0000003c $d
-     /tmp/ccYCLRCw.s:369    .text.HAL_NVIC_SetPendingIRQ:00000000 $t
-     /tmp/ccYCLRCw.s:374    .text.HAL_NVIC_SetPendingIRQ:00000000 HAL_NVIC_SetPendingIRQ
-     /tmp/ccYCLRCw.s:400    .text.HAL_NVIC_SetPendingIRQ:00000014 $d
-     /tmp/ccYCLRCw.s:405    .text.HAL_NVIC_GetPendingIRQ:00000000 $t
-     /tmp/ccYCLRCw.s:410    .text.HAL_NVIC_GetPendingIRQ:00000000 HAL_NVIC_GetPendingIRQ
-     /tmp/ccYCLRCw.s:437    .text.HAL_NVIC_GetPendingIRQ:00000018 $d
-     /tmp/ccYCLRCw.s:442    .text.HAL_NVIC_ClearPendingIRQ:00000000 $t
-     /tmp/ccYCLRCw.s:447    .text.HAL_NVIC_ClearPendingIRQ:00000000 HAL_NVIC_ClearPendingIRQ
-     /tmp/ccYCLRCw.s:473    .text.HAL_NVIC_ClearPendingIRQ:00000014 $d
-     /tmp/ccYCLRCw.s:478    .text.HAL_SYSTICK_CLKSourceConfig:00000000 $t
-     /tmp/ccYCLRCw.s:483    .text.HAL_SYSTICK_CLKSourceConfig:00000000 HAL_SYSTICK_CLKSourceConfig
-     /tmp/ccYCLRCw.s:512    .text.HAL_SYSTICK_CLKSourceConfig:0000001c $d
-     /tmp/ccYCLRCw.s:517    .text.HAL_SYSTICK_Callback:00000000 $t
-     /tmp/ccYCLRCw.s:522    .text.HAL_SYSTICK_Callback:00000000 HAL_SYSTICK_Callback
-     /tmp/ccYCLRCw.s:533    .text.HAL_SYSTICK_IRQHandler:00000000 $t
-     /tmp/ccYCLRCw.s:538    .text.HAL_SYSTICK_IRQHandler:00000000 HAL_SYSTICK_IRQHandler
+     /tmp/ccNrXzWd.s:18     .text.HAL_NVIC_SetPriority:00000000 $t
+     /tmp/ccNrXzWd.s:23     .text.HAL_NVIC_SetPriority:00000000 HAL_NVIC_SetPriority
+     /tmp/ccNrXzWd.s:108    .text.HAL_NVIC_SetPriority:0000005c $d
+     /tmp/ccNrXzWd.s:114    .text.HAL_NVIC_EnableIRQ:00000000 $t
+     /tmp/ccNrXzWd.s:119    .text.HAL_NVIC_EnableIRQ:00000000 HAL_NVIC_EnableIRQ
+     /tmp/ccNrXzWd.s:143    .text.HAL_NVIC_EnableIRQ:00000010 $d
+     /tmp/ccNrXzWd.s:148    .text.HAL_NVIC_DisableIRQ:00000000 $t
+     /tmp/ccNrXzWd.s:153    .text.HAL_NVIC_DisableIRQ:00000000 HAL_NVIC_DisableIRQ
+     /tmp/ccNrXzWd.s:178    .text.HAL_NVIC_DisableIRQ:00000014 $d
+     /tmp/ccNrXzWd.s:183    .text.HAL_NVIC_SystemReset:00000000 $t
+     /tmp/ccNrXzWd.s:188    .text.HAL_NVIC_SystemReset:00000000 HAL_NVIC_SystemReset
+     /tmp/ccNrXzWd.s:229    .text.HAL_NVIC_SystemReset:00000014 $d
+     /tmp/ccNrXzWd.s:239    .text.HAL_SYSTICK_Config:00000000 $t
+     /tmp/ccNrXzWd.s:244    .text.HAL_SYSTICK_Config:00000000 HAL_SYSTICK_Config
+     /tmp/ccNrXzWd.s:298    .text.HAL_SYSTICK_Config:0000002c $d
+     /tmp/ccNrXzWd.s:305    .text.HAL_NVIC_GetPriority:00000000 $t
+     /tmp/ccNrXzWd.s:310    .text.HAL_NVIC_GetPriority:00000000 HAL_NVIC_GetPriority
+     /tmp/ccNrXzWd.s:363    .text.HAL_NVIC_GetPriority:0000003c $d
+     /tmp/ccNrXzWd.s:369    .text.HAL_NVIC_SetPendingIRQ:00000000 $t
+     /tmp/ccNrXzWd.s:374    .text.HAL_NVIC_SetPendingIRQ:00000000 HAL_NVIC_SetPendingIRQ
+     /tmp/ccNrXzWd.s:400    .text.HAL_NVIC_SetPendingIRQ:00000014 $d
+     /tmp/ccNrXzWd.s:405    .text.HAL_NVIC_GetPendingIRQ:00000000 $t
+     /tmp/ccNrXzWd.s:410    .text.HAL_NVIC_GetPendingIRQ:00000000 HAL_NVIC_GetPendingIRQ
+     /tmp/ccNrXzWd.s:437    .text.HAL_NVIC_GetPendingIRQ:00000018 $d
+     /tmp/ccNrXzWd.s:442    .text.HAL_NVIC_ClearPendingIRQ:00000000 $t
+     /tmp/ccNrXzWd.s:447    .text.HAL_NVIC_ClearPendingIRQ:00000000 HAL_NVIC_ClearPendingIRQ
+     /tmp/ccNrXzWd.s:473    .text.HAL_NVIC_ClearPendingIRQ:00000014 $d
+     /tmp/ccNrXzWd.s:478    .text.HAL_SYSTICK_CLKSourceConfig:00000000 $t
+     /tmp/ccNrXzWd.s:483    .text.HAL_SYSTICK_CLKSourceConfig:00000000 HAL_SYSTICK_CLKSourceConfig
+     /tmp/ccNrXzWd.s:512    .text.HAL_SYSTICK_CLKSourceConfig:0000001c $d
+     /tmp/ccNrXzWd.s:517    .text.HAL_SYSTICK_Callback:00000000 $t
+     /tmp/ccNrXzWd.s:522    .text.HAL_SYSTICK_Callback:00000000 HAL_SYSTICK_Callback
+     /tmp/ccNrXzWd.s:533    .text.HAL_SYSTICK_IRQHandler:00000000 $t
+     /tmp/ccNrXzWd.s:538    .text.HAL_SYSTICK_IRQHandler:00000000 HAL_SYSTICK_IRQHandler
                      .debug_frame:00000010 $d
 
 NO UNDEFINED SYMBOLS

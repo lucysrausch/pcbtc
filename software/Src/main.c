@@ -66,7 +66,14 @@ TIM_HandleTypeDef htim15;
 
 TIM_HandleTypeDef htim2;
 
+TIM_HandleTypeDef htim1;
+
 DAC_HandleTypeDef hdac;
+
+ADC_HandleTypeDef hadc;
+DMA_HandleTypeDef hdma_adc;
+
+uint16_t adcBuffer[3];
 
 
 uint8_t uart_tx_dat;
@@ -79,8 +86,12 @@ static void MX_GPIO_Init(void);
 static void MX_TIM14_Init(void);
 static void MX_TIM15_Init(void);
 static void USER_TIM2_Init(void);
+static void USER_TIM1_Init(void);
 
 static void MX_DAC_Init(void);
+
+static void MX_DMA_Init(void);
+static void MX_ADC_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -173,10 +184,22 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim15);
 	TIM15->CR1 &= ~(1UL);
 
-	USER_TIM2_Init();
+	USER_TIM1_Init();
+
+  //HAL_TIM_PWM_Start(&htim1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+
+  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000);
+
+  USER_TIM2_Init();
 
 	HAL_TIM_Base_Start(&htim2);
 	HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
+
+  MX_DMA_Init();
+  MX_ADC_Init();
+
+  HAL_ADC_Start_DMA(&hadc, (uint32_t*)adcBuffer, 3);
 
   /* USER CODE BEGIN 2 */
 
@@ -206,10 +229,7 @@ int main(void)
   while (1)
   {
   //Wait USB configuration when USB connection error has occurred.
-	  while(1){
-			if (HAL_GPIO_ReadPin(BUTTON_GPIO, BUTTON_PIN)) {
-				dfu_otter_bootloader();
-			}
+	 /* while(1){
 				//HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
 			if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
@@ -220,7 +240,19 @@ int main(void)
 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
 			  HAL_Delay(200);
 		  }
-	  }
+	  }*/
+
+    if (HAL_GPIO_ReadPin(BUTTON_GPIO, BUTTON_PIN)) {
+      dfu_otter_bootloader();
+    }
+
+    float Vout = ((float)adcBuffer[1] / 4096.0f) * 68.0f;
+
+    if (Vout > 20) {
+      HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+    } else {
+      HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+    }
 
 		curTone0 = 0;
 		curTone1 = 0;
@@ -374,6 +406,77 @@ void SystemClock_Config(void)
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
+/* ADC init function */
+static void MX_ADC_Init(void)
+{
+  __HAL_RCC_ADC1_CLK_ENABLE();
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+    */
+  hadc.Instance = ADC1;
+  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  hadc.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc.Init.ScanConvMode = ADC_SCAN_DIRECTION_FORWARD;
+  hadc.Init.EOCSelection = ADC_EOC_SEQ_CONV;
+  hadc.Init.LowPowerAutoWait = DISABLE;
+  hadc.Init.LowPowerAutoPowerOff = DISABLE;
+  hadc.Init.ContinuousConvMode = DISABLE;
+  hadc.Init.DiscontinuousConvMode = DISABLE;
+  hadc.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_TRGO;
+  hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
+  hadc.Init.DMAContinuousRequests = ENABLE;
+  hadc.Init.Overrun = ADC_OVR_DATA_PRESERVED;
+  if (HAL_ADC_Init(&hadc) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+    /**Configure for the selected ADC regular channel to be converted.
+    */
+  sConfig.Channel = ADC_CHANNEL_0;
+  sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
+  sConfig.SamplingTime = ADC_SAMPLETIME_28CYCLES_5;
+  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+    /**Configure for the selected ADC regular channel to be converted.
+    */
+  sConfig.Channel = ADC_CHANNEL_1;
+  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+    /**Configure for the selected ADC regular channel to be converted.
+    */
+  sConfig.Channel = ADC_CHANNEL_2;
+  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+
+}
+
 
 /* TIM14 init function */
 static void MX_TIM14_Init(void)
@@ -434,6 +537,62 @@ static void USER_TIM2_Init(void) {
 	HAL_TIM_OnePulse_Init(&htim2, TIM_OPMODE_SINGLE);
 	HAL_TIM_MspPostInit(&htim2);
 }
+
+static void USER_TIM1_Init(void)
+{
+  __HAL_RCC_TIM1_CLK_ENABLE();
+
+  TIM_MasterConfigTypeDef sMasterConfig;
+  TIM_OC_InitTypeDef sConfigOC;
+  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig;
+
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 0;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 1024;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 100;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+  sBreakDeadTimeConfig.DeadTime = 0;
+  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+  HAL_TIM_MspPostInit(&htim1);
+
+}
+
 
 /* DAC init function */
 static void MX_DAC_Init(void)

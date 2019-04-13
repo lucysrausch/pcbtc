@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cczQRCQE.s 			page 1
+ARM GAS  /tmp/ccfSjLQh.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
   32:Middlewares/USBMIDI/Src/usbd_midi.c **** __ALIGN_BEGIN uint8_t APP_Rx_Buffer[APP_RX_DATA_SIZE] __ALIGN_END ;
   33:Middlewares/USBMIDI/Src/usbd_midi.c **** 
   34:Middlewares/USBMIDI/Src/usbd_midi.c **** /* USB Standard Device Descriptor */
-ARM GAS  /tmp/cczQRCQE.s 			page 2
+ARM GAS  /tmp/ccfSjLQh.s 			page 2
 
 
   35:Middlewares/USBMIDI/Src/usbd_midi.c **** /*
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
   89:Middlewares/USBMIDI/Src/usbd_midi.c ****   // MIDI OUT JACKS
   90:Middlewares/USBMIDI/Src/usbd_midi.c ****   0x09, 0x24, 0x03, 0x01, 0x03, 0x01, 0x02, 0x01, 0x00,//MIDI-OUT 1 (embedded)
   91:Middlewares/USBMIDI/Src/usbd_midi.c ****   0x09, 0x24, 0x03, 0x02, 0x04, 0x01, 0x01, 0x01, 0x00,//MIDI-OUT 1 (external)
-ARM GAS  /tmp/cczQRCQE.s 			page 3
+ARM GAS  /tmp/ccfSjLQh.s 			page 3
 
 
   92:Middlewares/USBMIDI/Src/usbd_midi.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
   44 0012 C046     		.align	2
   45              	.L3:
   46 0014 00000000 		.word	.LANCHOR0
-ARM GAS  /tmp/cczQRCQE.s 			page 4
+ARM GAS  /tmp/ccfSjLQh.s 			page 4
 
 
   47              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  173:Middlewares/USBMIDI/Src/usbd_midi.c ****     }
  174:Middlewares/USBMIDI/Src/usbd_midi.c ****     USB_Tx_State = 1;
  175:Middlewares/USBMIDI/Src/usbd_midi.c ****     USBD_LL_Transmit (pInstance, MIDI_IN_EP,(uint8_t*)&APP_Rx_Buffer[USB_Tx_ptr],USB_Tx_length);
-ARM GAS  /tmp/cczQRCQE.s 			page 5
+ARM GAS  /tmp/ccfSjLQh.s 			page 5
 
 
  176:Middlewares/USBMIDI/Src/usbd_midi.c ****   }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  103              	.LVL6:
  104 0012 411A     		sub	r1, r0, r1
  105              	.LVL7:
-ARM GAS  /tmp/cczQRCQE.s 			page 6
+ARM GAS  /tmp/ccfSjLQh.s 			page 6
 
 
  106 0014 8900     		lsl	r1, r1, #2
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  157 0008 1A60     		str	r2, [r3]
  115:Middlewares/USBMIDI/Src/usbd_midi.c ****   USBD_LL_CloseEP(pdev,MIDI_IN_EP);
  158              		.loc 1 115 0
-ARM GAS  /tmp/cczQRCQE.s 			page 7
+ARM GAS  /tmp/ccfSjLQh.s 			page 7
 
 
  159 000a 8121     		mov	r1, #129
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  209 0016 0222     		mov	r2, #2
  210 0018 4023     		mov	r3, #64
  211 001a FFF7FEFF 		bl	USBD_LL_OpenEP
-ARM GAS  /tmp/cczQRCQE.s 			page 8
+ARM GAS  /tmp/ccfSjLQh.s 			page 8
 
 
  212              	.LVL21:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  262 0018 1C4B     		ldr	r3, .L25+4
  263 001a 1A60     		str	r2, [r3]
  264              	.L19:
-ARM GAS  /tmp/cczQRCQE.s 			page 9
+ARM GAS  /tmp/ccfSjLQh.s 			page 9
 
 
  152:Middlewares/USBMIDI/Src/usbd_midi.c ****     if(APP_Rx_ptr_out == APP_Rx_ptr_in){
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  309 0056 4038     		sub	r0, r0, #64
  310 0058 0E4B     		ldr	r3, .L25+12
  311 005a 1860     		str	r0, [r3]
-ARM GAS  /tmp/cczQRCQE.s 			page 10
+ARM GAS  /tmp/ccfSjLQh.s 			page 10
 
 
  165:Middlewares/USBMIDI/Src/usbd_midi.c ****       USB_Tx_length = MIDI_DATA_IN_PACKET_SIZE;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  358 009c 00000000 		.word	APP_Rx_Buffer
  359              		.cfi_endproc
  360              	.LFE38:
-ARM GAS  /tmp/cczQRCQE.s 			page 11
+ARM GAS  /tmp/ccfSjLQh.s 			page 11
 
 
  362              		.section	.text.USBD_MIDI_RegisterInterface,"ax",%progbits
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  400              		.comm	USB_Rx_Buffer,64,4
  401              		.global	USB_Tx_State
  402              		.global	APP_Rx_length
-ARM GAS  /tmp/cczQRCQE.s 			page 12
+ARM GAS  /tmp/ccfSjLQh.s 			page 12
 
 
  403              		.global	APP_Rx_ptr_out
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  463 0026 01       		.byte	1
  464 0027 00       		.byte	0
  465 0028 01       		.byte	1
-ARM GAS  /tmp/cczQRCQE.s 			page 13
+ARM GAS  /tmp/ccfSjLQh.s 			page 13
 
 
  466 0029 43       		.byte	67
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  520 005f 24       		.byte	36
  521 0060 03       		.byte	3
  522 0061 02       		.byte	2
-ARM GAS  /tmp/cczQRCQE.s 			page 14
+ARM GAS  /tmp/ccfSjLQh.s 			page 14
 
 
  523 0062 14       		.byte	20
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  581 002c 00000000 		.word	USBD_MIDI_GetCfgDesc
  582 0030 00000000 		.word	0
  583 0034 00000000 		.word	0
-ARM GAS  /tmp/cczQRCQE.s 			page 15
+ARM GAS  /tmp/ccfSjLQh.s 			page 15
 
 
  584              		.section	.bss.APP_Rx_length,"aw",%nobits
@@ -861,47 +861,47 @@ ARM GAS  /tmp/cczQRCQE.s 			page 1
  605              		.file 7 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
  606              		.file 8 "Middlewares/USBMIDI/Inc/usbd_midi.h"
  607              		.file 9 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h"
-ARM GAS  /tmp/cczQRCQE.s 			page 16
+ARM GAS  /tmp/ccfSjLQh.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_midi.c
-     /tmp/cczQRCQE.s:18     .text.USBD_MIDI_DataIn:00000000 $t
-     /tmp/cczQRCQE.s:22     .text.USBD_MIDI_DataIn:00000000 USBD_MIDI_DataIn
-     /tmp/cczQRCQE.s:46     .text.USBD_MIDI_DataIn:00000014 $d
-     /tmp/cczQRCQE.s:51     .text.USBD_MIDI_GetCfgDesc:00000000 $t
-     /tmp/cczQRCQE.s:55     .text.USBD_MIDI_GetCfgDesc:00000000 USBD_MIDI_GetCfgDesc
-     /tmp/cczQRCQE.s:71     .text.USBD_MIDI_GetCfgDesc:00000008 $d
-     /tmp/cczQRCQE.s:76     .text.USBD_MIDI_DataOut:00000000 $t
-     /tmp/cczQRCQE.s:80     .text.USBD_MIDI_DataOut:00000000 USBD_MIDI_DataOut
-     /tmp/cczQRCQE.s:134    .text.USBD_MIDI_DataOut:00000038 $d
+     /tmp/ccfSjLQh.s:18     .text.USBD_MIDI_DataIn:00000000 $t
+     /tmp/ccfSjLQh.s:22     .text.USBD_MIDI_DataIn:00000000 USBD_MIDI_DataIn
+     /tmp/ccfSjLQh.s:46     .text.USBD_MIDI_DataIn:00000014 $d
+     /tmp/ccfSjLQh.s:51     .text.USBD_MIDI_GetCfgDesc:00000000 $t
+     /tmp/ccfSjLQh.s:55     .text.USBD_MIDI_GetCfgDesc:00000000 USBD_MIDI_GetCfgDesc
+     /tmp/ccfSjLQh.s:71     .text.USBD_MIDI_GetCfgDesc:00000008 $d
+     /tmp/ccfSjLQh.s:76     .text.USBD_MIDI_DataOut:00000000 $t
+     /tmp/ccfSjLQh.s:80     .text.USBD_MIDI_DataOut:00000000 USBD_MIDI_DataOut
+     /tmp/ccfSjLQh.s:134    .text.USBD_MIDI_DataOut:00000038 $d
                             *COM*:00000040 USB_Rx_Buffer
-     /tmp/cczQRCQE.s:139    .text.USBD_MIDI_DeInit:00000000 $t
-     /tmp/cczQRCQE.s:143    .text.USBD_MIDI_DeInit:00000000 USBD_MIDI_DeInit
-     /tmp/cczQRCQE.s:176    .text.USBD_MIDI_DeInit:0000001c $d
-     /tmp/cczQRCQE.s:181    .text.USBD_MIDI_Init:00000000 $t
-     /tmp/cczQRCQE.s:185    .text.USBD_MIDI_Init:00000000 USBD_MIDI_Init
-     /tmp/cczQRCQE.s:228    .text.USBD_MIDI_Init:00000030 $d
-     /tmp/cczQRCQE.s:234    .text.USBD_MIDI_SendPacket:00000000 $t
-     /tmp/cczQRCQE.s:239    .text.USBD_MIDI_SendPacket:00000000 USBD_MIDI_SendPacket
-     /tmp/cczQRCQE.s:353    .text.USBD_MIDI_SendPacket:00000088 $d
+     /tmp/ccfSjLQh.s:139    .text.USBD_MIDI_DeInit:00000000 $t
+     /tmp/ccfSjLQh.s:143    .text.USBD_MIDI_DeInit:00000000 USBD_MIDI_DeInit
+     /tmp/ccfSjLQh.s:176    .text.USBD_MIDI_DeInit:0000001c $d
+     /tmp/ccfSjLQh.s:181    .text.USBD_MIDI_Init:00000000 $t
+     /tmp/ccfSjLQh.s:185    .text.USBD_MIDI_Init:00000000 USBD_MIDI_Init
+     /tmp/ccfSjLQh.s:228    .text.USBD_MIDI_Init:00000030 $d
+     /tmp/ccfSjLQh.s:234    .text.USBD_MIDI_SendPacket:00000000 $t
+     /tmp/ccfSjLQh.s:239    .text.USBD_MIDI_SendPacket:00000000 USBD_MIDI_SendPacket
+     /tmp/ccfSjLQh.s:353    .text.USBD_MIDI_SendPacket:00000088 $d
                             *COM*:00000100 APP_Rx_Buffer
-     /tmp/cczQRCQE.s:363    .text.USBD_MIDI_RegisterInterface:00000000 $t
-     /tmp/cczQRCQE.s:368    .text.USBD_MIDI_RegisterInterface:00000000 USBD_MIDI_RegisterInterface
-     /tmp/cczQRCQE.s:424    .data.USBD_MIDI_CfgDesc:00000000 USBD_MIDI_CfgDesc
-     /tmp/cczQRCQE.s:569    .data.USBD_MIDI:00000000 USBD_MIDI
-     /tmp/cczQRCQE.s:417    .bss.USB_Tx_State:00000000 USB_Tx_State
-     /tmp/cczQRCQE.s:589    .bss.APP_Rx_length:00000000 APP_Rx_length
-     /tmp/cczQRCQE.s:563    .bss.APP_Rx_ptr_out:00000000 APP_Rx_ptr_out
-     /tmp/cczQRCQE.s:411    .bss.APP_Rx_ptr_in:00000000 APP_Rx_ptr_in
-     /tmp/cczQRCQE.s:596    .bss.pInstance:00000000 pInstance
-     /tmp/cczQRCQE.s:407    .bss.APP_Rx_ptr_in:00000000 $d
-     /tmp/cczQRCQE.s:418    .bss.USB_Tx_State:00000000 $d
-     /tmp/cczQRCQE.s:420    .data.USBD_MIDI_CfgDesc:00000000 $d
-     /tmp/cczQRCQE.s:559    .bss.APP_Rx_ptr_out:00000000 $d
-     /tmp/cczQRCQE.s:566    .data.USBD_MIDI:00000000 $d
-     /tmp/cczQRCQE.s:585    .bss.APP_Rx_length:00000000 $d
-     /tmp/cczQRCQE.s:592    .bss.pInstance:00000000 $d
+     /tmp/ccfSjLQh.s:363    .text.USBD_MIDI_RegisterInterface:00000000 $t
+     /tmp/ccfSjLQh.s:368    .text.USBD_MIDI_RegisterInterface:00000000 USBD_MIDI_RegisterInterface
+     /tmp/ccfSjLQh.s:424    .data.USBD_MIDI_CfgDesc:00000000 USBD_MIDI_CfgDesc
+     /tmp/ccfSjLQh.s:569    .data.USBD_MIDI:00000000 USBD_MIDI
+     /tmp/ccfSjLQh.s:417    .bss.USB_Tx_State:00000000 USB_Tx_State
+     /tmp/ccfSjLQh.s:589    .bss.APP_Rx_length:00000000 APP_Rx_length
+     /tmp/ccfSjLQh.s:563    .bss.APP_Rx_ptr_out:00000000 APP_Rx_ptr_out
+     /tmp/ccfSjLQh.s:411    .bss.APP_Rx_ptr_in:00000000 APP_Rx_ptr_in
+     /tmp/ccfSjLQh.s:596    .bss.pInstance:00000000 pInstance
+     /tmp/ccfSjLQh.s:407    .bss.APP_Rx_ptr_in:00000000 $d
+     /tmp/ccfSjLQh.s:418    .bss.USB_Tx_State:00000000 $d
+     /tmp/ccfSjLQh.s:420    .data.USBD_MIDI_CfgDesc:00000000 $d
+     /tmp/ccfSjLQh.s:559    .bss.APP_Rx_ptr_out:00000000 $d
+     /tmp/ccfSjLQh.s:566    .data.USBD_MIDI:00000000 $d
+     /tmp/ccfSjLQh.s:585    .bss.APP_Rx_length:00000000 $d
+     /tmp/ccfSjLQh.s:592    .bss.pInstance:00000000 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

@@ -207,7 +207,7 @@ $(BUILD_DIR):
 
 
 flash:
-	openocd -f interface/stlink-v2.cfg -c "transport select hla_swd" -f target/stm32f0x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
+	dfu-util -d 0483:df11 -a 0 -s 0x8000000:leave -D build/pcbtcMIDI.bin
 
 
 #######################################
