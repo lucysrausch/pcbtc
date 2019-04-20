@@ -43,6 +43,9 @@
 extern PCD_HandleTypeDef hpcd_USB_FS;
 extern TIM_HandleTypeDef htim14;
 extern TIM_HandleTypeDef htim15;
+
+extern TIM_HandleTypeDef htim17;
+
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim1;
 
@@ -183,6 +186,22 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM17_IRQn 1 */
 
   /* USER CODE END TIM17_IRQn 1 */
+}
+
+/**
+* @brief This function handles TIM1 break, update, trigger and commutation interrupts.
+*/
+void TIM17_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 0 */
+
+  /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim17);
+
+  htim17_update();
+  /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 1 */
+
+  /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 1 */
 }
 
 

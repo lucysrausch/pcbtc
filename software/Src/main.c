@@ -64,6 +64,8 @@
 TIM_HandleTypeDef htim14;
 TIM_HandleTypeDef htim15;
 
+TIM_HandleTypeDef htim17;
+
 TIM_HandleTypeDef htim2;
 
 TIM_HandleTypeDef htim1;
@@ -85,6 +87,7 @@ static void MX_GPIO_Init(void);
 
 static void MX_TIM14_Init(void);
 static void MX_TIM15_Init(void);
+static void MX_TIM17_Init(void);
 static void USER_TIM2_Init(void);
 static void USER_TIM1_Init(void);
 
@@ -92,6 +95,25 @@ static void MX_DAC_Init(void);
 
 static void MX_DMA_Init(void);
 static void MX_ADC_Init(void);
+
+void htim17_update(void);
+
+uint32_t Vout = 0;
+uint16_t Iout = 0;
+uint32_t Vset = 0;
+uint32_t Vmax = 52000;
+
+void htim17_update() {
+  Iout = adcBuffer[0] * 1.33f;
+  Vout = adcBuffer[1] * 16.6f;
+  int32_t error = Vset - Vout;
+
+  TIM1->CCR1 = CLAMP(error / 3, 0, 500);
+
+  if (Vout > 55000) {
+    TIM1->CCR1 = 0;
+  }
+}
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -113,7 +135,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
     if (TIM2->CNT == 0) {
-      TIM2->ARR = (uint32_t)(curPeriode0 / 5); // Play first channel
+      TIM2->ARR = (uint32_t)(curPeriode0 / CLAMP(((Iout/200)-10), 3, 16)); // Play first channel
     	TIM2->CR1 = TIM2->CR1 | 1;
     }
 	}
@@ -121,7 +143,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
 		//HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
     if (TIM2->CNT == 0) {
-    	TIM2->ARR = (uint32_t)(curPeriode1 / 10); // Play second channel with less power
+    	TIM2->ARR = (uint32_t)(curPeriode1 / 8); // Play second channel with less power
     	TIM2->CR1 = TIM2->CR1 | 1;
     }
 	}
@@ -184,10 +206,16 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim15);
 	TIM15->CR1 &= ~(1UL);
 
+  MX_DMA_Init();
+  MX_ADC_Init();
+
+  HAL_ADC_Start_DMA(&hadc, (uint32_t*)adcBuffer, 3);
+
+
 	USER_TIM1_Init();
 
   //HAL_TIM_PWM_Start(&htim1);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_1);
 
   //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000);
 
@@ -195,11 +223,6 @@ int main(void)
 
 	HAL_TIM_Base_Start(&htim2);
 	HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_2);
-
-  MX_DMA_Init();
-  MX_ADC_Init();
-
-  HAL_ADC_Start_DMA(&hadc, (uint32_t*)adcBuffer, 3);
 
   /* USER CODE BEGIN 2 */
 
@@ -226,10 +249,20 @@ int main(void)
 	  }
   }
 
+  MX_TIM17_Init();
+	HAL_TIM_Base_Start_IT(&htim17);
+
+  for (uint32_t i = 0; i < Vmax; i+=100) {
+    Vset = i;
+    HAL_Delay(1);
+  }
+
+  Vset = Vmax;
+
   while (1)
   {
   //Wait USB configuration when USB connection error has occurred.
-	 /* while(1){
+	   while(1){
 				//HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
 			if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
@@ -240,19 +273,11 @@ int main(void)
 			  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
 			  HAL_Delay(200);
 		  }
-	  }*/
-
+	  }
     if (HAL_GPIO_ReadPin(BUTTON_GPIO, BUTTON_PIN)) {
       dfu_otter_bootloader();
     }
 
-    float Vout = ((float)adcBuffer[1] / 4096.0f) * 68.0f;
-
-    if (Vout > 20) {
-      HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
-    } else {
-      HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
-    }
 
 		curTone0 = 0;
 		curTone1 = 0;
@@ -510,6 +535,22 @@ static void MX_TIM15_Init(void)
   }
 }
 
+/* TIM17 init function */
+static void MX_TIM17_Init(void)
+{
+  htim17.Instance = TIM17;
+  htim17.Init.Prescaler = 11;
+  htim17.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim17.Init.Period = 1000;
+  htim17.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+  htim17.Init.RepetitionCounter = 0;
+  htim17.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim17) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+}
+
 static void USER_TIM2_Init(void) {
 	__HAL_RCC_TIM2_CLK_ENABLE();
 
@@ -550,7 +591,7 @@ static void USER_TIM1_Init(void)
   htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 1024;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV2;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
@@ -558,7 +599,7 @@ static void USER_TIM1_Init(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
   {
@@ -566,7 +607,7 @@ static void USER_TIM1_Init(void)
   }
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 100;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -590,7 +631,6 @@ static void USER_TIM1_Init(void)
   }
 
   HAL_TIM_MspPostInit(&htim1);
-
 }
 
 

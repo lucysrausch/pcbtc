@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cczRdjxv.s 			page 1
+ARM GAS  /tmp/ccuxZ66E.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
   31:Src/usbd_conf.c ****   *    this license is void and will automatically terminate your rights under 
   32:Src/usbd_conf.c ****   *    this license. 
   33:Src/usbd_conf.c ****   *
-ARM GAS  /tmp/cczRdjxv.s 			page 2
+ARM GAS  /tmp/ccuxZ66E.s 			page 2
 
 
   34:Src/usbd_conf.c ****   * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
   88:Src/usbd_conf.c **** 
   89:Src/usbd_conf.c **** /*******************************************************************************
   90:Src/usbd_conf.c ****                        LL Driver Callbacks (PCD -> USB Device Library)
-ARM GAS  /tmp/cczRdjxv.s 			page 3
+ARM GAS  /tmp/ccuxZ66E.s 			page 3
 
 
   91:Src/usbd_conf.c **** *******************************************************************************/
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
   64              	.LVL3:
   65              	.L1:
  107:Src/usbd_conf.c ****   /* USER CODE BEGIN USB_MspInit 1 */
-ARM GAS  /tmp/cczRdjxv.s 			page 4
+ARM GAS  /tmp/ccuxZ66E.s 			page 4
 
 
  108:Src/usbd_conf.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  105              		.loc 1 124 0
  106 0014 1F20     		mov	r0, #31
  107              	.LVL5:
-ARM GAS  /tmp/cczRdjxv.s 			page 5
+ARM GAS  /tmp/ccuxZ66E.s 			page 5
 
 
  108 0016 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  149 000e FFF7FEFF 		bl	USBD_LL_SetupStage
  150              	.LVL11:
  140:Src/usbd_conf.c **** }
-ARM GAS  /tmp/cczRdjxv.s 			page 6
+ARM GAS  /tmp/ccuxZ66E.s 			page 6
 
 
  151              		.loc 1 140 0
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  197              		.code	16
  198              		.thumb_func
  200              	HAL_PCD_DataInStageCallback:
-ARM GAS  /tmp/cczRdjxv.s 			page 7
+ARM GAS  /tmp/ccuxZ66E.s 			page 7
 
 
  201              	.LFB38:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  238              		.cfi_startproc
  239              	.LVL18:
  240 0000 08B5     		push	{r3, lr}
-ARM GAS  /tmp/cczRdjxv.s 			page 8
+ARM GAS  /tmp/ccuxZ66E.s 			page 8
 
 
  241              	.LCFI6:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  190:Src/usbd_conf.c ****   default:
  191:Src/usbd_conf.c ****     speed = USBD_SPEED_FULL;
  192:Src/usbd_conf.c ****     break;    
-ARM GAS  /tmp/cczRdjxv.s 			page 9
+ARM GAS  /tmp/ccuxZ66E.s 			page 9
 
 
  193:Src/usbd_conf.c ****   }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  317 0008 C058     		ldr	r0, [r0, r3]
  318              	.LVL28:
  319 000a FFF7FEFF 		bl	USBD_LL_Suspend
-ARM GAS  /tmp/cczRdjxv.s 			page 10
+ARM GAS  /tmp/ccuxZ66E.s 			page 10
 
 
  320              	.LVL29:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  358              		.cfi_offset 14, -4
  228:Src/usbd_conf.c ****   /* USER CODE BEGIN 3 */
  229:Src/usbd_conf.c **** 
-ARM GAS  /tmp/cczRdjxv.s 			page 11
+ARM GAS  /tmp/ccuxZ66E.s 			page 11
 
 
  230:Src/usbd_conf.c ****   /* USER CODE END 3 */
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  402              		.align	2
  403              		.global	HAL_PCD_ISOINIncompleteCallback
  404              		.code	16
-ARM GAS  /tmp/cczRdjxv.s 			page 12
+ARM GAS  /tmp/ccuxZ66E.s 			page 12
 
 
  405              		.thumb_func
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  443              		.cfi_def_cfa_offset 8
  444              		.cfi_offset 3, -8
  445              		.cfi_offset 14, -4
-ARM GAS  /tmp/cczRdjxv.s 			page 13
+ARM GAS  /tmp/ccuxZ66E.s 			page 13
 
 
  263:Src/usbd_conf.c ****   USBD_LL_DevConnected((USBD_HandleTypeDef*)hpcd->pData);
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  491              		.code	16
  492              		.thumb_func
  494              	USBD_LL_Init:
-ARM GAS  /tmp/cczRdjxv.s 			page 14
+ARM GAS  /tmp/ccuxZ66E.s 			page 14
 
 
  495              	.LFB47:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  528 0020 C260     		str	r2, [r0, #12]
  296:Src/usbd_conf.c ****   hpcd_USB_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
  529              		.loc 1 296 0
-ARM GAS  /tmp/cczRdjxv.s 			page 15
+ARM GAS  /tmp/ccuxZ66E.s 			page 15
 
 
  530 0022 0161     		str	r1, [r0, #16]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  572              		.loc 1 308 0
  573 0064 6059     		ldr	r0, [r4, r5]
  574 0066 0121     		mov	r1, #1
-ARM GAS  /tmp/cczRdjxv.s 			page 16
+ARM GAS  /tmp/ccuxZ66E.s 			page 16
 
 
  575 0068 0022     		mov	r2, #0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  321:Src/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
  322:Src/usbd_conf.c **** 
  323:Src/usbd_conf.c ****   hal_status = HAL_PCD_DeInit(pdev->pData);
-ARM GAS  /tmp/cczRdjxv.s 			page 17
+ARM GAS  /tmp/ccuxZ66E.s 			page 17
 
 
  619              		.loc 1 323 0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  652 0020 08BD     		pop	{r3, pc}
  653              		.cfi_endproc
  654              	.LFE48:
-ARM GAS  /tmp/cczRdjxv.s 			page 18
+ARM GAS  /tmp/ccuxZ66E.s 			page 18
 
 
  656 0022 C046     		.section	.text.USBD_LL_Start,"ax",%progbits
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  362:Src/usbd_conf.c ****       usb_status = USBD_FAIL;
  363:Src/usbd_conf.c ****     break;
  364:Src/usbd_conf.c ****     case HAL_BUSY :
-ARM GAS  /tmp/cczRdjxv.s 			page 19
+ARM GAS  /tmp/ccuxZ66E.s 			page 19
 
 
  365:Src/usbd_conf.c ****       usb_status = USBD_BUSY;
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  386:Src/usbd_conf.c **** 
  387:Src/usbd_conf.c ****   hal_status = HAL_PCD_Stop(pdev->pData);
  727              		.loc 1 387 0
-ARM GAS  /tmp/cczRdjxv.s 			page 20
+ARM GAS  /tmp/ccuxZ66E.s 			page 20
 
 
  728 0002 8823     		mov	r3, #136
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  761              		.cfi_endproc
  762              	.LFE50:
  764 0022 C046     		.section	.text.USBD_LL_OpenEP,"ax",%progbits
-ARM GAS  /tmp/cczRdjxv.s 			page 21
+ARM GAS  /tmp/ccuxZ66E.s 			page 21
 
 
  765              		.align	2
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  801 001c 0020     		mov	r0, #0
  802              	.LVL89:
  803 001e 02E0     		b	.L46
-ARM GAS  /tmp/cczRdjxv.s 			page 22
+ARM GAS  /tmp/ccuxZ66E.s 			page 22
 
 
  804              	.LVL90:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  834 0000 08B5     		push	{r3, lr}
  835              	.LCFI19:
  836              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/cczRdjxv.s 			page 23
+ARM GAS  /tmp/ccuxZ66E.s 			page 23
 
 
  837              		.cfi_offset 3, -8
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  471:Src/usbd_conf.c ****       usb_status = USBD_FAIL;
  472:Src/usbd_conf.c ****     break;
  473:Src/usbd_conf.c ****   }
-ARM GAS  /tmp/cczRdjxv.s 			page 24
+ARM GAS  /tmp/ccuxZ66E.s 			page 24
 
 
  474:Src/usbd_conf.c ****   return usb_status;  
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  908              		.loc 1 492 0
  909 0016 0020     		mov	r0, #0
  910              	.LVL107:
-ARM GAS  /tmp/cczRdjxv.s 			page 25
+ARM GAS  /tmp/ccuxZ66E.s 			page 25
 
 
  911 0018 02E0     		b	.L58
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  941              	.LVL112:
  942 0000 08B5     		push	{r3, lr}
  943              	.LCFI21:
-ARM GAS  /tmp/cczRdjxv.s 			page 26
+ARM GAS  /tmp/ccuxZ66E.s 			page 26
 
 
  944              		.cfi_def_cfa_offset 8
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  536:Src/usbd_conf.c ****     default :
  537:Src/usbd_conf.c ****       usb_status = USBD_FAIL;
  538:Src/usbd_conf.c ****     break;
-ARM GAS  /tmp/cczRdjxv.s 			page 27
+ARM GAS  /tmp/ccuxZ66E.s 			page 27
 
 
  539:Src/usbd_conf.c ****   }
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  558:Src/usbd_conf.c ****       usb_status = USBD_OK;
  1016              		.loc 1 558 0
  1017 0016 0020     		mov	r0, #0
-ARM GAS  /tmp/cczRdjxv.s 			page 28
+ARM GAS  /tmp/ccuxZ66E.s 			page 28
 
 
  1018              	.LVL125:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  1048              		.cfi_startproc
  1049              	.LVL130:
  584:Src/usbd_conf.c ****   PCD_HandleTypeDef *hpcd = (PCD_HandleTypeDef*) pdev->pData;
-ARM GAS  /tmp/cczRdjxv.s 			page 29
+ARM GAS  /tmp/ccuxZ66E.s 			page 29
 
 
  1050              		.loc 1 584 0
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  1095              		.code	16
  1096              		.thumb_func
  1098              	USBD_LL_SetUSBAddress:
-ARM GAS  /tmp/cczRdjxv.s 			page 30
+ARM GAS  /tmp/ccuxZ66E.s 			page 30
 
 
  1099              	.LFB57:
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  1130 001a 0120     		mov	r0, #1
  1131              	.LVL143:
  618:Src/usbd_conf.c ****     break;
-ARM GAS  /tmp/cczRdjxv.s 			page 31
+ARM GAS  /tmp/ccuxZ66E.s 			page 31
 
 
  1132              		.loc 1 618 0
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  1163              		.loc 1 642 0
  1164 0002 8824     		mov	r4, #136
  1165 0004 A400     		lsl	r4, r4, #2
-ARM GAS  /tmp/cczRdjxv.s 			page 32
+ARM GAS  /tmp/ccuxZ66E.s 			page 32
 
 
  1166 0006 0059     		ldr	r0, [r0, r4]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  1200 0022 C046     		.section	.text.USBD_LL_PrepareReceive,"ax",%progbits
  1201              		.align	2
  1202              		.global	USBD_LL_PrepareReceive
-ARM GAS  /tmp/cczRdjxv.s 			page 33
+ARM GAS  /tmp/ccuxZ66E.s 			page 33
 
 
  1203              		.code	16
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  684:Src/usbd_conf.c ****       usb_status = USBD_FAIL;
  685:Src/usbd_conf.c ****     break;
  686:Src/usbd_conf.c ****     case HAL_BUSY :
-ARM GAS  /tmp/cczRdjxv.s 			page 34
+ARM GAS  /tmp/ccuxZ66E.s 			page 34
 
 
  687:Src/usbd_conf.c ****       usb_status = USBD_BUSY;
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  1271 0002 8823     		mov	r3, #136
  1272 0004 9B00     		lsl	r3, r3, #2
  1273 0006 C058     		ldr	r0, [r0, r3]
-ARM GAS  /tmp/cczRdjxv.s 			page 35
+ARM GAS  /tmp/ccuxZ66E.s 			page 35
 
 
  1274              	.LVL165:
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  724:Src/usbd_conf.c ****   */
  725:Src/usbd_conf.c **** //void *USBD_static_malloc(uint32_t size)
  726:Src/usbd_conf.c **** //{
-ARM GAS  /tmp/cczRdjxv.s 			page 36
+ARM GAS  /tmp/ccuxZ66E.s 			page 36
 
 
  727:Src/usbd_conf.c **** //  static uint32_t mem[(sizeof(USBD_CDC_HandleTypeDef)/4)+1];/* On 32-bit boundary */
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  763:Src/usbd_conf.c ****   {
  764:Src/usbd_conf.c ****     /* Configure Low connection state. */
  765:Src/usbd_conf.c **** 
-ARM GAS  /tmp/cczRdjxv.s 			page 37
+ARM GAS  /tmp/ccuxZ66E.s 			page 37
 
 
  766:Src/usbd_conf.c ****   }
@@ -2196,80 +2196,80 @@ ARM GAS  /tmp/cczRdjxv.s 			page 1
  1358              		.file 11 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h"
  1359              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd_ex.h"
  1360              		.file 13 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
-ARM GAS  /tmp/cczRdjxv.s 			page 38
+ARM GAS  /tmp/ccuxZ66E.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_conf.c
-     /tmp/cczRdjxv.s:18     .text.HAL_PCD_MspInit:00000000 $t
-     /tmp/cczRdjxv.s:23     .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
-     /tmp/cczRdjxv.s:73     .text.HAL_PCD_MspInit:00000034 $d
-     /tmp/cczRdjxv.s:79     .text.HAL_PCD_MspDeInit:00000000 $t
-     /tmp/cczRdjxv.s:84     .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
-     /tmp/cczRdjxv.s:117    .text.HAL_PCD_MspDeInit:0000001c $d
-     /tmp/cczRdjxv.s:124    .text.HAL_PCD_SetupStageCallback:00000000 $t
-     /tmp/cczRdjxv.s:129    .text.HAL_PCD_SetupStageCallback:00000000 HAL_PCD_SetupStageCallback
-     /tmp/cczRdjxv.s:158    .text.HAL_PCD_DataOutStageCallback:00000000 $t
-     /tmp/cczRdjxv.s:163    .text.HAL_PCD_DataOutStageCallback:00000000 HAL_PCD_DataOutStageCallback
-     /tmp/cczRdjxv.s:195    .text.HAL_PCD_DataInStageCallback:00000000 $t
-     /tmp/cczRdjxv.s:200    .text.HAL_PCD_DataInStageCallback:00000000 HAL_PCD_DataInStageCallback
-     /tmp/cczRdjxv.s:230    .text.HAL_PCD_SOFCallback:00000000 $t
-     /tmp/cczRdjxv.s:235    .text.HAL_PCD_SOFCallback:00000000 HAL_PCD_SOFCallback
-     /tmp/cczRdjxv.s:259    .text.HAL_PCD_ResetCallback:00000000 $t
-     /tmp/cczRdjxv.s:264    .text.HAL_PCD_ResetCallback:00000000 HAL_PCD_ResetCallback
-     /tmp/cczRdjxv.s:298    .text.HAL_PCD_SuspendCallback:00000000 $t
-     /tmp/cczRdjxv.s:303    .text.HAL_PCD_SuspendCallback:00000000 HAL_PCD_SuspendCallback
-     /tmp/cczRdjxv.s:339    .text.HAL_PCD_SuspendCallback:00000020 $d
-     /tmp/cczRdjxv.s:344    .text.HAL_PCD_ResumeCallback:00000000 $t
-     /tmp/cczRdjxv.s:349    .text.HAL_PCD_ResumeCallback:00000000 HAL_PCD_ResumeCallback
-     /tmp/cczRdjxv.s:373    .text.HAL_PCD_ISOOUTIncompleteCallback:00000000 $t
-     /tmp/cczRdjxv.s:378    .text.HAL_PCD_ISOOUTIncompleteCallback:00000000 HAL_PCD_ISOOUTIncompleteCallback
-     /tmp/cczRdjxv.s:402    .text.HAL_PCD_ISOINIncompleteCallback:00000000 $t
-     /tmp/cczRdjxv.s:407    .text.HAL_PCD_ISOINIncompleteCallback:00000000 HAL_PCD_ISOINIncompleteCallback
-     /tmp/cczRdjxv.s:431    .text.HAL_PCD_ConnectCallback:00000000 $t
-     /tmp/cczRdjxv.s:436    .text.HAL_PCD_ConnectCallback:00000000 HAL_PCD_ConnectCallback
-     /tmp/cczRdjxv.s:460    .text.HAL_PCD_DisconnectCallback:00000000 $t
-     /tmp/cczRdjxv.s:465    .text.HAL_PCD_DisconnectCallback:00000000 HAL_PCD_DisconnectCallback
-     /tmp/cczRdjxv.s:489    .text.USBD_LL_Init:00000000 $t
-     /tmp/cczRdjxv.s:494    .text.USBD_LL_Init:00000000 USBD_LL_Init
-     /tmp/cczRdjxv.s:596    .text.USBD_LL_Init:00000084 $d
+     /tmp/ccuxZ66E.s:18     .text.HAL_PCD_MspInit:00000000 $t
+     /tmp/ccuxZ66E.s:23     .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
+     /tmp/ccuxZ66E.s:73     .text.HAL_PCD_MspInit:00000034 $d
+     /tmp/ccuxZ66E.s:79     .text.HAL_PCD_MspDeInit:00000000 $t
+     /tmp/ccuxZ66E.s:84     .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
+     /tmp/ccuxZ66E.s:117    .text.HAL_PCD_MspDeInit:0000001c $d
+     /tmp/ccuxZ66E.s:124    .text.HAL_PCD_SetupStageCallback:00000000 $t
+     /tmp/ccuxZ66E.s:129    .text.HAL_PCD_SetupStageCallback:00000000 HAL_PCD_SetupStageCallback
+     /tmp/ccuxZ66E.s:158    .text.HAL_PCD_DataOutStageCallback:00000000 $t
+     /tmp/ccuxZ66E.s:163    .text.HAL_PCD_DataOutStageCallback:00000000 HAL_PCD_DataOutStageCallback
+     /tmp/ccuxZ66E.s:195    .text.HAL_PCD_DataInStageCallback:00000000 $t
+     /tmp/ccuxZ66E.s:200    .text.HAL_PCD_DataInStageCallback:00000000 HAL_PCD_DataInStageCallback
+     /tmp/ccuxZ66E.s:230    .text.HAL_PCD_SOFCallback:00000000 $t
+     /tmp/ccuxZ66E.s:235    .text.HAL_PCD_SOFCallback:00000000 HAL_PCD_SOFCallback
+     /tmp/ccuxZ66E.s:259    .text.HAL_PCD_ResetCallback:00000000 $t
+     /tmp/ccuxZ66E.s:264    .text.HAL_PCD_ResetCallback:00000000 HAL_PCD_ResetCallback
+     /tmp/ccuxZ66E.s:298    .text.HAL_PCD_SuspendCallback:00000000 $t
+     /tmp/ccuxZ66E.s:303    .text.HAL_PCD_SuspendCallback:00000000 HAL_PCD_SuspendCallback
+     /tmp/ccuxZ66E.s:339    .text.HAL_PCD_SuspendCallback:00000020 $d
+     /tmp/ccuxZ66E.s:344    .text.HAL_PCD_ResumeCallback:00000000 $t
+     /tmp/ccuxZ66E.s:349    .text.HAL_PCD_ResumeCallback:00000000 HAL_PCD_ResumeCallback
+     /tmp/ccuxZ66E.s:373    .text.HAL_PCD_ISOOUTIncompleteCallback:00000000 $t
+     /tmp/ccuxZ66E.s:378    .text.HAL_PCD_ISOOUTIncompleteCallback:00000000 HAL_PCD_ISOOUTIncompleteCallback
+     /tmp/ccuxZ66E.s:402    .text.HAL_PCD_ISOINIncompleteCallback:00000000 $t
+     /tmp/ccuxZ66E.s:407    .text.HAL_PCD_ISOINIncompleteCallback:00000000 HAL_PCD_ISOINIncompleteCallback
+     /tmp/ccuxZ66E.s:431    .text.HAL_PCD_ConnectCallback:00000000 $t
+     /tmp/ccuxZ66E.s:436    .text.HAL_PCD_ConnectCallback:00000000 HAL_PCD_ConnectCallback
+     /tmp/ccuxZ66E.s:460    .text.HAL_PCD_DisconnectCallback:00000000 $t
+     /tmp/ccuxZ66E.s:465    .text.HAL_PCD_DisconnectCallback:00000000 HAL_PCD_DisconnectCallback
+     /tmp/ccuxZ66E.s:489    .text.USBD_LL_Init:00000000 $t
+     /tmp/ccuxZ66E.s:494    .text.USBD_LL_Init:00000000 USBD_LL_Init
+     /tmp/ccuxZ66E.s:596    .text.USBD_LL_Init:00000084 $d
                             *COM*:00000220 hpcd_USB_FS
-     /tmp/cczRdjxv.s:603    .text.USBD_LL_DeInit:00000000 $t
-     /tmp/cczRdjxv.s:608    .text.USBD_LL_DeInit:00000000 USBD_LL_DeInit
-     /tmp/cczRdjxv.s:657    .text.USBD_LL_Start:00000000 $t
-     /tmp/cczRdjxv.s:662    .text.USBD_LL_Start:00000000 USBD_LL_Start
-     /tmp/cczRdjxv.s:711    .text.USBD_LL_Stop:00000000 $t
-     /tmp/cczRdjxv.s:716    .text.USBD_LL_Stop:00000000 USBD_LL_Stop
-     /tmp/cczRdjxv.s:765    .text.USBD_LL_OpenEP:00000000 $t
-     /tmp/cczRdjxv.s:770    .text.USBD_LL_OpenEP:00000000 USBD_LL_OpenEP
-     /tmp/cczRdjxv.s:824    .text.USBD_LL_CloseEP:00000000 $t
-     /tmp/cczRdjxv.s:829    .text.USBD_LL_CloseEP:00000000 USBD_LL_CloseEP
-     /tmp/cczRdjxv.s:878    .text.USBD_LL_FlushEP:00000000 $t
-     /tmp/cczRdjxv.s:883    .text.USBD_LL_FlushEP:00000000 USBD_LL_FlushEP
-     /tmp/cczRdjxv.s:932    .text.USBD_LL_StallEP:00000000 $t
-     /tmp/cczRdjxv.s:937    .text.USBD_LL_StallEP:00000000 USBD_LL_StallEP
-     /tmp/cczRdjxv.s:986    .text.USBD_LL_ClearStallEP:00000000 $t
-     /tmp/cczRdjxv.s:991    .text.USBD_LL_ClearStallEP:00000000 USBD_LL_ClearStallEP
-     /tmp/cczRdjxv.s:1040   .text.USBD_LL_IsStallEP:00000000 $t
-     /tmp/cczRdjxv.s:1045   .text.USBD_LL_IsStallEP:00000000 USBD_LL_IsStallEP
-     /tmp/cczRdjxv.s:1093   .text.USBD_LL_SetUSBAddress:00000000 $t
-     /tmp/cczRdjxv.s:1098   .text.USBD_LL_SetUSBAddress:00000000 USBD_LL_SetUSBAddress
-     /tmp/cczRdjxv.s:1147   .text.USBD_LL_Transmit:00000000 $t
-     /tmp/cczRdjxv.s:1152   .text.USBD_LL_Transmit:00000000 USBD_LL_Transmit
-ARM GAS  /tmp/cczRdjxv.s 			page 39
+     /tmp/ccuxZ66E.s:603    .text.USBD_LL_DeInit:00000000 $t
+     /tmp/ccuxZ66E.s:608    .text.USBD_LL_DeInit:00000000 USBD_LL_DeInit
+     /tmp/ccuxZ66E.s:657    .text.USBD_LL_Start:00000000 $t
+     /tmp/ccuxZ66E.s:662    .text.USBD_LL_Start:00000000 USBD_LL_Start
+     /tmp/ccuxZ66E.s:711    .text.USBD_LL_Stop:00000000 $t
+     /tmp/ccuxZ66E.s:716    .text.USBD_LL_Stop:00000000 USBD_LL_Stop
+     /tmp/ccuxZ66E.s:765    .text.USBD_LL_OpenEP:00000000 $t
+     /tmp/ccuxZ66E.s:770    .text.USBD_LL_OpenEP:00000000 USBD_LL_OpenEP
+     /tmp/ccuxZ66E.s:824    .text.USBD_LL_CloseEP:00000000 $t
+     /tmp/ccuxZ66E.s:829    .text.USBD_LL_CloseEP:00000000 USBD_LL_CloseEP
+     /tmp/ccuxZ66E.s:878    .text.USBD_LL_FlushEP:00000000 $t
+     /tmp/ccuxZ66E.s:883    .text.USBD_LL_FlushEP:00000000 USBD_LL_FlushEP
+     /tmp/ccuxZ66E.s:932    .text.USBD_LL_StallEP:00000000 $t
+     /tmp/ccuxZ66E.s:937    .text.USBD_LL_StallEP:00000000 USBD_LL_StallEP
+     /tmp/ccuxZ66E.s:986    .text.USBD_LL_ClearStallEP:00000000 $t
+     /tmp/ccuxZ66E.s:991    .text.USBD_LL_ClearStallEP:00000000 USBD_LL_ClearStallEP
+     /tmp/ccuxZ66E.s:1040   .text.USBD_LL_IsStallEP:00000000 $t
+     /tmp/ccuxZ66E.s:1045   .text.USBD_LL_IsStallEP:00000000 USBD_LL_IsStallEP
+     /tmp/ccuxZ66E.s:1093   .text.USBD_LL_SetUSBAddress:00000000 $t
+     /tmp/ccuxZ66E.s:1098   .text.USBD_LL_SetUSBAddress:00000000 USBD_LL_SetUSBAddress
+     /tmp/ccuxZ66E.s:1147   .text.USBD_LL_Transmit:00000000 $t
+     /tmp/ccuxZ66E.s:1152   .text.USBD_LL_Transmit:00000000 USBD_LL_Transmit
+ARM GAS  /tmp/ccuxZ66E.s 			page 39
 
 
-     /tmp/cczRdjxv.s:1201   .text.USBD_LL_PrepareReceive:00000000 $t
-     /tmp/cczRdjxv.s:1206   .text.USBD_LL_PrepareReceive:00000000 USBD_LL_PrepareReceive
-     /tmp/cczRdjxv.s:1255   .text.USBD_LL_GetRxDataSize:00000000 $t
-     /tmp/cczRdjxv.s:1260   .text.USBD_LL_GetRxDataSize:00000000 USBD_LL_GetRxDataSize
-     /tmp/cczRdjxv.s:1284   .text.USBD_LL_Delay:00000000 $t
-     /tmp/cczRdjxv.s:1289   .text.USBD_LL_Delay:00000000 USBD_LL_Delay
-     /tmp/cczRdjxv.s:1309   .text.USBD_static_free:00000000 $t
-     /tmp/cczRdjxv.s:1314   .text.USBD_static_free:00000000 USBD_static_free
-     /tmp/cczRdjxv.s:1326   .text.HAL_PCDEx_SetConnectionState:00000000 $t
-     /tmp/cczRdjxv.s:1331   .text.HAL_PCDEx_SetConnectionState:00000000 HAL_PCDEx_SetConnectionState
-     /tmp/cczRdjxv.s:1344   .rodata.str1.4:00000000 $d
+     /tmp/ccuxZ66E.s:1201   .text.USBD_LL_PrepareReceive:00000000 $t
+     /tmp/ccuxZ66E.s:1206   .text.USBD_LL_PrepareReceive:00000000 USBD_LL_PrepareReceive
+     /tmp/ccuxZ66E.s:1255   .text.USBD_LL_GetRxDataSize:00000000 $t
+     /tmp/ccuxZ66E.s:1260   .text.USBD_LL_GetRxDataSize:00000000 USBD_LL_GetRxDataSize
+     /tmp/ccuxZ66E.s:1284   .text.USBD_LL_Delay:00000000 $t
+     /tmp/ccuxZ66E.s:1289   .text.USBD_LL_Delay:00000000 USBD_LL_Delay
+     /tmp/ccuxZ66E.s:1309   .text.USBD_static_free:00000000 $t
+     /tmp/ccuxZ66E.s:1314   .text.USBD_static_free:00000000 USBD_static_free
+     /tmp/ccuxZ66E.s:1326   .text.HAL_PCDEx_SetConnectionState:00000000 $t
+     /tmp/ccuxZ66E.s:1331   .text.HAL_PCDEx_SetConnectionState:00000000 HAL_PCDEx_SetConnectionState
+     /tmp/ccuxZ66E.s:1344   .rodata.str1.4:00000000 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

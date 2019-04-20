@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc3JNPx1.s 			page 1
+ARM GAS  /tmp/ccoDDNd6.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
   31:Src/system_stm32f0xx.c ****   *        SYSCLK(Hz)                             | 8000000
   32:Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
   33:Src/system_stm32f0xx.c ****   *        HCLK(Hz)                               | 8000000
-ARM GAS  /tmp/cc3JNPx1.s 			page 2
+ARM GAS  /tmp/ccoDDNd6.s 			page 2
 
 
   34:Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
   88:Src/system_stm32f0xx.c **** 
   89:Src/system_stm32f0xx.c **** 
   90:Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_TypesDefinitions
-ARM GAS  /tmp/cc3JNPx1.s 			page 3
+ARM GAS  /tmp/ccoDDNd6.s 			page 3
 
 
   91:Src/system_stm32f0xx.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  145:Src/system_stm32f0xx.c ****   */
  146:Src/system_stm32f0xx.c **** 
  147:Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_FunctionPrototypes
-ARM GAS  /tmp/cc3JNPx1.s 			page 4
+ARM GAS  /tmp/ccoDDNd6.s 			page 4
 
 
  148:Src/system_stm32f0xx.c ****   * @{
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
    4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V4.30
    5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     20. October 2015
    6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
-ARM GAS  /tmp/cc3JNPx1.s 			page 5
+ARM GAS  /tmp/ccoDDNd6.s 			page 5
 
 
    7:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Copyright (c) 2009 - 2015 ARM LIMITED
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
   61:Drivers/CMSIS/Include/cmsis_gcc.h **** }
   62:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   63:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/cc3JNPx1.s 			page 6
+ARM GAS  /tmp/ccoDDNd6.s 			page 6
 
 
   64:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  118:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  119:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_APSR(void)
  120:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/cc3JNPx1.s 			page 7
+ARM GAS  /tmp/ccoDDNd6.s 			page 7
 
 
  121:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  175:Drivers/CMSIS/Include/cmsis_gcc.h ****   register uint32_t result;
  176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  177:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp\n" : "=r" (result) );
-ARM GAS  /tmp/cc3JNPx1.s 			page 8
+ARM GAS  /tmp/ccoDDNd6.s 			page 8
 
 
  178:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  192:Src/system_stm32f0xx.c ****   /* Reset SW[1:0], HPRE[3:0], PPRE[2:0], ADCPRE, MCOSEL[2:0], MCOPRE[2:0] and PLLNODIV bits */
  193:Src/system_stm32f0xx.c ****   RCC->CFGR &= (uint32_t)0x08FFB80CU;
   74              		.loc 1 193 0
-ARM GAS  /tmp/cc3JNPx1.s 			page 9
+ARM GAS  /tmp/ccoDDNd6.s 			page 9
 
 
   75 002e 5868     		ldr	r0, [r3, #4]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  219:Src/system_stm32f0xx.c ****   RCC->CFGR3 &= (uint32_t)0xFFFFFEECU;
  220:Src/system_stm32f0xx.c **** #elif defined (STM32F051x8) || defined (STM32F058xx)
  221:Src/system_stm32f0xx.c ****   /* Reset USART1SW[1:0], I2C1SW, CECSW and ADCSW bits */
-ARM GAS  /tmp/cc3JNPx1.s 			page 10
+ARM GAS  /tmp/ccoDDNd6.s 			page 10
 
 
  222:Src/system_stm32f0xx.c ****   RCC->CFGR3 &= (uint32_t)0xFFFFFEACU;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  140              	.LFB35:
  242:Src/system_stm32f0xx.c **** 
  243:Src/system_stm32f0xx.c **** /**
-ARM GAS  /tmp/cc3JNPx1.s 			page 11
+ARM GAS  /tmp/ccoDDNd6.s 			page 11
 
 
  244:Src/system_stm32f0xx.c ****    * @brief  Update SystemCoreClock variable according to Clock Register Values.
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  154              	.LVL4:
  285:Src/system_stm32f0xx.c **** 
  286:Src/system_stm32f0xx.c ****   switch (tmp)
-ARM GAS  /tmp/cc3JNPx1.s 			page 12
+ARM GAS  /tmp/ccoDDNd6.s 			page 12
 
 
  155              		.loc 1 286 0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  196              		.loc 1 299 0
  197 0038 DB6A     		ldr	r3, [r3, #44]
  198 003a 0F21     		mov	r1, #15
-ARM GAS  /tmp/cc3JNPx1.s 			page 13
+ARM GAS  /tmp/ccoDDNd6.s 			page 13
 
 
  199 003c 1940     		and	r1, r3
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  319:Src/system_stm32f0xx.c ****         SystemCoreClock = (HSI_VALUE/predivfactor) * pllmull;
  234              		.loc 1 319 0
  235 006c 0B48     		ldr	r0, .L15+4
-ARM GAS  /tmp/cc3JNPx1.s 			page 14
+ARM GAS  /tmp/ccoDDNd6.s 			page 14
 
 
  236 006e FFF7FEFF 		bl	__aeabi_uidiv
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  272 009c 00127A00 		.word	8000000
  273 00a0 00000000 		.word	.LANCHOR0
  274 00a4 006CDC02 		.word	48000000
-ARM GAS  /tmp/cc3JNPx1.s 			page 15
+ARM GAS  /tmp/ccoDDNd6.s 			page 15
 
 
  275 00a8 00000000 		.word	.LANCHOR1
@@ -889,24 +889,24 @@ ARM GAS  /tmp/cc3JNPx1.s 			page 1
  327              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
  328              		.file 4 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
  329              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-ARM GAS  /tmp/cc3JNPx1.s 			page 16
+ARM GAS  /tmp/ccoDDNd6.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 system_stm32f0xx.c
-     /tmp/cc3JNPx1.s:18     .text.SystemInit:00000000 $t
-     /tmp/cc3JNPx1.s:23     .text.SystemInit:00000000 SystemInit
-     /tmp/cc3JNPx1.s:117    .text.SystemInit:0000006c $d
+     /tmp/ccoDDNd6.s:18     .text.SystemInit:00000000 $t
+     /tmp/ccoDDNd6.s:23     .text.SystemInit:00000000 SystemInit
+     /tmp/ccoDDNd6.s:117    .text.SystemInit:0000006c $d
                             *COM*:00000004 SysMemBootJump
-     /tmp/cc3JNPx1.s:134    .text.SystemCoreClockUpdate:00000000 $t
-     /tmp/cc3JNPx1.s:139    .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
-     /tmp/cc3JNPx1.s:271    .text.SystemCoreClockUpdate:00000098 $d
-     /tmp/cc3JNPx1.s:309    .rodata.APBPrescTable:00000000 APBPrescTable
-     /tmp/cc3JNPx1.s:288    .rodata.AHBPrescTable:00000000 AHBPrescTable
-     /tmp/cc3JNPx1.s:323    .data.SystemCoreClock:00000000 SystemCoreClock
-     /tmp/cc3JNPx1.s:284    .rodata.AHBPrescTable:00000000 $d
-     /tmp/cc3JNPx1.s:306    .rodata.APBPrescTable:00000000 $d
-     /tmp/cc3JNPx1.s:319    .data.SystemCoreClock:00000000 $d
+     /tmp/ccoDDNd6.s:134    .text.SystemCoreClockUpdate:00000000 $t
+     /tmp/ccoDDNd6.s:139    .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+     /tmp/ccoDDNd6.s:271    .text.SystemCoreClockUpdate:00000098 $d
+     /tmp/ccoDDNd6.s:309    .rodata.APBPrescTable:00000000 APBPrescTable
+     /tmp/ccoDDNd6.s:288    .rodata.AHBPrescTable:00000000 AHBPrescTable
+     /tmp/ccoDDNd6.s:323    .data.SystemCoreClock:00000000 SystemCoreClock
+     /tmp/ccoDDNd6.s:284    .rodata.AHBPrescTable:00000000 $d
+     /tmp/ccoDDNd6.s:306    .rodata.APBPrescTable:00000000 $d
+     /tmp/ccoDDNd6.s:319    .data.SystemCoreClock:00000000 $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

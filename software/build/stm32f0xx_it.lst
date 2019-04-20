@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccBUDJOj.s 			page 1
+ARM GAS  /tmp/ccwavzdT.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
   31:Src/stm32f0xx_it.c ****   ******************************************************************************
   32:Src/stm32f0xx_it.c ****   */
   33:Src/stm32f0xx_it.c **** /* Includes ------------------------------------------------------------------*/
-ARM GAS  /tmp/ccBUDJOj.s 			page 2
+ARM GAS  /tmp/ccwavzdT.s 			page 2
 
 
   34:Src/stm32f0xx_it.c **** #include "stm32f0xx_hal.h"
@@ -73,34 +73,37 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
   43:Src/stm32f0xx_it.c **** extern PCD_HandleTypeDef hpcd_USB_FS;
   44:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim14;
   45:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim15;
-  46:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim2;
-  47:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim1;
+  46:Src/stm32f0xx_it.c **** 
+  47:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim17;
   48:Src/stm32f0xx_it.c **** 
-  49:Src/stm32f0xx_it.c **** extern DMA_HandleTypeDef hdma_adc;
-  50:Src/stm32f0xx_it.c **** /*extern DMA_HandleTypeDef hdma_usart1_rx;
-  51:Src/stm32f0xx_it.c **** extern DMA_HandleTypeDef hdma_usart2_rx;
-  52:Src/stm32f0xx_it.c **** extern UART_HandleTypeDef huart1;
-  53:Src/stm32f0xx_it.c **** extern UART_HandleTypeDef huart2;*/
-  54:Src/stm32f0xx_it.c **** 
-  55:Src/stm32f0xx_it.c **** /******************************************************************************/
-  56:Src/stm32f0xx_it.c **** /*            Cortex-M0 Processor Interruption and Exception Handlers         */
-  57:Src/stm32f0xx_it.c **** /******************************************************************************/
-  58:Src/stm32f0xx_it.c **** 
-  59:Src/stm32f0xx_it.c **** /**
-  60:Src/stm32f0xx_it.c **** * @brief This function handles Non maskable interrupt.
-  61:Src/stm32f0xx_it.c **** */
-  62:Src/stm32f0xx_it.c **** void NMI_Handler(void)
-  63:Src/stm32f0xx_it.c **** {
-  26              		.loc 1 63 0
+  49:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim2;
+  50:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim1;
+  51:Src/stm32f0xx_it.c **** 
+  52:Src/stm32f0xx_it.c **** extern DMA_HandleTypeDef hdma_adc;
+  53:Src/stm32f0xx_it.c **** /*extern DMA_HandleTypeDef hdma_usart1_rx;
+  54:Src/stm32f0xx_it.c **** extern DMA_HandleTypeDef hdma_usart2_rx;
+  55:Src/stm32f0xx_it.c **** extern UART_HandleTypeDef huart1;
+  56:Src/stm32f0xx_it.c **** extern UART_HandleTypeDef huart2;*/
+  57:Src/stm32f0xx_it.c **** 
+  58:Src/stm32f0xx_it.c **** /******************************************************************************/
+  59:Src/stm32f0xx_it.c **** /*            Cortex-M0 Processor Interruption and Exception Handlers         */
+  60:Src/stm32f0xx_it.c **** /******************************************************************************/
+  61:Src/stm32f0xx_it.c **** 
+  62:Src/stm32f0xx_it.c **** /**
+  63:Src/stm32f0xx_it.c **** * @brief This function handles Non maskable interrupt.
+  64:Src/stm32f0xx_it.c **** */
+  65:Src/stm32f0xx_it.c **** void NMI_Handler(void)
+  66:Src/stm32f0xx_it.c **** {
+  26              		.loc 1 66 0
   27              		.cfi_startproc
-  64:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
-  65:Src/stm32f0xx_it.c **** 
-  66:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
-  67:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  67:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
   68:Src/stm32f0xx_it.c **** 
-  69:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
-  70:Src/stm32f0xx_it.c **** }
-  28              		.loc 1 70 0
+  69:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
+  70:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  71:Src/stm32f0xx_it.c **** 
+  72:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
+  73:Src/stm32f0xx_it.c **** }
+  28              		.loc 1 73 0
   29              		@ sp needed
   30 0000 7047     		bx	lr
   31              		.cfi_endproc
@@ -112,36 +115,36 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
   38              		.thumb_func
   40              	DMA1_Channel1_IRQHandler:
   41              	.LFB35:
-  71:Src/stm32f0xx_it.c **** 
-  72:Src/stm32f0xx_it.c **** 
-  73:Src/stm32f0xx_it.c **** /**
-  74:Src/stm32f0xx_it.c ****   * @brief This function handles DMA1 channel 1 global interrupt.
-  75:Src/stm32f0xx_it.c ****   */
-  76:Src/stm32f0xx_it.c **** void DMA1_Channel1_IRQHandler(void)
-ARM GAS  /tmp/ccBUDJOj.s 			page 3
+  74:Src/stm32f0xx_it.c **** 
+  75:Src/stm32f0xx_it.c **** 
+  76:Src/stm32f0xx_it.c **** /**
+ARM GAS  /tmp/ccwavzdT.s 			page 3
 
 
-  77:Src/stm32f0xx_it.c **** {
-  42              		.loc 1 77 0
+  77:Src/stm32f0xx_it.c ****   * @brief This function handles DMA1 channel 1 global interrupt.
+  78:Src/stm32f0xx_it.c ****   */
+  79:Src/stm32f0xx_it.c **** void DMA1_Channel1_IRQHandler(void)
+  80:Src/stm32f0xx_it.c **** {
+  42              		.loc 1 80 0
   43              		.cfi_startproc
   44 0000 08B5     		push	{r3, lr}
   45              	.LCFI0:
   46              		.cfi_def_cfa_offset 8
   47              		.cfi_offset 3, -8
   48              		.cfi_offset 14, -4
-  78:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN DMA1_Channel1_IRQn 0 */
-  79:Src/stm32f0xx_it.c **** 
-  80:Src/stm32f0xx_it.c ****   /* USER CODE END DMA1_Channel1_IRQn 0 */
-  81:Src/stm32f0xx_it.c ****   HAL_DMA_IRQHandler(&hdma_adc);
-  49              		.loc 1 81 0
+  81:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN DMA1_Channel1_IRQn 0 */
+  82:Src/stm32f0xx_it.c **** 
+  83:Src/stm32f0xx_it.c ****   /* USER CODE END DMA1_Channel1_IRQn 0 */
+  84:Src/stm32f0xx_it.c ****   HAL_DMA_IRQHandler(&hdma_adc);
+  49              		.loc 1 84 0
   50 0002 0248     		ldr	r0, .L3
   51 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
   52              	.LVL0:
-  82:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
-  83:Src/stm32f0xx_it.c **** 
-  84:Src/stm32f0xx_it.c ****   /* USER CODE END DMA1_Channel1_IRQn 1 */
-  85:Src/stm32f0xx_it.c **** }
-  53              		.loc 1 85 0
+  85:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
+  86:Src/stm32f0xx_it.c **** 
+  87:Src/stm32f0xx_it.c ****   /* USER CODE END DMA1_Channel1_IRQn 1 */
+  88:Src/stm32f0xx_it.c **** }
+  53              		.loc 1 88 0
   54              		@ sp needed
   55 0008 08BD     		pop	{r3, pc}
   56              	.L4:
@@ -157,13 +160,13 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
   67              		.thumb_func
   69              	HardFault_Handler:
   70              	.LFB36:
-  86:Src/stm32f0xx_it.c **** 
-  87:Src/stm32f0xx_it.c **** /**
-  88:Src/stm32f0xx_it.c **** * @brief This function handles Hard fault interrupt.
-  89:Src/stm32f0xx_it.c **** */
-  90:Src/stm32f0xx_it.c **** void HardFault_Handler(void)
-  91:Src/stm32f0xx_it.c **** {
-  71              		.loc 1 91 0
+  89:Src/stm32f0xx_it.c **** 
+  90:Src/stm32f0xx_it.c **** /**
+  91:Src/stm32f0xx_it.c **** * @brief This function handles Hard fault interrupt.
+  92:Src/stm32f0xx_it.c **** */
+  93:Src/stm32f0xx_it.c **** void HardFault_Handler(void)
+  94:Src/stm32f0xx_it.c **** {
+  71              		.loc 1 94 0
   72              		.cfi_startproc
   73              	.L6:
   74 0000 FEE7     		b	.L6
@@ -175,38 +178,38 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
   81              		.code	16
   82              		.thumb_func
   84              	SVC_Handler:
+ARM GAS  /tmp/ccwavzdT.s 			page 4
+
+
   85              	.LFB37:
-  92:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 0 */
-  93:Src/stm32f0xx_it.c **** 
-ARM GAS  /tmp/ccBUDJOj.s 			page 4
-
-
-  94:Src/stm32f0xx_it.c ****   /* USER CODE END HardFault_IRQn 0 */
-  95:Src/stm32f0xx_it.c ****   while (1)
-  96:Src/stm32f0xx_it.c ****   {
-  97:Src/stm32f0xx_it.c ****     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
-  98:Src/stm32f0xx_it.c ****     /* USER CODE END W1_HardFault_IRQn 0 */
-  99:Src/stm32f0xx_it.c ****   }
- 100:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 1 */
- 101:Src/stm32f0xx_it.c **** 
- 102:Src/stm32f0xx_it.c ****   /* USER CODE END HardFault_IRQn 1 */
- 103:Src/stm32f0xx_it.c **** }
+  95:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 0 */
+  96:Src/stm32f0xx_it.c **** 
+  97:Src/stm32f0xx_it.c ****   /* USER CODE END HardFault_IRQn 0 */
+  98:Src/stm32f0xx_it.c ****   while (1)
+  99:Src/stm32f0xx_it.c ****   {
+ 100:Src/stm32f0xx_it.c ****     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+ 101:Src/stm32f0xx_it.c ****     /* USER CODE END W1_HardFault_IRQn 0 */
+ 102:Src/stm32f0xx_it.c ****   }
+ 103:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 1 */
  104:Src/stm32f0xx_it.c **** 
- 105:Src/stm32f0xx_it.c **** /**
- 106:Src/stm32f0xx_it.c **** * @brief This function handles System service call via SWI instruction.
- 107:Src/stm32f0xx_it.c **** */
- 108:Src/stm32f0xx_it.c **** void SVC_Handler(void)
- 109:Src/stm32f0xx_it.c **** {
-  86              		.loc 1 109 0
+ 105:Src/stm32f0xx_it.c ****   /* USER CODE END HardFault_IRQn 1 */
+ 106:Src/stm32f0xx_it.c **** }
+ 107:Src/stm32f0xx_it.c **** 
+ 108:Src/stm32f0xx_it.c **** /**
+ 109:Src/stm32f0xx_it.c **** * @brief This function handles System service call via SWI instruction.
+ 110:Src/stm32f0xx_it.c **** */
+ 111:Src/stm32f0xx_it.c **** void SVC_Handler(void)
+ 112:Src/stm32f0xx_it.c **** {
+  86              		.loc 1 112 0
   87              		.cfi_startproc
- 110:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 0 */
- 111:Src/stm32f0xx_it.c **** 
- 112:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 0 */
- 113:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 1 */
+ 113:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 0 */
  114:Src/stm32f0xx_it.c **** 
- 115:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 1 */
- 116:Src/stm32f0xx_it.c **** }
-  88              		.loc 1 116 0
+ 115:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 0 */
+ 116:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 1 */
+ 117:Src/stm32f0xx_it.c **** 
+ 118:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 1 */
+ 119:Src/stm32f0xx_it.c **** }
+  88              		.loc 1 119 0
   89              		@ sp needed
   90 0000 7047     		bx	lr
   91              		.cfi_endproc
@@ -218,29 +221,29 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
   98              		.thumb_func
  100              	PendSV_Handler:
  101              	.LFB38:
- 117:Src/stm32f0xx_it.c **** 
- 118:Src/stm32f0xx_it.c **** /**
- 119:Src/stm32f0xx_it.c **** * @brief This function handles Pendable request for system service.
- 120:Src/stm32f0xx_it.c **** */
- 121:Src/stm32f0xx_it.c **** void PendSV_Handler(void)
- 122:Src/stm32f0xx_it.c **** {
- 102              		.loc 1 122 0
+ 120:Src/stm32f0xx_it.c **** 
+ 121:Src/stm32f0xx_it.c **** /**
+ 122:Src/stm32f0xx_it.c **** * @brief This function handles Pendable request for system service.
+ 123:Src/stm32f0xx_it.c **** */
+ 124:Src/stm32f0xx_it.c **** void PendSV_Handler(void)
+ 125:Src/stm32f0xx_it.c **** {
+ 102              		.loc 1 125 0
  103              		.cfi_startproc
- 123:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 0 */
- 124:Src/stm32f0xx_it.c **** 
- 125:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 0 */
- 126:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 1 */
+ 126:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 0 */
  127:Src/stm32f0xx_it.c **** 
- 128:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 1 */
- 129:Src/stm32f0xx_it.c **** }
- 104              		.loc 1 129 0
+ 128:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 0 */
+ 129:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 1 */
+ 130:Src/stm32f0xx_it.c **** 
+ 131:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 1 */
+ 132:Src/stm32f0xx_it.c **** }
+ 104              		.loc 1 132 0
  105              		@ sp needed
+ARM GAS  /tmp/ccwavzdT.s 			page 5
+
+
  106 0000 7047     		bx	lr
  107              		.cfi_endproc
  108              	.LFE38:
-ARM GAS  /tmp/ccBUDJOj.s 			page 5
-
-
  110 0002 C046     		.section	.text.SysTick_Handler,"ax",%progbits
  111              		.align	2
  112              		.global	SysTick_Handler
@@ -248,35 +251,35 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
  114              		.thumb_func
  116              	SysTick_Handler:
  117              	.LFB39:
- 130:Src/stm32f0xx_it.c **** 
- 131:Src/stm32f0xx_it.c **** /**
- 132:Src/stm32f0xx_it.c **** * @brief This function handles System tick timer.
- 133:Src/stm32f0xx_it.c **** */
- 134:Src/stm32f0xx_it.c **** void SysTick_Handler(void)
- 135:Src/stm32f0xx_it.c **** {
- 118              		.loc 1 135 0
+ 133:Src/stm32f0xx_it.c **** 
+ 134:Src/stm32f0xx_it.c **** /**
+ 135:Src/stm32f0xx_it.c **** * @brief This function handles System tick timer.
+ 136:Src/stm32f0xx_it.c **** */
+ 137:Src/stm32f0xx_it.c **** void SysTick_Handler(void)
+ 138:Src/stm32f0xx_it.c **** {
+ 118              		.loc 1 138 0
  119              		.cfi_startproc
  120 0000 08B5     		push	{r3, lr}
  121              	.LCFI1:
  122              		.cfi_def_cfa_offset 8
  123              		.cfi_offset 3, -8
  124              		.cfi_offset 14, -4
- 136:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 0 */
- 137:Src/stm32f0xx_it.c **** 
- 138:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 0 */
- 139:Src/stm32f0xx_it.c ****   HAL_IncTick();
- 125              		.loc 1 139 0
+ 139:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 0 */
+ 140:Src/stm32f0xx_it.c **** 
+ 141:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 0 */
+ 142:Src/stm32f0xx_it.c ****   HAL_IncTick();
+ 125              		.loc 1 142 0
  126 0002 FFF7FEFF 		bl	HAL_IncTick
  127              	.LVL1:
- 140:Src/stm32f0xx_it.c ****   HAL_SYSTICK_IRQHandler();
- 128              		.loc 1 140 0
+ 143:Src/stm32f0xx_it.c ****   HAL_SYSTICK_IRQHandler();
+ 128              		.loc 1 143 0
  129 0006 FFF7FEFF 		bl	HAL_SYSTICK_IRQHandler
  130              	.LVL2:
- 141:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 1 */
- 142:Src/stm32f0xx_it.c **** 
- 143:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
- 144:Src/stm32f0xx_it.c **** }
- 131              		.loc 1 144 0
+ 144:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 1 */
+ 145:Src/stm32f0xx_it.c **** 
+ 146:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
+ 147:Src/stm32f0xx_it.c **** }
+ 131              		.loc 1 147 0
  132              		@ sp needed
  133 000a 08BD     		pop	{r3, pc}
  134              		.cfi_endproc
@@ -288,40 +291,40 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
  141              		.thumb_func
  143              	TIM14_IRQHandler:
  144              	.LFB40:
- 145:Src/stm32f0xx_it.c **** 
- 146:Src/stm32f0xx_it.c **** /******************************************************************************/
- 147:Src/stm32f0xx_it.c **** /* STM32F0xx Peripheral Interrupt Handlers                                    */
- 148:Src/stm32f0xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
- 149:Src/stm32f0xx_it.c **** /* For the available peripheral interrupt handler names,                      */
- 150:Src/stm32f0xx_it.c **** /* please refer to the startup file (startup_stm32f0xx.s).                    */
- 151:Src/stm32f0xx_it.c **** /******************************************************************************/
- 152:Src/stm32f0xx_it.c **** 
- 153:Src/stm32f0xx_it.c **** 
- 154:Src/stm32f0xx_it.c **** void TIM14_IRQHandler(void)
-ARM GAS  /tmp/ccBUDJOj.s 			page 6
+ 148:Src/stm32f0xx_it.c **** 
+ 149:Src/stm32f0xx_it.c **** /******************************************************************************/
+ 150:Src/stm32f0xx_it.c **** /* STM32F0xx Peripheral Interrupt Handlers                                    */
+ 151:Src/stm32f0xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
+ 152:Src/stm32f0xx_it.c **** /* For the available peripheral interrupt handler names,                      */
+ 153:Src/stm32f0xx_it.c **** /* please refer to the startup file (startup_stm32f0xx.s).                    */
+ 154:Src/stm32f0xx_it.c **** /******************************************************************************/
+ARM GAS  /tmp/ccwavzdT.s 			page 6
 
 
- 155:Src/stm32f0xx_it.c **** {
- 145              		.loc 1 155 0
+ 155:Src/stm32f0xx_it.c **** 
+ 156:Src/stm32f0xx_it.c **** 
+ 157:Src/stm32f0xx_it.c **** void TIM14_IRQHandler(void)
+ 158:Src/stm32f0xx_it.c **** {
+ 145              		.loc 1 158 0
  146              		.cfi_startproc
  147 0000 08B5     		push	{r3, lr}
  148              	.LCFI2:
  149              		.cfi_def_cfa_offset 8
  150              		.cfi_offset 3, -8
  151              		.cfi_offset 14, -4
- 156:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 0 */
- 157:Src/stm32f0xx_it.c **** 
- 158:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 0 */
- 159:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim14);
- 152              		.loc 1 159 0
+ 159:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 0 */
+ 160:Src/stm32f0xx_it.c **** 
+ 161:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 0 */
+ 162:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim14);
+ 152              		.loc 1 162 0
  153 0002 0248     		ldr	r0, .L11
  154 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  155              	.LVL3:
- 160:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 1 */
- 161:Src/stm32f0xx_it.c **** 
- 162:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 1 */
- 163:Src/stm32f0xx_it.c **** }
- 156              		.loc 1 163 0
+ 163:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 1 */
+ 164:Src/stm32f0xx_it.c **** 
+ 165:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 1 */
+ 166:Src/stm32f0xx_it.c **** }
+ 156              		.loc 1 166 0
  157              		@ sp needed
  158 0008 08BD     		pop	{r3, pc}
  159              	.L12:
@@ -337,32 +340,32 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
  170              		.thumb_func
  172              	TIM15_IRQHandler:
  173              	.LFB41:
- 164:Src/stm32f0xx_it.c **** 
- 165:Src/stm32f0xx_it.c **** void TIM15_IRQHandler(void)
- 166:Src/stm32f0xx_it.c **** {
- 174              		.loc 1 166 0
+ 167:Src/stm32f0xx_it.c **** 
+ 168:Src/stm32f0xx_it.c **** void TIM15_IRQHandler(void)
+ 169:Src/stm32f0xx_it.c **** {
+ 174              		.loc 1 169 0
  175              		.cfi_startproc
  176 0000 08B5     		push	{r3, lr}
  177              	.LCFI3:
  178              		.cfi_def_cfa_offset 8
  179              		.cfi_offset 3, -8
  180              		.cfi_offset 14, -4
- 167:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 0 */
- 168:Src/stm32f0xx_it.c **** 
- 169:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 0 */
- 170:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim15);
- 181              		.loc 1 170 0
+ 170:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 0 */
+ 171:Src/stm32f0xx_it.c **** 
+ 172:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 0 */
+ 173:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim15);
+ 181              		.loc 1 173 0
  182 0002 0248     		ldr	r0, .L14
  183 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  184              	.LVL4:
- 171:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 1 */
- 172:Src/stm32f0xx_it.c **** 
- 173:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 1 */
-ARM GAS  /tmp/ccBUDJOj.s 			page 7
+ARM GAS  /tmp/ccwavzdT.s 			page 7
 
 
- 174:Src/stm32f0xx_it.c **** }
- 185              		.loc 1 174 0
+ 174:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 1 */
+ 175:Src/stm32f0xx_it.c **** 
+ 176:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 1 */
+ 177:Src/stm32f0xx_it.c **** }
+ 185              		.loc 1 177 0
  186              		@ sp needed
  187 0008 08BD     		pop	{r3, pc}
  188              	.L15:
@@ -378,30 +381,30 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
  199              		.thumb_func
  201              	TIM2_IRQHandler:
  202              	.LFB42:
- 175:Src/stm32f0xx_it.c **** 
- 176:Src/stm32f0xx_it.c **** 
- 177:Src/stm32f0xx_it.c **** void TIM2_IRQHandler(void)
- 178:Src/stm32f0xx_it.c **** {
- 203              		.loc 1 178 0
+ 178:Src/stm32f0xx_it.c **** 
+ 179:Src/stm32f0xx_it.c **** 
+ 180:Src/stm32f0xx_it.c **** void TIM2_IRQHandler(void)
+ 181:Src/stm32f0xx_it.c **** {
+ 203              		.loc 1 181 0
  204              		.cfi_startproc
  205 0000 08B5     		push	{r3, lr}
  206              	.LCFI4:
  207              		.cfi_def_cfa_offset 8
  208              		.cfi_offset 3, -8
  209              		.cfi_offset 14, -4
- 179:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 0 */
- 180:Src/stm32f0xx_it.c **** 
- 181:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 0 */
- 182:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim2);
- 210              		.loc 1 182 0
+ 182:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 0 */
+ 183:Src/stm32f0xx_it.c **** 
+ 184:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 0 */
+ 185:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim2);
+ 210              		.loc 1 185 0
  211 0002 0248     		ldr	r0, .L17
  212 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  213              	.LVL5:
- 183:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 1 */
- 184:Src/stm32f0xx_it.c **** 
- 185:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 1 */
- 186:Src/stm32f0xx_it.c **** }
- 214              		.loc 1 186 0
+ 186:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 1 */
+ 187:Src/stm32f0xx_it.c **** 
+ 188:Src/stm32f0xx_it.c ****   /* USER CODE END TIM17_IRQn 1 */
+ 189:Src/stm32f0xx_it.c **** }
+ 214              		.loc 1 189 0
  215              		@ sp needed
  216 0008 08BD     		pop	{r3, pc}
  217              	.L18:
@@ -410,92 +413,144 @@ ARM GAS  /tmp/ccBUDJOj.s 			page 1
  220 000c 00000000 		.word	htim2
  221              		.cfi_endproc
  222              	.LFE42:
- 224              		.section	.text.USB_IRQHandler,"ax",%progbits
+ 224              		.section	.text.TIM17_IRQHandler,"ax",%progbits
  225              		.align	2
- 226              		.global	USB_IRQHandler
+ 226              		.global	TIM17_IRQHandler
  227              		.code	16
  228              		.thumb_func
- 230              	USB_IRQHandler:
+ARM GAS  /tmp/ccwavzdT.s 			page 8
+
+
+ 230              	TIM17_IRQHandler:
  231              	.LFB43:
- 187:Src/stm32f0xx_it.c **** 
-ARM GAS  /tmp/ccBUDJOj.s 			page 8
-
-
- 188:Src/stm32f0xx_it.c **** 
- 189:Src/stm32f0xx_it.c **** /**
- 190:Src/stm32f0xx_it.c **** * @brief This function handles USB global Interrupt / USB wake-up interrupt through EXTI line 18.
- 191:Src/stm32f0xx_it.c **** */
- 192:Src/stm32f0xx_it.c **** void USB_IRQHandler(void)
- 193:Src/stm32f0xx_it.c **** {
- 232              		.loc 1 193 0
+ 190:Src/stm32f0xx_it.c **** 
+ 191:Src/stm32f0xx_it.c **** /**
+ 192:Src/stm32f0xx_it.c **** * @brief This function handles TIM1 break, update, trigger and commutation interrupts.
+ 193:Src/stm32f0xx_it.c **** */
+ 194:Src/stm32f0xx_it.c **** void TIM17_IRQHandler(void)
+ 195:Src/stm32f0xx_it.c **** {
+ 232              		.loc 1 195 0
  233              		.cfi_startproc
  234 0000 08B5     		push	{r3, lr}
  235              	.LCFI5:
  236              		.cfi_def_cfa_offset 8
  237              		.cfi_offset 3, -8
  238              		.cfi_offset 14, -4
- 194:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN USB_IRQn 0 */
- 195:Src/stm32f0xx_it.c **** 
- 196:Src/stm32f0xx_it.c ****   /* USER CODE END USB_IRQn 0 */
- 197:Src/stm32f0xx_it.c ****   HAL_PCD_IRQHandler(&hpcd_USB_FS);
- 239              		.loc 1 197 0
- 240 0002 0248     		ldr	r0, .L20
- 241 0004 FFF7FEFF 		bl	HAL_PCD_IRQHandler
+ 196:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 0 */
+ 197:Src/stm32f0xx_it.c **** 
+ 198:Src/stm32f0xx_it.c ****   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 0 */
+ 199:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim17);
+ 239              		.loc 1 199 0
+ 240 0002 0348     		ldr	r0, .L20
+ 241 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  242              	.LVL6:
- 198:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN USB_IRQn 1 */
- 199:Src/stm32f0xx_it.c **** 
- 200:Src/stm32f0xx_it.c ****   /* USER CODE END USB_IRQn 1 */
- 201:Src/stm32f0xx_it.c **** }
+ 200:Src/stm32f0xx_it.c **** 
+ 201:Src/stm32f0xx_it.c ****   htim17_update();
  243              		.loc 1 201 0
- 244              		@ sp needed
- 245 0008 08BD     		pop	{r3, pc}
- 246              	.L21:
- 247 000a C046     		.align	2
- 248              	.L20:
- 249 000c 00000000 		.word	hpcd_USB_FS
- 250              		.cfi_endproc
- 251              	.LFE43:
- 253              		.text
- 254              	.Letext0:
- 255              		.file 2 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
- 256              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
- 257              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
- 258              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
- 259              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 260              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd.h"
- 261              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
- 262              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
- 263              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
-ARM GAS  /tmp/ccBUDJOj.s 			page 9
+ 244 0008 FFF7FEFF 		bl	htim17_update
+ 245              	.LVL7:
+ 202:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM1_BRK_UP_TRG_COM_IRQn 1 */
+ 203:Src/stm32f0xx_it.c **** 
+ 204:Src/stm32f0xx_it.c ****   /* USER CODE END TIM1_BRK_UP_TRG_COM_IRQn 1 */
+ 205:Src/stm32f0xx_it.c **** }
+ 246              		.loc 1 205 0
+ 247              		@ sp needed
+ 248 000c 08BD     		pop	{r3, pc}
+ 249              	.L21:
+ 250 000e C046     		.align	2
+ 251              	.L20:
+ 252 0010 00000000 		.word	htim17
+ 253              		.cfi_endproc
+ 254              	.LFE43:
+ 256              		.section	.text.USB_IRQHandler,"ax",%progbits
+ 257              		.align	2
+ 258              		.global	USB_IRQHandler
+ 259              		.code	16
+ 260              		.thumb_func
+ 262              	USB_IRQHandler:
+ 263              	.LFB44:
+ 206:Src/stm32f0xx_it.c **** 
+ 207:Src/stm32f0xx_it.c **** 
+ 208:Src/stm32f0xx_it.c **** /**
+ 209:Src/stm32f0xx_it.c **** * @brief This function handles USB global Interrupt / USB wake-up interrupt through EXTI line 18.
+ 210:Src/stm32f0xx_it.c **** */
+ 211:Src/stm32f0xx_it.c **** void USB_IRQHandler(void)
+ 212:Src/stm32f0xx_it.c **** {
+ 264              		.loc 1 212 0
+ 265              		.cfi_startproc
+ARM GAS  /tmp/ccwavzdT.s 			page 9
+
+
+ 266 0000 08B5     		push	{r3, lr}
+ 267              	.LCFI6:
+ 268              		.cfi_def_cfa_offset 8
+ 269              		.cfi_offset 3, -8
+ 270              		.cfi_offset 14, -4
+ 213:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN USB_IRQn 0 */
+ 214:Src/stm32f0xx_it.c **** 
+ 215:Src/stm32f0xx_it.c ****   /* USER CODE END USB_IRQn 0 */
+ 216:Src/stm32f0xx_it.c ****   HAL_PCD_IRQHandler(&hpcd_USB_FS);
+ 271              		.loc 1 216 0
+ 272 0002 0248     		ldr	r0, .L23
+ 273 0004 FFF7FEFF 		bl	HAL_PCD_IRQHandler
+ 274              	.LVL8:
+ 217:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN USB_IRQn 1 */
+ 218:Src/stm32f0xx_it.c **** 
+ 219:Src/stm32f0xx_it.c ****   /* USER CODE END USB_IRQn 1 */
+ 220:Src/stm32f0xx_it.c **** }
+ 275              		.loc 1 220 0
+ 276              		@ sp needed
+ 277 0008 08BD     		pop	{r3, pc}
+ 278              	.L24:
+ 279 000a C046     		.align	2
+ 280              	.L23:
+ 281 000c 00000000 		.word	hpcd_USB_FS
+ 282              		.cfi_endproc
+ 283              	.LFE44:
+ 285              		.text
+ 286              	.Letext0:
+ 287              		.file 2 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/machine/_defaul
+ 288              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
+ 289              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 290              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 291              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 292              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd.h"
+ 293              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
+ 294              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ 295              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h"
+ARM GAS  /tmp/ccwavzdT.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_it.c
-     /tmp/ccBUDJOj.s:18     .text.NMI_Handler:00000000 $t
-     /tmp/ccBUDJOj.s:23     .text.NMI_Handler:00000000 NMI_Handler
-     /tmp/ccBUDJOj.s:35     .text.DMA1_Channel1_IRQHandler:00000000 $t
-     /tmp/ccBUDJOj.s:40     .text.DMA1_Channel1_IRQHandler:00000000 DMA1_Channel1_IRQHandler
-     /tmp/ccBUDJOj.s:59     .text.DMA1_Channel1_IRQHandler:0000000c $d
-     /tmp/ccBUDJOj.s:64     .text.HardFault_Handler:00000000 $t
-     /tmp/ccBUDJOj.s:69     .text.HardFault_Handler:00000000 HardFault_Handler
-     /tmp/ccBUDJOj.s:79     .text.SVC_Handler:00000000 $t
-     /tmp/ccBUDJOj.s:84     .text.SVC_Handler:00000000 SVC_Handler
-     /tmp/ccBUDJOj.s:95     .text.PendSV_Handler:00000000 $t
-     /tmp/ccBUDJOj.s:100    .text.PendSV_Handler:00000000 PendSV_Handler
-     /tmp/ccBUDJOj.s:111    .text.SysTick_Handler:00000000 $t
-     /tmp/ccBUDJOj.s:116    .text.SysTick_Handler:00000000 SysTick_Handler
-     /tmp/ccBUDJOj.s:138    .text.TIM14_IRQHandler:00000000 $t
-     /tmp/ccBUDJOj.s:143    .text.TIM14_IRQHandler:00000000 TIM14_IRQHandler
-     /tmp/ccBUDJOj.s:162    .text.TIM14_IRQHandler:0000000c $d
-     /tmp/ccBUDJOj.s:167    .text.TIM15_IRQHandler:00000000 $t
-     /tmp/ccBUDJOj.s:172    .text.TIM15_IRQHandler:00000000 TIM15_IRQHandler
-     /tmp/ccBUDJOj.s:191    .text.TIM15_IRQHandler:0000000c $d
-     /tmp/ccBUDJOj.s:196    .text.TIM2_IRQHandler:00000000 $t
-     /tmp/ccBUDJOj.s:201    .text.TIM2_IRQHandler:00000000 TIM2_IRQHandler
-     /tmp/ccBUDJOj.s:220    .text.TIM2_IRQHandler:0000000c $d
-     /tmp/ccBUDJOj.s:225    .text.USB_IRQHandler:00000000 $t
-     /tmp/ccBUDJOj.s:230    .text.USB_IRQHandler:00000000 USB_IRQHandler
-     /tmp/ccBUDJOj.s:249    .text.USB_IRQHandler:0000000c $d
+     /tmp/ccwavzdT.s:18     .text.NMI_Handler:00000000 $t
+     /tmp/ccwavzdT.s:23     .text.NMI_Handler:00000000 NMI_Handler
+     /tmp/ccwavzdT.s:35     .text.DMA1_Channel1_IRQHandler:00000000 $t
+     /tmp/ccwavzdT.s:40     .text.DMA1_Channel1_IRQHandler:00000000 DMA1_Channel1_IRQHandler
+     /tmp/ccwavzdT.s:59     .text.DMA1_Channel1_IRQHandler:0000000c $d
+     /tmp/ccwavzdT.s:64     .text.HardFault_Handler:00000000 $t
+     /tmp/ccwavzdT.s:69     .text.HardFault_Handler:00000000 HardFault_Handler
+     /tmp/ccwavzdT.s:79     .text.SVC_Handler:00000000 $t
+     /tmp/ccwavzdT.s:84     .text.SVC_Handler:00000000 SVC_Handler
+     /tmp/ccwavzdT.s:95     .text.PendSV_Handler:00000000 $t
+     /tmp/ccwavzdT.s:100    .text.PendSV_Handler:00000000 PendSV_Handler
+     /tmp/ccwavzdT.s:111    .text.SysTick_Handler:00000000 $t
+     /tmp/ccwavzdT.s:116    .text.SysTick_Handler:00000000 SysTick_Handler
+     /tmp/ccwavzdT.s:138    .text.TIM14_IRQHandler:00000000 $t
+     /tmp/ccwavzdT.s:143    .text.TIM14_IRQHandler:00000000 TIM14_IRQHandler
+     /tmp/ccwavzdT.s:162    .text.TIM14_IRQHandler:0000000c $d
+     /tmp/ccwavzdT.s:167    .text.TIM15_IRQHandler:00000000 $t
+     /tmp/ccwavzdT.s:172    .text.TIM15_IRQHandler:00000000 TIM15_IRQHandler
+     /tmp/ccwavzdT.s:191    .text.TIM15_IRQHandler:0000000c $d
+     /tmp/ccwavzdT.s:196    .text.TIM2_IRQHandler:00000000 $t
+     /tmp/ccwavzdT.s:201    .text.TIM2_IRQHandler:00000000 TIM2_IRQHandler
+     /tmp/ccwavzdT.s:220    .text.TIM2_IRQHandler:0000000c $d
+     /tmp/ccwavzdT.s:225    .text.TIM17_IRQHandler:00000000 $t
+     /tmp/ccwavzdT.s:230    .text.TIM17_IRQHandler:00000000 TIM17_IRQHandler
+     /tmp/ccwavzdT.s:252    .text.TIM17_IRQHandler:00000010 $d
+     /tmp/ccwavzdT.s:257    .text.USB_IRQHandler:00000000 $t
+     /tmp/ccwavzdT.s:262    .text.USB_IRQHandler:00000000 USB_IRQHandler
+     /tmp/ccwavzdT.s:281    .text.USB_IRQHandler:0000000c $d
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
@@ -507,5 +562,7 @@ HAL_TIM_IRQHandler
 htim14
 htim15
 htim2
+htim17_update
+htim17
 HAL_PCD_IRQHandler
 hpcd_USB_FS

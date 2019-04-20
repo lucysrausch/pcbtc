@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc921mUM.s 			page 1
+ARM GAS  /tmp/ccwHBQGO.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****      -@-   In Memory-to-Memory transfer mode, Circular mode is not allowed.
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****      *** Polling mode IO operation ***
   34:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****      =================================   
-ARM GAS  /tmp/cc921mUM.s 			page 2
+ARM GAS  /tmp/ccwHBQGO.s 			page 2
 
 
   35:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     [..] 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   *
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   ******************************************************************************
   91:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   */ 
-ARM GAS  /tmp/cc921mUM.s 			page 3
+ARM GAS  /tmp/ccwHBQGO.s 			page 3
 
 
   92:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  146:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   
  147:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** /**
  148:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   * @brief  Initialize the DMA according to the specified
-ARM GAS  /tmp/cc921mUM.s 			page 4
+ARM GAS  /tmp/ccwHBQGO.s 			page 4
 
 
  149:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   *         parameters in the DMA_InitTypeDef and initialize the associated handle.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  203:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   
  204:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   /* Initialise the error code */
  205:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   hdma->ErrorCode = HAL_DMA_ERROR_NONE;
-ARM GAS  /tmp/cc921mUM.s 			page 5
+ARM GAS  /tmp/ccwHBQGO.s 			page 5
 
 
  206:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  260:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   /* Release Lock */
  261:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   __HAL_UNLOCK(hdma);
  262:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** 
-ARM GAS  /tmp/cc921mUM.s 			page 6
+ARM GAS  /tmp/ccwHBQGO.s 			page 6
 
 
  263:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   return HAL_OK;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  317:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	
  318:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	/* Configure the source, destination address and the data length */
  319:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	DMA_SetConfig(hdma, SrcAddress, DstAddress, DataLength);
-ARM GAS  /tmp/cc921mUM.s 			page 7
+ARM GAS  /tmp/ccwHBQGO.s 			page 7
 
 
  320:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  374:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	else
  375:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	{
  376:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   		hdma->Instance->CCR |= (DMA_IT_TC | DMA_IT_TE);
-ARM GAS  /tmp/cc921mUM.s 			page 8
+ARM GAS  /tmp/ccwHBQGO.s 			page 8
 
 
  377:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   		hdma->Instance->CCR &= ~DMA_IT_HT;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  431:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   if(HAL_DMA_STATE_BUSY != hdma->State)
  432:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   {
  433:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     /* no transfer ongoing */
-ARM GAS  /tmp/cc921mUM.s 			page 9
+ARM GAS  /tmp/ccwHBQGO.s 			page 9
 
 
  434:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     hdma->ErrorCode = HAL_DMA_ERROR_NO_XFER;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  488:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   {
  489:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     hdma->ErrorCode = HAL_DMA_ERROR_NOT_SUPPORTED;
  490:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     return HAL_ERROR;
-ARM GAS  /tmp/cc921mUM.s 			page 10
+ARM GAS  /tmp/ccwHBQGO.s 			page 10
 
 
  491:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  545:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   }
  546:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** 
  547:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   if(HAL_DMA_FULL_TRANSFER == CompleteLevel)
-ARM GAS  /tmp/cc921mUM.s 			page 11
+ARM GAS  /tmp/ccwHBQGO.s 			page 11
 
 
  548:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   {
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  602:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   /* Transfer Complete Interrupt management ***********************************/
  603:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   else if ((RESET != (flag_it & (DMA_FLAG_TC1 << hdma->ChannelIndex))) && (RESET != (source_it & DM
  604:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   {
-ARM GAS  /tmp/cc921mUM.s 			page 12
+ARM GAS  /tmp/ccwHBQGO.s 			page 12
 
 
  605:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	if((hdma->Instance->CCR & DMA_CCR_CIRC) == 0U)
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  659:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   *                               the configuration information for the specified DMA Stream.
  660:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   * @param  CallbackID:           User Callback identifer
  661:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   *                               a HAL_DMA_CallbackIDTypeDef ENUM as parameter.
-ARM GAS  /tmp/cc921mUM.s 			page 13
+ARM GAS  /tmp/ccwHBQGO.s 			page 13
 
 
  662:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   * @param  pCallback:            pointer to private callback function which has pointer to 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  716:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   */              
  717:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** HAL_StatusTypeDef HAL_DMA_UnRegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef Cal
  718:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** {
-ARM GAS  /tmp/cc921mUM.s 			page 14
+ARM GAS  /tmp/ccwHBQGO.s 			page 14
 
 
  719:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   HAL_StatusTypeDef status = HAL_OK;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  773:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****  *
  774:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** @verbatim   
  775:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****  ===============================================================================
-ARM GAS  /tmp/cc921mUM.s 			page 15
+ARM GAS  /tmp/ccwHBQGO.s 			page 15
 
 
  776:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****                     ##### State and Errors functions #####
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  830:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** static void DMA_SetConfig(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32
  831:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** {
   25              		.loc 1 831 0
-ARM GAS  /tmp/cc921mUM.s 			page 16
+ARM GAS  /tmp/ccwHBQGO.s 			page 16
 
 
   26              		.cfi_startproc
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
   60 0020 0368     		ldr	r3, [r0]
   61 0022 9960     		str	r1, [r3, #8]
   62              	.LVL4:
-ARM GAS  /tmp/cc921mUM.s 			page 17
+ARM GAS  /tmp/ccwHBQGO.s 			page 17
 
 
  852:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  881:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   /* calculation of the channel index */
  882:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   /* DMA1 */
  883:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   hdma->ChannelIndex = (((uint32_t)hdma->Instance - (uint32_t)DMA1_Channel1) / ((uint32_t)DMA1_Chan
-ARM GAS  /tmp/cc921mUM.s 			page 18
+ARM GAS  /tmp/ccwHBQGO.s 			page 18
 
 
   90              		.loc 1 883 0
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  140 000a 4355     		strb	r3, [r0, r5]
  178:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   tmp = hdma->Instance->CCR;
  141              		.loc 1 178 0
-ARM GAS  /tmp/cc921mUM.s 			page 19
+ARM GAS  /tmp/ccwHBQGO.s 			page 19
 
 
  142 000c 0368     		ldr	r3, [r0]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  184 0040 6363     		str	r3, [r4, #52]
  205:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   hdma->ErrorCode = HAL_DMA_ERROR_NONE;
  185              		.loc 1 205 0
-ARM GAS  /tmp/cc921mUM.s 			page 20
+ARM GAS  /tmp/ccwHBQGO.s 			page 20
 
 
  186 0042 A363     		str	r3, [r4, #56]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  234              		.loc 1 234 0
  235 0006 0368     		ldr	r3, [r0]
  236 0008 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/cc921mUM.s 			page 21
+ARM GAS  /tmp/ccwHBQGO.s 			page 21
 
 
  237 000a 0126     		mov	r6, #1
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  279              		@ sp needed
  280              	.LVL23:
  281 003e 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  /tmp/cc921mUM.s 			page 22
+ARM GAS  /tmp/ccwHBQGO.s 			page 22
 
 
  282              		.cfi_endproc
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  331 002a AE43     		bic	r6, r5
  332 002c 0660     		str	r6, [r0]
  319:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   	DMA_SetConfig(hdma, SrcAddress, DstAddress, DataLength);
-ARM GAS  /tmp/cc921mUM.s 			page 23
+ARM GAS  /tmp/ccwHBQGO.s 			page 23
 
 
  333              		.loc 1 319 0
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  381              		.cfi_startproc
  382              	.LVL36:
  383 0000 70B5     		push	{r4, r5, r6, lr}
-ARM GAS  /tmp/cc921mUM.s 			page 24
+ARM GAS  /tmp/ccwHBQGO.s 			page 24
 
 
  384              	.LCFI5:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  429 003a 2368     		ldr	r3, [r4]
  430 003c 1968     		ldr	r1, [r3]
  431 003e 0E22     		mov	r2, #14
-ARM GAS  /tmp/cc921mUM.s 			page 25
+ARM GAS  /tmp/ccwHBQGO.s 			page 25
 
 
  432 0040 0A43     		orr	r2, r1
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  393:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** } 
  478              		.loc 1 393 0
  479              		@ sp needed
-ARM GAS  /tmp/cc921mUM.s 			page 26
+ARM GAS  /tmp/ccwHBQGO.s 			page 26
 
 
  480              	.LVL47:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  529              		@ sp needed
  530 002c 10BD     		pop	{r4, pc}
  531              		.cfi_endproc
-ARM GAS  /tmp/cc921mUM.s 			page 27
+ARM GAS  /tmp/ccwHBQGO.s 			page 27
 
 
  532              	.LFE38:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  581 002a 046C     		ldr	r4, [r0, #64]
  582 002c A140     		lsl	r1, r1, r4
  583 002e 5160     		str	r1, [r2, #4]
-ARM GAS  /tmp/cc921mUM.s 			page 28
+ARM GAS  /tmp/ccwHBQGO.s 			page 28
 
 
  451:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     hdma->State = HAL_DMA_STATE_READY;
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  633 0006 4546     		mov	r5, r8
  634 0008 E0B4     		push	{r5, r6, r7}
  635              	.LCFI9:
-ARM GAS  /tmp/cc921mUM.s 			page 29
+ARM GAS  /tmp/ccwHBQGO.s 			page 29
 
 
  636              		.cfi_def_cfa_offset 32
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  681 003c 0227     		mov	r7, #2
  682 003e 226C     		ldr	r2, [r4, #64]
  683              	.LVL64:
-ARM GAS  /tmp/cc921mUM.s 			page 30
+ARM GAS  /tmp/ccwHBQGO.s 			page 30
 
 
  684 0040 9740     		lsl	r7, r7, r2
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  728              		.loc 1 526 0
  729 0076 0120     		mov	r0, #1
  730 0078 29E0     		b	.L34
-ARM GAS  /tmp/cc921mUM.s 			page 31
+ARM GAS  /tmp/ccwHBQGO.s 			page 31
 
 
  731              	.L39:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  554:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     hdma->State = HAL_DMA_STATE_READY;
  775              		.loc 1 554 0
  776 00b6 0122     		mov	r2, #1
-ARM GAS  /tmp/cc921mUM.s 			page 32
+ARM GAS  /tmp/ccwHBQGO.s 			page 32
 
 
  777 00b8 2123     		mov	r3, #33
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  827              		.loc 1 576 0
  828 0002 C36B     		ldr	r3, [r0, #60]
  829 0004 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/cc921mUM.s 			page 33
+ARM GAS  /tmp/ccwHBQGO.s 			page 33
 
 
  830              	.LVL79:
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  875 003e 2B42     		tst	r3, r5
  876 0040 18D0     		beq	.L50
  603:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****   else if ((RESET != (flag_it & (DMA_FLAG_TC1 << hdma->ChannelIndex))) && (RESET != (source_it & DM
-ARM GAS  /tmp/cc921mUM.s 			page 34
+ARM GAS  /tmp/ccwHBQGO.s 			page 34
 
 
  877              		.loc 1 603 0 is_stmt 0 discriminator 1
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  922 007c 2507     		lsl	r5, r4, #28
  923 007e 13D5     		bpl	.L46
  634:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     hdma->Instance->CCR &= ~(DMA_IT_TC | DMA_IT_HT | DMA_IT_TE);
-ARM GAS  /tmp/cc921mUM.s 			page 35
+ARM GAS  /tmp/ccwHBQGO.s 			page 35
 
 
  924              		.loc 1 634 0 is_stmt 1
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  972 0000 10B5     		push	{r4, lr}
  973              	.LCFI11:
  974              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/cc921mUM.s 			page 36
+ARM GAS  /tmp/ccwHBQGO.s 			page 36
 
 
  975              		.cfi_offset 4, -8
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  1019              	.LVL97:
  1020              	.L57:
  686:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****            hdma->XferErrorCallback = pCallback;
-ARM GAS  /tmp/cc921mUM.s 			page 37
+ARM GAS  /tmp/ccwHBQGO.s 			page 37
 
 
  1021              		.loc 1 686 0
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  1064              		.loc 1 707 0
  1065              		@ sp needed
  1066 0054 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/cc921mUM.s 			page 38
+ARM GAS  /tmp/ccwHBQGO.s 			page 38
 
 
  1067              		.cfi_endproc
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  1116              		.loc 1 719 0
  1117 0026 0021     		mov	r1, #0
  730:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****            break;
-ARM GAS  /tmp/cc921mUM.s 			page 39
+ARM GAS  /tmp/ccwHBQGO.s 			page 39
 
 
  1118              		.loc 1 730 0
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  1157 004e 02E0     		b	.L65
  1158              	.LVL111:
  1159              	.L73:
-ARM GAS  /tmp/cc921mUM.s 			page 40
+ARM GAS  /tmp/ccwHBQGO.s 			page 40
 
 
  758:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c ****     status = HAL_ERROR;
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  1208              	.LVL119:
  1209 0004 C0B2     		uxtb	r0, r0
  796:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c **** }
-ARM GAS  /tmp/cc921mUM.s 			page 41
+ARM GAS  /tmp/ccwHBQGO.s 			page 41
 
 
  1210              		.loc 1 796 0
@@ -2436,43 +2436,43 @@ ARM GAS  /tmp/cc921mUM.s 			page 1
  1242              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  1243              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  1244              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
-ARM GAS  /tmp/cc921mUM.s 			page 42
+ARM GAS  /tmp/ccwHBQGO.s 			page 42
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_dma.c
-     /tmp/cc921mUM.s:18     .text.DMA_SetConfig:00000000 $t
-     /tmp/cc921mUM.s:22     .text.DMA_SetConfig:00000000 DMA_SetConfig
-     /tmp/cc921mUM.s:75     .text.DMA_CalcBaseAndBitshift:00000000 $t
-     /tmp/cc921mUM.s:79     .text.DMA_CalcBaseAndBitshift:00000000 DMA_CalcBaseAndBitshift
-     /tmp/cc921mUM.s:110    .text.DMA_CalcBaseAndBitshift:0000001c $d
-     /tmp/cc921mUM.s:116    .text.HAL_DMA_Init:00000000 $t
-     /tmp/cc921mUM.s:121    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
-     /tmp/cc921mUM.s:209    .text.HAL_DMA_Init:00000054 $d
-     /tmp/cc921mUM.s:214    .text.HAL_DMA_DeInit:00000000 $t
-     /tmp/cc921mUM.s:219    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
-     /tmp/cc921mUM.s:286    .text.HAL_DMA_Start:00000000 $t
-     /tmp/cc921mUM.s:291    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
-     /tmp/cc921mUM.s:373    .text.HAL_DMA_Start_IT:00000000 $t
-     /tmp/cc921mUM.s:378    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
-     /tmp/cc921mUM.s:486    .text.HAL_DMA_Abort:00000000 $t
-     /tmp/cc921mUM.s:491    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
-     /tmp/cc921mUM.s:535    .text.HAL_DMA_Abort_IT:00000000 $t
-     /tmp/cc921mUM.s:540    .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
-     /tmp/cc921mUM.s:613    .text.HAL_DMA_PollForTransfer:00000000 $t
-     /tmp/cc921mUM.s:618    .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
-     /tmp/cc921mUM.s:810    .text.HAL_DMA_IRQHandler:00000000 $t
-     /tmp/cc921mUM.s:815    .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
-     /tmp/cc921mUM.s:962    .text.HAL_DMA_RegisterCallback:00000000 $t
-     /tmp/cc921mUM.s:967    .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
-     /tmp/cc921mUM.s:1071   .text.HAL_DMA_UnRegisterCallback:00000000 $t
-     /tmp/cc921mUM.s:1076   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
-     /tmp/cc921mUM.s:1104   .rodata.HAL_DMA_UnRegisterCallback:00000000 $d
-     /tmp/cc921mUM.s:1190   .text.HAL_DMA_UnRegisterCallback:00000064 $d
-     /tmp/cc921mUM.s:1195   .text.HAL_DMA_GetState:00000000 $t
-     /tmp/cc921mUM.s:1200   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
-     /tmp/cc921mUM.s:1217   .text.HAL_DMA_GetError:00000000 $t
-     /tmp/cc921mUM.s:1222   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
+     /tmp/ccwHBQGO.s:18     .text.DMA_SetConfig:00000000 $t
+     /tmp/ccwHBQGO.s:22     .text.DMA_SetConfig:00000000 DMA_SetConfig
+     /tmp/ccwHBQGO.s:75     .text.DMA_CalcBaseAndBitshift:00000000 $t
+     /tmp/ccwHBQGO.s:79     .text.DMA_CalcBaseAndBitshift:00000000 DMA_CalcBaseAndBitshift
+     /tmp/ccwHBQGO.s:110    .text.DMA_CalcBaseAndBitshift:0000001c $d
+     /tmp/ccwHBQGO.s:116    .text.HAL_DMA_Init:00000000 $t
+     /tmp/ccwHBQGO.s:121    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
+     /tmp/ccwHBQGO.s:209    .text.HAL_DMA_Init:00000054 $d
+     /tmp/ccwHBQGO.s:214    .text.HAL_DMA_DeInit:00000000 $t
+     /tmp/ccwHBQGO.s:219    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
+     /tmp/ccwHBQGO.s:286    .text.HAL_DMA_Start:00000000 $t
+     /tmp/ccwHBQGO.s:291    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
+     /tmp/ccwHBQGO.s:373    .text.HAL_DMA_Start_IT:00000000 $t
+     /tmp/ccwHBQGO.s:378    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
+     /tmp/ccwHBQGO.s:486    .text.HAL_DMA_Abort:00000000 $t
+     /tmp/ccwHBQGO.s:491    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
+     /tmp/ccwHBQGO.s:535    .text.HAL_DMA_Abort_IT:00000000 $t
+     /tmp/ccwHBQGO.s:540    .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
+     /tmp/ccwHBQGO.s:613    .text.HAL_DMA_PollForTransfer:00000000 $t
+     /tmp/ccwHBQGO.s:618    .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
+     /tmp/ccwHBQGO.s:810    .text.HAL_DMA_IRQHandler:00000000 $t
+     /tmp/ccwHBQGO.s:815    .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
+     /tmp/ccwHBQGO.s:962    .text.HAL_DMA_RegisterCallback:00000000 $t
+     /tmp/ccwHBQGO.s:967    .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
+     /tmp/ccwHBQGO.s:1071   .text.HAL_DMA_UnRegisterCallback:00000000 $t
+     /tmp/ccwHBQGO.s:1076   .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
+     /tmp/ccwHBQGO.s:1104   .rodata.HAL_DMA_UnRegisterCallback:00000000 $d
+     /tmp/ccwHBQGO.s:1190   .text.HAL_DMA_UnRegisterCallback:00000064 $d
+     /tmp/ccwHBQGO.s:1195   .text.HAL_DMA_GetState:00000000 $t
+     /tmp/ccwHBQGO.s:1200   .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
+     /tmp/ccwHBQGO.s:1217   .text.HAL_DMA_GetError:00000000 $t
+     /tmp/ccwHBQGO.s:1222   .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS

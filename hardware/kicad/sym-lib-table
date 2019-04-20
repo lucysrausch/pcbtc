@@ -1,0 +1,7 @@
+(sym_lib_table
+  (lib (name 000my_lib)(type Legacy)(uri ${KIPRJMOD}/000my_lib.lib)(options "")(descr ""))
+  (lib (name STUSB1602AQTR)(type Legacy)(uri /home/niklas/kicad/usb_pd/STUSB1602AQTR.lib)(options "")(descr ""))
+  (lib (name usb-c-otter-rescue)(type Legacy)(uri /home/niklas/pd-buddy-sink/usb-c-otter/usb-c-otter-rescue.lib)(options "")(descr ""))
+  (lib (name 74xgxx)(type Legacy)(uri ${KIPRJMOD}/74xgxx.lib)(options "")(descr ""))
+  (lib (name pcbtc-rescue)(type Legacy)(uri ${KIPRJMOD}/pcbtc-rescue.lib)(options "")(descr ""))
+)

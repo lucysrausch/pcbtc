@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc1kNUwg.s 			page 1
+ARM GAS  /tmp/cc3tueUc.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
   31:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** /** @addtogroup STM32_USB_DEVICE_LIBRARY
   32:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c ****   * @{
   33:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c ****   */
-ARM GAS  /tmp/cc1kNUwg.s 			page 2
+ARM GAS  /tmp/cc3tueUc.s 			page 2
 
 
   34:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
   88:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** * @brief  USBD_CtlSendData
   89:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** *         send data on the ctl pipe
   90:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** * @param  pdev: device instance
-ARM GAS  /tmp/cc1kNUwg.s 			page 3
+ARM GAS  /tmp/cc3tueUc.s 			page 3
 
 
   91:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** * @param  buff: pointer to data buffer
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
   64              		.thumb_func
   66              	USBD_CtlContinueSendData:
   67              	.LFB35:
-ARM GAS  /tmp/cc1kNUwg.s 			page 4
+ARM GAS  /tmp/cc3tueUc.s 			page 4
 
 
  108:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
  131:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** * @param  buff: pointer to data buffer
  132:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** * @param  len: length of data to be received
  133:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** * @retval status
-ARM GAS  /tmp/cc1kNUwg.s 			page 5
+ARM GAS  /tmp/cc3tueUc.s 			page 5
 
 
  134:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
  139 0026 C046     		.section	.text.USBD_CtlContinueRx,"ax",%progbits
  140              		.align	2
  141              		.global	USBD_CtlContinueRx
-ARM GAS  /tmp/cc1kNUwg.s 			page 6
+ARM GAS  /tmp/cc3tueUc.s 			page 6
 
 
  142              		.code	16
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
  179              	.LFB38:
  171:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** /**
  172:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** * @brief  USBD_CtlSendStatus
-ARM GAS  /tmp/cc1kNUwg.s 			page 7
+ARM GAS  /tmp/cc3tueUc.s 			page 7
 
 
  173:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** *         send zero lzngth packet on the ctl pipe
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
  195:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef  USBD_CtlReceiveStatus (USBD_HandleTypeDef  *pdev)
  196:Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c **** {
  214              		.loc 1 196 0
-ARM GAS  /tmp/cc1kNUwg.s 			page 8
+ARM GAS  /tmp/cc3tueUc.s 			page 8
 
 
  215              		.cfi_startproc
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
  249              		.cfi_startproc
  250              	.LVL24:
  251 0000 08B5     		push	{r3, lr}
-ARM GAS  /tmp/cc1kNUwg.s 			page 9
+ARM GAS  /tmp/cc3tueUc.s 			page 9
 
 
  252              	.LCFI6:
@@ -502,25 +502,25 @@ ARM GAS  /tmp/cc1kNUwg.s 			page 1
  269              		.file 3 "/home/niklas/Downloads/gcc-arm-none-eabi-4_8-2014q3/arm-none-eabi/include/stdint.h"
  270              		.file 4 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
  271              		.file 5 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h"
-ARM GAS  /tmp/cc1kNUwg.s 			page 10
+ARM GAS  /tmp/cc3tueUc.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_ioreq.c
-     /tmp/cc1kNUwg.s:18     .text.USBD_CtlSendData:00000000 $t
-     /tmp/cc1kNUwg.s:23     .text.USBD_CtlSendData:00000000 USBD_CtlSendData
-     /tmp/cc1kNUwg.s:61     .text.USBD_CtlContinueSendData:00000000 $t
-     /tmp/cc1kNUwg.s:66     .text.USBD_CtlContinueSendData:00000000 USBD_CtlContinueSendData
-     /tmp/cc1kNUwg.s:94     .text.USBD_CtlPrepareRx:00000000 $t
-     /tmp/cc1kNUwg.s:99     .text.USBD_CtlPrepareRx:00000000 USBD_CtlPrepareRx
-     /tmp/cc1kNUwg.s:140    .text.USBD_CtlContinueRx:00000000 $t
-     /tmp/cc1kNUwg.s:145    .text.USBD_CtlContinueRx:00000000 USBD_CtlContinueRx
-     /tmp/cc1kNUwg.s:173    .text.USBD_CtlSendStatus:00000000 $t
-     /tmp/cc1kNUwg.s:178    .text.USBD_CtlSendStatus:00000000 USBD_CtlSendStatus
-     /tmp/cc1kNUwg.s:207    .text.USBD_CtlReceiveStatus:00000000 $t
-     /tmp/cc1kNUwg.s:212    .text.USBD_CtlReceiveStatus:00000000 USBD_CtlReceiveStatus
-     /tmp/cc1kNUwg.s:241    .text.USBD_GetRxCount:00000000 $t
-     /tmp/cc1kNUwg.s:246    .text.USBD_GetRxCount:00000000 USBD_GetRxCount
+     /tmp/cc3tueUc.s:18     .text.USBD_CtlSendData:00000000 $t
+     /tmp/cc3tueUc.s:23     .text.USBD_CtlSendData:00000000 USBD_CtlSendData
+     /tmp/cc3tueUc.s:61     .text.USBD_CtlContinueSendData:00000000 $t
+     /tmp/cc3tueUc.s:66     .text.USBD_CtlContinueSendData:00000000 USBD_CtlContinueSendData
+     /tmp/cc3tueUc.s:94     .text.USBD_CtlPrepareRx:00000000 $t
+     /tmp/cc3tueUc.s:99     .text.USBD_CtlPrepareRx:00000000 USBD_CtlPrepareRx
+     /tmp/cc3tueUc.s:140    .text.USBD_CtlContinueRx:00000000 $t
+     /tmp/cc3tueUc.s:145    .text.USBD_CtlContinueRx:00000000 USBD_CtlContinueRx
+     /tmp/cc3tueUc.s:173    .text.USBD_CtlSendStatus:00000000 $t
+     /tmp/cc3tueUc.s:178    .text.USBD_CtlSendStatus:00000000 USBD_CtlSendStatus
+     /tmp/cc3tueUc.s:207    .text.USBD_CtlReceiveStatus:00000000 $t
+     /tmp/cc3tueUc.s:212    .text.USBD_CtlReceiveStatus:00000000 USBD_CtlReceiveStatus
+     /tmp/cc3tueUc.s:241    .text.USBD_GetRxCount:00000000 $t
+     /tmp/cc3tueUc.s:246    .text.USBD_GetRxCount:00000000 USBD_GetRxCount
                      .debug_frame:00000010 $d
 
 UNDEFINED SYMBOLS
