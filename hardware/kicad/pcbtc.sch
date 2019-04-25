@@ -107,7 +107,7 @@ F 3 "https://www.infineon.com/dgdl/Infineon-IPD50R380CE-DS-v02_01-en.pdf?fileId=
 	1    0    0    -1  
 $EndComp
 $Comp
-L 000my_lib:MIC4416 U7
+L pcbtc-rescue:MIC4416-000my_lib U7
 U 1 1 5BF18626
 P 7450 4450
 F 0 "U7" H 7675 4965 50  0000 C CNN
@@ -515,7 +515,7 @@ F 3 "~" H 5450 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Si8540:Si8540 U8
+L pcbtc-rescue:Si8540-Si8540 U8
 U 1 1 5BE593CC
 P 8300 2450
 F 0 "U8" H 8300 2547 60  0000 C CNN
@@ -674,17 +674,6 @@ Wire Wire Line
 	6650 2300 6650 2400
 Text GLabel 5450 2300 2    60   Input ~ 0
 U_OUT
-$Comp
-L MCU_ST_STM32F0:STM32F072C8Ux U4
-U 1 1 5ADE4A0A
-P 4550 2400
-F 0 "U4" H 4000 3850 50  0000 C CNN
-F 1 "STM32F072C8Ux" H 5100 3850 50  0000 C CNN
-F 2 "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.6x5.6mm" H 3950 1000 50  0001 R CNN
-F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00090510.pdf" H 4550 2400 50  0001 C CNN
-	1    4550 2400
-	1    0    0    -1  
-$EndComp
 Text GLabel 5450 3500 2    60   Input ~ 0
 SWDIO
 Text GLabel 5450 3600 2    60   Input ~ 0
@@ -2359,10 +2348,10 @@ Wire Wire Line
 Wire Wire Line
 	3600 3400 3850 3400
 $Comp
-L power:GNDD #PWR?
+L power:GNDD #PWR0133
 U 1 1 5CC7E31E
 P 700 3950
-F 0 "#PWR?" H 700 3700 50  0001 C CNN
+F 0 "#PWR0133" H 700 3700 50  0001 C CNN
 F 1 "GNDD" H 704 3795 50  0000 C CNN
 F 2 "" H 700 3950 50  0001 C CNN
 F 3 "" H 700 3950 50  0001 C CNN
@@ -2426,10 +2415,10 @@ Wire Wire Line
 	6650 2800 6650 2900
 Connection ~ 6650 2900
 $Comp
-L power:VPP #PWR?
+L power:VPP #PWR0134
 U 1 1 5D04ECFD
 P 9100 2800
-F 0 "#PWR?" H 9100 2650 50  0001 C CNN
+F 0 "#PWR0134" H 9100 2650 50  0001 C CNN
 F 1 "VPP" H 9100 2950 50  0000 C CNN
 F 2 "" H 9100 2800 50  0001 C CNN
 F 3 "" H 9100 2800 50  0001 C CNN
@@ -2503,10 +2492,10 @@ $EndComp
 Text GLabel 7250 3550 1    50   Input ~ 0
 BOOST
 $Comp
-L Device:R_Small R?
+L Device:R_Small R15
 U 1 1 5CD348F2
 P 7250 3650
-F 0 "R?" H 7309 3696 50  0000 L CNN
+F 0 "R15" H 7309 3696 50  0000 L CNN
 F 1 "5k1" H 7309 3605 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric" H 7250 3650 50  0001 C CNN
 F 3 "~" H 7250 3650 50  0001 C CNN
@@ -2514,10 +2503,10 @@ F 3 "~" H 7250 3650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GNDD #PWR?
+L power:GNDD #PWR0135
 U 1 1 5CD349FE
 P 7250 3750
-F 0 "#PWR?" H 7250 3500 50  0001 C CNN
+F 0 "#PWR0135" H 7250 3500 50  0001 C CNN
 F 1 "GNDD" H 7254 3595 50  0000 C CNN
 F 2 "" H 7250 3750 50  0001 C CNN
 F 3 "" H 7250 3750 50  0001 C CNN
@@ -2560,4 +2549,15 @@ Wire Notes Line rgb(132, 0, 0)
 	6900 3150 11200 3150
 Wire Notes Line rgb(132, 0, 0)
 	11200 2100 6900 2100
+$Comp
+L MCU_ST_STM32F0:STM32F072C8Tx U4
+U 1 1 5CC2675D
+P 4550 2400
+F 0 "U4" H 4500 814 50  0000 C CNN
+F 1 "STM32F072C8Tx" H 4500 723 50  0000 C CNN
+F 2 "Package_QFP:LQFP-48_7x7mm_P0.5mm" H 3950 1000 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00090510.pdf" H 4550 2400 50  0001 C CNN
+	1    4550 2400
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
