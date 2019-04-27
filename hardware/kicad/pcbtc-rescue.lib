@@ -1,6 +1,22 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
+# MIC4416-000my_lib
+#
+DEF MIC4416-000my_lib U 0 40 Y Y 1 F N
+F0 "U" 50 400 50 H V C CNN
+F1 "MIC4416-000my_lib" 200 -50 50 H V C CNN
+F2 "" 0 100 50 H I C CNN
+F3 "" 0 100 50 H I C CNN
+DRAW
+S 0 0 450 350 0 1 0 f
+X GND 1 650 100 200 L 50 50 1 1 W
+X GATE 2 650 250 200 L 50 50 1 1 B
+X VS 3 -200 250 200 R 50 50 1 1 W
+X CTL 4 -200 100 200 R 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
 # Transformer_1P_1S_0-Device
 #
 DEF Transformer_1P_1S_0-Device T 0 40 Y N 1 F N
