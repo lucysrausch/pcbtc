@@ -1,14 +1,19 @@
 #PCB based MIDI Tesla Coil
 
-Docs todo
+For documentation, please see (and like ;) my Hackaday project: https://hackaday.io/project/165112-pcbtc-gan-edition
+
+I released V 1.6, but I haven't ordered pcbs yet to test it. Still this is the recommended Version to order.
+For the current design you also need the bottom pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_01) and the top pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_04)
+
+Check out the interactive html BOM for easier assembly: https://github.com/NiklasFauth/pcbtc/blob/master/hardware/kicad/bom/ibom.html
 
 Known bugs (V1.5):
 * Missing pulldown for gatedriver input of the flyback converter
-This can cause problems when in DFU mode as the mosfet might switch on permanently, shortying VUSB
+This can cause problems when in DFU mode as the mosfet might switch on permanently, shortying VUSB (Fixed in V1.6)
 * Missing input decoupling capacitors underneath the LMG5200.
-Adding additional high-quality 100pF and 100nF ceramic capacitors on the bottom of the pcb improves performance drastically
+Adding additional high-quality 100pF and 100nF ceramic capacitors on the bottom of the pcb improves performance drastically (Fixed in V1.6)
 * Unknown problem causes GaN module to fail when touching the arcs with the finger or a screwdriver.
-The reson for this is unknown so far. Maybe EMI, maybe bad layout. Just don't touch the arcs for too long for now. Discharges to air work reliably.
+The reson for this is unknown so far. Maybe EMI, maybe bad layout. Just don't touch the arcs for too long for now. Discharges to air work reliably. (Maybe fixed in V1.6 thanks to suggestions from nikisalli)
 
 Flash with dfu-util -d 0483:df11 -a 0 -s 0x8000000:leave -D build/pcbtcMIDI.bin
 
