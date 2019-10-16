@@ -193,6 +193,9 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+  HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, SET);
+
 	MX_DAC_Init();
 
 	HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
@@ -229,6 +232,8 @@ int main(void)
   //USB-MIDI Init
   MX_USB_MIDI_INIT();
 
+  //HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
+
 
   if(FUNC_ERROR == midiInit() ){
 	  while(1){
@@ -242,7 +247,7 @@ int main(void)
   //Wait usb configuration.
   while(1){
 	  if(USBD_STATE_CONFIGURED == hUsbDeviceFS.dev_state){
-		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
+		  //HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, SET);
 		  break;
 	  }else{
 		  HAL_GPIO_WritePin(LED_POW_GPIO, LED_POW_PIN, RESET);
@@ -254,8 +259,10 @@ int main(void)
 
   for (uint32_t i = 0; i < Vmax; i+=100) {
     Vset = i;
-    HAL_Delay(1);
+    HAL_Delay(3);
   }
+
+  HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
 
   Vset = Vmax;
 
