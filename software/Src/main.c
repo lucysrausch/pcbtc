@@ -358,11 +358,21 @@ int main(void)
 					char vel = midiBuffer[2];
 
 					uint16_t freq = pow(2,(key-0x45)/12.0)*440.0;
+
 					curChannel = midiBuffer[0] & 0xF;
-					freqs[curChannel] = freq;
 
+					// Note on with a velocity of 0x00 is the same as a note off message. MIDI Spec: 
+					// "A receiver must be capable of recognizing either method of turning off a note, and should treat them identically."
+					if (vel == 0) {
+						if (freqs[curChannel] == freq)
+							freqs[curChannel] = 0;
+					} else {
+						freqs[curChannel] = freq;
+					}
+					
+				}
 
-				} if ((midiBuffer[0] &0xF0) == 0x80) { // Note off, 2 data bytes
+				if ((midiBuffer[0] & 0xF0) == 0x80) { // Note off, 2 data bytes
 					char key = midiBuffer[1];
 					char vel = midiBuffer[2];
 
