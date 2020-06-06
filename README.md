@@ -2,8 +2,9 @@
 
 For documentation, please see (and like ;) my Hackaday project: https://hackaday.io/project/165112-pcbtc-gan-edition
 
-I released V 1.6, but I haven't ordered pcbs yet to test it. Still this is the recommended Version to order.
-For the current design you also need the bottom pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_01) and the top pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_04)
+For the mainboard, please use V1.6 to order the pcbs. Select the pcb thickness to be as thin as possible, eg. 1mm.
+For the current design you also need the bottom pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_01) and the top pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_04).
+For these pcbs, please use 1.6mm thickness or thicker (eg. 2mm).
 
 Check out the interactive html BOM for easier assembly: https://github.com/NiklasFauth/pcbtc/blob/master/hardware/kicad/bom/ibom.html
 
