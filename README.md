@@ -3,10 +3,10 @@
 For documentation, please see (and like ;) my Hackaday project: https://hackaday.io/project/165112-pcbtc-gan-edition
 
 For the mainboard, please use V1.6 to order the pcbs. Select the pcb thickness to be as thin as possible, eg. 1mm.
-For the current design you also need the bottom pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_01) and the top pcb coil (https://github.com/NiklasFauth/pcbtc/tree/master/hardware/gerber_coil_04).
+For the current design you also need the bottom pcb coil (https://github.com/lucysrausc/pcbtc/tree/master/hardware/gerber_coil_01) and the top pcb coil (https://github.com/lucysrausc/pcbtc/tree/master/hardware/gerber_coil_04).
 For these pcbs, please use 1.6mm thickness or thicker (eg. 2mm).
 
-Check out the interactive html BOM for easier assembly: https://github.com/NiklasFauth/pcbtc/blob/master/hardware/kicad/bom/ibom.html
+Check out the interactive html BOM for easier assembly: https://github.com/lucysrausc/pcbtc/blob/master/hardware/kicad/bom/ibom.html
 
 Known bugs (V1.5):
 * Missing pulldown for gatedriver input of the flyback converter
