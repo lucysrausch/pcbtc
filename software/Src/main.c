@@ -311,6 +311,7 @@ int main(void)
 		} else if (curTone0 < 20 && curTone0 != lastTone0) {
 			TIM14->CR1 &= ~(1UL);
       curPeriode0 = 0;
+      lastTone0 = 0;
 
 			HAL_GPIO_WritePin(LED_FAULT_GPIO, LED_FAULT_PIN, RESET);
 		}
@@ -325,6 +326,7 @@ int main(void)
 		} else if (curTone1 < 20 && curTone1 != lastTone1) {
 			TIM15->CR1 &= ~(1UL);
       curPeriode1 = 0;
+      lastTone1 = 0;
 		}
 
 		if ((HAL_GetTick() - noteTimeout) > 1000) {
